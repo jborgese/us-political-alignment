@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "Voted against a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
+        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Voted for a three-year extension of expanded premium subsidies for individually purchased health insurance.",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Voted against a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll349",
+        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Voted against a funding bill that did not extend the expiring premium subsidies.",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll285",
+        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "As a party leader in the chamber, publicly demanded that the chamber's leader bring a three-year extension of the expanded premium subsidies to a vote at once.",
+      "sources": [
+        "https://democrats.house.gov/newsroom/press-releases/chairman-aguilar-speaker-johnson-bring-this-bill-to-the-floor-right-now"
+      ]
+    }
+  ]
+}

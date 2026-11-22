@@ -1,0 +1,385 @@
+{
+  "revealingTerms": [
+    "United States",
+    "US",
+    "U.S.",
+    "USA",
+    "America",
+    "American",
+    "Americans",
+    "Germany",
+    "German",
+    "Germans",
+    "France",
+    "French",
+    "United Kingdom",
+    "UK",
+    "Britain",
+    "British",
+    "England",
+    "Scotland",
+    "Wales",
+    "Northern Ireland",
+    "Canada",
+    "Canadian",
+    "Canadians",
+    "Quebec",
+    "Texas",
+    "New York",
+    "Washington",
+    "Maine",
+    "Maryland",
+    "Virginia",
+    "Illinois",
+    "California",
+    "Congress",
+    "Congressional",
+    "House of Representatives",
+    "Senate",
+    "White House",
+    "Bundestag",
+    "Bundesrat",
+    "National Assembly",
+    "Assemblée nationale",
+    "House of Commons",
+    "House of Lords",
+    "Parliament",
+    "Westminster",
+    "President",
+    "Prime Minister",
+    "Chancellor",
+    "Speaker",
+    "Democrat",
+    "Democrats",
+    "Democratic Party",
+    "Republican",
+    "Republicans",
+    "GOP",
+    "Conservative Party",
+    "Conservatives",
+    "Tory",
+    "Tories",
+    "Liberal Democrats",
+    "SNP",
+    "SPD",
+    "AfD",
+    "Die Linke",
+    "Bloc Québécois",
+    "La France Insoumise",
+    "Les Républicains",
+    "Trump",
+    "Biden",
+    "Starmer",
+    "Farage",
+    "Merz",
+    "Macron",
+    "Le Pen",
+    "Bardella",
+    "Carney",
+    "Poilievre",
+    "Medicare",
+    "Medicaid",
+    "Affordable Care Act",
+    "ACA",
+    "Obamacare",
+    "Social Security",
+    "SNAP",
+    "CHIP",
+    "NHS",
+    "National Health Service",
+    "Universal Credit",
+    "Bürgergeld",
+    "Hartz",
+    "Sécurité sociale",
+    "Assurance Maladie",
+    "Pharmacare",
+    "Old Age Security",
+    "Canada Health Act",
+    "dollar",
+    "dollars",
+    "euro",
+    "euros",
+    "sterling",
+    "he",
+    "she",
+    "his",
+    "her",
+    "hers",
+    "him",
+    "himself",
+    "herself",
+    "federal",
+    "state",
+    "states",
+    "province",
+    "provinces",
+    "provincial",
+    "reconciliation",
+    "shutdown",
+    "caucus",
+    "congressman",
+    "congresswoman",
+    "MP",
+    "MPs",
+    "pensioner",
+    "pensioners",
+    "claimant",
+    "claimants",
+    "Burnham",
+    "Reeves",
+    "Streeting",
+    "Timms",
+    "Milburn",
+    "Sanders",
+    "Schumer",
+    "Jeffries",
+    "Johnson",
+    "Thune",
+    "Scalise",
+    "Massie",
+    "Fitzpatrick",
+    "Obama",
+    "Personal Independence Payment",
+    "PIP",
+    "Winter Fuel Payment",
+    "triple lock",
+    "State Pension",
+    "Pension Credit",
+    "Child Tax Credit",
+    "DWP",
+    "Health Freedom Account",
+    "Health Freedom Accounts",
+    "TrumpRx",
+    "emerita",
+    "emeritus",
+    "Lewis",
+    "Davies",
+    "Warken",
+    "Jenrick",
+    "Tice",
+    "Lecornu",
+    "Casar",
+    "Omar",
+    "Dingell",
+    "Pocan",
+    "Norman",
+    "Clyde",
+    "Brecheen",
+    "Burlison",
+    "Grundsicherung",
+    "Mütterrente",
+    "PLFSS",
+    "AME",
+    "pharmacare",
+    "Medicare for All",
+    "Bloc"
+  ],
+  "subjects": [
+    {
+      "id": "s01",
+      "name": "Chip Roy",
+      "kind": "member",
+      "group": "House Freedom Caucus",
+      "aliases": [
+        "Roy"
+      ]
+    },
+    {
+      "id": "s02",
+      "name": "Ben Cline",
+      "kind": "member",
+      "group": "Republican Study Committee",
+      "aliases": [
+        "Cline"
+      ]
+    },
+    {
+      "id": "s03",
+      "name": "Brad Schneider",
+      "kind": "member",
+      "group": "New Democrat Coalition",
+      "aliases": [
+        "Schneider"
+      ]
+    },
+    {
+      "id": "s04",
+      "name": "Liberal Party of Canada",
+      "kind": "party",
+      "group": "Canada",
+      "aliases": [
+        "Liberal Party",
+        "Liberals",
+        "LPC"
+      ]
+    },
+    {
+      "id": "s05",
+      "name": "Alexandria Ocasio-Cortez",
+      "kind": "member",
+      "group": "Congressional Progressive Caucus",
+      "aliases": [
+        "Ocasio-Cortez",
+        "AOC"
+      ]
+    },
+    {
+      "id": "s06",
+      "name": "Marie Gluesenkamp Perez",
+      "kind": "member",
+      "group": "Blue Dog Coalition",
+      "aliases": [
+        "Gluesenkamp Perez",
+        "Gluesenkamp",
+        "Perez",
+        "MGP"
+      ]
+    },
+    {
+      "id": "s07",
+      "name": "Pramila Jayapal",
+      "kind": "member",
+      "group": "Congressional Progressive Caucus",
+      "aliases": [
+        "Jayapal"
+      ]
+    },
+    {
+      "id": "s08",
+      "name": "CDU/CSU",
+      "kind": "party",
+      "group": "Germany",
+      "aliases": [
+        "CDU",
+        "CSU",
+        "Christian Democratic Union",
+        "Christian Social Union"
+      ]
+    },
+    {
+      "id": "s09",
+      "name": "House Freedom Caucus",
+      "kind": "caucus",
+      "group": "US House",
+      "aliases": [
+        "Freedom Caucus",
+        "HFC"
+      ]
+    },
+    {
+      "id": "s10",
+      "name": "Andy Harris",
+      "kind": "member",
+      "group": "House Freedom Caucus",
+      "aliases": [
+        "Harris"
+      ]
+    },
+    {
+      "id": "s11",
+      "name": "August Pfluger",
+      "kind": "member",
+      "group": "Republican Study Committee",
+      "aliases": [
+        "Pfluger"
+      ]
+    },
+    {
+      "id": "s12",
+      "name": "Labour Party",
+      "kind": "party",
+      "group": "United Kingdom",
+      "aliases": [
+        "Labour"
+      ]
+    },
+    {
+      "id": "s13",
+      "name": "Jared Golden",
+      "kind": "member",
+      "group": "Blue Dog Coalition",
+      "aliases": [
+        "Golden"
+      ]
+    },
+    {
+      "id": "s14",
+      "name": "New Democrat Coalition",
+      "kind": "caucus",
+      "group": "US House",
+      "aliases": [
+        "New Dems",
+        "New Dem",
+        "NDC"
+      ]
+    },
+    {
+      "id": "s15",
+      "name": "Republican Study Committee",
+      "kind": "caucus",
+      "group": "US House",
+      "aliases": [
+        "RSC"
+      ]
+    },
+    {
+      "id": "s16",
+      "name": "Congressional Progressive Caucus",
+      "kind": "caucus",
+      "group": "US House",
+      "aliases": [
+        "Progressive Caucus",
+        "CPC"
+      ]
+    },
+    {
+      "id": "s17",
+      "name": "New Democratic Party",
+      "kind": "party",
+      "group": "Canada",
+      "aliases": [
+        "NDP",
+        "New Democrats"
+      ]
+    },
+    {
+      "id": "s18",
+      "name": "Reform UK",
+      "kind": "party",
+      "group": "United Kingdom",
+      "aliases": [
+        "Reform Party"
+      ]
+    },
+    {
+      "id": "s19",
+      "name": "Pete Aguilar",
+      "kind": "member",
+      "group": "New Democrat Coalition",
+      "aliases": [
+        "Aguilar"
+      ]
+    },
+    {
+      "id": "s20",
+      "name": "Rassemblement National",
+      "kind": "party",
+      "group": "France",
+      "aliases": [
+        "RN",
+        "National Rally",
+        "Front National"
+      ]
+    },
+    {
+      "id": "s21",
+      "name": "Blue Dog Coalition",
+      "kind": "caucus",
+      "group": "US House",
+      "aliases": [
+        "Blue Dogs",
+        "Blue Dog"
+      ]
+    }
+  ]
+}

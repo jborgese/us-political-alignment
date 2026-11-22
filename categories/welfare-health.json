@@ -1,0 +1,83 @@
+{
+  "title": "Welfare and health",
+  "question": "Which record shows stronger support for government-guaranteed health coverage and income support for the general population?",
+  "highPole": "government guarantees broad health coverage and income support",
+  "lowPole": "government's role in health coverage and income support is cut back",
+  "anchors": [
+    {
+      "id": "anchor-expansive",
+      "items": [
+        {
+          "tier": "official_act",
+          "text": "Voted for a law that enrolls every resident in publicly funded health coverage with no charge at the point of care."
+        },
+        {
+          "tier": "official_act",
+          "text": "Voted to raise the minimum public pension and to tie unemployment benefits to wage growth."
+        },
+        {
+          "tier": "official_act",
+          "text": "Voted against a budget that reduced public health spending."
+        },
+        {
+          "tier": "influence",
+          "text": "Publicly pressed fellow legislators to drop a proposed charge for doctor visits."
+        },
+        {
+          "tier": "statement",
+          "text": "Announced the intention to introduce a bill adding dental and eye care to public coverage."
+        }
+      ]
+    },
+    {
+      "id": "anchor-mixed",
+      "items": [
+        {
+          "tier": "official_act",
+          "text": "Voted to keep existing public health coverage for older and low-income residents at its current funding."
+        },
+        {
+          "tier": "official_act",
+          "text": "Voted against a bill extending public health coverage to all residents."
+        },
+        {
+          "tier": "official_act",
+          "text": "Voted against a bill narrowing eligibility for existing public health coverage."
+        },
+        {
+          "tier": "influence",
+          "text": "Endorsed a proposal to subsidize private insurance premiums for middle-income households."
+        },
+        {
+          "tier": "statement",
+          "text": "Said they will vote for stricter job-search conditions on unemployment benefits while keeping benefit levels unchanged."
+        }
+      ]
+    },
+    {
+      "id": "anchor-retrenching",
+      "items": [
+        {
+          "tier": "official_act",
+          "text": "Voted for a budget that reduced funding for public health coverage and narrowed eligibility for it."
+        },
+        {
+          "tier": "official_act",
+          "text": "Voted to add work requirements and time limits to income support for working-age adults."
+        },
+        {
+          "tier": "official_act",
+          "text": "Voted against extending subsidies for health insurance premiums."
+        },
+        {
+          "tier": "influence",
+          "text": "Publicly urged fellow legislators to turn public health funding into fixed grants that grow more slowly than costs."
+        },
+        {
+          "tier": "statement",
+          "text": "Announced the intention to introduce a bill letting people leave public health coverage in exchange for a tax credit."
+        }
+      ]
+    }
+  ]
+}

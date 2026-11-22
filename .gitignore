@@ -1,0 +1,12 @@
+# Local environment and secrets. Keep .env.example committed.
+.env
+.env.*
+!.env.example
+
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# OS and editor files
+.DS_Store

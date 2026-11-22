@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "Its members voted unanimously against a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "sources": [
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-statement-gop-budget-bill",
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
+        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Its members voted for a three-year extension of expanded premium subsidies for individually purchased health insurance.",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Four of its ten members voted for a funding bill that did not extend the expiring premium subsidies, and six voted against it.",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll285",
+        "https://bluedogs-gluesenkampperez.house.gov/members",
+        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Endorsed a bill to make the expanded premium subsidies permanent and to reverse the health coverage reductions in the budget law.",
+      "sources": [
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-endorses-protecting-health-care-and-lowering-costs"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Issued a statement opposing the budget law for cutting public health coverage for low-income residents and for adding to public debt.",
+      "sources": [
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-statement-gop-budget-bill"
+      ]
+    }
+  ]
+}

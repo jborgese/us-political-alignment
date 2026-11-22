@@ -1,0 +1,69 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "Nearly all of its members voted for a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
+        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "A large majority of its members, including its chair and vice chair, voted against a three-year extension of expanded premium subsidies for individually purchased health insurance.",
+      "sources": ["https://clerk.house.gov/evs/2026/roll011"]
+    },
+    {
+      "tier": "official_act",
+      "text": "Nearly all of its members voted for a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll349",
+        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Published a framework urging its party to pass a bill that redirects premium subsidies from insurers into personal health accounts held by patients.",
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
+        "https://atr.org/rsc-reconciliation-2-0-framework-puts-taxpayers-first/",
+        "https://rsc-pfluger.house.gov/media/press-releases/rsc-leads-reconciliation-20-making-american-dream-affordable-again"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "In the same framework, urged making all non-citizens ineligible for public health coverage for low-income residents, food assistance, and housing assistance.",
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
+        "https://www.hklaw.com/en/insights/publications/2026/01/holland-knight-health-dose-january-21-2026"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "In the same framework, urged ending a rule that grants automatic benefit eligibility to people enrolled in other aid programs, and adding asset tests.",
+      "sources": ["https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf"]
+    },
+    {
+      "tier": "influence",
+      "text": "In the same framework, urged funding payments that lower out-of-pocket costs for lower-income people with individually purchased insurance, which it said would cut premiums by 11 percent and reduce public spending.",
+      "sources": ["https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf"]
+    },
+    {
+      "tier": "influence",
+      "text": "In the same framework, urged requiring public health coverage for low-income residents to pay hospitals the same rate wherever care is delivered, which it counted as a large spending reduction.",
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
+        "https://atr.org/rsc-reconciliation-2-0-framework-puts-taxpayers-first/"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "In the same framework, urged eliminating a dedicated fund for disease prevention and public health programs.",
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
+        "https://atr.org/rsc-reconciliation-2-0-framework-puts-taxpayers-first/"
+      ]
+    }
+  ]
+}

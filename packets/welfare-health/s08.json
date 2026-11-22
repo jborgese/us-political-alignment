@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a pension law that holds the public pension at 48 percent of average wages through 2031 and adds pension entitlement for parents of children born before 1992.",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In a governing coalition, replaced the main basic income benefit with a stricter scheme: benefit rates stay the same, benefits are cut by 30 percent for refusing training or for a second missed appointment, and full withdrawal can follow further missed appointments.",
+      "sources": [
+        "https://www.zdfheute.de/politik/deutschland/buergergeld-reform-grundsicherung-bundestag-100.html"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a health insurance savings law that raised patient charges for medicines by half, restricted free coverage of spouses under public health insurance, and curbed payment increases to doctors, hospitals, and drug makers, in order to hold contribution rates steady.",
+      "sources": [
+        "https://www.apotheken-umschau.de/gesundheitspolitik/bundestag-beschliesst-sparpaket-fuer-krankenkassen-1552543.html"
+      ]
+    },
+    {
+      "tier": "statement",
+      "text": "The party leader, as head of government, said the current social system is no longer affordable and that painful cuts will be needed, naming the basic income benefit and stronger incentives to work longer before drawing a pension.",
+      "sources": [
+        "https://www.aerzteblatt.de/themen/sozialpolitik/merz-bekraftigt-forderung-nach-einschnitten-im-sozialsystem-69be4d4d-e30f-4cef-8c05-37ada289953c"
+      ]
+    }
+  ]
+}

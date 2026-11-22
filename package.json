@@ -1,0 +1,27 @@
+{
+  "name": "alignment-rater",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Blinded pairwise rating of political evidence packets by a language model, scaled per issue category.",
+  "type": "module",
+  "packageManager": "npm@10.9.9",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "check": "node src/cli.ts check",
+    "rate": "node --env-file-if-exists=.env src/cli.ts rate",
+    "report": "node src/cli.ts report",
+    "test": "vitest --run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.12.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  }
+}

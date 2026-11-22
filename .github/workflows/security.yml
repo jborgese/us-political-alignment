@@ -1,0 +1,81 @@
+# Scans for committed secrets and for dependencies with known vulnerabilities.
+# Runs on pull requests, on pushes to the default branch, weekly, and on demand.
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches: [main] # TEMPLATE: this repo's default branch
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      # The gitleaks CLI is MIT-licensed and needs no license key. Bump the version and the
+      # checksum together; checksums are listed on the gitleaks releases page.
+      - name: Install gitleaks
+        env:
+          GITLEAKS_VERSION: "8.30.1"
+          GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+        run: |
+          curl -sSfL -o "${RUNNER_TEMP}/gitleaks.tar.gz" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          echo "${GITLEAKS_SHA256}  ${RUNNER_TEMP}/gitleaks.tar.gz" | sha256sum --check
+          tar -xzf "${RUNNER_TEMP}/gitleaks.tar.gz" -C "${RUNNER_TEMP}" gitleaks
+      # A pull request is scanned for the commits it adds. Every other run scans all history on
+      # every branch, so a finding there is already in the repo: rotate the secret, then record
+      # its fingerprint in .gitleaksignore with the reason.
+      - name: Scan for secrets
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ -n "${BASE_SHA}" ]; then
+            "${RUNNER_TEMP}/gitleaks" git --redact --verbose --no-banner --log-opts="${BASE_SHA}..HEAD"
+          else
+            "${RUNNER_TEMP}/gitleaks" git --redact --verbose --no-banner
+          fi
+
+  # The two jobs below call OSV-Scanner's reusable workflows. Those declare the permissions
+  # listed here themselves, so the caller has to grant them even though nothing is uploaded.
+  # TEMPLATE: set upload-sarif to true in both jobs if this repo has code scanning (public
+  # repositories, or private ones with GitHub Code Security). Without it the upload fails.
+  dependencies-pr:
+    name: Dependency scan (introduced by this pull request)
+    if: github.event_name == 'pull_request'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@32d3cd482bdadfb38b186c0ad1b031902d55d932 # v2.7.1
+    with:
+      upload-sarif: false
+      scan-args: |-
+        --recursive
+        --allow-no-lockfiles
+        ./
+
+  dependencies-full:
+    name: Dependency scan (whole repo)
+    if: github.event_name != 'pull_request'
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@32d3cd482bdadfb38b186c0ad1b031902d55d932 # v2.7.1
+    with:
+      upload-sarif: false
+      scan-args: |-
+        --recursive
+        --allow-no-lockfiles
+        ./

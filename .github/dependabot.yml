@@ -1,0 +1,13 @@
+# Keeps pinned GitHub Actions and package dependencies current.
+# Version updates wait out Dependabot's release cooldown; security updates open right away.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"

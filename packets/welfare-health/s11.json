@@ -1,0 +1,59 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "Voted for a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
+        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Voted against a three-year extension of expanded premium subsidies for individually purchased health insurance.",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Voted for a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll349",
+        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Voted for a funding bill that did not extend the expiring premium subsidies.",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll285",
+        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Introduced a bill to replace premium subsidies paid to insurers with personal health accounts that people use to buy their own coverage.",
+      "sources": [
+        "https://rsc-pfluger.house.gov/media/press-releases/what-theyre-saying-obamacare-flatlined-more-affordable-care-act-remedy",
+        "https://www.texastribune.org/2025/12/19/texas-republicans-congress-health-care-obamacare-subsidies-2026-midterms/?nb=1"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "As chair of a group of legislators, released a framework urging the party to pass a bill that makes all non-citizens ineligible for public health coverage for low-income residents, food assistance, and housing assistance, and that ends a dedicated fund for disease prevention.",
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
+        "https://pfluger.house.gov/news/documentsingle.aspx?DocumentID=2737"
+      ]
+    },
+    {
+      "tier": "statement",
+      "text": "Called the employer health plan bill a solid first step toward lower costs.",
+      "sources": [
+        "https://rsc-pfluger.house.gov/media/press-releases/rsc-chairman-pfluger-calls-health-care-bill-solid-first-step-lower-costs-after"
+      ]
+    }
+  ]
+}

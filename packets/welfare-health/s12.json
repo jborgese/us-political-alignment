@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "In government, enacted above-inflation increases for four years in the standard rate of the main benefit for working-age people.",
+      "sources": [
+        "https://www.gov.uk/government/news/welfare-bill-will-protect-the-most-vulnerable-and-help-households-with-income-boost",
+        "https://www.scope.org.uk/news-and-stories/the-universal-credit-bill-becomes-law-here-are-the-changes-to-disability-benefits-you-need-to-know-about"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, cut the health-related supplement to that benefit by about half for new applicants and stopped raising it with inflation, while leaving current recipients and people with the most severe lifelong conditions unaffected.",
+      "sources": [
+        "https://www.scope.org.uk/news-and-stories/the-universal-credit-bill-becomes-law-here-are-the-changes-to-disability-benefits-you-need-to-know-about",
+        "https://www.gov.uk/government/news/welfare-bill-will-protect-the-most-vulnerable-and-help-households-with-income-boost"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, proposed tightening eligibility for the main disability benefit, then withdrew the change after opposition and began a review of how that benefit is assessed.",
+      "sources": [
+        "https://www.gov.uk/government/news/welfare-bill-will-protect-the-most-vulnerable-and-help-households-with-income-boost",
+        "https://www.scope.org.uk/news-and-stories/the-universal-credit-bill-becomes-law-here-are-the-changes-to-disability-benefits-you-need-to-know-about"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, enacted a law removing the rule that limited child-related benefit payments to a family's first two children.",
+      "sources": [
+        "https://www.gov.uk/government/news/two-child-limit-scrapped-as-historic-bill-to-lift-450000-children-out-of-poverty-becomes-law"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, restored an annual heating payment to about three quarters of retirees, after limiting it the previous winter to retirees receiving low-income benefits.",
+      "sources": ["https://www.gov.uk/government/news/nine-million-pensioners-to-receive-winter-fuel-payments-this-winter"]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, set day-to-day funding for the public health service to grow by an average of 3 percent a year above inflation in its multi-year spending plan.",
+      "sources": ["https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, extended free school meals to all children in households receiving the main benefit for working-age people.",
+      "sources": ["https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"]
+    },
+    {
+      "tier": "statement",
+      "text": "The party leader, as head of government, announced the intention to create a public care service offering free personal care for older people in the next legislative term, funded in part by making the rule for annual public pension increases less generous from 2030.",
+      "sources": [
+        "https://labour.org.uk/updates/stories/six-things-andy-burnham-announced-today-at-labour-party-conference/",
+        "https://www.itv.com/news/2026-09-29/andy-burnham-social-care-nhs-triple-lock-pensions"
+      ]
+    },
+    {
+      "tier": "statement",
+      "text": "The head of government pledged to reduce spending on working-age benefits while ruling out abrupt cuts.",
+      "sources": ["https://www.cityam.com/exclusive-timms-welfare-review-to-dismiss-change-to-pip-eligibility/"]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "Its members voted unanimously for the final version of a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "sources": [
+        "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people",
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
+        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Four of its members voted in committee against advancing an earlier version of that bill while pressing for its work requirements and spending reductions to take effect sooner, then abstained to let it advance.",
+      "sources": [
+        "https://www.dailysignal.com/2025/05/19/budget-committee-passes-big-beautiful-bill-after-negotiations/"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Its chair and several of its members cosponsored a bill to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "Its chair voted against a three-year extension of expanded premium subsidies for individually purchased health insurance, and no member of the group is recorded among the legislators from its party who voted for it.",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Its chair warned party leaders that members would withhold their votes from any funding bill carrying an extension of the expanded premium subsidies, and several members publicly vowed to block one.",
+      "sources": [
+        "https://www.notus.org/healthcare/aca-subsidies-republicans-extension-freedom-caucus"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Its governing board declared it would reject any attempt by the other chamber to weaken the spending reductions in the budget bill.",
+      "sources": [
+        "https://harris.house.gov/media/press-releases/house-freedom-caucus-board-we-stand-firm-no-senate-rollbacks-conservative-wins"
+      ]
+    }
+  ]
+}

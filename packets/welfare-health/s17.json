@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "tier": "official_act",
+      "text": "Five of its seven legislators voted against the government's annual budget and two abstained. That budget added no new funding for the public dental plan, public drug coverage, or subsidized child care.",
+      "sources": [
+        "https://islandsocialtrends.ca/federal-budget-2025-passes-by-slim-margin/",
+        "https://www.canadianaffairs.news/2025/11/04/carney-budget-taps-brakes-on-new-social-programs/"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Its leader publicly demanded that the government sign public drug coverage agreements with all remaining regional governments and release the funding promised for them.",
+      "sources": [
+        "https://www.ndp.ca/news/liberals-break-their-promise-millions-canadians-waiting-free-medicine"
+      ]
+    },
+    {
+      "tier": "statement",
+      "text": "Its new leader campaigned for the leadership on universal public coverage of prescription drugs and of dental, vision, hearing, and mental health care.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Avi_Lewis"
+      ]
+    }
+  ]
+}
