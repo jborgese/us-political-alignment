@@ -10,5 +10,6 @@
       "custom_domain": true
     }
   ],
-  "previews": {}
+  "previews": {},
+  "preview_urls": true
 }
