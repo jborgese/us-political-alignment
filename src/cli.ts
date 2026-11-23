@@ -6,14 +6,16 @@ import {
   remainingStabilityMatchups,
   supersededComparisons,
 } from "./comparisons.ts"
-import { loadRatingSet } from "./files.ts"
+import { CATEGORY_ID_PATTERN, loadRatingSet } from "./files.ts"
 import { rateCategory, rateStability, type RateOutcome } from "./rate.ts"
 import { findSetProblems, packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
 import { writeReports } from "./report.ts"
 import { writeSite } from "./site.ts"
 
-const USAGE = "Usage: node src/cli.ts <check|rate|stability|report|site> <category-id> [limit]"
-const CATEGORY_ID_PATTERN = /^[a-z0-9-]+$/
+const USAGE = [
+  "Usage: node src/cli.ts <check|rate|stability|report> <category-id> [limit]",
+  "       node src/cli.ts site",
+].join("\n")
 
 const check = async (root: string, categoryId: string): Promise<void> => {
   const set = await loadRatingSet(root, categoryId)
@@ -60,8 +62,9 @@ const report = async (root: string, categoryId: string): Promise<void> => {
   console.log(`Blinded spot check: ${paths.spotCheck}`)
 }
 
-const site = async (root: string, categoryId: string): Promise<void> => {
-  console.log(`Site page: ${await writeSite(root, categoryId)}`)
+const site = async (root: string): Promise<void> => {
+  const files = await writeSite(root)
+  console.log(files.map((file) => `Site page: ${file}`).join("\n"))
 }
 
 const COMMANDS = [
@@ -69,11 +72,14 @@ const COMMANDS = [
   { name: "rate", run: rateWith(rateCategory) },
   { name: "stability", run: rateWith(rateStability) },
   { name: "report", run: report },
-  { name: "site", run: site },
 ]
 
 const main = async (args: string[]): Promise<void> => {
   const [commandName, categoryId, limit] = args
+  if (commandName === "site") {
+    if (categoryId !== undefined) console.log(`The site holds every rated category, so "${categoryId}" is ignored.`)
+    return site(process.cwd())
+  }
   const command = COMMANDS.find((candidate) => candidate.name === commandName)
   if (!command || !categoryId || !CATEGORY_ID_PATTERN.test(categoryId)) throw new Error(USAGE)
   await command.run(process.cwd(), categoryId, limit)

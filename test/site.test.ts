@@ -156,7 +156,7 @@ describe("buildSitePage", () => {
   const pageWith = (range: { low: number; high: number } | null): string => {
     const data = buildSiteData(rankedSet(IN_ORDER))
     const records = data.records.map((entry) => (entry.name === "Jane Sample" ? { ...entry, range } : entry))
-    return buildSitePage({ ...data, records }, { css: "", js: "" }).body
+    return buildSitePage({ ...data, records }, { css: "", js: "" }, []).body
   }
 
   it("draws a range bar on a marker whose score moved when reworded", () => {
@@ -182,10 +182,31 @@ describe("buildSitePage", () => {
   })
 
 
+  it("links the other published issues, marks the current one, and leaves an unpublished issue unlinked", () => {
+    const issues = [
+      { id: "welfare-health", label: "Welfare and health", href: "../welfare-health/", current: true },
+      { id: "economics", label: "Economics", href: "../economics/", current: false },
+      { id: "immigration", label: "Immigration", href: null, current: false },
+    ]
+
+    const { body } = buildSitePage(buildSiteData(rankedSet(IN_ORDER)), { css: "", js: "" }, issues)
+
+    expect(body).toContain('<a class="issue" href="../welfare-health/" aria-current="page">')
+    expect(body).toContain('<a class="issue" href="../economics/">')
+    expect(body).toContain('<span class="issue unpublished" title="Not yet published">')
+    expect(body).not.toContain('href="../immigration/"')
+  })
+
+  it("shows no issue list when it is given none", () => {
+    const { body } = buildSitePage(buildSiteData(rankedSet(IN_ORDER)), { css: "", js: "" }, [])
+
+    expect(body).not.toContain('class="issues"')
+  })
+
   it("escapes a name in the markup and in the embedded data", () => {
     const data = buildSiteData(rankedSet(IN_ORDER, moreActs, "Jane <script>alert(1)</script>"))
 
-    const { body } = buildSitePage(data, { css: "", js: "" })
+    const { body } = buildSitePage(data, { css: "", js: "" }, [])
 
     expect(body).not.toContain("<script>alert(1)")
     expect(body).toContain("Jane &lt;script&gt;alert(1)&lt;/script&gt;")

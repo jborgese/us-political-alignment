@@ -4,6 +4,7 @@ import path from "node:path"
 import { z } from "zod"
 
 export const TIERS = ["official_act", "influence", "statement"] as const
+export const CATEGORY_ID_PATTERN = /^[a-z0-9-]+$/
 const MAX_ITEMS_PER_PACKET = 12
 
 const sourcesSchema = z.array(z.url()).min(1)
@@ -92,6 +93,12 @@ const rewordingSchema = z.strictObject({
   records: z.record(z.string(), z.array(z.string().min(1)).min(1)),
 })
 
+const plannedCategoriesSchema = z
+  .array(
+    z.strictObject({ id: z.string().regex(CATEGORY_ID_PATTERN), label: z.string().min(1), published: z.boolean() }),
+  )
+  .min(1)
+
 const pendingBatchSchema = z.strictObject({
   batchId: z.string().min(1),
   model: z.string().min(1),
@@ -117,6 +124,7 @@ export type PolicyEvent = Legislature["events"][number]
 export type Key = z.infer<typeof keySchema>
 export type Comparison = z.infer<typeof comparisonSchema>
 export type PendingBatch = z.infer<typeof pendingBatchSchema>
+export type PlannedCategory = z.infer<typeof plannedCategoriesSchema>[number]
 
 export interface Evidence {
   slot: string
@@ -271,6 +279,9 @@ const loadComparisons = async (file: string): Promise<Comparison[]> =>
   (await readLinesIfPresent(file)).map((line, index) =>
     parseAs(comparisonSchema, JSON.parse(line), `${file} line ${index + 1}`),
   )
+
+export const loadPlannedCategories = async (file: string): Promise<PlannedCategory[]> =>
+  parseAs(plannedCategoriesSchema, await readJson(file), file)
 
 export const loadRatingSet = async (root: string, categoryId: string): Promise<RatingSet> => {
   const paths = pathsFor(root, categoryId)
