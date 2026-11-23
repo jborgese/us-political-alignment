@@ -9,5 +9,7 @@
       "pattern": "uspolitics.frootsnoops.com",
       "custom_domain": true
     }
-  ]
+  ],
+  "previews": {},
+  "preview_urls": true
 }
