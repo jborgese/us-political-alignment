@@ -151,6 +151,7 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 - When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
 - The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
 - `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`.
+- A push to any other branch builds a preview of the page with `npx wrangler preview`, which needs the `previews` block in `wrangler.jsonc` even when it is empty.
 
 ## Changing things after a run has started
 
