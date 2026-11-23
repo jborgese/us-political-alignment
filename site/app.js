@@ -1,7 +1,7 @@
 const data = JSON.parse(document.getElementById("site-data").textContent)
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg"
-const LABEL_HEIGHT = 16
-const GLYPH_NUDGE = 18
+const LEADER = 32
+const LABEL_GAP = 3
 
 const element = (tag, className, text) => {
   const node = document.createElement(tag)
@@ -97,39 +97,63 @@ const select = (index) => {
   showEvidence(data.records[index])
 }
 
-const CROWDED_SHARE = 0.7
+const recordMarkers = markers.filter((marker) => marker.closest(".records"))
 
-const clustersOf = (placed) =>
-  placed.reduce((clusters, item) => {
-    const cluster = clusters.at(-1)
-    const crowded = cluster && item.top - cluster.at(-1).top < item.size * CROWDED_SHARE
-    return crowded ? [...clusters.slice(0, -1), [...cluster, item]] : [...clusters, [item]]
-  }, [])
+const blockOf = (items) => {
+  const offsets = items.map((_, index) => items.slice(0, index).reduce((sum, item) => sum + item.height + LABEL_GAP, 0))
+  const size = offsets.at(-1) + items.at(-1).height
+  const top = items.reduce((sum, item, index) => sum + item.ideal - offsets[index], 0) / items.length
+  return { items, offsets, size, top }
+}
 
-const layoutSlot = (markers) => {
-  const placed = markers
-    .map((marker) => ({ marker, top: marker.offsetTop, size: marker.querySelector(".glyph").offsetHeight }))
-    .sort((a, b) => a.top - b.top)
-  clustersOf(placed).reduce(
-    (labelBottom, cluster) =>
-      cluster.reduce((bottom, item, position) => {
-        const shift = Math.max(0, bottom - item.top)
-        item.marker.style.setProperty("--nudge", `${position * GLYPH_NUDGE}px`)
-        item.marker.style.setProperty("--label-indent", `${(cluster.length - 1 - position) * GLYPH_NUDGE}px`)
-        item.marker.style.setProperty("--label-shift", `${shift}px`)
-        return item.top + shift + LABEL_HEIGHT
-      }, labelBottom),
-    -Infinity,
+const stack = (blocks, block) => {
+  const previous = blocks.at(-1)
+  if (!previous || previous.top + previous.size + LABEL_GAP <= block.top) return [...blocks, block]
+  return stack(blocks.slice(0, -1), blockOf([...previous.items, ...block.items]))
+}
+
+const spreadLabels = (entries, bottom) =>
+  entries
+    .reduce((blocks, entry) => stack(blocks, blockOf([entry])), [])
+    .flatMap((block) => {
+      const top = Math.min(Math.max(block.top, 0), bottom - block.size)
+      return block.items.map((item, position) => ({ ...item, labelTop: top + block.offsets[position] }))
+    })
+
+const layoutScale = () => {
+  const placed = dodge(recordMarkers)
+  const reach = Math.max(...placed.map(({ nudge, size }) => nudge + size / 2))
+  const entries = placed.map((item) => {
+    const height = item.marker.querySelector(".name").offsetHeight
+    return { ...item, height, ideal: item.top + item.size / 2 - height / 2 }
+  })
+  spreadLabels(entries, document.querySelector(".records").offsetHeight).forEach(
+    ({ marker, size, nudge, ideal, labelTop }) => {
+      const labelX = reach + LEADER + size / 2 - nudge
+      const shift = labelTop - ideal
+      const run = labelX - size
+      marker.style.setProperty("--label-x", `${labelX}px`)
+      marker.style.setProperty("--label-shift", `${shift}px`)
+      marker.style.setProperty("--leader-length", `${Math.hypot(run, shift)}px`)
+      marker.style.setProperty("--leader-angle", `${Math.atan2(shift, run)}rad`)
+    },
   )
 }
 
-const layoutColumn = (column) => {
-  const markers = [...column.querySelectorAll(".marker")]
-  const kinds = markers.map((marker) => marker.dataset.kind).filter((kind, index, all) => all.indexOf(kind) === index)
-  kinds.forEach((kind) => layoutSlot(markers.filter((marker) => marker.dataset.kind === kind)))
+const plot = document.querySelector(".plot")
+const groupButtons = [...document.querySelectorAll(".group")]
+
+const highlight = (name) => {
+  groupButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.group === name)))
+  plot.toggleAttribute("data-highlight", name !== null)
+  recordMarkers.forEach((marker) => marker.classList.toggle("lit", marker.dataset.group === name))
 }
 
-const layoutLanes = () => document.querySelectorAll(".column").forEach(layoutColumn)
+groupButtons.forEach((button) =>
+  button.addEventListener("click", () =>
+    highlight(button.getAttribute("aria-pressed") === "true" ? null : button.dataset.group),
+  ),
+)
 
 const tooltip = document.getElementById("tooltip")
 
@@ -160,6 +184,6 @@ markers.forEach((marker) => {
 })
 addEventListener("scroll", hideTooltip, { passive: true })
 
-new ResizeObserver(layoutLanes).observe(document.querySelector(".scale"))
-document.fonts?.ready.then(layoutLanes)
+new ResizeObserver(layoutScale).observe(document.querySelector(".scale"))
+document.fonts?.ready.then(layoutScale)
 select(data.selected)
