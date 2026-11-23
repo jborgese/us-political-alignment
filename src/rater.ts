@@ -9,22 +9,72 @@ const verdictSchema = z.object({
   reason: z.string(),
 })
 
-export type Verdict = z.infer<typeof verdictSchema>
-export type Rater = (system: string, message: string) => Promise<Verdict>
+const verdictFormat = zodOutputFormat(verdictSchema)
 
-export const createRater = (model: string): Rater => {
+export type Verdict = z.infer<typeof verdictSchema>
+
+export interface RatingRequest {
+  id: string
+  system: string
+  message: string
+}
+
+export interface RatedRequest {
+  id: string
+  verdict: Verdict
+}
+
+export type BatchProgress =
+  | { ended: false; processing: number }
+  | { ended: true; rated: RatedRequest[]; failed: string[] }
+
+export interface BatchRater {
+  submit: (requests: RatingRequest[]) => Promise<string>
+  collect: (batchId: string) => Promise<BatchProgress>
+}
+
+type BatchLine = Anthropic.Messages.Batches.MessageBatchIndividualResponse
+
+const verdictOf = (line: BatchLine): Verdict | undefined => {
+  if (line.result.type !== "succeeded") return undefined
+  const text = line.result.message.content.find((block) => block.type === "text")?.text
+  if (text === undefined) return undefined
+  try {
+    return verdictFormat.parse(text)
+  } catch {
+    return undefined
+  }
+}
+
+export const createBatchRater = (model: string): BatchRater => {
   const client = new Anthropic()
-  return async (system, message) => {
-    const response = await client.messages.parse({
-      model,
-      max_tokens: MAX_TOKENS,
-      system,
-      messages: [{ role: "user", content: message }],
-      output_config: { format: zodOutputFormat(verdictSchema) },
-    })
-    if (response.parsed_output === null) {
-      throw new Error(`The rater gave no usable verdict (stop reason: ${response.stop_reason})`)
-    }
-    return response.parsed_output
+  return {
+    submit: async (requests) => {
+      const batch = await client.messages.batches.create({
+        requests: requests.map(({ id, system, message }) => ({
+          custom_id: id,
+          params: {
+            model,
+            max_tokens: MAX_TOKENS,
+            system,
+            messages: [{ role: "user", content: message }],
+            output_config: { format: verdictFormat },
+          },
+        })),
+      })
+      return batch.id
+    },
+    collect: async (batchId) => {
+      const batch = await client.messages.batches.retrieve(batchId)
+      if (batch.processing_status !== "ended") return { ended: false, processing: batch.request_counts.processing }
+      const lines: BatchLine[] = []
+      for await (const line of await client.messages.batches.results(batchId)) lines.push(line)
+      const read = lines.map((line) => ({ id: line.custom_id, verdict: verdictOf(line) }))
+      return {
+        ended: true,
+        rated: read.flatMap(({ id, verdict }) => (verdict ? [{ id, verdict }] : [])),
+        failed: read.filter(({ verdict }) => verdict === undefined).map(({ id }) => id),
+      }
+    },
   }
 }

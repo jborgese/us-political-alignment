@@ -5,9 +5,9 @@ import path from "node:path"
 import { beforeEach, describe, expect, it, onTestFinished, vi } from "vitest"
 
 import { rateCategory } from "../src/rate.ts"
-import { createRater } from "../src/rater.ts"
+import { createBatchRater, type BatchProgress, type RatingRequest } from "../src/rater.ts"
 
-vi.mock("../src/rater.ts", () => ({ createRater: vi.fn() }))
+vi.mock("../src/rater.ts", () => ({ createBatchRater: vi.fn() }))
 
 const CATEGORY_ID = "test-category"
 
@@ -73,31 +73,55 @@ const writeProject = async (packets: Record<string, string[]>): Promise<string> 
   return root
 }
 
-const savedComparisons = async (root: string): Promise<{ first: string; second: string; winner: string }[]> => {
-  const text = await readFile(path.join(root, "runs", CATEGORY_ID, "comparisons.jsonl"), "utf8")
+const savedRows = async (root: string, file: string): Promise<{ first: string; second: string; winner: string }[]> => {
+  const text = await readFile(path.join(root, "runs", CATEGORY_ID, file), "utf8").catch(() => "")
   return text
-    .trim()
     .split("\n")
+    .filter((line) => line !== "")
     .map((line) => JSON.parse(line))
 }
 
-const rater = vi.fn(async () => ({ choice: "A" as const, reason: "The first record did more." }))
+const submit = vi.fn(async (_requests: RatingRequest[]) => "batch-1")
+const collect = vi.fn(async (_batchId: string): Promise<BatchProgress> => ({ ended: false, processing: 0 }))
+
+const lastSubmitted = (): RatingRequest[] => submit.mock.calls.at(-1)?.[0] ?? []
+
+const answersFor = (requests: RatingRequest[]): Extract<BatchProgress, { ended: true }> => ({
+  ended: true,
+  rated: requests.map(({ id }) => ({ id, verdict: { choice: "A", reason: "The first record did more." } })),
+  failed: [],
+})
+
+const sentText = (): string =>
+  lastSubmitted()
+    .map((request) => `${request.system}\n${request.message}`)
+    .join("\n")
+
+const rate = (root: string, limit?: number) => rateCategory(root, CATEGORY_ID, "model-a", limit)
+
+const rateFully = async (root: string) => {
+  await rate(root)
+  return rate(root)
+}
 
 beforeEach(() => {
   vi.clearAllMocks()
-  vi.spyOn(console, "log").mockImplementation(() => undefined)
-  vi.mocked(createRater).mockReturnValue(rater)
+  collect.mockImplementation(async () => answersFor(lastSubmitted()))
+  vi.mocked(createBatchRater).mockReturnValue({ submit, collect })
 })
 
 describe("rateCategory", () => {
-  it("rates every ordered pair once and saves each result", async () => {
+  it("submits every unrated pair, then saves each answer once the batch has ended", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
 
-    const summary = await rateCategory(root, CATEGORY_ID, "model-a")
+    const submitted = await rate(root)
+    const savedBeforeCollecting = await savedRows(root, "comparisons.jsonl")
+    const collected = await rate(root)
 
-    expect(summary).toEqual({ rated: 6, alreadyRated: 0 })
-    expect(rater).toHaveBeenCalledTimes(6)
-    const saved = await savedComparisons(root)
+    expect(submitted).toEqual({ status: "submitted", batchId: "batch-1", count: 6, remaining: 0 })
+    expect(savedBeforeCollecting).toEqual([])
+    expect(collected).toEqual({ status: "collected", rated: 6, failed: 0, remaining: 0 })
+    const saved = await savedRows(root, "comparisons.jsonl")
     expect(saved).toHaveLength(6)
     expect(saved.every((row) => row.winner === row.first)).toBe(true)
   })
@@ -105,44 +129,85 @@ describe("rateCategory", () => {
   it("sends the rater evidence text without ids or sources", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
 
-    await rateCategory(root, CATEGORY_ID, "model-a")
+    await rate(root)
 
-    const sent = rater.mock.calls.flat().join("\n")
-    expect(sent).toContain("Voted to hold coverage flat.")
-    expect(sent).not.toContain("s01")
-    expect(sent).not.toContain("anchor-high")
-    expect(sent).not.toContain("example.org")
+    expect(sentText()).toContain("Voted to hold coverage flat.")
+    expect(sentText()).not.toContain("s01")
+    expect(sentText()).not.toContain("anchor-high")
+    expect(sentText()).not.toContain("example.org")
+    expect(lastSubmitted().map((request) => request.id).join(" ")).not.toContain("s01")
   })
 
-  it("picks up where an earlier run stopped", async () => {
+  it("waits while the batch is still running", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
-    await rateCategory(root, CATEGORY_ID, "model-a")
-    rater.mockClear()
+    await rate(root)
+    collect.mockResolvedValueOnce({ ended: false, processing: 6 })
 
-    const summary = await rateCategory(root, CATEGORY_ID, "model-a")
+    const waiting = await rate(root)
 
-    expect(summary).toEqual({ rated: 0, alreadyRated: 6 })
-    expect(rater).not.toHaveBeenCalled()
+    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", processing: 6 })
+    expect(await savedRows(root, "comparisons.jsonl")).toEqual([])
+    expect(await rate(root)).toMatchObject({ status: "collected", rated: 6 })
+  })
+
+  it("submits a failed comparison again on the next run", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await rate(root)
+    const [failed, ...answered] = lastSubmitted()
+    collect.mockResolvedValueOnce({ ...answersFor(answered), failed: [failed.id] })
+
+    const collected = await rate(root)
+    const resubmitted = await rate(root)
+
+    expect(collected).toEqual({ status: "collected", rated: 5, failed: 1, remaining: 1 })
+    expect(resubmitted).toMatchObject({ status: "submitted", count: 1, remaining: 0 })
+  })
+
+  it("submits no more comparisons than the limit", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+
+    expect(await rate(root, 2)).toMatchObject({ status: "submitted", count: 2, remaining: 4 })
+  })
+
+  it("has nothing to submit once every pair is rated", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await rateFully(root)
+
+    expect(await rate(root)).toEqual({ status: "complete" })
+    expect(submit).toHaveBeenCalledTimes(1)
+  })
+
+  it("rates again only the pairs that touch a changed record", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await rateFully(root)
+    await writeFile(
+      packetFile(root, "s01"),
+      JSON.stringify({ items: [{ slot: "acts", tier: "official_act", text: "Voted to expand coverage.", sources: [source] }] }),
+    )
+
+    const resubmitted = await rate(root)
+
+    expect(resubmitted).toMatchObject({ status: "submitted", count: 4, remaining: 0 })
+    expect(await savedRows(root, "superseded.jsonl")).toHaveLength(4)
+    expect(await savedRows(root, "comparisons.jsonl")).toHaveLength(2)
   })
 
   it("refuses to rate when a packet names a revealing term", async () => {
     const root = await writeProject({ s01: ["Voted to expand Medicare."] })
 
-    await expect(rateCategory(root, CATEGORY_ID, "model-a")).rejects.toThrow('s01 mentions "Medicare"')
-    expect(createRater).not.toHaveBeenCalled()
+    await expect(rate(root)).rejects.toThrow('s01 mentions "Medicare"')
+    expect(createBatchRater).not.toHaveBeenCalled()
   })
 
   it("leaves packets with no evidence out", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."], s02: [] })
 
-    const summary = await rateCategory(root, CATEGORY_ID, "model-a")
-
-    expect(summary.rated).toBe(6)
+    expect(await rate(root)).toMatchObject({ status: "submitted", count: 6 })
   })
 
   it("refuses to mix two models in one run", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
-    await rateCategory(root, CATEGORY_ID, "model-a")
+    await rateFully(root)
 
     await expect(rateCategory(root, CATEGORY_ID, "model-b")).rejects.toThrow("already holds ratings from model-a")
   })
@@ -154,7 +219,7 @@ describe("rateCategory", () => {
       JSON.stringify({ items: [{ slot: "acts", tier: "official_act", text: "Voted to hold coverage flat." }] }),
     )
 
-    await expect(rateCategory(root, CATEGORY_ID, "model-a")).rejects.toThrow("s01.json is not valid")
+    await expect(rate(root)).rejects.toThrow("s01.json is not valid")
   })
 
   it("sends a stance joined to the shared wording of its event", async () => {
@@ -162,17 +227,16 @@ describe("rateCategory", () => {
     await writeEvents(root, [budgetEvent])
     await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
 
-    await rateCategory(root, CATEGORY_ID, "model-a")
+    await rate(root)
 
-    const sent = rater.mock.calls.flat().join("\n")
-    expect(sent).toContain("- [Official act] Voted against a budget that cut public coverage by 5 percent.")
-    expect(sent).not.toContain("event-one")
+    expect(sentText()).toContain("- [Official act] Voted against a budget that cut public coverage by 5 percent.")
+    expect(sentText()).not.toContain("event-one")
   })
 
   it("rejects a stance on an event its legislature does not have", async () => {
     const root = await writeProject({})
     await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
 
-    await expect(rateCategory(root, CATEGORY_ID, "model-a")).rejects.toThrow('takes a stance on "event-one"')
+    await expect(rate(root)).rejects.toThrow('takes a stance on "event-one"')
   })
 })

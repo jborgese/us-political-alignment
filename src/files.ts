@@ -80,6 +80,23 @@ const comparisonSchema = z.strictObject({
   reason: z.string(),
   model: z.string().min(1),
   ratedAt: z.iso.datetime(),
+  firstHash: z.string().min(1).optional(),
+  secondHash: z.string().min(1).optional(),
+})
+
+const pendingBatchSchema = z.strictObject({
+  batchId: z.string().min(1),
+  model: z.string().min(1),
+  submittedAt: z.iso.datetime(),
+  requests: z.array(
+    z.strictObject({
+      id: z.string().min(1),
+      first: z.string().min(1),
+      second: z.string().min(1),
+      firstHash: z.string().min(1),
+      secondHash: z.string().min(1),
+    }),
+  ),
 })
 
 type PacketFile = z.infer<typeof packetSchema>
@@ -92,6 +109,7 @@ export type Legislature = z.infer<typeof eventsSchema>["legislatures"][number]
 export type PolicyEvent = Legislature["events"][number]
 export type Key = z.infer<typeof keySchema>
 export type Comparison = z.infer<typeof comparisonSchema>
+export type PendingBatch = z.infer<typeof pendingBatchSchema>
 
 export interface Evidence {
   slot: string
@@ -121,6 +139,8 @@ export interface CategoryPaths {
   key: string
   runDir: string
   comparisons: string
+  superseded: string
+  pendingBatch: string
   report: string
   spotCheck: string
 }
@@ -134,6 +154,8 @@ export const pathsFor = (root: string, categoryId: string): CategoryPaths => {
     key: path.join(root, "key.json"),
     runDir,
     comparisons: path.join(runDir, "comparisons.jsonl"),
+    superseded: path.join(runDir, "superseded.jsonl"),
+    pendingBatch: path.join(runDir, "batch.json"),
     report: path.join(runDir, "report.md"),
     spotCheck: path.join(runDir, "spot-check.md"),
   }
@@ -175,6 +197,11 @@ const readLinesIfPresent = async (file: string): Promise<string[]> => {
     throw error
   })
   return text.split("\n").filter((line) => line.trim() !== "")
+}
+
+export const loadPendingBatch = async (file: string): Promise<PendingBatch | undefined> => {
+  const [text] = await readLinesIfPresent(file)
+  return text === undefined ? undefined : parseAs(pendingBatchSchema, JSON.parse(text), file)
 }
 
 const loadComparisons = async (file: string): Promise<Comparison[]> =>

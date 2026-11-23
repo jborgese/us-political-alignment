@@ -4,7 +4,9 @@ import {
   buildComparisonMessage,
   buildSystemPrompt,
   describeEvidence,
+  fingerprintRecords,
   remainingMatchups,
+  supersededComparisons,
 } from "../src/comparisons.ts"
 import { act, buildSet, comparison, record } from "./fixtures.ts"
 
@@ -21,6 +23,27 @@ describe("remainingMatchups", () => {
       "s01>anchor-high",
       "s01>anchor-low",
     ])
+  })
+
+  it("rates a pair again when a record has changed since it was rated", () => {
+    const rated = { ...comparison("anchor-high", "s01", "anchor-high"), firstHash: "old-text", secondHash: "old-text" }
+    const set = buildSet({ comparisons: [rated] })
+
+    expect(pairIds(set)).toContain("anchor-high>s01")
+    expect(supersededComparisons(set)).toEqual([rated])
+  })
+
+  it("keeps a pair rated when its records still match", () => {
+    const hashes = fingerprintRecords(buildSet())
+    const rated = {
+      ...comparison("anchor-high", "s01", "anchor-high"),
+      firstHash: hashes["anchor-high"],
+      secondHash: hashes.s01,
+    }
+    const set = buildSet({ comparisons: [rated] })
+
+    expect(pairIds(set)).not.toContain("anchor-high>s01")
+    expect(supersededComparisons(set)).toEqual([])
   })
 
   it("drops the orders that are already rated", () => {
