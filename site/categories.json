@@ -1,0 +1,8 @@
+[
+  { "id": "welfare-health", "label": "Welfare and health", "published": true },
+  { "id": "economics", "label": "Economics", "published": false },
+  { "id": "immigration", "label": "Immigration", "published": false },
+  { "id": "social-cultural", "label": "Social and cultural", "published": false },
+  { "id": "environment", "label": "Environment", "published": false },
+  { "id": "democratic-norms", "label": "Democratic norms", "published": false }
+]

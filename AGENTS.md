@@ -34,8 +34,9 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 ### Deployment
 
-- Cloudflare builds and deploys the site on each push to `main`: build command `npm run site -- welfare-health`, deploy command `npx wrangler deploy`, config in `wrangler.jsonc`. Do not deploy by hand.
+- Cloudflare builds and deploys the site on each push to `main`: build command `npm run site -- welfare-health` (the category is ignored), deploy command `npx wrangler deploy`, config in `wrangler.jsonc`. Do not deploy by hand.
 - A push to any other branch publishes a preview of the page at a public `workers.dev` address (`npx wrangler preview`), so treat a pushed branch as published.
+- Setting `published` to `true` in `site/categories.json` puts that category's scores on the public site at the next deploy, so ask the user first.
 
 <!-- TEMPLATE: how to deploy (command, required working directory), prerequisites (e.g. Docker running), and any process for reserving a shared environment before deploying. Delete if agents never deploy from this repo. -->
 
@@ -45,7 +46,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `npm run rate -- <category-id> [limit]`: submits the unrated pairs to the Anthropic API as a batch, or collects an earlier batch. It needs `.env` and costs money, so ask the user before running it.
 - `npm run stability -- <category-id> [limit]`: the same for the category's reworded versions. It also costs money, so ask first.
 - `npm run report -- <category-id>`: writes the report and the blinded spot check from saved comparisons. No network.
-- `npm run site -- <category-id>`: writes the public page to `dist/index.html` from saved comparisons. No network.
+- `npm run site`: writes the overview to `dist/index.html` and one page per published category to `dist/<category-id>/index.html` from saved comparisons. No network.
 
 ---
 
@@ -59,7 +60,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
 - `rewordings/<category-id>/`: one file per reworded version of the category's records, used only by the stability test
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
-- `site/`: the stylesheet and browser script of the public page, inlined by `src/site.ts`
+- `site/`: the stylesheet and browser scripts of the public pages, inlined by `src/site.ts`, and `categories.json`, the issues the site plans to cover and which of them are published
 - `src/`: the tool; `scoring.ts` is the reference for pure logic and `rater.ts` is the only file that touches the SDK
 - `test/`: Vitest tests, one file per `src/` module
 
@@ -77,10 +78,10 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 **Navigation hints:**
 
-- New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`. No code changes.
+- New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`. No code changes. It reaches the site only when `site/categories.json` marks it published; an id that file does not list also needs an entry there and an `issue-<id>` icon in `src/markup.ts`.
 - New check on what a record may contain? `src/ratingSet.ts`. The rules for writing evidence are in `README.md`.
 - Anything that changes what the rater is sent? `src/comparisons.ts`, and nowhere else.
-- Anything a reader of the site sees? `src/site.ts` builds the page's data and markup; `site/` styles it and handles selection.
+- Anything a reader of the site sees? `src/site.ts` builds each category page's data and markup, `src/home.ts` the overview, and `src/markup.ts` what the two share; `site/` styles them and handles selection.
 
 ---
 

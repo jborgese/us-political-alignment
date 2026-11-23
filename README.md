@@ -23,7 +23,7 @@ Only `rate` needs the `.env` file.
 | `npm run rate -- welfare-health` | Submits the unrated pairs as one batch, or collects the answers of the batch it submitted earlier. | Yes, paid |
 | `npm run stability -- welfare-health` | Does the same for the reworded versions of the category's records. See [Testing the wording](#testing-the-wording). | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
-| `npm run site -- welfare-health` | Writes the public page to `dist/index.html` from the saved run. | No |
+| `npm run site` | Writes the public pages to `dist/` from the saved runs: an overview and one page per published category. | No |
 | `npm test` | Runs the tests. | No |
 | `npm run typecheck` | Type-checks the source. | No |
 
@@ -156,18 +156,20 @@ The pilot rewords each of the 18 records on the page twice, which is 1,656 compa
 
 ## The site
 
-`npm run site -- welfare-health` builds one self-contained page: every record placed by strength of support, and the evidence behind whichever record the reader selects.
+`npm run site` builds an overview, `dist/index.html`, and one self-contained page per published category, `dist/<category-id>/index.html`: every record placed by strength of support, and the evidence behind whichever record the reader selects.
 
 - Support runs from bottom to top. Left to right is one column per group, ordered by support. A left-right position will replace the columns once the project has its own measure of it.
 - A member or caucus shows its party's symbol when `key.json` gives it a `party` the page knows (Democratic or Republican). A party abroad shows its country's flag.
 
-- The page is built from the current packets and the saved run, so build it only when the two match.
-- It refuses to build when the anchors came out of order, for the same reason the report withholds scores.
+- `site/categories.json` lists the issues the site plans to cover, in the order shown, and says which are published. Saving a run publishes nothing: a category reaches the site when its `published` is set to `true`. The others are dimmed in the overview and in each page's list of issues.
+- The overview has one column per issue and marks each record's score in it. It leaves out the reference records.
+- A page is built from the current packets and the saved run, so build it only when the two match.
+- The build fails when the rating of a published category is unfinished or its anchors came out of order, for the same reason the report withholds scores.
 - A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
 - A record is also held back when it fails the [wording test](#testing-the-wording). A record that passes shows a bar on its marker from its lowest to its highest score across wordings.
 - When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
-- The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
-- `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`.
+- The stylesheet and the browser scripts are in `site/`. `src/site.ts` inlines them.
+- `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`. The category in that build command is left from the one-page site and is ignored.
 - A push to any other branch builds a preview of the page with `npx wrangler preview`, which needs the `previews` block in `wrangler.jsonc` even when it is empty. `preview_urls` gives each preview a public address on `workers.dev`, named after the branch; it takes effect at the next deploy from `main`.
 
 ## Changing things after a run has started
