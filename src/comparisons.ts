@@ -86,12 +86,32 @@ export const supersededComparisons = (set: RatingSet): Comparison[] => {
   return set.comparisons.filter((saved) => !current(saved))
 }
 
-export const remainingMatchups = (set: RatingSet): Matchup[] => {
+export const remainingMatchups = (set: RatingSet, planned = allMatchups(ratedPackets(set))): Matchup[] => {
   const rated = currentComparisons(set)
-  return allMatchups(ratedPackets(set)).filter(
+  return planned.filter(
     ({ first, second }) => !rated.some((done) => done.first === first.id && done.second === second.id),
   )
 }
+
+export const stabilityRun = (set: RatingSet): RatingSet => ({
+  ...set,
+  packets: [...set.packets, ...set.rewordings],
+  comparisons: set.stability,
+  superseded: set.stabilitySuperseded,
+})
+
+export const stabilityMatchups = (set: RatingSet): Matchup[] =>
+  set.rewordings.flatMap((rewording) =>
+    ratedPackets(set)
+      .filter((other) => other.id !== rewording.baseId)
+      .flatMap((other) => [
+        { first: rewording, second: other },
+        { first: other, second: rewording },
+      ]),
+  )
+
+export const remainingStabilityMatchups = (set: RatingSet): Matchup[] =>
+  remainingMatchups(stabilityRun(set), stabilityMatchups(set))
 
 export const buildComparisonMessage = ({ first, second }: Matchup, slots: Slot[]): string =>
   [

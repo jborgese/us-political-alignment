@@ -6,9 +6,11 @@ import {
   describeEvidence,
   fingerprintRecords,
   remainingMatchups,
+  remainingStabilityMatchups,
+  stabilityMatchups,
   supersededComparisons,
 } from "../src/comparisons.ts"
-import { act, buildSet, comparison, record } from "./fixtures.ts"
+import { act, buildSet, comparison, record, reworded } from "./fixtures.ts"
 
 const pairIds = (set: ReturnType<typeof buildSet>): string[] =>
   remainingMatchups(set).map(({ first, second }) => `${first.id}>${second.id}`)
@@ -50,6 +52,43 @@ describe("remainingMatchups", () => {
     const set = buildSet({ comparisons: [comparison("anchor-high", "s01", "anchor-high")] })
     expect(pairIds(set)).not.toContain("anchor-high>s01")
     expect(pairIds(set)).toContain("s01>anchor-high")
+  })
+})
+
+describe("stabilityMatchups", () => {
+  const base = buildSet()
+  const set = { ...base, rewordings: [reworded(base.packets[0], "a", ["Voted to keep public coverage level."])] }
+  const ids = (matchups: ReturnType<typeof stabilityMatchups>): string[] =>
+    matchups.map(({ first, second }) => `${first.id}>${second.id}`)
+
+  it("pairs a rewording with every other record in both orders, and never with its own original", () => {
+    expect(ids(stabilityMatchups(set))).toEqual([
+      "s01.a>anchor-high",
+      "anchor-high>s01.a",
+      "s01.a>anchor-low",
+      "anchor-low>s01.a",
+    ])
+  })
+
+  it("plans nothing when the category has no rewordings", () => {
+    expect(stabilityMatchups(base)).toEqual([])
+  })
+
+  it("leaves out the pairs already rated, and leaves the category's own pairs alone", () => {
+    const rated = { ...set, stability: [comparison("s01.a", "anchor-high", "anchor-high")] }
+
+    expect(ids(remainingStabilityMatchups(rated))).toEqual([
+      "anchor-high>s01.a",
+      "s01.a>anchor-low",
+      "anchor-low>s01.a",
+    ])
+    expect(remainingMatchups(rated)).toHaveLength(6)
+  })
+
+  it("rates a pair again when the rewording has changed since it was rated", () => {
+    const stale = { ...comparison("s01.a", "anchor-high", "anchor-high"), firstHash: "old-text", secondHash: "old-text" }
+
+    expect(ids(remainingStabilityMatchups({ ...set, stability: [stale] }))).toContain("s01.a>anchor-high")
   })
 })
 

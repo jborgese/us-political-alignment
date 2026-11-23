@@ -4,7 +4,7 @@ import path from "node:path"
 
 import { beforeEach, describe, expect, it, onTestFinished, vi } from "vitest"
 
-import { rateCategory } from "../src/rate.ts"
+import { rateCategory, rateStability } from "../src/rate.ts"
 import { createBatchRater, type BatchProgress, type RatingRequest } from "../src/rater.ts"
 
 vi.mock("../src/rater.ts", () => ({ createBatchRater: vi.fn() }))
@@ -73,6 +73,16 @@ const writeProject = async (packets: Record<string, string[]>): Promise<string> 
   return root
 }
 
+const writeRewording = async (
+  root: string,
+  records: Record<string, string[]>,
+  events: Record<string, string> = {},
+): Promise<void> => {
+  const dir = path.join(root, "rewordings", CATEGORY_ID)
+  await mkdir(dir, { recursive: true })
+  await writeFile(path.join(dir, "a.json"), JSON.stringify({ events: { "sample-house": events }, records }))
+}
+
 const savedRows = async (root: string, file: string): Promise<{ first: string; second: string; winner: string }[]> => {
   const text = await readFile(path.join(root, "runs", CATEGORY_ID, file), "utf8").catch(() => "")
   return text
@@ -103,6 +113,8 @@ const rateFully = async (root: string) => {
   await rate(root)
   return rate(root)
 }
+
+const rateRewordings = (root: string, limit?: number) => rateStability(root, CATEGORY_ID, "model-a", limit)
 
 beforeEach(() => {
   vi.clearAllMocks()
@@ -238,5 +250,96 @@ describe("rateCategory", () => {
     await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
 
     await expect(rate(root)).rejects.toThrow('takes a stance on "event-one"')
+  })
+})
+
+describe("rateStability", () => {
+  it("rates a rewording against every other record and keeps the answers apart from the category's own", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."], s02: ["Voted to widen coverage."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
+    await rateFully(root)
+
+    const submitted = await rateRewordings(root)
+    const collected = await rateRewordings(root)
+
+    expect(submitted).toMatchObject({ status: "submitted", count: 6, remaining: 0 })
+    expect(collected).toEqual({ status: "collected", rated: 6, failed: 0, remaining: 0 })
+    const saved = await savedRows(root, "stability.jsonl")
+    expect(saved.every((row) => [row.first, row.second].includes("s01.a"))).toBe(true)
+    expect(saved.some((row) => [row.first, row.second].includes("s01"))).toBe(false)
+    expect(await savedRows(root, "comparisons.jsonl")).toHaveLength(12)
+    expect(await rateRewordings(root)).toEqual({ status: "complete" })
+  })
+
+  it("sends the reworded text, never the original it replaces, and no ids", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
+    await rateFully(root)
+
+    await rateRewordings(root)
+
+    expect(sentText()).toContain("- [Official act] Cast a vote for keeping coverage level.")
+    expect(sentText()).not.toContain("Voted to hold coverage flat.")
+    expect(sentText()).not.toContain("s01")
+  })
+
+  it("joins a reworded stance to the reworded wording of its event", async () => {
+    const root = await writeProject({})
+    await writeEvents(root, [budgetEvent])
+    await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
+    await writeRewording(root, { s01: ["Cast a vote against"] }, { "event-one": "a budget lowering public coverage by 5 percent" })
+    await rateFully(root)
+
+    await rateRewordings(root)
+
+    expect(sentText()).toContain("- [Official act] Cast a vote against a budget lowering public coverage by 5 percent.")
+  })
+
+  it("refuses to rate rewordings before the category itself is rated", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
+
+    await expect(rateRewordings(root)).rejects.toThrow("6 comparisons remain. Run rate first.")
+    expect(createBatchRater).not.toHaveBeenCalled()
+  })
+
+  it("refuses to rate rewordings with a different model from the category", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
+    await rateFully(root)
+
+    await expect(rateStability(root, CATEGORY_ID, "model-b")).rejects.toThrow("already holds ratings from model-a")
+  })
+
+  it("refuses to rate anything when a rewording names a revealing term", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping Medicare level."] })
+
+    await expect(rate(root)).rejects.toThrow('s01.a mentions "Medicare"')
+    await expect(rateRewordings(root)).rejects.toThrow('s01.a mentions "Medicare"')
+    expect(createBatchRater).not.toHaveBeenCalled()
+  })
+
+  it("rejects a rewording that does not give one text for each item of its record", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level.", "Said so."] })
+
+    await expect(rateRewordings(root)).rejects.toThrow("gives 2 texts for s01, which has 1 items")
+  })
+
+  it("rejects a rewording of a stance when the event has no reworded wording", async () => {
+    const root = await writeProject({})
+    await writeEvents(root, [budgetEvent])
+    await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
+    await writeRewording(root, { s01: ["Cast a vote against"] })
+
+    await expect(rateRewordings(root)).rejects.toThrow('has no wording for the event "event-one"')
+  })
+
+  it("rejects a rewording of a record that has no packet", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s09: ["Cast a vote for keeping coverage level."] })
+
+    await expect(rateRewordings(root)).rejects.toThrow("rewords s09, which has no packet")
   })
 })

@@ -42,6 +42,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 - `npm run check -- <category-id>`: validates the category, its packets, and the key. No network.
 - `npm run rate -- <category-id> [limit]`: submits the unrated pairs to the Anthropic API as a batch, or collects an earlier batch. It needs `.env` and costs money, so ask the user before running it.
+- `npm run stability -- <category-id> [limit]`: the same for the category's reworded versions. It also costs money, so ask first.
 - `npm run report -- <category-id>`: writes the report and the blinded spot check from saved comparisons. No network.
 - `npm run site -- <category-id>`: writes the public page to `dist/index.html` from saved comparisons. No network.
 
@@ -55,6 +56,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `events/`: one file per issue category, holding the shared wording of each program change, listed by legislature
 - `key.json`: maps each blinded id to a name and a legislature, and lists the terms no record may contain
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
+- `rewordings/<category-id>/`: one file per reworded version of the category's records, used only by the stability test
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
 - `site/`: the stylesheet and browser script of the public page, inlined by `src/site.ts`
 - `src/`: the tool; `scoring.ts` is the reference for pure logic and `rater.ts` is the only file that touches the SDK
@@ -68,6 +70,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - **Tier**: the weight class of one item of evidence: official act, then influence, then statement.
 - **Slot**: one section of a record, such as the health coverage it keeps in place. Every record fills each slot or marks it empty.
 - **Event**: one program change in a legislature, worded once in `events/`. A record supplies only its stance on it.
+- **Rewording**: another wording of one packet with the same facts. The stability test scores it in the packet's place to measure how much the score depends on phrasing.
 - **Matchup**: one ordered pair of records. Every pair is rated in both orders.
 - **Key**: `key.json`. It unblinds ids, so its contents never go to the rater or into the spot check.
 

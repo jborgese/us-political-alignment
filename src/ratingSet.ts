@@ -57,7 +57,7 @@ const forbiddenTerms = (set: RatingSet): string[] => [
 
 const leakProblems = (set: RatingSet): string[] => {
   const terms = forbiddenTerms(set)
-  return ratedPackets(set).flatMap((packet) =>
+  return [...ratedPackets(set), ...set.rewordings].flatMap((packet) =>
     packet.items.flatMap((item) =>
       terms
         .filter((term) => mentions(item.text, term))
@@ -110,10 +110,31 @@ const missingStanceProblems = (set: RatingSet): string[] =>
         .map((event) => `${packet.id} takes no stance on the event ${event.id}`),
     )
 
+const numbersIn = (text: string): string => (text.match(/\d+(?:[.,]\d+)*/g) ?? []).toSorted().join(", ") || "none"
+
+const rewordingProblems = (set: RatingSet): string[] =>
+  set.rewordings.flatMap((rewording) => {
+    const base = set.packets.find((packet) => packet.id === rewording.baseId)
+    return rewording.items.flatMap((item, index) => {
+      const original = base?.items[index].text ?? ""
+      return [
+        ...(item.text === original
+          ? [`${rewording.id} repeats the wording of item ${index + 1} of ${rewording.baseId}`]
+          : []),
+        ...(numbersIn(item.text) === numbersIn(original)
+          ? []
+          : [
+              `${rewording.id} changes the numbers in item ${index + 1} of ${rewording.baseId}: ${numbersIn(original)} became ${numbersIn(item.text)}`,
+            ]),
+      ]
+    })
+  })
+
 export const findSetProblems = (set: RatingSet): string[] => [
   ...duplicateIdProblems(set),
   ...missingKeyProblems(set),
   ...slotProblems(set),
   ...missingStanceProblems(set),
   ...leakProblems(set),
+  ...rewordingProblems(set),
 ]

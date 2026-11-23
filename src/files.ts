@@ -87,6 +87,11 @@ const comparisonSchema = z.strictObject({
   secondHash: z.string().min(1).optional(),
 })
 
+const rewordingSchema = z.strictObject({
+  events: z.record(z.string(), z.record(z.string(), z.string().min(1))),
+  records: z.record(z.string(), z.array(z.string().min(1)).min(1)),
+})
+
 const pendingBatchSchema = z.strictObject({
   batchId: z.string().min(1),
   model: z.string().min(1),
@@ -102,8 +107,7 @@ const pendingBatchSchema = z.strictObject({
   ),
 })
 
-type PacketFile = z.infer<typeof packetSchema>
-type PacketItem = PacketFile["items"][number]
+type PacketItem = z.infer<typeof packetSchema>["items"][number]
 
 export type Tier = (typeof TIERS)[number]
 export type Category = z.infer<typeof categorySchema>
@@ -128,24 +132,36 @@ export interface Packet {
   emptySlots: string[]
 }
 
+export interface Rewording extends Packet {
+  baseId: string
+  version: string
+}
+
 export interface RatingSet {
   category: Category
   legislatures: Legislature[]
   packets: Packet[]
+  rewordings: Rewording[]
   key: Key
   comparisons: Comparison[]
   superseded: Comparison[]
+  stability: Comparison[]
+  stabilitySuperseded: Comparison[]
 }
 
 export interface CategoryPaths {
   category: string
   events: string
   packets: string
+  rewordings: string
   key: string
   runDir: string
   comparisons: string
   superseded: string
   pendingBatch: string
+  stability: string
+  stabilitySuperseded: string
+  stabilityBatch: string
   report: string
   spotCheck: string
 }
@@ -156,11 +172,15 @@ export const pathsFor = (root: string, categoryId: string): CategoryPaths => {
     category: path.join(root, "categories", `${categoryId}.json`),
     events: path.join(root, "events", `${categoryId}.json`),
     packets: path.join(root, "packets", categoryId),
+    rewordings: path.join(root, "rewordings", categoryId),
     key: path.join(root, "key.json"),
     runDir,
     comparisons: path.join(runDir, "comparisons.jsonl"),
     superseded: path.join(runDir, "superseded.jsonl"),
     pendingBatch: path.join(runDir, "batch.json"),
+    stability: path.join(runDir, "stability.jsonl"),
+    stabilitySuperseded: path.join(runDir, "stability-superseded.jsonl"),
+    stabilityBatch: path.join(runDir, "stability-batch.json"),
     report: path.join(runDir, "report.md"),
     spotCheck: path.join(runDir, "spot-check.md"),
   }
@@ -179,15 +199,20 @@ const parseAs = <Schema extends z.ZodType>(schema: Schema, value: unknown, origi
 
 const readJson = async (file: string): Promise<unknown> => JSON.parse(await readFile(file, "utf8"))
 
-const loadPacketFiles = async (dir: string): Promise<{ file: string; content: PacketFile }[]> => {
-  const names = (await readdir(dir)).filter((name) => name.endsWith(".json")).toSorted()
-  return Promise.all(
-    names.map(async (name) => {
-      const file = path.join(dir, name)
-      return { file, content: parseAs(packetSchema, await readJson(file), file) }
-    }),
+const loadJsonFiles = <Schema extends z.ZodType>(
+  dir: string,
+  names: string[],
+  schema: Schema,
+): Promise<{ file: string; content: z.infer<Schema> }[]> =>
+  Promise.all(
+    names
+      .filter((name) => name.endsWith(".json"))
+      .toSorted()
+      .map(async (name) => {
+        const file = path.join(dir, name)
+        return { file, content: parseAs(schema, await readJson(file), file) }
+      }),
   )
-}
 
 const toEvidence = (events: PolicyEvent[], origin: string, item: PacketItem): Evidence => {
   if (!("event" in item)) return item
@@ -202,12 +227,39 @@ const toEvidence = (events: PolicyEvent[], origin: string, item: PacketItem): Ev
   }
 }
 
-const readLinesIfPresent = async (file: string): Promise<string[]> => {
-  const text = await readFile(file, "utf8").catch((error: NodeJS.ErrnoException) => {
-    if (error.code === "ENOENT") return ""
+const whenMissing =
+  <Fallback>(fallback: Fallback) =>
+  (error: NodeJS.ErrnoException): Fallback => {
+    if (error.code === "ENOENT") return fallback
     throw error
-  })
+  }
+
+const readLinesIfPresent = async (file: string): Promise<string[]> => {
+  const text = await readFile(file, "utf8").catch(whenMissing(""))
   return text.split("\n").filter((line) => line.trim() !== "")
+}
+
+const reword = (base: Packet, texts: string[], events: Record<string, string>, file: string): Rewording => {
+  if (texts.length !== base.items.length) {
+    throw new Error(`${file} gives ${texts.length} texts for ${base.id}, which has ${base.items.length} items`)
+  }
+  const version = path.basename(file, ".json")
+  const wordingOf = (eventId: string): string => {
+    if (!(eventId in events)) {
+      throw new Error(`${file} has no wording for the event "${eventId}", which ${base.id} takes a stance on`)
+    }
+    return events[eventId]
+  }
+  return {
+    id: `${base.id}.${version}`,
+    baseId: base.id,
+    version,
+    emptySlots: base.emptySlots,
+    items: base.items.map((item, index) => ({
+      ...item,
+      text: item.event === undefined ? texts[index] : `${texts[index]} ${wordingOf(item.event)}.`,
+    })),
+  }
 }
 
 export const loadPendingBatch = async (file: string): Promise<PendingBatch | undefined> => {
@@ -222,13 +274,28 @@ const loadComparisons = async (file: string): Promise<Comparison[]> =>
 
 export const loadRatingSet = async (root: string, categoryId: string): Promise<RatingSet> => {
   const paths = pathsFor(root, categoryId)
-  const [category, { legislatures }, packetFiles, key, comparisons, superseded] = await Promise.all([
+  const [
+    category,
+    { legislatures },
+    packetFiles,
+    rewordingFiles,
+    key,
+    comparisons,
+    superseded,
+    stability,
+    stabilitySuperseded,
+  ] = await Promise.all([
     readJson(paths.category).then((value) => parseAs(categorySchema, value, paths.category)),
     readJson(paths.events).then((value) => parseAs(eventsSchema, value, paths.events)),
-    loadPacketFiles(paths.packets),
+    readdir(paths.packets).then((names) => loadJsonFiles(paths.packets, names, packetSchema)),
+    readdir(paths.rewordings)
+      .catch(whenMissing<string[]>([]))
+      .then((names) => loadJsonFiles(paths.rewordings, names, rewordingSchema)),
     readJson(paths.key).then((value) => parseAs(keySchema, value, paths.key)),
     loadComparisons(paths.comparisons),
     loadComparisons(paths.superseded),
+    loadComparisons(paths.stability),
+    loadComparisons(paths.stabilitySuperseded),
   ])
   const packets = packetFiles.map(({ file, content }) => {
     const id = path.basename(file, ".json")
@@ -239,5 +306,13 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
       emptySlots: content.emptySlots,
     }
   })
-  return { category, legislatures, packets, key, comparisons, superseded }
+  const rewordings = rewordingFiles.flatMap(({ file, content }) =>
+    Object.entries(content.records).map(([baseId, texts]) => {
+      const base = packets.find((packet) => packet.id === baseId)
+      if (!base) throw new Error(`${file} rewords ${baseId}, which has no packet`)
+      const legislatureId = key.subjects.find((subject) => subject.id === baseId)?.legislature ?? ""
+      return reword(base, texts, content.events[legislatureId] ?? {}, file)
+    }),
+  )
+  return { category, legislatures, packets, rewordings, key, comparisons, superseded, stability, stabilitySuperseded }
 }

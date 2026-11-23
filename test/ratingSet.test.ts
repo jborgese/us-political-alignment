@@ -8,7 +8,7 @@ import {
   subjectsWithoutPackets,
   thinEvidenceReasons,
 } from "../src/ratingSet.ts"
-import { act, buildSet, comparison, completeComparisons, record } from "./fixtures.ts"
+import { act, buildSet, comparison, completeComparisons, record, reworded } from "./fixtures.ts"
 
 const setWithPacketText = (text: string) => buildSet({ packets: [record("s01", [act(text)])] })
 
@@ -111,6 +111,39 @@ describe("events", () => {
   it("accepts a record with a stance on every event of its legislature", () => {
     const set = setWithBudgetEvent(record("s01", [{ ...act("Voted against a budget."), event: "budget" }]))
     expect(findSetProblems(set)).toEqual([])
+  })
+})
+
+describe("findSetProblems on rewordings", () => {
+  const base = record("s01", [act("Voted to cut public coverage by 5 percent.")])
+  const problemsWith = (text: string) => findSetProblems(buildSet({ packets: [base], rewordings: [reworded(base, "a", [text])] }))
+
+  it("accepts a rewording that changes the words and keeps the numbers", () => {
+    expect(problemsWith("Cast a vote for lowering public coverage by 5 percent.")).toEqual([])
+  })
+
+  it("flags a rewording that names a revealing term", () => {
+    expect(problemsWith("Cast a vote for lowering Medicare by 5 percent.")).toEqual([
+      's01.a mentions "Medicare": Cast a vote for lowering Medicare by 5 percent.',
+    ])
+  })
+
+  it("flags a rewording that changes a number", () => {
+    expect(problemsWith("Cast a vote for lowering public coverage by 15 percent.")).toEqual([
+      "s01.a changes the numbers in item 1 of s01: 5 became 15",
+    ])
+  })
+
+  it("flags a rewording that drops a number", () => {
+    expect(problemsWith("Cast a vote for lowering public coverage.")).toEqual([
+      "s01.a changes the numbers in item 1 of s01: 5 became none",
+    ])
+  })
+
+  it("flags a rewording that repeats the original wording", () => {
+    expect(problemsWith("Voted to cut public coverage by 5 percent.")).toEqual([
+      "s01.a repeats the wording of item 1 of s01",
+    ])
   })
 })
 
