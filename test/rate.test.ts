@@ -18,10 +18,18 @@ const category = {
   question: "Which record shows more support for public coverage?",
   highPole: "More support",
   lowPole: "Less support",
+  slots: [{ id: "acts", heading: "Recorded acts" }],
   anchors: [
-    { id: "anchor-high", items: [{ tier: "official_act", text: "Voted to expand public coverage." }] },
-    { id: "anchor-low", items: [{ tier: "official_act", text: "Voted to cut public coverage." }] },
+    { id: "anchor-high", items: [{ slot: "acts", tier: "official_act", text: "Voted to expand public coverage." }] },
+    { id: "anchor-low", items: [{ slot: "acts", tier: "official_act", text: "Voted to cut public coverage." }] },
   ],
+}
+
+const budgetEvent = {
+  id: "event-one",
+  slot: "acts",
+  text: "a budget that cut public coverage by 5 percent",
+  sources: [source],
 }
 
 const key = {
@@ -31,23 +39,34 @@ const key = {
     name: `Subject ${id}`,
     kind: "member",
     group: "Sample Caucus",
+    legislature: "sample-house",
     aliases: [],
   })),
 }
 
+const eventsFile = (root: string): string => path.join(root, "events", `${CATEGORY_ID}.json`)
+const packetFile = (root: string, id: string): string => path.join(root, "packets", CATEGORY_ID, `${id}.json`)
+
+const writeEvents = (root: string, events: (typeof budgetEvent)[]): Promise<void> =>
+  writeFile(eventsFile(root), JSON.stringify({ legislatures: [{ id: "sample-house", events }] }))
+
 const writeProject = async (packets: Record<string, string[]>): Promise<string> => {
   const root = await mkdtemp(path.join(tmpdir(), "alignment-rater-"))
   onTestFinished(() => rm(root, { recursive: true, force: true }))
-  const packetDir = path.join(root, "packets", CATEGORY_ID)
+  const packetDir = path.dirname(packetFile(root, "s01"))
   await mkdir(path.join(root, "categories"))
+  await mkdir(path.join(root, "events"))
   await mkdir(packetDir, { recursive: true })
   await writeFile(path.join(root, "categories", `${CATEGORY_ID}.json`), JSON.stringify(category))
+  await writeEvents(root, [])
   await writeFile(path.join(root, "key.json"), JSON.stringify(key))
   await Promise.all(
     Object.entries(packets).map(([id, texts]) =>
       writeFile(
-        path.join(packetDir, `${id}.json`),
-        JSON.stringify({ items: texts.map((text) => ({ tier: "official_act", text, sources: [source] })) }),
+        packetFile(root, id),
+        JSON.stringify({
+          items: texts.map((text) => ({ slot: "acts", tier: "official_act", text, sources: [source] })),
+        }),
       ),
     ),
   )
@@ -131,10 +150,29 @@ describe("rateCategory", () => {
   it("rejects a packet item that has no source", async () => {
     const root = await writeProject({})
     await writeFile(
-      path.join(root, "packets", CATEGORY_ID, "s01.json"),
-      JSON.stringify({ items: [{ tier: "official_act", text: "Voted to hold coverage flat." }] }),
+      packetFile(root, "s01"),
+      JSON.stringify({ items: [{ slot: "acts", tier: "official_act", text: "Voted to hold coverage flat." }] }),
     )
 
     await expect(rateCategory(root, CATEGORY_ID, "model-a")).rejects.toThrow("s01.json is not valid")
+  })
+
+  it("sends a stance joined to the shared wording of its event", async () => {
+    const root = await writeProject({})
+    await writeEvents(root, [budgetEvent])
+    await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
+
+    await rateCategory(root, CATEGORY_ID, "model-a")
+
+    const sent = rater.mock.calls.flat().join("\n")
+    expect(sent).toContain("- [Official act] Voted against a budget that cut public coverage by 5 percent.")
+    expect(sent).not.toContain("event-one")
+  })
+
+  it("rejects a stance on an event its legislature does not have", async () => {
+    const root = await writeProject({})
+    await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
+
+    await expect(rateCategory(root, CATEGORY_ID, "model-a")).rejects.toThrow('takes a stance on "event-one"')
   })
 })

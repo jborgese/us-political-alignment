@@ -1,6 +1,7 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
       "text": "In government, keeps in place public insurance that gives every eligible resident medically necessary doctor and hospital care without patient charges, enforced through conditions on its health funding to regional governments.",
       "sources": [
@@ -8,6 +9,11 @@
       ]
     },
     {
+      "event": "annual-budget-health",
+      "stance": "In government, passed"
+    },
+    {
+      "slot": "changes-health",
       "tier": "official_act",
       "text": "In government, extended a public dental plan to all uninsured adults aged 18 to 64 with household income below a set threshold.",
       "sources": [
@@ -15,20 +21,7 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "In government, made a national school meals program permanent.",
-      "sources": [
-        "https://www.canadianaffairs.news/2025/11/04/carney-budget-taps-brakes-on-new-social-programs/"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "In government, passed a budget that continued the public dental plan, public drug coverage, and subsidized child care but added no new funding for them.",
-      "sources": [
-        "https://www.canadianaffairs.news/2025/11/04/carney-budget-taps-brakes-on-new-social-programs/"
-      ]
-    },
-    {
+      "slot": "changes-health",
       "tier": "official_act",
       "text": "In government, provided no new funding for further public drug coverage agreements with regional governments beyond the four already signed.",
       "sources": [
@@ -37,11 +30,20 @@
       ]
     },
     {
+      "slot": "changes-health",
       "tier": "statement",
       "text": "Said in its budget that it was protecting social programs, naming child care, dental care, and drug coverage.",
       "sources": [
         "https://www.policyalternatives.ca/news-research/canadas-federal-government-abandons-national-pharmacare/"
       ]
+    },
+    {
+      "event": "annual-budget-meals",
+      "stance": "In government, passed"
     }
+  ],
+  "emptySlots": [
+    "keeps-income",
+    "seeks"
   ]
 }

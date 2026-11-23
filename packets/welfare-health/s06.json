@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Works to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, voting against reducing it and for extending its subsidies.",
+      "text": "Votes to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://clerk.house.gov/evs/2026/roll011",
@@ -10,43 +11,24 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Voted against a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
-      "sources": [
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
-      ]
+      "event": "budget-law-health",
+      "stance": "Voted against"
     },
     {
-      "tier": "official_act",
-      "text": "Voted for a three-year extension of expanded premium subsidies for individually purchased health insurance.",
-      "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
-      ]
+      "event": "subsidy-extension",
+      "stance": "Voted for"
     },
     {
-      "tier": "official_act",
-      "text": "Voted against a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll349",
-        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
-      ]
+      "event": "employer-plan-bill",
+      "stance": "Voted against"
     },
     {
-      "tier": "official_act",
-      "text": "Voted for a funding bill that did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll285",
-        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
-      ]
-    },
-    {
-      "tier": "statement",
-      "text": "Said the vote for that funding bill was cast because a dispute over insurance premiums should not be fought by withholding pay from public workers and food assistance from low-income families.",
-      "sources": [
-        "https://gluesenkampperez.house.gov/posts/gluesenkamp-perez-statement-on-her-vote-to-end-government-shutdown"
-      ]
+      "event": "budget-law-food",
+      "stance": "Voted against"
     }
+  ],
+  "emptySlots": [
+    "keeps-income",
+    "seeks"
   ]
 }

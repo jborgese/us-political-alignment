@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Its members voted to leave public health coverage for older residents intact: the budget law cut none of that coverage's benefits for citizens. In the existing system, public health coverage is guaranteed only to older, disabled, and low-income residents, and about 8 percent of residents have no coverage.",
+      "text": "Its members vote to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, less the reductions listed under changes.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
@@ -10,37 +11,37 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Its members voted unanimously for the final version of a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "event": "budget-law-health",
+      "stance": "Its members voted unanimously for the final version of",
       "sources": [
-        "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people",
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+        "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people"
       ]
     },
     {
+      "slot": "changes-health",
       "tier": "official_act",
-      "text": "Four of its members voted in committee against advancing an earlier version of that bill while pressing for its work requirements and spending reductions to take effect sooner, then abstained to let it advance.",
+      "text": "Four of its members voted in committee against advancing an earlier version of that budget law while pressing for its work requirements and spending reductions to take effect sooner, then abstained to let it advance.",
       "sources": [
         "https://www.dailysignal.com/2025/05/19/budget-committee-passes-big-beautiful-bill-after-negotiations/"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Its chair and several of its members cosponsored a bill to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share.",
+      "event": "subsidy-extension",
+      "stance": "Its chair voted against, and none of its members is recorded among the legislators from its party who voted for,"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Its chair voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Its members voted unanimously for the final version of",
       "sources": [
-        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against"
+        "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Its chair voted against a three-year extension of expanded premium subsidies for individually purchased health insurance, and no member of the group is recorded among the legislators from its party who voted for it.",
-      "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
-      ]
-    },
-    {
+      "slot": "changes-health",
       "tier": "influence",
       "text": "Its chair warned party leaders that members would withhold their votes from any funding bill carrying an extension of the expanded premium subsidies, and several members publicly vowed to block one.",
       "sources": [
@@ -48,11 +49,23 @@
       ]
     },
     {
+      "slot": "changes-health",
       "tier": "influence",
       "text": "Its governing board declared it would reject any attempt by the other chamber to weaken the spending reductions in the budget bill.",
       "sources": [
         "https://harris.house.gov/media/press-releases/house-freedom-caucus-board-we-stand-firm-no-senate-rollbacks-conservative-wins"
       ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Its chair and several of its members cosponsored a bill to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against"
+      ]
     }
+  ],
+  "emptySlots": [
+    "keeps-income"
   ]
 }

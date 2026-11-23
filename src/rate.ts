@@ -1,7 +1,7 @@
 import { appendFile, mkdir } from "node:fs/promises"
 
 import { buildComparisonMessage, buildSystemPrompt, remainingMatchups, type Matchup } from "./comparisons.ts"
-import { loadRatingSet, pathsFor, type Comparison } from "./files.ts"
+import { loadRatingSet, pathsFor, type Comparison, type Slot } from "./files.ts"
 import { createRater, type Rater } from "./rater.ts"
 import { findSetProblems } from "./ratingSet.ts"
 
@@ -12,8 +12,14 @@ export interface RateSummary {
   alreadyRated: number
 }
 
-const rateMatchup = async (rater: Rater, system: string, model: string, matchup: Matchup): Promise<Comparison> => {
-  const verdict = await rater(system, buildComparisonMessage(matchup))
+const rateMatchup = async (
+  rater: Rater,
+  system: string,
+  model: string,
+  slots: Slot[],
+  matchup: Matchup,
+): Promise<Comparison> => {
+  const verdict = await rater(system, buildComparisonMessage(matchup, slots))
   return {
     first: matchup.first.id,
     second: matchup.second.id,
@@ -41,7 +47,7 @@ export const rateCategory = async (root: string, categoryId: string, model: stri
   const system = buildSystemPrompt(set.category.question)
   await mkdir(paths.runDir, { recursive: true })
   for (const [index, matchup] of pending.entries()) {
-    const comparison = await rateMatchup(rater, system, model, matchup)
+    const comparison = await rateMatchup(rater, system, model, set.category.slots, matchup)
     await appendFile(paths.comparisons, `${JSON.stringify(comparison)}\n`)
     if ((index + 1) % PROGRESS_INTERVAL === 0) console.log(`${index + 1} of ${pending.length} comparisons rated`)
   }

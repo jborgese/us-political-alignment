@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Nearly all of its members voted to leave public health coverage for older residents intact: the budget law cut none of that coverage's benefits for citizens. In the existing system, public health coverage is guaranteed only to older, disabled, and low-income residents, and about 8 percent of residents have no coverage.",
+      "text": "Nearly all of its members vote to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, less the reductions listed under changes.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
@@ -10,30 +11,23 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Nearly all of its members voted for a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
-      "sources": [
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
-      ]
+      "event": "budget-law-health",
+      "stance": "Nearly all of its members voted for"
     },
     {
-      "tier": "official_act",
-      "text": "A large majority of its members, including its chair and vice chair, voted against a three-year extension of expanded premium subsidies for individually purchased health insurance.",
-      "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
-      ]
+      "event": "subsidy-extension",
+      "stance": "Most of its members, including its chair and vice chair, voted against"
     },
     {
-      "tier": "official_act",
-      "text": "Nearly all of its members voted for a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll349",
-        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
-      ]
+      "event": "employer-plan-bill",
+      "stance": "Nearly all of its members voted for"
     },
     {
+      "event": "budget-law-food",
+      "stance": "Nearly all of its members voted for"
+    },
+    {
+      "slot": "seeks",
       "tier": "influence",
       "text": "Published a framework urging its party to pass a bill that redirects premium subsidies from insurers into personal health accounts held by patients.",
       "sources": [
@@ -43,6 +37,7 @@
       ]
     },
     {
+      "slot": "seeks",
       "tier": "influence",
       "text": "In the same framework, urged making all non-citizens ineligible for public health coverage for low-income residents, food assistance, and housing assistance.",
       "sources": [
@@ -51,6 +46,7 @@
       ]
     },
     {
+      "slot": "seeks",
       "tier": "influence",
       "text": "In the same framework, urged ending a rule that grants automatic benefit eligibility to people enrolled in other aid programs, and adding asset tests.",
       "sources": [
@@ -58,6 +54,7 @@
       ]
     },
     {
+      "slot": "seeks",
       "tier": "influence",
       "text": "In the same framework, urged funding payments that lower out-of-pocket costs for lower-income people with individually purchased insurance, which it said would cut premiums by 11 percent and reduce public spending.",
       "sources": [
@@ -65,14 +62,16 @@
       ]
     },
     {
+      "slot": "seeks",
       "tier": "influence",
-      "text": "In the same framework, urged requiring public health coverage for low-income residents to pay hospitals the same rate wherever care is delivered, which it counted as a large spending reduction.",
+      "text": "In the same framework, urged requiring public health coverage for low-income residents to pay hospitals the same rate wherever care is delivered, which it counted as a spending reduction.",
       "sources": [
         "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
         "https://atr.org/rsc-reconciliation-2-0-framework-puts-taxpayers-first/"
       ]
     },
     {
+      "slot": "seeks",
       "tier": "influence",
       "text": "In the same framework, urged eliminating a dedicated fund for disease prevention and public health programs.",
       "sources": [
@@ -80,5 +79,8 @@
         "https://atr.org/rsc-reconciliation-2-0-framework-puts-taxpayers-first/"
       ]
     }
+  ],
+  "emptySlots": [
+    "keeps-income"
   ]
 }

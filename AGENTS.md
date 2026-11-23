@@ -48,8 +48,9 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 **Key areas:**
 
-- `categories/`: one file per issue category, holding the question put to the rater and the anchor records
-- `key.json`: maps each blinded id to a name, and lists the terms no record may contain
+- `categories/`: one file per issue category, holding the question put to the rater, the slots every record fills, and the anchor records
+- `events/`: one file per issue category, holding the shared wording of each program change, listed by legislature
+- `key.json`: maps each blinded id to a name and a legislature, and lists the terms no record may contain
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
 - `src/`: the tool; `scoring.ts` is the reference for pure logic and `rater.ts` is the only file that touches the SDK
@@ -61,13 +62,15 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - **Packet**: the evidence about one subject in one category. A packet and an anchor are both "records" once the rater sees them.
 - **Anchor**: a written, fictional record with a known position. Anchors are listed from the high end of the scale to the low end, and they fix the 100 and 0 points.
 - **Tier**: the weight class of one item of evidence: official act, then influence, then statement.
+- **Slot**: one section of a record, such as the health coverage it keeps in place. Every record fills each slot or marks it empty.
+- **Event**: one program change in a legislature, worded once in `events/`. A record supplies only its stance on it.
 - **Matchup**: one ordered pair of records. Every pair is rated in both orders.
 - **Key**: `key.json`. It unblinds ids, so its contents never go to the rater or into the spot check.
 
 **Navigation hints:**
 
-- New issue category? Add `categories/<id>.json` and `packets/<id>/`. No code changes.
-- New check on what a record may contain? `src/ratingSet.ts`.
+- New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`. No code changes.
+- New check on what a record may contain? `src/ratingSet.ts`. The rules for writing evidence are in `README.md`.
 - Anything that changes what the rater is sent? `src/comparisons.ts`, and nowhere else.
 
 ---

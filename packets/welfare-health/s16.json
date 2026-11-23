@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Its members work to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, voting against reducing it and for extending its subsidies.",
+      "text": "Its members vote to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://clerk.house.gov/evs/2026/roll011",
@@ -10,44 +11,7 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Its members voted unanimously against a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
-      "sources": [
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Its members voted unanimously against a funding bill that did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://omar.house.gov/media/press-releases/congressional-progressive-caucus-statement-house-passage-senate-government",
-        "https://clerk.house.gov/evs/2025/roll285"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Its members voted for a three-year extension of expanded premium subsidies for individually purchased health insurance.",
-      "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "A former chair of the group introduced, with more than 100 cosponsors, a bill to enroll every resident in a single public health plan with no premiums, deductibles, or copayments.",
-      "sources": [
-        "https://jayapal.house.gov/2025/04/29/jayapal-sanders-dingell-hundreds-of-health-care-workers-introduce-medicare-for-all"
-      ]
-    },
-    {
-      "tier": "influence",
-      "text": "Adopted an official position, backed by a supermajority of its members, to oppose a funding deal because it did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://progressives.house.gov/2025/11/congressional-progressive-caucus-adopts-official-position-to-oppose-senate-government-spending-bill"
-      ]
-    },
-    {
+      "slot": "keeps-income",
       "tier": "influence",
       "text": "Co-led a letter, joined by 208 legislators, telling the chamber's leader to drop any legislation that would cut the public pension or public health coverage for older or low-income residents.",
       "sources": [
@@ -55,11 +19,37 @@
       ]
     },
     {
+      "event": "budget-law-health",
+      "stance": "Its members voted unanimously against"
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Its members voted for"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "None of its members voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Its members voted unanimously against"
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "A former chair of the group introduced, with more than 100 cosponsors, a bill to enroll every resident in a single public health plan with no premiums, deductibles, or copayments.",
+      "sources": [
+        "https://jayapal.house.gov/2025/04/29/jayapal-sanders-dingell-hundreds-of-health-care-workers-introduce-medicare-for-all"
+      ]
+    },
+    {
+      "slot": "seeks",
       "tier": "influence",
       "text": "Held a public hearing to build support for the single public health plan bill, where its chair called passing that bill one of the group's top priorities.",
       "sources": [
         "https://progressives.house.gov/2026/7/cpc-jayapal-dingell-host-universal-healthcare-shadow-hearing"
       ]
     }
-  ]
+  ],
+  "emptySlots": []
 }

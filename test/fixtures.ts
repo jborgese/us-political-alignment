@@ -1,6 +1,12 @@
-import type { Comparison, Evidence, RatingSet } from "../src/files.ts"
+import type { Comparison, Evidence, Packet, RatingSet } from "../src/files.ts"
 
-export const act = (text: string): Evidence => ({ tier: "official_act", text })
+export const act = (text: string, slot = "acts"): Evidence => ({ slot, tier: "official_act", text })
+
+export const record = (id: string, items: Evidence[], emptySlots: string[] = []): Packet => ({
+  id,
+  items,
+  emptySlots,
+})
 
 export const comparison = (first: string, second: string, winner: string): Comparison => ({
   first,
@@ -17,15 +23,26 @@ export const buildSet = (overrides: Partial<RatingSet> = {}): RatingSet => ({
     question: "Which record shows more support for public coverage?",
     highPole: "More support",
     lowPole: "Less support",
+    slots: [{ id: "acts", heading: "Recorded acts" }],
     anchors: [
-      { id: "anchor-high", items: [act("Voted to expand public coverage to every resident.")] },
-      { id: "anchor-low", items: [act("Voted to cut public coverage.")] },
+      record("anchor-high", [act("Voted to expand public coverage to every resident.")]),
+      record("anchor-low", [act("Voted to cut public coverage.")]),
     ],
   },
-  packets: [{ id: "s01", items: [act("Voted to hold public coverage at current levels.")] }],
+  legislatures: [],
+  packets: [record("s01", [act("Voted to hold public coverage at current levels.")])],
   key: {
     revealingTerms: ["Medicare", "US"],
-    subjects: [{ id: "s01", name: "Jane Sample", kind: "member", group: "Sample Caucus", aliases: ["Sample"] }],
+    subjects: [
+      {
+        id: "s01",
+        name: "Jane Sample",
+        kind: "member",
+        group: "Sample Caucus",
+        legislature: "sample-house",
+        aliases: ["Sample"],
+      },
+    ],
   },
   comparisons: [],
   ...overrides,

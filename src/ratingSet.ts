@@ -1,4 +1,4 @@
-import type { Packet, RatingSet } from "./files.ts"
+import { eventsFor, type Packet, type RatingSet } from "./files.ts"
 
 export const ratedPackets = (set: RatingSet): Packet[] => [
   ...set.category.anchors,
@@ -52,8 +52,40 @@ const missingKeyProblems = (set: RatingSet): string[] => {
     .map((packet) => `${packet.id} has no entry in key.json`)
 }
 
+const slotProblemsOf = (packet: Packet, slotIds: string[]): string[] => {
+  const filled = packet.items.map((item) => item.slot)
+  const named = [...filled, ...packet.emptySlots]
+  return [
+    ...named
+      .filter((slot, index) => !slotIds.includes(slot) && named.indexOf(slot) === index)
+      .map((slot) => `${packet.id} uses the slot ${slot}, which the category does not have`),
+    ...slotIds
+      .filter((slot) => !named.includes(slot))
+      .map((slot) => `${packet.id} leaves the slot ${slot} unanswered: add an item or list it in emptySlots`),
+    ...packet.emptySlots
+      .filter((slot) => filled.includes(slot))
+      .map((slot) => `${packet.id} lists the slot ${slot} as empty but has an item in it`),
+  ]
+}
+
+const slotProblems = (set: RatingSet): string[] => {
+  const slotIds = set.category.slots.map((slot) => slot.id)
+  return ratedPackets(set).flatMap((packet) => slotProblemsOf(packet, slotIds))
+}
+
+const missingStanceProblems = (set: RatingSet): string[] =>
+  set.packets
+    .filter((packet) => packet.items.length > 0)
+    .flatMap((packet) =>
+      eventsFor(set, packet.id)
+        .filter((event) => !packet.items.some((item) => item.event === event.id))
+        .map((event) => `${packet.id} takes no stance on the event ${event.id}`),
+    )
+
 export const findSetProblems = (set: RatingSet): string[] => [
   ...duplicateIdProblems(set),
   ...missingKeyProblems(set),
+  ...slotProblems(set),
+  ...missingStanceProblems(set),
   ...leakProblems(set),
 ]
