@@ -441,9 +441,20 @@ details.held-back ul {
   font-weight: 500;
   line-height: 1;
 }
+.score {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
 .score span {
   font-size: 12px;
   color: var(--ink-3);
+}
+#evidence-change {
+  flex-basis: 100%;
+  text-align: right;
+}
+#evidence-change:empty {
+  display: none;
 }
 .tier-key {
   display: flex;

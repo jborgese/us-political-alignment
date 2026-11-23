@@ -64,6 +64,13 @@ const sectionNode = (section) => {
   return block
 }
 
+const changeText = (record) => {
+  if (record.previousScore === null) return ""
+  const change = record.score - record.previousScore
+  if (change === 0) return "unchanged since the previous run"
+  return `${change > 0 ? "up" : "down"} ${Math.abs(change)} since the previous run`
+}
+
 const showEvidence = (record) => {
   const head = document.getElementById("evidence-head")
   head.dataset.kind = record.kind
@@ -72,6 +79,7 @@ const showEvidence = (record) => {
   document.getElementById("evidence-name").textContent = record.name
   document.getElementById("evidence-detail").textContent = record.detail
   document.getElementById("evidence-score").textContent = String(record.score)
+  document.getElementById("evidence-change").textContent = changeText(record)
   document.getElementById("evidence-sections").replaceChildren(...record.sections.map(sectionNode))
 }
 

@@ -134,6 +134,7 @@ export interface RatingSet {
   packets: Packet[]
   key: Key
   comparisons: Comparison[]
+  superseded: Comparison[]
 }
 
 export interface CategoryPaths {
@@ -221,12 +222,13 @@ const loadComparisons = async (file: string): Promise<Comparison[]> =>
 
 export const loadRatingSet = async (root: string, categoryId: string): Promise<RatingSet> => {
   const paths = pathsFor(root, categoryId)
-  const [category, { legislatures }, packetFiles, key, comparisons] = await Promise.all([
+  const [category, { legislatures }, packetFiles, key, comparisons, superseded] = await Promise.all([
     readJson(paths.category).then((value) => parseAs(categorySchema, value, paths.category)),
     readJson(paths.events).then((value) => parseAs(eventsSchema, value, paths.events)),
     loadPacketFiles(paths.packets),
     readJson(paths.key).then((value) => parseAs(keySchema, value, paths.key)),
     loadComparisons(paths.comparisons),
+    loadComparisons(paths.superseded),
   ])
   const packets = packetFiles.map(({ file, content }) => {
     const id = path.basename(file, ".json")
@@ -237,5 +239,5 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
       emptySlots: content.emptySlots,
     }
   })
-  return { category, legislatures, packets, key, comparisons }
+  return { category, legislatures, packets, key, comparisons, superseded }
 }

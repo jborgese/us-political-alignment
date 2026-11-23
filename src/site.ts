@@ -3,7 +3,7 @@ import path from "node:path"
 
 import { loadRatingSet, type Key, type Packet, type RatingSet, type Tier } from "./files.ts"
 import { itemsInSlot, ratedPackets, thinEvidenceReasons } from "./ratingSet.ts"
-import { summarizeRun } from "./report.ts"
+import { previousScores, summarizeRun } from "./report.ts"
 
 const SITE_NAME = "US Political Alignment"
 const REPO_URL = "https://github.com/jborgese/us-political-alignment"
@@ -39,6 +39,7 @@ export interface SiteRecord {
   detail: string
   lane: string
   score: number
+  previousScore: number | null
   sections: SiteSection[]
 }
 
@@ -149,7 +150,9 @@ export const buildSiteData = (set: RatingSet): SiteData => {
     throw new Error("The anchors did not come out in their intended order, so there is no valid scale to show.")
   }
   const packets = Object.fromEntries(ratedPackets(set).map((packet) => [packet.id, packet]))
+  const earlier = previousScores(set)
   const scoreOf = (id: string): number => Math.round(run.scores[id]) || 0
+  const previousOf = (id: string): number | null => (earlier ? Math.round(earlier[id]) || 0 : null)
   const rated = set.key.subjects
     .filter((subject) => subject.id in packets)
     .map((subject) => ({ subject, reasons: thinEvidenceReasons(set, packets[subject.id]) }))
@@ -162,6 +165,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       symbol: PARTY_SYMBOLS[subject.party ?? ""] ?? null,
       ...describeSubject(subject),
       score: scoreOf(subject.id),
+      previousScore: previousOf(subject.id),
       sections: sectionsOf(set, packets[subject.id]),
     }))
   const anchors: SiteRecord[] = set.category.anchors.map((anchor) => {
@@ -177,6 +181,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       detail: "Written reference record",
       lane: ANCHOR_LANE,
       score: scoreOf(anchor.id),
+      previousScore: previousOf(anchor.id),
       sections: sectionsOf(set, anchor),
     }
   })
@@ -223,6 +228,7 @@ const SYMBOLS = `<svg width="0" height="0" style="position:absolute" aria-hidden
 <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.3l2.4 2.4 4.6-5.2"/></symbol>
 <symbol id="i-orders" viewBox="0 0 24 24"><path d="M7 8h11l-3-3M17 16H6l3 3"/></symbol>
 <symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 5v14M7 19h10M5 8h14"/><path d="M5 8l-2.5 6h5zM19 8l-2.5 6h5z"/></symbol>
+<symbol id="i-move" viewBox="0 0 24 24"><path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/></symbol>
 <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.5"/><circle cx="7" cy="17" r="2.5"/><path d="M9 8.5L20 17M9 15.5L20 7"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.4-7 9-4.1-1.6-7-4.7-7-9V6z"/><path d="M12 9v6M9 12h6"/></symbol>
 <symbol id="party-donkey" viewBox="0 0 24 24"><rect x="8.5" y="10" width="12" height="6" rx="2.6"/><path d="M10.5 10.6L7.6 6.4 3.4 9.6c-.5.4-.5 1.1 0 1.5l.6.5c.4.3.9.3 1.3.1L7.8 10l1.6 4z"/><path d="M7.2 7.2L6.3 2.4l2.3 3.4z"/><path d="M8.6 6.6l.8-4.2 1 4.6z"/><rect x="9.4" y="14.5" width="2" height="6.2" rx=".8"/><rect x="12.2" y="14.5" width="2" height="6.2" rx=".8"/><rect x="15.6" y="14.5" width="2" height="6.2" rx=".8"/><rect x="18.4" y="14.5" width="2" height="6.2" rx=".8"/><path d="M20.2 11l1.8 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="6.2" cy="8.8" r=".6" fill="var(--symbol-detail)"/></symbol>
@@ -304,9 +310,18 @@ const tableRows = (data: SiteData): string =>
   data.records
     .map((record) => {
       const rank = data.records.filter((other) => other.kind !== "anchor" && other.score > record.score).length + 1
-      return `<tr><td class="num">${record.kind === "anchor" ? "" : rank}</td><td>${escapeHtml(record.name)}</td><td>${escapeHtml(record.detail)}</td><td class="num">${record.score}</td></tr>`
+      return `<tr><td class="num">${record.kind === "anchor" ? "" : rank}</td><td>${escapeHtml(record.name)}</td><td>${escapeHtml(record.detail)}</td><td class="num">${record.score}</td><td class="num">${record.previousScore ?? ""}</td></tr>`
     })
     .join("")
+
+const largestMove = (records: SiteRecord[]): string => {
+  const moves = records.flatMap((record) =>
+    record.kind === "anchor" || record.previousScore === null ? [] : [Math.abs(record.score - record.previousScore)],
+  )
+  return moves.length > 0
+    ? `<li>${icon("move")}<strong>${Math.max(...moves)}</strong> points was the largest move since the previous run</li>`
+    : ""
+}
 
 const heldBack = (records: HeldBack[]): string =>
   records.length > 0
@@ -332,6 +347,7 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets): SitePage => {
       `<li>${icon("check", "icon ok")}Reference records in order</li>`,
       `<li>${icon("orders")}<strong>${percent(data.agreementAcrossOrders)}</strong> same result in both orders</li>`,
       `<li>${icon("balance")}<strong>${percent(data.wonByFirstListed)}</strong> won by the record shown first</li>`,
+      largestMove(data.records),
       `</ul>`,
       `<section class="scale" aria-label="Records by strength of support">`,
       `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li><li><span class="glyph anchor"></span>Reference record</li></ul>`,
@@ -346,11 +362,11 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets): SitePage => {
       `</section>`,
       heldBack(data.heldBack),
       `<section class="evidence" aria-live="polite" aria-label="Evidence for the selected record">`,
-      `<div class="evidence-head" id="evidence-head"><span class="glyph" id="evidence-glyph"></span><div class="who"><h2 id="evidence-name"></h2><p id="evidence-detail"></p></div><div class="score"><b id="evidence-score"></b><span>on the 0 to 100 scale</span></div></div>`,
+      `<div class="evidence-head" id="evidence-head"><span class="glyph" id="evidence-glyph"></span><div class="who"><h2 id="evidence-name"></h2><p id="evidence-detail"></p></div><div class="score"><b id="evidence-score"></b><span>on the 0 to 100 scale</span><span id="evidence-change"></span></div></div>`,
       `<ul class="tier-key" aria-label="Kinds of evidence"><li>${icon("official_act")}Official act</li><li>${icon("influence")}Influence</li><li>${icon("statement")}Statement</li></ul>`,
       `<div class="sections" id="evidence-sections"></div>`,
       `</section>`,
-      `<details class="table"><summary>All records as a table</summary><div class="table-scroll"><table><thead><tr><th class="num">Rank</th><th>Record</th><th>Group</th><th class="num">Score</th></tr></thead><tbody>${tableRows(data)}</tbody></table></div></details>`,
+      `<details class="table"><summary>All records as a table</summary><div class="table-scroll"><table><thead><tr><th class="num">Rank</th><th>Record</th><th>Group</th><th class="num">Score</th><th class="num">Previous run</th></tr></thead><tbody>${tableRows(data)}</tbody></table></div></details>`,
       `<footer><span>${data.comparisons} blinded comparisons, rated by ${escapeHtml(data.model)} on ${escapeHtml(data.ratedOn)}</span><a href="${REPO_URL}" target="_blank" rel="noopener noreferrer">Method and data</a></footer>`,
       `</main>`,
       `<div class="tooltip" id="tooltip" hidden></div>`,

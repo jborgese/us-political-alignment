@@ -1,6 +1,6 @@
 import { writeFile } from "node:fs/promises"
 
-import { describeEvidence, remainingMatchups } from "./comparisons.ts"
+import { describeEvidence, fingerprintRecords, remainingMatchups } from "./comparisons.ts"
 import { loadRatingSet, pathsFor, type Comparison, type Packet, type RatingSet, type Slot } from "./files.ts"
 import { packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets, thinEvidenceReasons } from "./ratingSet.ts"
 import {
@@ -102,6 +102,28 @@ export const summarizeRun = (set: RatingSet): RunSummary => {
     agreementAcrossOrders: shareOfPairsAgreeingAcrossOrders(set.comparisons),
     wonByFirstListed: shareWonByFirstListed(set.comparisons),
   }
+}
+
+const latestFirst = (a: Comparison, b: Comparison): number => b.ratedAt.localeCompare(a.ratedAt)
+
+export const previousScores = (set: RatingSet): Scores | undefined => {
+  const hashes = fingerprintRecords(set)
+  const anchorIds = set.category.anchors.map((anchor) => anchor.id)
+  const earlier = set.superseded.filter((saved) => saved.first in hashes && saved.second in hashes).toSorted(latestFirst)
+  const anchorsChanged = earlier.some(
+    (saved) =>
+      (anchorIds.includes(saved.first) && saved.firstHash !== undefined && saved.firstHash !== hashes[saved.first]) ||
+      (anchorIds.includes(saved.second) && saved.secondHash !== undefined && saved.secondHash !== hashes[saved.second]),
+  )
+  if (earlier.length === 0 || anchorsChanged) return undefined
+  const answers = set.comparisons.map(
+    (current) => earlier.find((saved) => saved.first === current.first && saved.second === current.second) ?? current,
+  )
+  return toAnchoredScale(
+    fitBradleyTerry(Object.keys(hashes), toOutcomes(answers)),
+    anchorIds[0],
+    anchorIds[anchorIds.length - 1],
+  )
 }
 
 export const buildReport = (set: RatingSet): string => {

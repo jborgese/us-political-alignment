@@ -89,6 +89,25 @@ describe("buildSiteData", () => {
     expect(data.heldBack).toEqual([{ name: "Sample Caucus", reasons: ["1 official act, fewer than 3"] }])
   })
 
+  it("gives each record its score from before the latest change to the evidence", () => {
+    const set = {
+      ...rankedSet(IN_ORDER),
+      superseded: completeComparisons(["anchor-high", "s01", "s03", "s02", "anchor-low"]),
+    }
+
+    const scores = Object.fromEntries(
+      buildSiteData(set).records.map((entry) => [entry.name, entry.score - (entry.previousScore ?? Number.NaN)]),
+    )
+
+    expect(scores["Jane Sample"]).toBeLessThan(0)
+    expect(scores["Example Party of Canada"]).toBeGreaterThan(0)
+    expect(scores["Sample Caucus"]).toBe(0)
+  })
+
+  it("gives no earlier score when nothing has been superseded", () => {
+    expect(buildSiteData(rankedSet(IN_ORDER)).records.every((entry) => entry.previousScore === null)).toBe(true)
+  })
+
   it("refuses to build when the anchors come out of order", () => {
     const set = rankedSet(["anchor-low", "s03", "s01", "s02", "anchor-high"])
 

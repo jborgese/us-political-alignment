@@ -34,6 +34,8 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 ### Deployment
 
+- Cloudflare builds and deploys the site on each push to `main`: build command `npm run site -- welfare-health`, deploy command `npx wrangler deploy`, config in `wrangler.jsonc`. Do not deploy by hand.
+
 <!-- TEMPLATE: how to deploy (command, required working directory), prerequisites (e.g. Docker running), and any process for reserving a shared environment before deploying. Delete if agents never deploy from this repo. -->
 
 ### Scaffolding / Local Execution

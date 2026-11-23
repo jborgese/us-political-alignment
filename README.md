@@ -148,7 +148,9 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 - The page is built from the current packets and the saved run, so build it only when the two match.
 - It refuses to build when the anchors came out of order, for the same reason the report withholds scores.
 - A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
+- When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
 - The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
+- `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`.
 
 ## Changing things after a run has started
 
