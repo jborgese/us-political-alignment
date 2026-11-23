@@ -1,4 +1,6 @@
-import type { Packet, RatingSet, Slot, Tier } from "./files.ts"
+import { createHash } from "node:crypto"
+
+import type { Comparison, Packet, RatingSet, Slot, Tier } from "./files.ts"
 import { itemsInSlot, ratedPackets } from "./ratingSet.ts"
 
 export interface Matchup {
@@ -17,11 +19,6 @@ const NO_RECORDED_ACT = "- No recorded act."
 const allMatchups = (packets: Packet[]): Matchup[] =>
   packets.flatMap((first) =>
     packets.filter((second) => second.id !== first.id).map((second) => ({ first, second })),
-  )
-
-export const remainingMatchups = (set: RatingSet): Matchup[] =>
-  allMatchups(ratedPackets(set)).filter(
-    ({ first, second }) => !set.comparisons.some((done) => done.first === first.id && done.second === second.id),
   )
 
 const describeSlot = (packet: Packet, slot: Slot): string[] => {
@@ -55,6 +52,47 @@ export const buildSystemPrompt = (question: string): string =>
     "Choose the record that fits the question better, A or B. You must choose one. Give your reason in one sentence.",
   ].join("\n")
 
+const HASH_LENGTH = 16
+const CHARACTERS_PER_TOKEN = 4
+
+export type Fingerprints = Record<string, string>
+
+export const fingerprintRecords = (set: RatingSet): Fingerprints => {
+  const system = buildSystemPrompt(set.category.question)
+  return Object.fromEntries(
+    ratedPackets(set).map((packet) => [
+      packet.id,
+      createHash("sha256")
+        .update(`${system}\n${describeEvidence(packet, set.category.slots)}`)
+        .digest("hex")
+        .slice(0, HASH_LENGTH),
+    ]),
+  )
+}
+
+const matches = (saved: string | undefined, current: string | undefined): boolean =>
+  current !== undefined && (saved === undefined || saved === current)
+
+const isCurrent =
+  (hashes: Fingerprints) =>
+  (saved: Comparison): boolean =>
+    matches(saved.firstHash, hashes[saved.first]) && matches(saved.secondHash, hashes[saved.second])
+
+export const currentComparisons = (set: RatingSet): Comparison[] =>
+  set.comparisons.filter(isCurrent(fingerprintRecords(set)))
+
+export const supersededComparisons = (set: RatingSet): Comparison[] => {
+  const current = isCurrent(fingerprintRecords(set))
+  return set.comparisons.filter((saved) => !current(saved))
+}
+
+export const remainingMatchups = (set: RatingSet): Matchup[] => {
+  const rated = currentComparisons(set)
+  return allMatchups(ratedPackets(set)).filter(
+    ({ first, second }) => !rated.some((done) => done.first === first.id && done.second === second.id),
+  )
+}
+
 export const buildComparisonMessage = ({ first, second }: Matchup, slots: Slot[]): string =>
   [
     "<record_a>",
@@ -65,3 +103,12 @@ export const buildComparisonMessage = ({ first, second }: Matchup, slots: Slot[]
     describeEvidence(second, slots),
     "</record_b>",
   ].join("\n")
+
+export const estimateInputTokens = (set: RatingSet, matchups: Matchup[]): number => {
+  const system = buildSystemPrompt(set.category.question).length
+  const characters = matchups.reduce(
+    (sum, matchup) => sum + system + buildComparisonMessage(matchup, set.category.slots).length,
+    0,
+  )
+  return Math.round(characters / CHARACTERS_PER_TOKEN)
+}

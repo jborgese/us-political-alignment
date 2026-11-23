@@ -19,14 +19,19 @@ Only `rate` needs the `.env` file.
 
 | Command | What it does | Network |
 |---|---|---|
-| `npm run check -- welfare-health` | Validates the category, its packets, and the key. Lists what is missing. | No |
-| `npm run rate -- welfare-health` | Sends every unrated pair to the model and saves each answer as it arrives. | Yes, paid |
+| `npm run check -- welfare-health` | Validates the category, its packets, and the key. Lists what is missing and how much is left to rate. | No |
+| `npm run rate -- welfare-health` | Submits the unrated pairs as one batch, or collects the answers of the batch it submitted earlier. | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
 | `npm run site -- welfare-health` | Writes the public page to `dist/index.html` from the saved run. | No |
 | `npm test` | Runs the tests. | No |
 | `npm run typecheck` | Type-checks the source. | No |
 
-`rate` works through one comparison at a time. Stop it whenever you like; the next run picks up where it stopped. The pilot has 24 records, which is 552 calls.
+`rate` uses the batch interface, which costs half as much as live calls and answers later, usually within the hour. Run it once to submit and again to collect; it tells you which of the two it did. A comparison that failed is submitted again on the next run. The pilot has 24 records, which is 552 comparisons.
+
+To spend less before a full run:
+
+- `check` prints how many comparisons are left and roughly how many input tokens they hold.
+- `npm run rate -- welfare-health 30` submits only the first 30. They include the anchors, so the report's checks on a sample show early whether the scale is sound.
 
 ## Files
 
@@ -147,7 +152,8 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 
 ## Changing things after a run has started
 
-- Saved answers are never re-rated. After changing a packet, an event, an anchor, or the question, move `runs/<category-id>/` into `runs/archive/` and rate again.
+- Each saved answer records which version of its two records it was given. After you change a packet, an event, an anchor, or the question, `rate` moves the answers that no longer match into `superseded.jsonl` and submits only those pairs again. A change to the question or the prompt supersedes every answer.
+- `report` refuses to run until every pair has a current answer.
 - A run uses one model. `rate` refuses to add answers from a second model to an existing run.
 
 ## Limits

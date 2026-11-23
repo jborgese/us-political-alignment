@@ -39,7 +39,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 ### Scaffolding / Local Execution
 
 - `npm run check -- <category-id>`: validates the category, its packets, and the key. No network.
-- `npm run rate -- <category-id>`: sends every unrated pair to the Anthropic API. It needs `.env` and costs money, so ask the user before running it.
+- `npm run rate -- <category-id> [limit]`: submits the unrated pairs to the Anthropic API as a batch, or collects an earlier batch. It needs `.env` and costs money, so ask the user before running it.
 - `npm run report -- <category-id>`: writes the report and the blinded spot check from saved comparisons. No network.
 - `npm run site -- <category-id>`: writes the public page to `dist/index.html` from saved comparisons. No network.
 
