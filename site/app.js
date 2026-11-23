@@ -82,23 +82,36 @@ const select = (index) => {
   showEvidence(data.records[index])
 }
 
-const sameSlot = (a, b) => a.dataset.kind === b.dataset.kind
+const CROWDED_SHARE = 0.7
 
-const layoutColumn = (column) => {
-  const placed = [...column.querySelectorAll(".marker")]
+const clustersOf = (placed) =>
+  placed.reduce((clusters, item) => {
+    const cluster = clusters.at(-1)
+    const crowded = cluster && item.top - cluster.at(-1).top < item.size * CROWDED_SHARE
+    return crowded ? [...clusters.slice(0, -1), [...cluster, item]] : [...clusters, [item]]
+  }, [])
+
+const layoutSlot = (markers) => {
+  const placed = markers
     .map((marker) => ({ marker, top: marker.offsetTop, size: marker.querySelector(".glyph").offsetHeight }))
     .sort((a, b) => a.top - b.top)
-  placed.reduce(
-    (previous, item) => {
-      const crowded = previous.item && sameSlot(previous.item.marker, item.marker) && item.top - previous.item.top < item.size * 0.7
-      const nudge = crowded ? previous.nudge + GLYPH_NUDGE : 0
-      const shift = Math.max(0, previous.labelBottom - item.top)
-      item.marker.style.setProperty("--nudge", `${nudge}px`)
-      item.marker.style.setProperty("--label-shift", `${shift}px`)
-      return { item, nudge, labelBottom: item.top + shift + LABEL_HEIGHT }
-    },
-    { item: null, nudge: 0, labelBottom: -Infinity },
+  clustersOf(placed).reduce(
+    (labelBottom, cluster) =>
+      cluster.reduce((bottom, item, position) => {
+        const shift = Math.max(0, bottom - item.top)
+        item.marker.style.setProperty("--nudge", `${position * GLYPH_NUDGE}px`)
+        item.marker.style.setProperty("--label-indent", `${(cluster.length - 1 - position) * GLYPH_NUDGE}px`)
+        item.marker.style.setProperty("--label-shift", `${shift}px`)
+        return item.top + shift + LABEL_HEIGHT
+      }, labelBottom),
+    -Infinity,
   )
+}
+
+const layoutColumn = (column) => {
+  const markers = [...column.querySelectorAll(".marker")]
+  const kinds = markers.map((marker) => marker.dataset.kind).filter((kind, index, all) => all.indexOf(kind) === index)
+  kinds.forEach((kind) => layoutSlot(markers.filter((marker) => marker.dataset.kind === kind)))
 }
 
 const layoutLanes = () => document.querySelectorAll(".column").forEach(layoutColumn)

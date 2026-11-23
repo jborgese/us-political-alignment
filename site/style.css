@@ -354,6 +354,7 @@ h1 {
 .marker .name {
   font-size: 12px;
   color: var(--ink-2);
+  margin-left: var(--label-indent, 0px);
   transform: translateY(var(--label-shift, 0px));
   background: color-mix(in srgb, var(--surface) 80%, transparent);
   border-radius: 3px;

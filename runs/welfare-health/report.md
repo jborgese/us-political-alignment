@@ -41,6 +41,12 @@ Question put to the rater: Which record shows stronger support for government-gu
 | Chip Roy | member | House Freedom Caucus | 7 |
 | anchor-retrenching | anchor |  | 0 |
 
+## Held back from the site for thin evidence
+
+- New Democratic Party: nothing under "Income support it keeps in place"; 17% of its pairs changed winner with the order shown
+- Reform UK: nothing under "Income support it keeps in place"; 2 official acts, fewer than 3
+- Rassemblement National: nothing under "Income support it keeps in place"; 2 official acts, fewer than 3
+
 ## Not rated
 
 - Packets with no evidence: none
