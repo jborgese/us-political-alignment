@@ -180,6 +180,7 @@
       "name": "Chip Roy",
       "kind": "member",
       "group": "House Freedom Caucus",
+      "party": "Republican",
       "legislature": "us-house",
       "aliases": [
         "Roy"
@@ -190,6 +191,7 @@
       "name": "Ben Cline",
       "kind": "member",
       "group": "Republican Study Committee",
+      "party": "Republican",
       "legislature": "us-house",
       "aliases": [
         "Cline"
@@ -200,6 +202,7 @@
       "name": "Brad Schneider",
       "kind": "member",
       "group": "New Democrat Coalition",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Schneider"
@@ -222,6 +225,7 @@
       "name": "Alexandria Ocasio-Cortez",
       "kind": "member",
       "group": "Congressional Progressive Caucus",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Ocasio-Cortez",
@@ -233,6 +237,7 @@
       "name": "Marie Gluesenkamp Perez",
       "kind": "member",
       "group": "Blue Dog Coalition",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Gluesenkamp Perez",
@@ -246,6 +251,7 @@
       "name": "Pramila Jayapal",
       "kind": "member",
       "group": "Congressional Progressive Caucus",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Jayapal"
@@ -269,6 +275,7 @@
       "name": "House Freedom Caucus",
       "kind": "caucus",
       "group": "US House",
+      "party": "Republican",
       "legislature": "us-house",
       "aliases": [
         "Freedom Caucus",
@@ -280,6 +287,7 @@
       "name": "Andy Harris",
       "kind": "member",
       "group": "House Freedom Caucus",
+      "party": "Republican",
       "legislature": "us-house",
       "aliases": [
         "Harris"
@@ -290,6 +298,7 @@
       "name": "August Pfluger",
       "kind": "member",
       "group": "Republican Study Committee",
+      "party": "Republican",
       "legislature": "us-house",
       "aliases": [
         "Pfluger"
@@ -310,6 +319,7 @@
       "name": "Jared Golden",
       "kind": "member",
       "group": "Blue Dog Coalition",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Golden"
@@ -320,6 +330,7 @@
       "name": "New Democrat Coalition",
       "kind": "caucus",
       "group": "US House",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "New Dems",
@@ -332,6 +343,7 @@
       "name": "Republican Study Committee",
       "kind": "caucus",
       "group": "US House",
+      "party": "Republican",
       "legislature": "us-house",
       "aliases": [
         "RSC"
@@ -342,6 +354,7 @@
       "name": "Congressional Progressive Caucus",
       "kind": "caucus",
       "group": "US House",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Progressive Caucus",
@@ -374,6 +387,7 @@
       "name": "Pete Aguilar",
       "kind": "member",
       "group": "New Democrat Coalition",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Aguilar"
@@ -396,6 +410,7 @@
       "name": "Blue Dog Coalition",
       "kind": "caucus",
       "group": "US House",
+      "party": "Democratic",
       "legislature": "us-house",
       "aliases": [
         "Blue Dogs",

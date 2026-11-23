@@ -18,7 +18,13 @@ describe("buildReport", () => {
 
     expect(report).toContain("Anchors came out in their intended order: no")
     expect(report).toContain("Scores are withheld.")
-    expect(report).not.toContain("Jane Sample")
+    expect(report).not.toContain("| Jane Sample |")
+  })
+
+  it("lists each record held back from the site with the reasons", () => {
+    const report = buildReport(buildSet({ comparisons: completeComparisons(["anchor-high", "s01", "anchor-low"]) }))
+
+    expect(report).toContain("- Jane Sample: 1 official act, fewer than 3")
   })
 
   it("refuses to report on an unfinished run", () => {

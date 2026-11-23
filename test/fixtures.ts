@@ -45,6 +45,7 @@ export const buildSet = (overrides: Partial<RatingSet> = {}): RatingSet => ({
     ],
   },
   comparisons: [],
+  superseded: [],
   ...overrides,
 })
 

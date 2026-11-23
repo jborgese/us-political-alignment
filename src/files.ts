@@ -31,7 +31,9 @@ const categorySchema = z.strictObject({
   question: z.string().min(1),
   highPole: z.string().min(1),
   lowPole: z.string().min(1),
-  slots: z.array(z.strictObject({ id: z.string().min(1), heading: z.string().min(1) })).min(1),
+  slots: z
+    .array(z.strictObject({ id: z.string().min(1), heading: z.string().min(1), required: z.boolean().optional() }))
+    .min(1),
   anchors: z
     .array(
       z.strictObject({
@@ -67,6 +69,7 @@ const keySchema = z.strictObject({
       name: z.string().min(1),
       kind: z.enum(["member", "party", "caucus"]),
       group: z.string().min(1),
+      party: z.string().min(1).optional(),
       legislature: z.string().min(1),
       aliases: z.array(z.string().min(1)),
     }),
@@ -116,6 +119,7 @@ export interface Evidence {
   tier: Tier
   text: string
   event?: string
+  sources?: string[]
 }
 
 export interface Packet {
@@ -130,6 +134,7 @@ export interface RatingSet {
   packets: Packet[]
   key: Key
   comparisons: Comparison[]
+  superseded: Comparison[]
 }
 
 export interface CategoryPaths {
@@ -185,10 +190,16 @@ const loadPacketFiles = async (dir: string): Promise<{ file: string; content: Pa
 }
 
 const toEvidence = (events: PolicyEvent[], origin: string, item: PacketItem): Evidence => {
-  if (!("event" in item)) return { slot: item.slot, tier: item.tier, text: item.text }
+  if (!("event" in item)) return item
   const event = events.find((candidate) => candidate.id === item.event)
   if (!event) throw new Error(`${origin} takes a stance on "${item.event}", which is not an event of its legislature`)
-  return { slot: event.slot, tier: "official_act", text: `${item.stance} ${event.text}.`, event: event.id }
+  return {
+    slot: event.slot,
+    tier: "official_act",
+    text: `${item.stance} ${event.text}.`,
+    event: event.id,
+    sources: [...event.sources, ...(item.sources ?? [])],
+  }
 }
 
 const readLinesIfPresent = async (file: string): Promise<string[]> => {
@@ -211,12 +222,13 @@ const loadComparisons = async (file: string): Promise<Comparison[]> =>
 
 export const loadRatingSet = async (root: string, categoryId: string): Promise<RatingSet> => {
   const paths = pathsFor(root, categoryId)
-  const [category, { legislatures }, packetFiles, key, comparisons] = await Promise.all([
+  const [category, { legislatures }, packetFiles, key, comparisons, superseded] = await Promise.all([
     readJson(paths.category).then((value) => parseAs(categorySchema, value, paths.category)),
     readJson(paths.events).then((value) => parseAs(eventsSchema, value, paths.events)),
     loadPacketFiles(paths.packets),
     readJson(paths.key).then((value) => parseAs(keySchema, value, paths.key)),
     loadComparisons(paths.comparisons),
+    loadComparisons(paths.superseded),
   ])
   const packets = packetFiles.map(({ file, content }) => {
     const id = path.basename(file, ".json")
@@ -227,5 +239,5 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
       emptySlots: content.emptySlots,
     }
   })
-  return { category, legislatures, packets, key, comparisons }
+  return { category, legislatures, packets, key, comparisons, superseded }
 }

@@ -5,8 +5,9 @@ import { loadRatingSet } from "./files.ts"
 import { rateCategory, type RateOutcome } from "./rate.ts"
 import { findSetProblems, packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
 import { writeReports } from "./report.ts"
+import { writeSite } from "./site.ts"
 
-const USAGE = "Usage: node src/cli.ts <check|rate|report> <category-id> [limit]"
+const USAGE = "Usage: node src/cli.ts <check|rate|report|site> <category-id> [limit]"
 const CATEGORY_ID_PATTERN = /^[a-z0-9-]+$/
 
 const check = async (root: string, categoryId: string): Promise<void> => {
@@ -47,10 +48,15 @@ const report = async (root: string, categoryId: string): Promise<void> => {
   console.log(`Blinded spot check: ${paths.spotCheck}`)
 }
 
+const site = async (root: string, categoryId: string): Promise<void> => {
+  console.log(`Site page: ${await writeSite(root, categoryId)}`)
+}
+
 const COMMANDS = [
   { name: "check", run: check },
   { name: "rate", run: rate },
   { name: "report", run: report },
+  { name: "site", run: site },
 ]
 
 const main = async (args: string[]): Promise<void> => {

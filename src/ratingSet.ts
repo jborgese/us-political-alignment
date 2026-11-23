@@ -1,9 +1,37 @@
-import { eventsFor, type Packet, type RatingSet } from "./files.ts"
+import { TIERS, eventsFor, type Evidence, type Packet, type RatingSet } from "./files.ts"
+import { shareOfPairsAgreeingAcrossOrders } from "./scoring.ts"
+
+const FEWEST_OFFICIAL_ACTS = 3
+const LARGEST_SPLIT_SHARE = 0.15
 
 export const ratedPackets = (set: RatingSet): Packet[] => [
   ...set.category.anchors,
   ...set.packets.filter((packet) => packet.items.length > 0),
 ]
+
+export const itemsInSlot = (packet: Packet, slotId: string): Evidence[] =>
+  TIERS.flatMap((tier) => packet.items.filter((item) => item.slot === slotId && item.tier === tier))
+
+const splitShare = (set: RatingSet, id: string): number => {
+  const own = set.comparisons.filter((comparison) => comparison.first === id || comparison.second === id)
+  return own.length === 0 ? 0 : 1 - shareOfPairsAgreeingAcrossOrders(own)
+}
+
+export const thinEvidenceReasons = (set: RatingSet, packet: Packet): string[] => {
+  const officialActs = packet.items.filter((item) => item.tier === "official_act").length
+  const split = splitShare(set, packet.id)
+  return [
+    ...set.category.slots
+      .filter((slot) => slot.required && itemsInSlot(packet, slot.id).length === 0)
+      .map((slot) => `nothing under "${slot.heading}"`),
+    ...(officialActs < FEWEST_OFFICIAL_ACTS
+      ? [`${officialActs} official ${officialActs === 1 ? "act" : "acts"}, fewer than ${FEWEST_OFFICIAL_ACTS}`]
+      : []),
+    ...(split > LARGEST_SPLIT_SHARE
+      ? [`${Math.round(split * 100)}% of its pairs changed winner with the order shown`]
+      : []),
+  ]
+}
 
 export const packetsWithoutEvidence = (set: RatingSet): Packet[] =>
   set.packets.filter((packet) => packet.items.length === 0)

@@ -6,11 +6,13 @@
   "slots": [
     {
       "id": "keeps-health",
-      "heading": "Health coverage it keeps in place"
+      "heading": "Health coverage it keeps in place",
+      "required": true
     },
     {
       "id": "keeps-income",
-      "heading": "Income support it keeps in place"
+      "heading": "Income support it keeps in place",
+      "required": true
     },
     {
       "id": "changes-health",

@@ -6,8 +6,9 @@ import {
   packetsWithoutEvidence,
   ratedPackets,
   subjectsWithoutPackets,
+  thinEvidenceReasons,
 } from "../src/ratingSet.ts"
-import { act, buildSet, record } from "./fixtures.ts"
+import { act, buildSet, comparison, completeComparisons, record } from "./fixtures.ts"
 
 const setWithPacketText = (text: string) => buildSet({ packets: [record("s01", [act(text)])] })
 
@@ -110,6 +111,49 @@ describe("events", () => {
   it("accepts a record with a stance on every event of its legislature", () => {
     const set = setWithBudgetEvent(record("s01", [{ ...act("Voted against a budget."), event: "budget" }]))
     expect(findSetProblems(set)).toEqual([])
+  })
+})
+
+describe("thinEvidenceReasons", () => {
+  const threeActs = [act("Voted for the first bill."), act("Voted for the second bill."), act("Voted for the third bill.")]
+
+  it("finds nothing thin in a record with three official acts and steady results", () => {
+    const set = buildSet({
+      packets: [record("s01", threeActs)],
+      comparisons: completeComparisons(["anchor-high", "s01", "anchor-low"]),
+    })
+
+    expect(thinEvidenceReasons(set, set.packets[0])).toEqual([])
+  })
+
+  it("names a required section with nothing in it and a shortage of official acts", () => {
+    const set = buildSet({ packets: [record("s01", [act("Voted for the bill.")], ["keeps"])] })
+    const withRequiredSlot = {
+      ...set,
+      category: {
+        ...set.category,
+        slots: [...set.category.slots, { id: "keeps", heading: "What it keeps in place", required: true }],
+      },
+    }
+
+    expect(thinEvidenceReasons(withRequiredSlot, set.packets[0])).toEqual([
+      'nothing under "What it keeps in place"',
+      "1 official act, fewer than 3",
+    ])
+  })
+
+  it("names a record whose pairs change winner with the order shown", () => {
+    const set = buildSet({
+      packets: [record("s01", threeActs)],
+      comparisons: [
+        ...completeComparisons(["anchor-high", "s01", "anchor-low"]).filter(
+          (saved) => !(saved.first === "anchor-low" && saved.second === "s01"),
+        ),
+        comparison("anchor-low", "s01", "anchor-low"),
+      ],
+    })
+
+    expect(thinEvidenceReasons(set, set.packets[0])).toEqual(["50% of its pairs changed winner with the order shown"])
   })
 })
 

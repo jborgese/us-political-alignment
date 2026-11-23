@@ -22,6 +22,7 @@ Only `rate` needs the `.env` file.
 | `npm run check -- welfare-health` | Validates the category, its packets, and the key. Lists what is missing and how much is left to rate. | No |
 | `npm run rate -- welfare-health` | Submits the unrated pairs as one batch, or collects the answers of the batch it submitted earlier. | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
+| `npm run site -- welfare-health` | Writes the public page to `dist/index.html` from the saved run. | No |
 | `npm test` | Runs the tests. | No |
 | `npm run typecheck` | Type-checks the source. | No |
 
@@ -136,6 +137,20 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 Scores run from 0 at the low anchor to 100 at the high anchor. A subject can score outside that range.
 
 Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. They judge each pair, then open the rater's answer under it.
+
+## The site
+
+`npm run site -- welfare-health` builds one self-contained page: every record placed by strength of support, and the evidence behind whichever record the reader selects.
+
+- Support runs from bottom to top. Left to right is one column per group, ordered by support. A left-right position will replace the columns once the project has its own measure of it.
+- A member or caucus shows its party's symbol when `key.json` gives it a `party` the page knows (Democratic or Republican). A party abroad shows its country's flag.
+
+- The page is built from the current packets and the saved run, so build it only when the two match.
+- It refuses to build when the anchors came out of order, for the same reason the report withholds scores.
+- A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
+- When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
+- The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
+- `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`.
 
 ## Changing things after a run has started
 

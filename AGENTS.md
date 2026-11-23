@@ -34,6 +34,8 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 ### Deployment
 
+- Cloudflare builds and deploys the site on each push to `main`: build command `npm run site -- welfare-health`, deploy command `npx wrangler deploy`, config in `wrangler.jsonc`. Do not deploy by hand.
+
 <!-- TEMPLATE: how to deploy (command, required working directory), prerequisites (e.g. Docker running), and any process for reserving a shared environment before deploying. Delete if agents never deploy from this repo. -->
 
 ### Scaffolding / Local Execution
@@ -41,6 +43,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `npm run check -- <category-id>`: validates the category, its packets, and the key. No network.
 - `npm run rate -- <category-id> [limit]`: submits the unrated pairs to the Anthropic API as a batch, or collects an earlier batch. It needs `.env` and costs money, so ask the user before running it.
 - `npm run report -- <category-id>`: writes the report and the blinded spot check from saved comparisons. No network.
+- `npm run site -- <category-id>`: writes the public page to `dist/index.html` from saved comparisons. No network.
 
 ---
 
@@ -53,6 +56,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `key.json`: maps each blinded id to a name and a legislature, and lists the terms no record may contain
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
+- `site/`: the stylesheet and browser script of the public page, inlined by `src/site.ts`
 - `src/`: the tool; `scoring.ts` is the reference for pure logic and `rater.ts` is the only file that touches the SDK
 - `test/`: Vitest tests, one file per `src/` module
 
@@ -72,6 +76,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`. No code changes.
 - New check on what a record may contain? `src/ratingSet.ts`. The rules for writing evidence are in `README.md`.
 - Anything that changes what the rater is sent? `src/comparisons.ts`, and nowhere else.
+- Anything a reader of the site sees? `src/site.ts` builds the page's data and markup; `site/` styles it and handles selection.
 
 ---
 
