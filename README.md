@@ -22,6 +22,7 @@ Only `rate` needs the `.env` file.
 | `npm run check -- welfare-health` | Validates the category, its packets, and the key. Lists what is missing. | No |
 | `npm run rate -- welfare-health` | Sends every unrated pair to the model and saves each answer as it arrives. | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
+| `npm run site -- welfare-health` | Writes the public page to `dist/index.html` from the saved run. | No |
 | `npm test` | Runs the tests. | No |
 | `npm run typecheck` | Type-checks the source. | No |
 
@@ -131,6 +132,15 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 Scores run from 0 at the low anchor to 100 at the high anchor. A subject can score outside that range.
 
 Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. They judge each pair, then open the rater's answer under it.
+
+## The site
+
+`npm run site -- welfare-health` builds one self-contained page: every record on the category's scale, one lane per caucus, and the evidence behind whichever record the reader selects.
+
+- The page is built from the current packets and the saved run, so build it only when the two match.
+- It refuses to build when the anchors came out of order, for the same reason the report withholds scores.
+- List a subject's id under `withheld` in the category file to keep its record off the page. The page names the records held back.
+- The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
 
 ## Changing things after a run has started
 

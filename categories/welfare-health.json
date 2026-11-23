@@ -3,6 +3,7 @@
   "question": "Which record shows stronger support for government-guaranteed health coverage and income support for the general population?",
   "highPole": "government guarantees broad health coverage and income support",
   "lowPole": "government's role in health coverage and income support is cut back",
+  "withheld": ["s17", "s18", "s20"],
   "slots": [
     {
       "id": "keeps-health",

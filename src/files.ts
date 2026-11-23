@@ -31,6 +31,7 @@ const categorySchema = z.strictObject({
   question: z.string().min(1),
   highPole: z.string().min(1),
   lowPole: z.string().min(1),
+  withheld: z.array(z.string().min(1)).default([]),
   slots: z.array(z.strictObject({ id: z.string().min(1), heading: z.string().min(1) })).min(1),
   anchors: z
     .array(
@@ -98,6 +99,7 @@ export interface Evidence {
   tier: Tier
   text: string
   event?: string
+  sources?: string[]
 }
 
 export interface Packet {
@@ -163,10 +165,16 @@ const loadPacketFiles = async (dir: string): Promise<{ file: string; content: Pa
 }
 
 const toEvidence = (events: PolicyEvent[], origin: string, item: PacketItem): Evidence => {
-  if (!("event" in item)) return { slot: item.slot, tier: item.tier, text: item.text }
+  if (!("event" in item)) return item
   const event = events.find((candidate) => candidate.id === item.event)
   if (!event) throw new Error(`${origin} takes a stance on "${item.event}", which is not an event of its legislature`)
-  return { slot: event.slot, tier: "official_act", text: `${item.stance} ${event.text}.`, event: event.id }
+  return {
+    slot: event.slot,
+    tier: "official_act",
+    text: `${item.stance} ${event.text}.`,
+    event: event.id,
+    sources: [...event.sources, ...(item.sources ?? [])],
+  }
 }
 
 const readLinesIfPresent = async (file: string): Promise<string[]> => {

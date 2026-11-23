@@ -1,5 +1,5 @@
-import { TIERS, type Packet, type RatingSet, type Slot, type Tier } from "./files.ts"
-import { ratedPackets } from "./ratingSet.ts"
+import type { Packet, RatingSet, Slot, Tier } from "./files.ts"
+import { itemsInSlot, ratedPackets } from "./ratingSet.ts"
 
 export interface Matchup {
   first: Packet
@@ -25,11 +25,7 @@ export const remainingMatchups = (set: RatingSet): Matchup[] =>
   )
 
 const describeSlot = (packet: Packet, slot: Slot): string[] => {
-  const lines = TIERS.flatMap((tier) =>
-    packet.items
-      .filter((item) => item.slot === slot.id && item.tier === tier)
-      .map((item) => `- [${TIER_TAGS[tier]}] ${item.text}`),
-  )
+  const lines = itemsInSlot(packet, slot.id).map((item) => `- [${TIER_TAGS[item.tier]}] ${item.text}`)
   return [`${slot.heading}:`, ...(lines.length > 0 ? lines : [NO_RECORDED_ACT])]
 }
 

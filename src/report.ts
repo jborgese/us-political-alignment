@@ -67,16 +67,37 @@ const namesOf = (set: RatingSet, ids: string[]): string =>
     .map((subject) => subject.name)
     .join(", ") || "none"
 
-export const buildReport = (set: RatingSet): string => {
+export interface RunSummary {
+  highAnchorId: string
+  lowAnchorId: string
+  scaleIsValid: boolean
+  scores: Scores
+  agreementAcrossOrders: number
+  wonByFirstListed: number
+}
+
+export const summarizeRun = (set: RatingSet): RunSummary => {
   assertRatingIsComplete(set)
   const anchorIds = set.category.anchors.map((anchor) => anchor.id)
   const highAnchorId = anchorIds[0]
   const lowAnchorId = anchorIds[anchorIds.length - 1]
-  const scores = fitBradleyTerry(
+  const fitted = fitBradleyTerry(
     ratedPackets(set).map((packet) => packet.id),
     toOutcomes(set.comparisons),
   )
-  const scaleIsValid = anchorsInOrder(scores, anchorIds)
+  return {
+    highAnchorId,
+    lowAnchorId,
+    scaleIsValid: anchorsInOrder(fitted, anchorIds),
+    scores: toAnchoredScale(fitted, highAnchorId, lowAnchorId),
+    agreementAcrossOrders: shareOfPairsAgreeingAcrossOrders(set.comparisons),
+    wonByFirstListed: shareWonByFirstListed(set.comparisons),
+  }
+}
+
+export const buildReport = (set: RatingSet): string => {
+  const { highAnchorId, lowAnchorId, scaleIsValid, scores, agreementAcrossOrders, wonByFirstListed } =
+    summarizeRun(set)
   return [
     `# ${set.category.title}: rating report`,
     "",
@@ -89,13 +110,13 @@ export const buildReport = (set: RatingSet): string => {
     "## Checks",
     "",
     `- Anchors came out in their intended order: ${scaleIsValid ? "yes" : "no"}`,
-    `- Pairs where both presentation orders gave the same winner: ${percent(shareOfPairsAgreeingAcrossOrders(set.comparisons))}`,
-    `- Comparisons won by the record listed first: ${percent(shareWonByFirstListed(set.comparisons))} (50% means no position bias)`,
+    `- Pairs where both presentation orders gave the same winner: ${percent(agreementAcrossOrders)}`,
+    `- Comparisons won by the record listed first: ${percent(wonByFirstListed)} (50% means no position bias)`,
     "",
     "## Scores",
     "",
     ...(scaleIsValid
-      ? scoreTable(set, toAnchoredScale(scores, highAnchorId, lowAnchorId))
+      ? scoreTable(set, scores)
       : ["Scores are withheld. The anchors did not come out in their intended order, so the scale is not valid."]),
     "",
     "## Not rated",

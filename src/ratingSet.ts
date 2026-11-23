@@ -1,9 +1,12 @@
-import { eventsFor, type Packet, type RatingSet } from "./files.ts"
+import { TIERS, eventsFor, type Evidence, type Packet, type RatingSet } from "./files.ts"
 
 export const ratedPackets = (set: RatingSet): Packet[] => [
   ...set.category.anchors,
   ...set.packets.filter((packet) => packet.items.length > 0),
 ]
+
+export const itemsInSlot = (packet: Packet, slotId: string): Evidence[] =>
+  TIERS.flatMap((tier) => packet.items.filter((item) => item.slot === slotId && item.tier === tier))
 
 export const packetsWithoutEvidence = (set: RatingSet): Packet[] =>
   set.packets.filter((packet) => packet.items.length === 0)
