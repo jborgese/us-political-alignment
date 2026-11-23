@@ -2,6 +2,15 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "Works to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, voting against reducing it and for extending its subsidies.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://clerk.house.gov/evs/2026/roll011",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "Introduced, as lead sponsor, a bill to enroll every resident in a single public health plan covering medical, dental, vision, hearing, mental health, and long-term care, with no premiums, deductibles, or copayments.",
       "sources": [
         "https://jayapal.house.gov/2025/04/29/jayapal-sanders-dingell-hundreds-of-health-care-workers-introduce-medicare-for-all"

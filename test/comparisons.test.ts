@@ -67,9 +67,10 @@ describe("what the rater is sent", () => {
     expect(message).not.toContain("example.org")
   })
 
-  it("states the question and the tier rule", () => {
+  it("states the question, the tier rule, and that keeping a guarantee counts", () => {
     const prompt = buildSystemPrompt("Which record shows more support?")
     expect(prompt).toContain("Question: Which record shows more support?")
     expect(prompt).toContain("Where tiers conflict, the higher tier governs.")
+    expect(prompt).toContain("A guarantee the record keeps in place counts as support for it")
   })
 })

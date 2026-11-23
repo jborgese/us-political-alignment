@@ -2,6 +2,13 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "In government, keeps in place public insurance that gives every eligible resident medically necessary doctor and hospital care without patient charges, enforced through conditions on its health funding to regional governments.",
+      "sources": [
+        "https://www.canada.ca/en/health-canada/services/health-care-system/canada-health-care-system-medicare/canada-health-act.html"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "In government, extended a public dental plan to all uninsured adults aged 18 to 64 with household income below a set threshold.",
       "sources": [
         "https://www.canada.ca/en/health-canada/news/2025/03/canadian-dental-care-plan-expands-to-include-millions-of-new-eligible-canadians.html"

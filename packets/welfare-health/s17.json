@@ -10,14 +10,22 @@
     },
     {
       "tier": "influence",
-      "text": "Its leader publicly demanded that the government sign public drug coverage agreements with all remaining regional governments and release the funding promised for them.",
+      "text": "Its leaders twice publicly demanded that the government sign public drug coverage agreements with all remaining regional governments, release the funding promised for them, and finish the first phase of that program.",
       "sources": [
-        "https://www.ndp.ca/news/liberals-break-their-promise-millions-canadians-waiting-free-medicine"
+        "https://www.ndp.ca/news/liberals-break-their-promise-millions-canadians-waiting-free-medicine",
+        "https://globalnews.ca/news/11556547/canada-pharmacare-future-ndp-carney/"
+      ]
+    },
+    {
+      "tier": "influence",
+      "text": "Its new leader called for funding to extend public drug coverage nationwide after the government's spring economic update added none.",
+      "sources": [
+        "https://www.ndp.ca/news/ndp-leader-avi-lewis-statement-spring-economic-statement"
       ]
     },
     {
       "tier": "statement",
-      "text": "Its new leader campaigned for the leadership on universal public coverage of prescription drugs and of dental, vision, hearing, and mental health care.",
+      "text": "Its new leader campaigned for the leadership on keeping the existing universal public health insurance and extending it to prescription drugs and to dental, vision, hearing, and mental health care.",
       "sources": [
         "https://en.wikipedia.org/wiki/Avi_Lewis"
       ]

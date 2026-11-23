@@ -2,6 +2,15 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "Nearly all of its members voted to leave public health coverage for older residents intact: the budget law cut none of that coverage's benefits for citizens. In the existing system, public health coverage is guaranteed only to older, disabled, and low-income residents, and about 8 percent of residents have no coverage.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "Nearly all of its members voted for a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
@@ -12,7 +21,9 @@
     {
       "tier": "official_act",
       "text": "A large majority of its members, including its chair and vice chair, voted against a three-year extension of expanded premium subsidies for individually purchased health insurance.",
-      "sources": ["https://clerk.house.gov/evs/2026/roll011"]
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
     },
     {
       "tier": "official_act",
@@ -42,12 +53,16 @@
     {
       "tier": "influence",
       "text": "In the same framework, urged ending a rule that grants automatic benefit eligibility to people enrolled in other aid programs, and adding asset tests.",
-      "sources": ["https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf"]
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf"
+      ]
     },
     {
       "tier": "influence",
       "text": "In the same framework, urged funding payments that lower out-of-pocket costs for lower-income people with individually purchased insurance, which it said would cut premiums by 11 percent and reduce public spending.",
-      "sources": ["https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf"]
+      "sources": [
+        "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf"
+      ]
     },
     {
       "tier": "influence",

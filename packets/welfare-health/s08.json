@@ -2,6 +2,13 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "In a governing coalition, keeps in place compulsory health insurance for every resident. About 90 percent of residents are in public insurance funds that set contributions by income, give all members the same benefits, and cover family members at no extra charge.",
+      "sources": [
+        "https://www.bundesgesundheitsministerium.de/en/topics/health-insurance/statutory-health-insurance.html"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "In a governing coalition, enacted a pension law that holds the public pension at 48 percent of average wages through 2031 and adds pension entitlement for parents of children born before 1992.",
       "sources": [
         "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"

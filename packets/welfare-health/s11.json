@@ -2,6 +2,15 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "Voted to leave public health coverage for older residents intact: the budget law cut none of that coverage's benefits for citizens. In the existing system, public health coverage is guaranteed only to older, disabled, and low-income residents, and about 8 percent of residents have no coverage.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "Voted for a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",

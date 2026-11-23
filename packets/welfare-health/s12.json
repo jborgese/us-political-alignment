@@ -2,6 +2,21 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "In government, keeps in place a tax-funded health service that is available to every resident and free of charge for doctor and hospital care.",
+      "sources": [
+        "https://www.gov.uk/government/publications/the-nhs-constitution-for-england/the-nhs-constitution-for-england",
+        "https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"
+      ]
+    },
+    {
+      "tier": "official_act",
+      "text": "In government, has kept the rule that raises the public pension every year by the highest of prices, wages, or 2.5 percent.",
+      "sources": [
+        "https://www.itv.com/news/2026-09-29/andy-burnham-social-care-nhs-triple-lock-pensions"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "In government, enacted above-inflation increases for four years in the standard rate of the main benefit for working-age people.",
       "sources": [
         "https://www.gov.uk/government/news/welfare-bill-will-protect-the-most-vulnerable-and-help-households-with-income-boost",
@@ -34,17 +49,23 @@
     {
       "tier": "official_act",
       "text": "In government, restored an annual heating payment to about three quarters of retirees, after limiting it the previous winter to retirees receiving low-income benefits.",
-      "sources": ["https://www.gov.uk/government/news/nine-million-pensioners-to-receive-winter-fuel-payments-this-winter"]
+      "sources": [
+        "https://www.gov.uk/government/news/nine-million-pensioners-to-receive-winter-fuel-payments-this-winter"
+      ]
     },
     {
       "tier": "official_act",
       "text": "In government, set day-to-day funding for the public health service to grow by an average of 3 percent a year above inflation in its multi-year spending plan.",
-      "sources": ["https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"]
+      "sources": [
+        "https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"
+      ]
     },
     {
       "tier": "official_act",
       "text": "In government, extended free school meals to all children in households receiving the main benefit for working-age people.",
-      "sources": ["https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"]
+      "sources": [
+        "https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"
+      ]
     },
     {
       "tier": "statement",
@@ -57,7 +78,9 @@
     {
       "tier": "statement",
       "text": "The head of government pledged to reduce spending on working-age benefits while ruling out abrupt cuts.",
-      "sources": ["https://www.cityam.com/exclusive-timms-welfare-review-to-dismiss-change-to-pip-eligibility/"]
+      "sources": [
+        "https://www.cityam.com/exclusive-timms-welfare-review-to-dismiss-change-to-pip-eligibility/"
+      ]
     }
   ]
 }

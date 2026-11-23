@@ -75,6 +75,7 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
 - Use US spelling and plain international wording everywhere: "retirees", "recipients", "supplement". Spelling and idiom give the country away.
 - For a party, start each official act with "In government," when it enacted the policy while governing.
 - For a caucus, file votes its members cast as a bloc under `official_act`, and positions it published to press its party under `influence`.
+- Give every subject one or two items for what it keeps in place: the scope of the health and income guarantee it maintains through its votes or its government. Say who the guarantee covers. Without these items the rater sees only recent changes, and a subject that defends a broad system looks the same as one that defends a narrow one.
 - Give amounts as shares or percentages.
 - Use at most 12 items, chosen for consequence, not for recency or volume. A long record must not win by length.
 - Use the same window for every subject: acts from 3 January 2025 onward.
@@ -94,7 +95,7 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 
 ## Changing things after a run has started
 
-- Saved answers are never re-rated. After changing a packet, an anchor, or the question, move `runs/<category-id>/` aside and rate again.
+- Saved answers are never re-rated. After changing a packet, an anchor, or the question, move `runs/<category-id>/` into `runs/archive/` and rate again.
 - A run uses one model. `rate` refuses to add answers from a second model to an existing run.
 
 ## Limits
