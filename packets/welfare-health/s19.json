@@ -11,6 +11,16 @@
       ]
     },
     {
+      "slot": "keeps-income",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing income support, in which mandatory pension schemes replace about 51 percent of an average worker's net earnings and a single adult with no other income is guaranteed about 6 percent of the median income.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://en.wikipedia.org/wiki/List_of_countries_by_guaranteed_minimum_income"
+      ]
+    },
+    {
       "event": "budget-law-health",
       "stance": "Voted against"
     },
@@ -36,7 +46,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-income",
     "seeks"
   ]
 }
