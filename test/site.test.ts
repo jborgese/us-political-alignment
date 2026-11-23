@@ -10,27 +10,29 @@ const subject = (
   kind: Key["subjects"][number]["kind"],
   group: string,
   aliases: string[] = [],
-): Key["subjects"][number] => ({ id, name, kind, group, legislature: "sample-house", aliases })
+  party?: string,
+): Key["subjects"][number] => ({ id, name, kind, group, legislature: "sample-house", aliases, party })
 
-const rankedSet = (ranking: string[], withheld: string[] = [], memberName = "Jane Sample") => {
-  const set = buildSet({
+const sourced = { ...act("Voted to hold coverage flat."), sources: ["https://example.org/vote"] }
+const moreActs = [act("Voted for the second bill."), act("Voted for the third bill.")]
+
+const rankedSet = (ranking: string[], caucusActs = moreActs, memberName = "Jane Sample") =>
+  buildSet({
     packets: [
-      record("s01", [{ ...act("Voted to hold coverage flat."), sources: ["https://example.org/vote"] }]),
-      record("s02", [act("Its members voted to hold coverage flat.")]),
-      record("s03", [act("In government, kept coverage in place.")]),
+      record("s01", [sourced, ...moreActs]),
+      record("s02", [act("Its members voted to hold coverage flat."), ...caucusActs]),
+      record("s03", [act("In government, kept coverage in place."), ...moreActs]),
     ],
     key: {
       revealingTerms: [],
       subjects: [
-        subject("s01", memberName, "member", "Sample Caucus", ["Sample"]),
-        subject("s02", "Sample Caucus", "caucus", "US House"),
+        subject("s01", memberName, "member", "Sample Caucus", ["Sample"], "Democratic"),
+        subject("s02", "Sample Caucus", "caucus", "US House", [], "Democratic"),
         subject("s03", "Example Party of Canada", "party", "Canada", ["Example Party"]),
       ],
     },
     comparisons: completeComparisons(ranking),
   })
-  return { ...set, category: { ...set.category, withheld } }
-}
 
 const IN_ORDER = ["anchor-high", "s03", "s01", "s02", "anchor-low"]
 
@@ -51,37 +53,40 @@ describe("buildSiteData", () => {
   })
 
   it("puts parties first, then caucus lanes, then the reference records", () => {
-    expect(buildSiteData(rankedSet(IN_ORDER)).lanes).toEqual(["Parties abroad", "Sample Caucus", "Reference records"])
+    expect(buildSiteData(rankedSet(IN_ORDER)).lanes).toEqual([
+      { name: "Parties abroad", short: "Abroad", icon: "party" },
+      { name: "Sample Caucus", short: "SC", icon: "caucus" },
+      { name: "Reference records", short: "Ref", icon: "anchor" },
+    ])
   })
 
   it("labels a member, a caucus, and a party each in its own way", () => {
     const labels = buildSiteData(rankedSet(IN_ORDER))
       .records.filter((entry) => entry.kind !== "anchor")
-      .map(({ label, glyph, flag, lane, detail }) => ({ label, glyph, flag, lane, detail }))
+      .map(({ label, flag, symbol, lane, detail }) => ({ label, flag, symbol, lane, detail }))
 
     expect(labels).toEqual([
-      { label: "Example Party", glyph: "EPC", flag: "ca", lane: "Parties abroad", detail: "Canada" },
-      { label: "Sample", glyph: "JS", flag: null, lane: "Sample Caucus", detail: "Sample Caucus" },
-      { label: "", glyph: "SC", flag: null, lane: "Sample Caucus", detail: "House caucus" },
+      { label: "Example Party", flag: "ca", symbol: null, lane: "Parties abroad", detail: "Canada" },
+      { label: "Sample", flag: null, symbol: "donkey", lane: "Sample Caucus", detail: "Sample Caucus" },
+      { label: "", flag: null, symbol: "donkey", lane: "Sample Caucus", detail: "House caucus" },
     ])
   })
 
   it("carries each item's sources into its section", () => {
     const member = buildSiteData(rankedSet(IN_ORDER)).records.find((entry) => entry.name === "Jane Sample")
 
-    expect(member?.sections).toEqual([
-      {
-        heading: "Recorded acts",
-        items: [{ tier: "official_act", text: "Voted to hold coverage flat.", sources: ["https://example.org/vote"] }],
-      },
-    ])
+    expect(member?.sections[0].items[0]).toEqual({
+      tier: "official_act",
+      text: "Voted to hold coverage flat.",
+      sources: ["https://example.org/vote"],
+    })
   })
 
-  it("leaves a withheld record off and names it", () => {
-    const data = buildSiteData(rankedSet(IN_ORDER, ["s02"]))
+  it("holds back a record with thin evidence and says why", () => {
+    const data = buildSiteData(rankedSet(IN_ORDER, []))
 
     expect(data.records.map((entry) => entry.name)).not.toContain("Sample Caucus")
-    expect(data.heldBack).toEqual(["Sample Caucus"])
+    expect(data.heldBack).toEqual([{ name: "Sample Caucus", reasons: ["1 official act, fewer than 3"] }])
   })
 
   it("refuses to build when the anchors come out of order", () => {
@@ -93,7 +98,7 @@ describe("buildSiteData", () => {
 
 describe("buildSitePage", () => {
   it("escapes a name in the markup and in the embedded data", () => {
-    const data = buildSiteData(rankedSet(IN_ORDER, [], "Jane <script>alert(1)</script>"))
+    const data = buildSiteData(rankedSet(IN_ORDER, moreActs, "Jane <script>alert(1)</script>"))
 
     const { body } = buildSitePage(data, { css: "", js: "" })
 

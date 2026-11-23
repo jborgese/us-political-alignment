@@ -31,8 +31,9 @@ const categorySchema = z.strictObject({
   question: z.string().min(1),
   highPole: z.string().min(1),
   lowPole: z.string().min(1),
-  withheld: z.array(z.string().min(1)).default([]),
-  slots: z.array(z.strictObject({ id: z.string().min(1), heading: z.string().min(1) })).min(1),
+  slots: z
+    .array(z.strictObject({ id: z.string().min(1), heading: z.string().min(1), required: z.boolean().optional() }))
+    .min(1),
   anchors: z
     .array(
       z.strictObject({
@@ -68,6 +69,7 @@ const keySchema = z.strictObject({
       name: z.string().min(1),
       kind: z.enum(["member", "party", "caucus"]),
       group: z.string().min(1),
+      party: z.string().min(1).optional(),
       legislature: z.string().min(1),
       aliases: z.array(z.string().min(1)),
     }),

@@ -135,11 +135,14 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 
 ## The site
 
-`npm run site -- welfare-health` builds one self-contained page: every record on the category's scale, one lane per caucus, and the evidence behind whichever record the reader selects.
+`npm run site -- welfare-health` builds one self-contained page: every record placed by strength of support, and the evidence behind whichever record the reader selects.
+
+- Support runs from bottom to top. Left to right is one column per group, ordered by support. A left-right position will replace the columns once the project has its own measure of it.
+- A member or caucus shows its party's symbol when `key.json` gives it a `party` the page knows (Democratic or Republican). A party abroad shows its country's flag.
 
 - The page is built from the current packets and the saved run, so build it only when the two match.
 - It refuses to build when the anchors came out of order, for the same reason the report withholds scores.
-- List a subject's id under `withheld` in the category file to keep its record off the page. The page names the records held back.
+- A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
 - The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
 
 ## Changing things after a run has started

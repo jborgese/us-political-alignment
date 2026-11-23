@@ -2,7 +2,7 @@ import { writeFile } from "node:fs/promises"
 
 import { describeEvidence, remainingMatchups } from "./comparisons.ts"
 import { loadRatingSet, pathsFor, type Comparison, type Packet, type RatingSet, type Slot } from "./files.ts"
-import { packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
+import { packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets, thinEvidenceReasons } from "./ratingSet.ts"
 import {
   anchorsInOrder,
   fitBradleyTerry,
@@ -67,6 +67,15 @@ const namesOf = (set: RatingSet, ids: string[]): string =>
     .map((subject) => subject.name)
     .join(", ") || "none"
 
+const thinEvidenceLines = (set: RatingSet): string[] => {
+  const lines = set.packets
+    .filter((packet) => packet.items.length > 0)
+    .map((packet) => ({ packet, reasons: thinEvidenceReasons(set, packet) }))
+    .filter(({ reasons }) => reasons.length > 0)
+    .map(({ packet, reasons }) => `- ${namesOf(set, [packet.id])}: ${reasons.join("; ")}`)
+  return lines.length > 0 ? lines : ["- none"]
+}
+
 export interface RunSummary {
   highAnchorId: string
   lowAnchorId: string
@@ -118,6 +127,10 @@ export const buildReport = (set: RatingSet): string => {
     ...(scaleIsValid
       ? scoreTable(set, scores)
       : ["Scores are withheld. The anchors did not come out in their intended order, so the scale is not valid."]),
+    "",
+    "## Held back from the site for thin evidence",
+    "",
+    ...thinEvidenceLines(set),
     "",
     "## Not rated",
     "",

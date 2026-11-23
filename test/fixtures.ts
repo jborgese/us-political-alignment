@@ -23,7 +23,6 @@ export const buildSet = (overrides: Partial<RatingSet> = {}): RatingSet => ({
     question: "Which record shows more support for public coverage?",
     highPole: "More support",
     lowPole: "Less support",
-    withheld: [],
     slots: [{ id: "acts", heading: "Recorded acts" }],
     anchors: [
       record("anchor-high", [act("Voted to expand public coverage to every resident.")]),

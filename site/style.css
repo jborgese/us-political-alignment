@@ -11,10 +11,11 @@
   --accent-soft: #dbe9f8;
   --good: #0b7a0b;
   --flag-edge: #c5ccd6;
+  --democratic: #2a78d6;
+  --republican: #e34948;
   --font-text: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --mark: 30px;
-  --row: 40px;
+  --mark: 32px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -29,6 +30,8 @@
     --accent-soft: #16304d;
     --good: #35c235;
     --flag-edge: #3a4350;
+    --democratic: #3987e5;
+    --republican: #e66767;
     color-scheme: dark;
   }
 }
@@ -44,6 +47,8 @@
   --accent-soft: #16304d;
   --good: #35c235;
   --flag-edge: #3a4350;
+  --democratic: #3987e5;
+  --republican: #e66767;
   color-scheme: dark;
 }
 
@@ -154,18 +159,18 @@ h1 {
   background: var(--surface);
   border: 1px solid var(--rule);
   border-radius: 10px;
-  padding: 18px 18px 14px;
+  padding: 16px 18px 14px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 10px;
   min-width: 0;
 }
 .key {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 18px;
+  gap: 8px 18px;
   margin: 0;
-  padding: 0 0 8px;
+  padding: 0 0 4px;
   list-style: none;
   font-size: 12.5px;
   color: var(--ink-2);
@@ -176,13 +181,16 @@ h1 {
   gap: 7px;
 }
 .key .glyph {
-  --mark: 14px;
+  --mark: 22px;
   border-width: 1.5px;
+}
+.key .glyph:empty {
+  --mark: 14px;
 }
 .key .glyph.caucus {
   border-radius: 3px;
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--ink-2);
+  border-color: var(--ink-2);
 }
 .key .glyph.anchor {
   --mark: 10px;
@@ -190,95 +198,83 @@ h1 {
   border-color: var(--ink-3);
   transform: rotate(45deg);
 }
-.lane,
-.axis {
-  display: grid;
-  grid-template-columns: 172px minmax(0, 1fr);
-  column-gap: 14px;
-  align-items: start;
-}
-.lane + .lane {
-  border-top: 1px solid var(--rule);
-}
-.lane-label {
+.pole {
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: var(--row);
-  padding-block: 6px;
-  font-size: 13px;
-  font-weight: 500;
+  gap: 7px;
+  font-size: 12px;
   color: var(--ink-2);
-  line-height: 1.25;
 }
-.track {
+.plot {
+  --plot-height: 540px;
+  --pad: 22px;
+  display: grid;
+  grid-template-columns: 34px repeat(var(--columns), minmax(0, 1fr));
+  grid-template-rows: var(--plot-height) auto;
+}
+.y-axis,
+.column {
   position: relative;
-  height: calc(var(--rows, 1) * var(--row) + 12px);
-  margin-inline: calc(var(--mark) / 2 + 2px);
+}
+.column {
+  border-left: 1px solid var(--rule);
+}
+.tick,
+.tick-label,
+.marker {
+  --top: calc(var(--pad) + (100% - 2 * var(--pad)) * var(--y) / 100);
 }
 .tick {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(var(--x) * 1%);
-  border-left: 1px solid var(--rule);
+  left: 0;
+  right: 0;
+  top: var(--top);
+  border-top: 1px solid var(--rule);
 }
 .tick.anchor {
-  border-left: 1px dashed var(--rule-strong);
+  border-top: 1px dashed var(--rule-strong);
 }
-.axis .track {
-  height: 26px;
-}
-.axis .tick-label {
+.tick-label {
   position: absolute;
-  bottom: 4px;
-  left: calc(var(--x) * 1%);
-  transform: translateX(-50%);
+  right: 8px;
+  top: var(--top);
+  transform: translateY(-50%);
   font-family: var(--font-data);
   font-size: 11px;
   color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
-.axis .tick-label.anchor {
+.tick-label.anchor {
   color: var(--ink);
   font-weight: 500;
 }
-.poles {
-  display: grid;
-  grid-template-columns: 172px minmax(0, 1fr);
-  column-gap: 14px;
-  padding-top: 10px;
-  border-top: 1px solid var(--rule);
-  font-size: 12px;
-  color: var(--ink-2);
-}
-.poles > div {
-  grid-column: 2;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-}
-.pole {
+.column-head {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
-  max-width: 24ch;
-  line-height: 1.3;
+  gap: 6px;
+  padding: 8px 6px 0 8px;
+  border-left: 1px solid var(--rule);
+  border-top: 1px solid var(--rule-strong);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink-2);
+  min-width: 0;
 }
-.pole.high {
-  flex-direction: row-reverse;
-  text-align: right;
+.column-head .short {
+  display: none;
+  font-family: var(--font-data);
 }
-.pole svg.icon {
+.column-head svg.icon {
   margin-top: 1px;
 }
 
 /* Markers */
 .marker {
+  --slot: 26%;
   position: absolute;
-  top: calc(6px + var(--lane-row, 0) * var(--row));
-  left: calc(var(--x) * 1%);
-  transform: translateX(calc(var(--mark) / -2));
+  top: calc(var(--top) - var(--mark) / 2);
+  left: calc(var(--slot) - var(--mark) / 2 + var(--nudge, 0px));
   display: flex;
   align-items: center;
   gap: 6px;
@@ -293,51 +289,79 @@ h1 {
   white-space: nowrap;
   border-radius: 999px;
 }
-.marker.flip {
-  flex-direction: row-reverse;
-  transform: translateX(calc(-100% + var(--mark) / 2));
+.marker[data-kind="caucus"] {
+  --slot: 20%;
+}
+.marker[data-kind="member"] {
+  --slot: 44%;
+}
+[data-symbol="donkey"] {
+  --party: var(--democratic);
+}
+[data-symbol="elephant"] {
+  --party: var(--republican);
 }
 .glyph {
+  --symbol-detail: var(--surface);
   width: var(--mark);
   height: var(--mark);
   flex: none;
   display: grid;
   place-items: center;
   box-sizing: border-box;
-  border: 2px solid var(--ink-2);
+  border: 2px solid var(--party, var(--ink-2));
   border-radius: 50%;
   background: var(--surface);
+  box-shadow: 0 0 0 2px var(--surface);
   font-family: var(--font-data);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: -0.02em;
   overflow: hidden;
 }
-.marker[data-kind="caucus"] .glyph {
-  border-radius: 7px;
-  background: var(--ink);
-  border-color: var(--ink);
+.party-symbol {
+  width: 80%;
+  height: 80%;
+  fill: currentColor;
+  color: var(--party, var(--ink-2));
+}
+[data-kind="caucus"] .glyph {
+  --symbol-detail: var(--party, var(--ink));
+  border-radius: 8px;
+  background: var(--party, var(--ink));
+  border-color: var(--party, var(--ink));
   color: var(--surface);
   font-size: 10px;
 }
-.marker[data-kind="party"] .glyph {
+[data-kind="caucus"] .party-symbol {
+  color: var(--surface);
+}
+[data-kind="party"] .glyph {
   border: 1px solid var(--flag-edge);
 }
-.marker[data-kind="party"] .glyph svg {
+[data-kind="party"] .glyph svg {
   width: 100%;
   height: 100%;
 }
 .marker[data-kind="anchor"] .glyph {
   width: 16px;
   height: 16px;
-  margin: 7px;
+  margin: calc((var(--mark) - 16px) / 2);
   border-radius: 2px;
   transform: rotate(45deg);
   border-color: var(--ink-3);
 }
 .marker .name {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--ink-2);
+  transform: translateY(var(--label-shift, 0px));
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  border-radius: 3px;
+  padding-inline: 2px;
+}
+.marker:hover,
+.marker[aria-pressed="true"] {
+  z-index: 2;
 }
 .marker:hover .glyph,
 .marker[aria-pressed="true"] .glyph {
@@ -348,10 +372,20 @@ h1 {
   font-weight: 600;
 }
 
-.held-back {
-  margin: 0;
+details.held-back {
   font-size: 12.5px;
-  color: var(--ink-3);
+  color: var(--ink-2);
+}
+details.held-back summary {
+  cursor: pointer;
+  width: fit-content;
+}
+details.held-back ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 /* Evidence */
@@ -374,19 +408,6 @@ h1 {
 .evidence-head .glyph {
   --mark: 40px;
   font-size: 13px;
-}
-.evidence-head[data-kind="caucus"] .glyph {
-  border-radius: 9px;
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--surface);
-}
-.evidence-head[data-kind="party"] .glyph {
-  border: 1px solid var(--flag-edge);
-}
-.evidence-head[data-kind="party"] .glyph svg {
-  width: 100%;
-  height: 100%;
 }
 .evidence-head[data-kind="anchor"] .glyph {
   border-radius: 4px;
@@ -562,30 +583,46 @@ footer {
   font-weight: 500;
 }
 
-@media (max-width: 720px) {
-  .lane,
-  .axis,
-  .poles {
-    grid-template-columns: minmax(0, 1fr);
+@media (max-width: 860px) {
+  :root {
+    --mark: 28px;
   }
-  .axis .lane-label {
+  .plot {
+    --plot-height: 460px;
+    --pad: 18px;
+    grid-template-columns: 28px repeat(var(--columns), minmax(0, 1fr));
+  }
+  .tick-label {
+    right: 5px;
+    font-size: 10px;
+  }
+  .marker .name,
+  .column-head .full,
+  .column-head svg.icon {
     display: none;
   }
-  .poles > div {
-    grid-column: 1;
+  .column-head .short {
+    display: inline;
   }
-  .lane-label {
-    min-height: 0;
-    padding-block: 10px 0;
+  .column-head {
+    justify-content: center;
+    padding-inline: 2px;
+    font-size: 10.5px;
+  }
+  .marker {
+    --slot: 50%;
+  }
+  .marker[data-kind="caucus"] {
+    --slot: 30%;
+  }
+  .marker[data-kind="member"] {
+    --slot: 70%;
   }
   .scale {
-    padding: 14px 12px 12px;
+    padding: 14px 10px 12px;
   }
   .evidence {
     padding: 16px 14px 18px;
-  }
-  .axis .tick-label.minor {
-    display: none;
   }
 }
 @media (prefers-reduced-motion: no-preference) {

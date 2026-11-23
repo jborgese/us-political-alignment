@@ -1,6 +1,7 @@
 const data = JSON.parse(document.getElementById("site-data").textContent)
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg"
-const LABEL_GAP = 8
+const LABEL_HEIGHT = 16
+const GLYPH_NUDGE = 18
 
 const element = (tag, className, text) => {
   const node = document.createElement(tag)
@@ -20,7 +21,10 @@ const symbol = (id, className) => {
   return svg
 }
 
-const glyphContent = (record) => (record.flag ? symbol(`flag-${record.flag}`) : record.glyph)
+const glyphContent = (record) => {
+  if (record.flag) return symbol(`flag-${record.flag}`)
+  return record.symbol ? symbol(`party-${record.symbol}`, "party-symbol") : record.glyph
+}
 
 const sourceLinks = (sources) => {
   const links = sources
@@ -63,6 +67,7 @@ const sectionNode = (section) => {
 const showEvidence = (record) => {
   const head = document.getElementById("evidence-head")
   head.dataset.kind = record.kind
+  head.dataset.symbol = record.symbol ?? ""
   document.getElementById("evidence-glyph").replaceChildren(glyphContent(record))
   document.getElementById("evidence-name").textContent = record.name
   document.getElementById("evidence-detail").textContent = record.detail
@@ -77,32 +82,26 @@ const select = (index) => {
   showEvidence(data.records[index])
 }
 
-const layoutTrack = (track) => {
-  const width = track.clientWidth
-  const edge = Number.parseFloat(getComputedStyle(track).marginRight)
-  const placed = [...track.querySelectorAll(".marker")]
-    .map((marker) => {
-      marker.classList.remove("flip")
-      const half = marker.querySelector(".glyph").offsetWidth / 2
-      const center = (Number(marker.dataset.x) / 100) * width
-      const size = marker.offsetWidth
-      const flip = center - half + size > width + edge
-      marker.classList.toggle("flip", flip)
-      const left = flip ? center + half - size : center - half
-      return { marker, left, right: left + size }
-    })
-    .sort((a, b) => a.left - b.left)
-  const rowEnds = []
-  placed.forEach((item) => {
-    const fits = rowEnds.findIndex((end) => item.left >= end + LABEL_GAP)
-    const row = fits === -1 ? rowEnds.length : fits
-    rowEnds[row] = item.right
-    item.marker.style.setProperty("--lane-row", String(row))
-  })
-  track.style.setProperty("--rows", String(Math.max(1, rowEnds.length)))
+const sameSlot = (a, b) => a.dataset.kind === b.dataset.kind
+
+const layoutColumn = (column) => {
+  const placed = [...column.querySelectorAll(".marker")]
+    .map((marker) => ({ marker, top: marker.offsetTop, size: marker.querySelector(".glyph").offsetHeight }))
+    .sort((a, b) => a.top - b.top)
+  placed.reduce(
+    (previous, item) => {
+      const crowded = previous.item && sameSlot(previous.item.marker, item.marker) && item.top - previous.item.top < item.size * 0.7
+      const nudge = crowded ? previous.nudge + GLYPH_NUDGE : 0
+      const shift = Math.max(0, previous.labelBottom - item.top)
+      item.marker.style.setProperty("--nudge", `${nudge}px`)
+      item.marker.style.setProperty("--label-shift", `${shift}px`)
+      return { item, nudge, labelBottom: item.top + shift + LABEL_HEIGHT }
+    },
+    { item: null, nudge: 0, labelBottom: -Infinity },
+  )
 }
 
-const layoutLanes = () => document.querySelectorAll(".lane .track").forEach(layoutTrack)
+const layoutLanes = () => document.querySelectorAll(".column").forEach(layoutColumn)
 
 const tooltip = document.getElementById("tooltip")
 

@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 
 import { loadRatingSet, type Key, type Packet, type RatingSet, type Tier } from "./files.ts"
-import { itemsInSlot, ratedPackets } from "./ratingSet.ts"
+import { itemsInSlot, ratedPackets, thinEvidenceReasons } from "./ratingSet.ts"
 import { summarizeRun } from "./report.ts"
 
 const SITE_NAME = "US Political Alignment"
@@ -12,6 +12,7 @@ const ANCHOR_LANE = "Reference records"
 const LONGEST_PARTY_LABEL = 12
 const TICK_STEP = 25
 const FLAGS: Record<string, string> = { Canada: "ca", France: "fr", Germany: "de", "United Kingdom": "uk" }
+const PARTY_SYMBOLS: Record<string, string> = { Democratic: "donkey", Republican: "elephant" }
 
 type Subject = Key["subjects"][number]
 export type SiteKind = Subject["kind"] | "anchor"
@@ -32,6 +33,8 @@ export interface SiteRecord {
   label: string
   glyph: string
   flag: string | null
+  party: string | null
+  symbol: string | null
   kind: SiteKind
   detail: string
   lane: string
@@ -49,10 +52,21 @@ export interface SiteData {
   ratedOn: string
   agreementAcrossOrders: number
   wonByFirstListed: number
-  lanes: string[]
+  lanes: SiteLane[]
   records: SiteRecord[]
   selected: number
-  heldBack: string[]
+  heldBack: HeldBack[]
+}
+
+export interface SiteLane {
+  name: string
+  short: string
+  icon: string
+}
+
+export interface HeldBack {
+  name: string
+  reasons: string[]
 }
 
 export interface SiteAssets {
@@ -74,7 +88,9 @@ const initials = (name: string): string =>
 
 const capitalized = (text: string): string => text.charAt(0).toUpperCase() + text.slice(1)
 
-const describeSubject = (subject: Subject): Pick<SiteRecord, "label" | "glyph" | "flag" | "detail" | "lane"> => {
+type Placement = Pick<SiteRecord, "label" | "glyph" | "flag" | "detail" | "lane">
+
+const describeSubject = (subject: Subject): Placement => {
   if (subject.kind === "caucus") {
     return { label: "", glyph: initials(subject.name), flag: null, detail: "House caucus", lane: subject.name }
   }
@@ -110,12 +126,18 @@ const sectionsOf = (set: RatingSet, packet: Packet): SiteSection[] =>
 
 const mean = (values: number[]): number => values.reduce((sum, value) => sum + value, 0) / values.length
 
-const laneOrder = (records: SiteRecord[]): string[] => {
+const describeLane = (name: string): SiteLane => {
+  if (name === PARTY_LANE) return { name, short: "Abroad", icon: "party" }
+  if (name === ANCHOR_LANE) return { name, short: "Ref", icon: "anchor" }
+  return { name, short: initials(name), icon: "caucus" }
+}
+
+const laneOrder = (records: SiteRecord[]): SiteLane[] => {
   const lanes = records.map((record) => record.lane).filter((lane, index, all) => all.indexOf(lane) === index)
   const position = (lane: string): number => (lane === PARTY_LANE ? 0 : lane === ANCHOR_LANE ? 2 : 1)
   const average = (lane: string): number =>
     mean(records.filter((record) => record.lane === lane).map((record) => record.score))
-  return lanes.toSorted((a, b) => position(a) - position(b) || average(b) - average(a))
+  return lanes.toSorted((a, b) => position(a) - position(b) || average(b) - average(a)).map(describeLane)
 }
 
 const formatDay = (isoTime: string): string =>
@@ -128,12 +150,16 @@ export const buildSiteData = (set: RatingSet): SiteData => {
   }
   const packets = Object.fromEntries(ratedPackets(set).map((packet) => [packet.id, packet]))
   const scoreOf = (id: string): number => Math.round(run.scores[id]) || 0
-  const rated = set.key.subjects.filter((subject) => subject.id in packets)
+  const rated = set.key.subjects
+    .filter((subject) => subject.id in packets)
+    .map((subject) => ({ subject, reasons: thinEvidenceReasons(set, packets[subject.id]) }))
   const subjects: SiteRecord[] = rated
-    .filter((subject) => !set.category.withheld.includes(subject.id))
-    .map((subject) => ({
+    .filter(({ reasons }) => reasons.length === 0)
+    .map(({ subject }) => ({
       name: subject.name,
       kind: subject.kind,
+      party: subject.party ?? null,
+      symbol: PARTY_SYMBOLS[subject.party ?? ""] ?? null,
       ...describeSubject(subject),
       score: scoreOf(subject.id),
       sections: sectionsOf(set, packets[subject.id]),
@@ -145,6 +171,8 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       label: name,
       glyph: "",
       flag: null,
+      party: null,
+      symbol: null,
       kind: "anchor",
       detail: "Written reference record",
       lane: ANCHOR_LANE,
@@ -166,7 +194,9 @@ export const buildSiteData = (set: RatingSet): SiteData => {
     lanes: laneOrder(records),
     records,
     selected: records.findIndex((record) => record.kind !== "anchor"),
-    heldBack: rated.filter((subject) => set.category.withheld.includes(subject.id)).map((subject) => subject.name),
+    heldBack: rated
+      .filter(({ reasons }) => reasons.length > 0)
+      .map(({ subject, reasons }) => ({ name: subject.name, reasons })),
   }
 }
 
@@ -195,13 +225,13 @@ const SYMBOLS = `<svg width="0" height="0" style="position:absolute" aria-hidden
 <symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 5v14M7 19h10M5 8h14"/><path d="M5 8l-2.5 6h5zM19 8l-2.5 6h5z"/></symbol>
 <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.5"/><circle cx="7" cy="17" r="2.5"/><path d="M9 8.5L20 17M9 15.5L20 7"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.4-7 9-4.1-1.6-7-4.7-7-9V6z"/><path d="M12 9v6M9 12h6"/></symbol>
+<symbol id="party-donkey" viewBox="0 0 24 24"><rect x="8.5" y="10" width="12" height="6" rx="2.6"/><path d="M10.5 10.6L7.6 6.4 3.4 9.6c-.5.4-.5 1.1 0 1.5l.6.5c.4.3.9.3 1.3.1L7.8 10l1.6 4z"/><path d="M7.2 7.2L6.3 2.4l2.3 3.4z"/><path d="M8.6 6.6l.8-4.2 1 4.6z"/><rect x="9.4" y="14.5" width="2" height="6.2" rx=".8"/><rect x="12.2" y="14.5" width="2" height="6.2" rx=".8"/><rect x="15.6" y="14.5" width="2" height="6.2" rx=".8"/><rect x="18.4" y="14.5" width="2" height="6.2" rx=".8"/><path d="M20.2 11l1.8 4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="6.2" cy="8.8" r=".6" fill="var(--symbol-detail)"/></symbol>
+<symbol id="party-elephant" viewBox="0 0 24 24"><rect x="7.5" y="7" width="13.5" height="9" rx="4.2"/><circle cx="7.6" cy="10" r="4.4"/><path d="M4.4 10.5v6.3a1.5 1.5 0 0 0 3 0" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><rect x="9.6" y="14" width="3.2" height="6.2" rx="1"/><rect x="16.6" y="14" width="3.2" height="6.2" rx="1"/><path d="M9.2 7.4a3.4 3.4 0 0 1 0 5.6" fill="none" stroke="var(--symbol-detail)" stroke-width="1.1" stroke-linecap="round"/><path d="M21 9.5l1.4 3" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><circle cx="6" cy="9" r=".7" fill="var(--symbol-detail)"/></symbol>
 <symbol id="flag-fr" viewBox="0 0 24 24"><rect width="8" height="24" fill="#0055a4"/><rect x="8" width="8" height="24" fill="#ffffff"/><rect x="16" width="8" height="24" fill="#ef4135"/></symbol>
 <symbol id="flag-de" viewBox="0 0 24 24"><rect width="24" height="8" fill="#000000"/><rect y="8" width="24" height="8" fill="#dd0000"/><rect y="16" width="24" height="8" fill="#ffce00"/></symbol>
 <symbol id="flag-ca" viewBox="0 0 24 24"><rect width="24" height="24" fill="#ffffff"/><rect width="6" height="24" fill="#d52b1e"/><rect x="18" width="6" height="24" fill="#d52b1e"/><polygon fill="#d52b1e" points="12,5 13,7.4 14.6,6.6 14.1,10 16,8.6 16.5,9.9 18,9.6 17.2,12 18,12.6 14.8,15 15.2,16.3 12.5,15.9 12.5,19 11.5,19 11.5,15.9 8.8,16.3 9.2,15 6,12.6 6.8,12 6,9.6 7.5,9.9 8,8.6 9.9,10 9.4,6.6 11,7.4"/></symbol>
 <symbol id="flag-uk" viewBox="0 0 24 24"><rect width="24" height="24" fill="#012169"/><path d="M0 0l24 24M24 0L0 24" stroke="#ffffff" stroke-width="4.8"/><path d="M0 0l24 24M24 0L0 24" stroke="#c8102e" stroke-width="1.8"/><path d="M12 0v24M0 12h24" stroke="#ffffff" stroke-width="7"/><path d="M12 0v24M0 12h24" stroke="#c8102e" stroke-width="4"/></symbol>
 </defs></svg>`
-
-const LANE_ICONS: Record<string, string> = { [PARTY_LANE]: "party", [ANCHOR_LANE]: "anchor" }
 
 interface Axis {
   ticks: number[]
@@ -213,8 +243,8 @@ const axisFor = (records: SiteRecord[]): Axis => {
   const low = Math.min(0, Math.floor(Math.min(...scores) / TICK_STEP) * TICK_STEP)
   const high = Math.max(100, Math.ceil(Math.max(...scores) / TICK_STEP) * TICK_STEP)
   return {
-    ticks: Array.from({ length: (high - low) / TICK_STEP + 1 }, (_, index) => low + index * TICK_STEP),
-    position: (score) => (((score - low) / (high - low)) * 100).toFixed(2),
+    ticks: Array.from({ length: (high - low) / TICK_STEP + 1 }, (_, index) => high - index * TICK_STEP),
+    position: (score) => (((high - score) / (high - low)) * 100).toFixed(2),
   }
 }
 
@@ -222,34 +252,53 @@ const isAnchorTick = (tick: number): boolean => tick === 0 || tick === 100
 
 const gridLines = (axis: Axis): string =>
   axis.ticks
-    .map((tick) => `<span class="tick${isAnchorTick(tick) ? " anchor" : ""}" style="--x:${axis.position(tick)}"></span>`)
+    .map((tick) => `<span class="tick${isAnchorTick(tick) ? " anchor" : ""}" style="--y:${axis.position(tick)}"></span>`)
     .join("")
 
 const tickLabels = (axis: Axis): string =>
   axis.ticks
-    .map((tick) => {
-      const kind = isAnchorTick(tick) ? "anchor" : tick === 50 ? "" : "minor"
-      return `<span class="tick-label ${kind}" style="--x:${axis.position(tick)}">${tick}</span>`
-    })
+    .map(
+      (tick) =>
+        `<span class="tick-label${isAnchorTick(tick) ? " anchor" : ""}" style="--y:${axis.position(tick)}">${tick}</span>`,
+    )
     .join("")
 
-const glyph = (record: SiteRecord): string =>
-  record.flag
-    ? `<span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-${record.flag}"/></svg></span>`
-    : `<span class="glyph">${escapeHtml(record.glyph)}</span>`
+const partySymbol = (symbol: string): string =>
+  `<svg class="party-symbol" viewBox="0 0 24 24" aria-hidden="true"><use href="#party-${symbol}"/></svg>`
+
+const glyph = (record: SiteRecord): string => {
+  if (record.flag) {
+    return `<span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#flag-${record.flag}"/></svg></span>`
+  }
+  return `<span class="glyph">${record.symbol ? partySymbol(record.symbol) : escapeHtml(record.glyph)}</span>`
+}
 
 const marker = (record: SiteRecord, index: number, axis: Axis): string => {
-  const x = axis.position(record.score)
   const label = record.label ? `<span class="name">${escapeHtml(record.label)}</span>` : ""
-  return `<button type="button" class="marker" id="marker-${index}" data-index="${index}" data-kind="${record.kind}" data-x="${x}" style="--x:${x}" aria-pressed="false" aria-label="${escapeHtml(`${record.name}, ${record.score}`)}">${glyph(record)}${label}</button>`
+  const symbol = record.symbol ? ` data-symbol="${record.symbol}"` : ""
+  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol} style="--y:${axis.position(record.score)}" aria-pressed="false" aria-label="${escapeHtml(`${record.name}, ${record.score}`)}">${glyph(record)}${label}</button>`
 }
 
-const lane = (data: SiteData, name: string, axis: Axis): string => {
+const column = (data: SiteData, lane: SiteLane, axis: Axis): string => {
   const markers = data.records
-    .map((record, index) => (record.lane === name ? marker(record, index, axis) : ""))
+    .map((record, index) => (record.lane === lane.name ? marker(record, index, axis) : ""))
     .join("")
-  return `<div class="lane"><div class="lane-label">${icon(LANE_ICONS[name] ?? "caucus")}${escapeHtml(name)}</div><div class="track">${gridLines(axis)}${markers}</div></div>`
+  return `<div class="column">${gridLines(axis)}${markers}</div>`
 }
+
+const columnHead = (lane: SiteLane): string =>
+  `<div class="column-head" title="${escapeHtml(lane.name)}">${icon(lane.icon)}<span class="full">${escapeHtml(lane.name)}</span><span class="short">${escapeHtml(lane.short)}</span></div>`
+
+const partyKey = (records: SiteRecord[]): string =>
+  records
+    .filter((record) => record.symbol && record.party)
+    .filter((record, index, all) => all.findIndex((other) => other.symbol === record.symbol) === index)
+    .toSorted((a, b) => (a.party ?? "").localeCompare(b.party ?? ""))
+    .map(
+      (record) =>
+        `<li><span class="glyph" data-symbol="${record.symbol}">${partySymbol(record.symbol ?? "")}</span>${escapeHtml(record.party ?? "")}</li>`,
+    )
+    .join("")
 
 const tableRows = (data: SiteData): string =>
   data.records
@@ -259,9 +308,11 @@ const tableRows = (data: SiteData): string =>
     })
     .join("")
 
-const heldBack = (names: string[]): string =>
-  names.length > 0
-    ? `<p class="held-back">Held back until their evidence is stronger: ${escapeHtml(names.join(", "))}.</p>`
+const heldBack = (records: HeldBack[]): string =>
+  records.length > 0
+    ? `<details class="held-back"><summary>${records.length} held back for thin evidence</summary><ul>${records
+        .map((record) => `<li><b>${escapeHtml(record.name)}</b>: ${escapeHtml(record.reasons.join("; "))}</li>`)
+        .join("")}</ul></details>`
     : ""
 
 export const buildSitePage = (data: SiteData, assets: SiteAssets): SitePage => {
@@ -282,11 +333,16 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets): SitePage => {
       `<li>${icon("orders")}<strong>${percent(data.agreementAcrossOrders)}</strong> same result in both orders</li>`,
       `<li>${icon("balance")}<strong>${percent(data.wonByFirstListed)}</strong> won by the record shown first</li>`,
       `</ul>`,
-      `<section class="scale" aria-label="Records on one scale">`,
-      `<ul class="key" aria-label="Marker shapes"><li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li><li><span class="glyph anchor"></span>Reference record</li></ul>`,
-      `<div class="axis"><div class="lane-label"></div><div class="track">${tickLabels(axis)}</div></div>`,
-      ...data.lanes.map((name) => lane(data, name, axis)),
-      `<div class="poles"><div><span class="pole low">${icon("cut")}${escapeHtml(capitalized(data.lowPole))}</span><span class="pole high">${icon("shield")}${escapeHtml(capitalized(data.highPole))}</span></div></div>`,
+      `<section class="scale" aria-label="Records by strength of support">`,
+      `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li><li><span class="glyph anchor"></span>Reference record</li></ul>`,
+      `<div class="pole">${icon("shield")}${escapeHtml(capitalized(data.highPole))}</div>`,
+      `<div class="plot" style="--columns:${data.lanes.length}">`,
+      `<div class="y-axis">${tickLabels(axis)}</div>`,
+      ...data.lanes.map((lane) => column(data, lane, axis)),
+      `<div></div>`,
+      ...data.lanes.map(columnHead),
+      `</div>`,
+      `<div class="pole">${icon("cut")}${escapeHtml(capitalized(data.lowPole))}</div>`,
       `</section>`,
       heldBack(data.heldBack),
       `<section class="evidence" aria-live="polite" aria-label="Evidence for the selected record">`,
