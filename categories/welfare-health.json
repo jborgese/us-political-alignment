@@ -79,6 +79,11 @@
         {
           "slot": "changes-health",
           "tier": "official_act",
+          "text": "Voted for extending subsidies for private insurance premiums for middle-income households."
+        },
+        {
+          "slot": "changes-health",
+          "tier": "official_act",
           "text": "Voted against a bill extending public health coverage to all residents."
         },
         {
@@ -88,14 +93,12 @@
         },
         {
           "slot": "changes-income",
-          "tier": "statement",
-          "text": "Said they will vote for stricter job-search conditions on unemployment benefits while keeping benefit levels unchanged."
-        },
-        {
-          "slot": "seeks",
-          "tier": "influence",
-          "text": "Endorsed a proposal to subsidize private insurance premiums for middle-income households."
+          "tier": "official_act",
+          "text": "Voted for stricter job-search conditions on unemployment benefits, with benefit levels unchanged."
         }
+      ],
+      "emptySlots": [
+        "seeks"
       ]
     },
     {
@@ -104,17 +107,17 @@
         {
           "slot": "keeps-health",
           "tier": "official_act",
-          "text": "Votes to keep in place public health coverage for older and low-income residents, less the reductions listed under changes, while other residents rely on private insurance."
+          "text": "Votes to keep in place public health coverage for older residents only, less the reductions listed under changes, while other residents rely on private insurance."
         },
         {
           "slot": "keeps-income",
           "tier": "official_act",
-          "text": "Votes to keep the public pension at its current level."
+          "text": "Votes to keep in place a public pension for retirees, less the reductions listed under changes."
         },
         {
           "slot": "changes-health",
           "tier": "official_act",
-          "text": "Voted for a budget that reduced funding for public health coverage by about 15 percent and narrowed eligibility for it."
+          "text": "Voted for a budget that reduced funding for public health coverage by about 30 percent and ended that coverage for low-income adults without children."
         },
         {
           "slot": "changes-health",
@@ -124,17 +127,22 @@
         {
           "slot": "changes-income",
           "tier": "official_act",
-          "text": "Voted to add work requirements and time limits to income support for working-age adults."
+          "text": "Voted to reduce food and unemployment assistance by about 30 percent and to limit both to two years."
+        },
+        {
+          "slot": "changes-income",
+          "tier": "official_act",
+          "text": "Voted to raise the pension age by three years."
+        },
+        {
+          "slot": "seeks",
+          "tier": "official_act",
+          "text": "Introduced a bill to replace public health coverage for older residents with a fixed payment toward private insurance."
         },
         {
           "slot": "seeks",
           "tier": "influence",
-          "text": "Publicly urged fellow legislators to turn public health funding into fixed grants that grow more slowly than costs."
-        },
-        {
-          "slot": "seeks",
-          "tier": "statement",
-          "text": "Announced the intention to introduce a bill letting people leave public health coverage in exchange for a tax credit."
+          "text": "Publicly urged fellow legislators to turn the remaining public health funding into fixed grants that grow more slowly than costs."
         }
       ]
     }
