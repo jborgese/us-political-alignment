@@ -13,11 +13,13 @@
     {
       "slot": "keeps-income",
       "tier": "official_act",
-      "text": "Its members vote to keep in place the existing income support, in which mandatory pension schemes replace about 51 percent of an average worker's net earnings and a single adult with no other income is guaranteed about 6 percent of the median income.",
+      "text": "Its members vote to keep in place the existing income support, in which mandatory pension schemes replace about 51 percent of an average worker's net earnings, unemployment benefits replace about 35 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 6 percent of the median income, housing support included.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
-        "https://en.wikipedia.org/wiki/List_of_countries_by_guaranteed_minimum_income"
+        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
+        "https://stat.link/qetyb2",
+        "https://stat.link/xiqc6l"
       ]
     },
     {
