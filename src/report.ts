@@ -30,6 +30,8 @@ interface ScoreRow {
 
 const percent = (share: number): string => `${Math.round(share * 100)}%`
 
+const wholeNumber = (score: number): string => String(Math.round(score) || 0)
+
 const assertRatingIsComplete = (set: RatingSet): void => {
   const unrated = remainingMatchups(set).length
   if (unrated > 0) throw new Error(`Rating is not finished: ${unrated} comparisons remain. Run rate first.`)
@@ -56,7 +58,7 @@ const scoreTable = (set: RatingSet, scores: Scores): string[] => [
   "|---|---|---|---|",
   ...scoreRows(set, scores)
     .toSorted((a, b) => b.score - a.score)
-    .map((row) => `| ${row.name} | ${row.kind} | ${row.group} | ${row.score.toFixed(0)} |`),
+    .map((row) => `| ${row.name} | ${row.kind} | ${row.group} | ${wholeNumber(row.score)} |`),
 ]
 
 const namesOf = (set: RatingSet, ids: string[]): string =>

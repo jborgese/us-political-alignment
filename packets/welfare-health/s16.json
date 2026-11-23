@@ -2,6 +2,15 @@
   "items": [
     {
       "tier": "official_act",
+      "text": "Its members work to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, voting against reducing it and for extending its subsidies.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://clerk.house.gov/evs/2026/roll011",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "tier": "official_act",
       "text": "Its members voted unanimously against a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
