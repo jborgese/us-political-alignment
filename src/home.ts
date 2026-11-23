@@ -13,6 +13,7 @@ import {
   partyKey,
   tickLabels,
   type Axis,
+  type Emblem,
   type SiteAssets,
   type SitePage,
 } from "./markup.ts"
@@ -53,6 +54,30 @@ export const buildHomeData = (
       })),
   })),
 })
+
+const HERO_STEPS = [
+  { icon: "record", title: "The record", text: "What each one did, pushed for and said, with sources" },
+  { icon: "hidden", title: "Names hidden", text: "A language model compares two records at a time, without names or parties" },
+  { icon: "scale", title: "A score per issue", text: "Who wins each pair sets the score, from 0 to 100" },
+]
+
+const shownOnce = (values: (string | null)[]): string[] => [...new Set(values.flatMap((value) => value ?? []))].toSorted()
+
+const emblems = (wrapper: (value: string) => string, records: Emblem[]): string =>
+  `<span class="emblems">${records.map((record) => `<span ${wrapper(record.flag ?? record.symbol ?? "")}>${glyph(record)}</span>`).join("")}</span>`
+
+const hero = (records: HomeRecord[]): string =>
+  [
+    `<section class="hero" aria-labelledby="hero-title">`,
+    `<h1 id="hero-title">How do US House members compare with parties abroad?</h1>`,
+    `<p class="hero-lead">Placed by their record, not their party label, on one scale per issue.</p>`,
+    `<ul class="hero-who" aria-label="Who is compared">`,
+    `<li>${emblems((symbol) => `data-symbol="${symbol}"`, shownOnce(records.map((record) => record.symbol)).map((symbol) => ({ glyph: "", flag: null, symbol })))}House members and caucuses</li>`,
+    `<li>${emblems(() => `data-kind="party"`, shownOnce(records.map((record) => record.flag)).map((flag) => ({ glyph: "", flag, symbol: null })))}Parties abroad</li>`,
+    `</ul>`,
+    `<ol class="hero-steps">${HERO_STEPS.map(({ icon: name, title, text }) => `<li>${icon(name)}<b>${title}</b><span>${text}</span></li>`).join("")}</ol>`,
+    `</section>`,
+  ].join("\n")
 
 const mark = (record: HomeRecord, axis: Axis): string => {
   const symbol = record.symbol ? ` data-symbol="${record.symbol}"` : ""
@@ -98,7 +123,9 @@ export const buildHomePage = ({ issues }: HomeData, assets: SiteAssets): SitePag
     body: [
       SYMBOLS,
       `<main class="page">`,
-      `<header class="masthead"><div class="site-name">${SITE_NAME} <span class="pilot">Pilot</span></div><h1>Support by issue</h1><p class="question">One column per issue. Higher is stronger support for the position at the top of that issue's scale.</p></header>`,
+      `<header class="masthead"><div class="site-name">${SITE_NAME} <span class="pilot">Pilot</span></div></header>`,
+      hero(records),
+      `<div class="section-head"><h2>Support by issue</h2><p class="question">One column per issue. Higher is stronger support for the position at the top of that issue's scale.</p></div>`,
       `<section class="scale" aria-label="Scores by issue">`,
       `<ul class="key" aria-label="Marker key">${partyKey(records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li><li class="unpublished">${icon("none")}${UNPUBLISHED}</li></ul>`,
       `<div class="plot overview" style="--columns:${issues.length}">`,

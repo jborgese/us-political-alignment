@@ -37,6 +37,9 @@ export const SYMBOLS = `<svg width="0" height="0" style="position:absolute" aria
 <symbol id="i-move" viewBox="0 0 24 24"><path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/></symbol>
 <symbol id="i-reword" viewBox="0 0 24 24"><path d="M4 7h10M4 12h6M4 17h4"/><path d="M19.5 14.5a4 4 0 1 1-1.2-4.3"/><path d="M19.6 7.6v3h-3"/></symbol>
 <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.5"/><circle cx="7" cy="17" r="2.5"/><path d="M9 8.5L20 17M9 15.5L20 7"/></symbol>
+<symbol id="i-record" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></symbol>
+<symbol id="i-hidden" viewBox="0 0 24 24"><path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6z"/><circle cx="12" cy="12" r="2.5"/><path d="M4.5 19.5l15-15"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M8 3v18M8 4h3M8 8h2M8 12h3M8 16h2M8 20h3"/><circle cx="16" cy="9" r="2.5"/></symbol>
 <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.4-7 9-4.1-1.6-7-4.7-7-9V6z"/><path d="M12 9v6M9 12h6"/></symbol>
 <symbol id="i-issue-welfare-health" viewBox="0 0 24 24"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.4-7 9-4.1-1.6-7-4.7-7-9V6z"/><path d="M12 9v6M9 12h6"/></symbol>
 <symbol id="i-issue-economics" viewBox="0 0 24 24"><path d="M4 20h16M7 20v-6M12 20V8M17 20v-9"/></symbol>

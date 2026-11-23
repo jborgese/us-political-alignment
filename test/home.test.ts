@@ -97,6 +97,20 @@ describe("buildHomePage", () => {
     expect(body).toContain('<tr><td>Sample Caucus</td><td>Sample Caucus</td><td class="num">40</td><td class="num"></td></tr>')
   })
 
+  it("opens with each party symbol and flag on the page, once each", () => {
+    const body = page({
+      "welfare-health": siteData([...welfare.records, record("Party A", "party", 80, { flag: "uk" })]),
+      economics: siteData([
+        ...economics.records,
+        record("Party A", "party", 60, { flag: "uk" }),
+        record("Party B", "party", 55, { flag: "ca" }),
+      ]),
+    })
+    const opening = body.slice(body.indexOf('<ul class="hero-who"'), body.indexOf("</ul>", body.indexOf('<ul class="hero-who"')))
+
+    expect(opening.match(/#(party|flag)-[a-z]+/g)).toEqual(["#party-donkey", "#party-elephant", "#flag-ca", "#flag-uk"])
+  })
+
   it("still builds when no issue is published", () => {
     const body = page({})
 
@@ -108,6 +122,6 @@ describe("buildHomePage", () => {
     const body = page({ "welfare-health": siteData([record('Jane "J" <b>', "member", 50)]) })
 
     expect(body).toContain('data-name="Jane &quot;J&quot; &lt;b&gt;"')
-    expect(body).not.toContain("<b>")
+    expect(body).not.toContain('"J" <b>')
   })
 })
