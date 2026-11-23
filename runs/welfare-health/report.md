@@ -41,7 +41,34 @@ Question put to the rater: Which record shows stronger support for government-gu
 | Chip Roy | member | House Freedom Caucus | 7 |
 | anchor-retrenching | anchor |  | 0 |
 
-## Held back from the site for thin evidence
+## Scores when reworded
+
+- Reworded versions scored: 36 of 36
+- Comparisons: 1656
+- Each score is the one the record would have had with that wording in its place.
+
+| Record | Score | Version a | Version b |
+|---|---|---|---|
+| Labour Party | 93 | 93 | 93 |
+| CDU/CSU | 87 | 78 | 82 |
+| Liberal Party of Canada | 82 | 82 | 82 |
+| Pramila Jayapal | 77 | 79 | 77 |
+| Congressional Progressive Caucus | 73 | 73 | 73 |
+| Alexandria Ocasio-Cortez | 69 | 69 | 71 |
+| New Democrat Coalition | 63 | 63 | 62 |
+| Blue Dog Coalition | 60 | 58 | 58 |
+| Brad Schneider | 56 | 55 | 56 |
+| Pete Aguilar | 50 | 51 | 51 |
+| Jared Golden | 48 | 46 | 46 |
+| Marie Gluesenkamp Perez | 45 | 45 | 45 |
+| Ben Cline | 32 | 32 | 32 |
+| Republican Study Committee | 27 | 29 | 27 |
+| August Pfluger | 25 | 18 | 25 |
+| Andy Harris | 20 | 20 | 18 |
+| House Freedom Caucus | 13 | 13 | 13 |
+| Chip Roy | 7 | 7 | 7 |
+
+## Held back from the site
 
 - New Democratic Party: nothing under "Income support it keeps in place"; 17% of its pairs changed winner with the order shown
 - Reform UK: nothing under "Income support it keeps in place"; 2 official acts, fewer than 3
