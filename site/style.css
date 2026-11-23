@@ -351,6 +351,46 @@ h1 {
   transform: rotate(45deg);
   border-color: var(--ink-3);
 }
+.marker .glyph {
+  position: relative;
+}
+.range,
+.range-key {
+  width: 2px;
+  background: var(--party, var(--ink-2));
+}
+.range {
+  --scale-height: calc(var(--plot-height) - 2 * var(--pad));
+  position: absolute;
+  left: calc(var(--mark) / 2 - 1px);
+  top: calc(var(--mark) / 2 - var(--scale-height) * var(--above) / 100);
+  height: calc(var(--scale-height) * var(--span) / 100);
+  pointer-events: none;
+}
+.range-key {
+  position: relative;
+  height: 18px;
+  margin-inline: 4px;
+}
+.range::before,
+.range::after,
+.range-key::before,
+.range-key::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  width: 10px;
+  height: 2px;
+  background: inherit;
+}
+.range::before,
+.range-key::before {
+  top: 0;
+}
+.range::after,
+.range-key::after {
+  bottom: 0;
+}
 .marker .name {
   font-size: 12px;
   color: var(--ink-2);
@@ -449,11 +489,13 @@ details.held-back ul {
   font-size: 12px;
   color: var(--ink-3);
 }
-#evidence-change {
+#evidence-change,
+#evidence-range {
   flex-basis: 100%;
   text-align: right;
 }
-#evidence-change:empty {
+#evidence-change:empty,
+#evidence-range:empty {
   display: none;
 }
 .tier-key {

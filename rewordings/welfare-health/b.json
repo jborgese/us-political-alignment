@@ -1,0 +1,213 @@
+{
+  "events": {
+    "us-house": {
+      "budget-law-health": "a budget law lowering, by roughly 14 percent over ten years, the national funding for low-income residents' public health coverage, and attaching work requirements to that coverage. Officially, roughly 3 percent of residents are estimated to lose health coverage as a result",
+      "subsidy-extension": "a measure keeping the expanded premium subsidies for individually bought health insurance for three more years. Roughly 7 percent of residents have such insurance; by an independent estimate, subsidized buyers would otherwise pay more than twice as much in premiums on average",
+      "employer-plan-bill": "a bill under which employer and association health plans face looser rules and money is provided for payments that lower cost sharing in individual insurance. It was officially estimated to bring pre-subsidy premiums for individual insurance down by roughly 11 percent and to leave roughly 0.03 percent fewer residents with coverage",
+      "budget-law-food": "the same budget law, which in addition lowered, by roughly 16 percent over ten years, the national funding for low-income households' food assistance"
+    },
+    "uk-commons": {
+      "benefit-law": "a law with two parts: for four years, increases above inflation in the standard rate of the main working-age benefit, which by the government's estimate raises the income of roughly one household in seven; and a reduction of roughly half in that benefit's health-related supplement for new applicants, with no change for current recipients or for people with the most severe lifelong conditions",
+      "child-limit-removal": "a law that ends the cap restricting child-related benefit payments to the first two children in a family. The government put the reach of the change at roughly one child in ten and estimated that it takes roughly 3 percent of all children out of poverty"
+    },
+    "de-bundestag": {
+      "health-savings-law": "a law to save money in health insurance, intended to keep contribution rates where they are: patients pay half as much again for medicines, spouses' free coverage under public health insurance is restricted, and payment increases for doctors, hospitals, and drug makers are held down",
+      "pension-law": "a pension law fixing the level of the public pension at 48 percent of average wages through 2031 and crediting parents with an extra six months of pension entitlement for every child born before 1992",
+      "basic-income-reform": "a reform under which the main basic income benefit, received by roughly 7 percent of residents, gave way to a stricter scheme. The rates of benefit do not change, but a person who refuses training loses 30 percent of the benefit for three months, a person who misses a second appointment has the benefit reduced for one month, and missing more appointments can end in full withdrawal"
+    },
+    "ca-commons": {
+      "annual-budget-health": "the annual budget, which kept the public dental plan, public drug coverage, and subsidized child care going but put no additional money into them",
+      "annual-budget-meals": "the same annual budget, which in addition turned a national school meals program into a permanent one"
+    }
+  },
+  "records": {
+    "s01": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage, net of the reductions listed under changes.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included, net of the reductions listed under changes.",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in favor of",
+      "At the committee stage, voted not to send an earlier version of that budget law onward, demanding that its work requirements and spending reductions begin earlier; once the start of the work requirements had been advanced, abstained, which allowed the bill to proceed.",
+      "In public, pressed fellow party members to let the expanded premium subsidies run out, adding that no deal to extend them should count on support.",
+      "Said, once the committee had voted, that the budget bill still had to be changed before final passage and that the changes should include abolishing the financing arrangements regional governments use to draw extra national money for public health coverage.",
+      "Introduced a bill and filed an amendment to the budget bill, each with two aims: an eight-year phase-down of the higher national funding share paid for adults added to low-income public health coverage, ending at the regular share, and permission for regional governments to tighten that group's eligibility.",
+      "Was the lead author of a letter, co-signed by 19 other legislators, that urged colleagues to do three things: reduce to the regular share the national funding share for adults added to low-income public health coverage, put limits on the financing arrangements by which regional governments draw national funds, and rule out expanding that coverage further."
+    ],
+    "s02": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage, net of the reductions listed under changes.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included, net of the reductions listed under changes.",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in favor of",
+      "Described the budget law as one that keeps public health coverage safe for pregnant women, children, older people, and people with disabilities, that requires able-bodied adults to work, and that gives regional governments a reason not to expand coverage."
+    ],
+    "s03": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Jointly led a letter backed by 208 legislators. It called on the chamber's leader to set aside all legislation that would reduce the public pension or public health coverage for older or low-income residents.",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in opposition to",
+      "Leading a group of legislators, publicly demanded that a vote on extending the expanded premium subsidies for three years be held without delay."
+    ],
+    "s04": [
+      "As the governing party, maintains public insurance that covers medically necessary care from doctors and hospitals for every eligible resident, with no patient charges, and upholds this through the conditions attached to its health funding for regional governments.",
+      "As the governing party, maintains today's income support: roughly 45 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 48 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 18 percent of the median income, housing support included.",
+      "As the governing party, carried through",
+      "As the governing party, opened a public dental plan to every uninsured adult aged 18 to 64 in a household with income below a set threshold.",
+      "As the governing party, made no new money available for public drug coverage agreements with regional governments other than the four signed earlier.",
+      "In its budget, declared that it was protecting social programs and listed child care, dental care, and drug coverage by name.",
+      "As the governing party, carried through"
+    ],
+    "s05": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in opposition to",
+      "At a rally in a district represented by the majority party, faulted the local legislator's vote for a budget plan; an official analysis had found that the plan would require reducing public health coverage for low-income residents.",
+      "Signed on as a cosponsor of a bill placing all residents in one public health plan; the plan would pay for medical, dental, vision, hearing, mental health, and long-term care and would have neither premiums nor deductibles nor copayments."
+    ],
+    "s06": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in opposition to"
+    ],
+    "s07": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in opposition to",
+      "Introduced, and is the lead sponsor of, a bill placing all residents in one public health plan; the plan would pay for medical, dental, vision, hearing, mental health, and long-term care and would have neither premiums nor deductibles nor copayments.",
+      "Jointly led a public hearing aimed at getting colleagues to back the single public health plan bill, making the case that it alone guarantees everyone care."
+    ],
+    "s08": [
+      "As a coalition partner in government, maintains health insurance that is compulsory for all residents. Roughly 90 percent of them are insured with public funds whose contributions are set according to income, whose benefits are the same for every member, and which cover family members without extra charge.",
+      "As a coalition partner in government, maintains today's income support: roughly 53 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 59 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 39 percent of the median income, housing support included.",
+      "As a coalition partner in government, carried through",
+      "As a coalition partner in government, carried through",
+      "As a coalition partner in government, carried through",
+      "The head of government, who leads the party, stated that the social system as it stands has become unaffordable and that cuts, which will be painful, are needed; the basic income benefit and stronger incentives to keep working longer before taking a pension were the examples given."
+    ],
+    "s09": [
+      "Its members, by their votes, maintain today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage, net of the reductions listed under changes.",
+      "Its members, by their votes, maintain today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included, net of the reductions listed under changes.",
+      "Every one of its members voted in favor of the final version of",
+      "At the committee stage, four of its members voted not to send an earlier version of that budget law onward, demanding that its work requirements and spending reductions begin earlier; they then abstained, which allowed the bill to proceed.",
+      "Its chair voted in opposition to, and none of its members is listed among the legislators of its party who voted in favor of,",
+      "Its chair voted in favor of",
+      "Every one of its members voted in favor of the final version of",
+      "Party leaders were warned by its chair that any funding bill with an extension of the expanded premium subsidies attached would not get members' votes; several members also vowed publicly that they would block one.",
+      "Its governing board stated that, should the other chamber try to water down the spending reductions in the budget bill, it would refuse to accept the attempt.",
+      "Its chair and several of its members signed on as cosponsors of a bill for an eight-year phase-down of the higher national funding share paid for adults added to low-income public health coverage, ending at the regular share."
+    ],
+    "s10": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage, net of the reductions listed under changes.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included, net of the reductions listed under changes.",
+      "After abstaining on the first passage, voted in favor of the final version of",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "After abstaining on the first passage, voted in favor of the final version of",
+      "Leading a group of legislators, warned party leaders that any funding bill with an extension of the expanded premium subsidies attached would not get the votes of the group's members.",
+      "Said, once the budget law had passed, that further expansion of public health coverage for low-income residents would be discouraged by two of its provisions: the work requirements and the limits on the financing arrangements used by regional governments.",
+      "Signed on as a cosponsor of a bill for an eight-year phase-down of the higher national funding share paid for adults added to low-income public health coverage, ending at the regular share."
+    ],
+    "s11": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage, net of the reductions listed under changes.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included, net of the reductions listed under changes.",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in favor of",
+      "Said of the employer health plan bill that it was a solid first step toward bringing costs down.",
+      "Introduced a bill under which personal health accounts, used by people to buy their own coverage, would take the place of the premium subsidies now paid to insurers.",
+      "Chairing a group of legislators, issued a framework that urged the party to pass a bill with two effects: removing all non-citizens' eligibility for public health coverage for low-income residents, for food assistance, and for housing assistance, and closing a dedicated fund for disease prevention."
+    ],
+    "s12": [
+      "As the governing party, maintains a health service paid for out of taxation, which every resident can use and which makes no charge for care from doctors or in hospitals.",
+      "As the governing party, maintains today's income support: roughly 54 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 33 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 50 percent of the median income, housing support included.",
+      "As the governing party, has left in force the rule that increases the public pension annually in line with prices, with wages, or by 2.5 percent, whichever of the three is greatest.",
+      "As the governing party, used its multi-year spending plan to fix growth in the public health service's day-to-day funding at an average of 3 percent a year above inflation.",
+      "As the governing party, carried through",
+      "As the governing party, carried through",
+      "As the governing party, put forward tighter eligibility rules for the main disability benefit; after opposition, it withdrew them and opened a review of how the benefit is assessed.",
+      "As the governing party, made roughly three quarters of retirees eligible again for an annual heating payment that, in the previous winter, it had limited to retirees on low-income benefits.",
+      "As the governing party, made every child in a household that receives the main working-age benefit eligible for free school meals.",
+      "The head of government, who leads the party, announced that the aim for the next legislative term is a public care service providing free personal care to older people, to be paid for partly by making the rule that governs annual increases in the public pension less generous starting in 2030.",
+      "The head of government gave a pledge to bring down spending on working-age benefits, but without abrupt cuts, which were ruled out."
+    ],
+    "s13": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in opposition to",
+      "Gave a pledge to continue efforts toward extending the expanded premium subsidies through the following year with support from across the parties."
+    ],
+    "s14": [
+      "Its members, by their votes, maintain today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "Its members, by their votes, maintain today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Jointly led a letter backed by 208 legislators. It called on the chamber's leader to set aside all legislation that would reduce the public pension or public health coverage for older or low-income residents.",
+      "Every one of its members voted in opposition to",
+      "Its members voted in favor of",
+      "Those of its members who voted all voted in opposition to",
+      "Every one of its members voted in opposition to",
+      "Its chair publicly demanded that a vote on extending the expanded premium subsidies for three years be held without delay.",
+      "Issued a health plan with four requests to lawmakers: keep the expanded premium subsidies, reverse the recent reductions in low-income residents' public health coverage, simplify enrollment, and give people with private insurance the benefit of a cap on out-of-pocket prescription costs. It contains no proposal for a single public health plan or for a public insurance option."
+    ],
+    "s15": [
+      "Nearly all of its members, by their votes, maintain today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage, net of the reductions listed under changes.",
+      "Nearly all of its members, by their votes, maintain today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included, net of the reductions listed under changes.",
+      "Almost every one of its members voted in favor of",
+      "A majority of its members, including the chair and the vice chair, voted in opposition to",
+      "Almost every one of its members voted in favor of",
+      "Almost every one of its members voted in favor of",
+      "Issued a framework that urged its party to pass a bill moving premium subsidies away from insurers and into patients' own personal health accounts.",
+      "The same framework urged removing all non-citizens' eligibility for public health coverage for low-income residents, for food assistance, and for housing assistance.",
+      "The same framework urged two changes: abolishing a rule that makes people enrolled in other aid programs eligible for benefits automatically, and introducing asset tests.",
+      "The same framework urged that money be provided for payments reducing out-of-pocket costs for lower-income holders of individually bought insurance; it said premiums would fall by 11 percent and public spending would go down as a result.",
+      "The same framework urged that public health coverage for low-income residents be made to pay hospitals at the same rate in every setting where care is given, a change it scored as reducing spending.",
+      "The same framework urged closing a dedicated fund that pays for disease prevention and public health programs."
+    ],
+    "s16": [
+      "Its members, by their votes, maintain today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "Its members, by their votes, maintain today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Jointly led a letter backed by 208 legislators. It called on the chamber's leader to set aside all legislation that would reduce the public pension or public health coverage for older or low-income residents.",
+      "Every one of its members voted in opposition to",
+      "Its members voted in favor of",
+      "No member of the group voted in favor of",
+      "Every one of its members voted in opposition to",
+      "A bill placing all residents in one public health plan, which would have neither premiums nor deductibles nor copayments, was introduced by a former chair of the group with more than 100 cosponsors.",
+      "Held a public hearing to win backing for the single public health plan bill; there, its chair said that getting the bill passed ranks among the group's top priorities."
+    ],
+    "s19": [
+      "By vote, maintains today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "By vote, maintains today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Voted in opposition to",
+      "Voted in favor of",
+      "Voted in opposition to",
+      "Voted in opposition to",
+      "Holding a party leadership post in the chamber, publicly demanded that the chamber's leader schedule, without delay, a vote on extending the expanded premium subsidies for three years."
+    ],
+    "s21": [
+      "Its members, by their votes, maintain today's system, which guarantees public health coverage to residents who are older, disabled, or on low incomes, leaves most of the rest to employer or subsidized private insurance, and leaves roughly 8 percent of residents with no coverage.",
+      "Its members, by their votes, maintain today's income support: roughly 51 percent of an average worker's net earnings is replaced by mandatory pension schemes, roughly 35 percent of an average earner's net income by unemployment benefits in the second month out of work, and a single adult with no other income is guaranteed roughly 6 percent of the median income, housing support included.",
+      "Every one of its members voted in opposition to",
+      "Its members voted in favor of",
+      "No member of the group voted in favor of",
+      "Every one of its members voted in opposition to",
+      "In a statement, came out against the budget law, objecting both to its cuts in public health coverage for low-income residents and to the increase in public debt it brings.",
+      "Endorsed a bill with two aims: permanence for the expanded premium subsidies and reversal of the budget law's health coverage reductions."
+    ]
+  }
+}

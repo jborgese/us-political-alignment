@@ -2,7 +2,7 @@
 
 Apply whenever code takes input, checks identity, touches data or secrets, reports an error, adds a dependency, or changes CI. A framework rule, where the repo has one, says how to apply these in that framework.
 
-This repo's enforcement points: every input file is validated by the Zod schemas in `src/files.ts`; `findSetProblems` in `src/ratingSet.ts` is the gate that blocks a rating run, and `rateCategory` fails closed on it before any API call; `src/comparisons.ts` is the only place that builds text sent to the model; secrets come from the environment (`.env`, git-ignored), and the repo commits no env file except `.env.example`.
+This repo's enforcement points: every input file is validated by the Zod schemas in `src/files.ts`; `findSetProblems` in `src/ratingSet.ts` is the gate that blocks a rating run, and `rateCategory` and `rateStability` fail closed on it before any API call; `src/comparisons.ts` is the only place that builds text sent to the model; secrets come from the environment (`.env`, git-ignored), and the repo commits no env file except `.env.example`.
 
 ## Trust Boundaries
 

@@ -1,4 +1,4 @@
-import type { Comparison, Evidence, Packet, RatingSet } from "../src/files.ts"
+import type { Comparison, Evidence, Packet, RatingSet, Rewording } from "../src/files.ts"
 
 export const act = (text: string, slot = "acts"): Evidence => ({ slot, tier: "official_act", text })
 
@@ -44,8 +44,11 @@ export const buildSet = (overrides: Partial<RatingSet> = {}): RatingSet => ({
       },
     ],
   },
+  rewordings: [],
   comparisons: [],
   superseded: [],
+  stability: [],
+  stabilitySuperseded: [],
   ...overrides,
 })
 
@@ -57,3 +60,14 @@ export const completeComparisons = (ranking: string[]): Comparison[] =>
         comparison(first, second, ranking.indexOf(first) < ranking.indexOf(second) ? first : second),
       ),
   )
+
+export const reworded = (base: Packet, version: string, texts: string[]): Rewording => ({
+  ...base,
+  id: `${base.id}.${version}`,
+  baseId: base.id,
+  version,
+  items: base.items.map((item, index) => ({ ...item, text: texts[index] })),
+})
+
+export const comparisonsOf = (id: string, ranking: string[]): Comparison[] =>
+  completeComparisons(ranking).filter((saved) => saved.first === id || saved.second === id)

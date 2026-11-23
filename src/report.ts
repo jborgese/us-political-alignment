@@ -3,6 +3,7 @@ import { writeFile } from "node:fs/promises"
 import { describeEvidence, fingerprintRecords, remainingMatchups } from "./comparisons.ts"
 import { loadRatingSet, pathsFor, type Comparison, type Packet, type RatingSet, type Slot } from "./files.ts"
 import { packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets, thinEvidenceReasons } from "./ratingSet.ts"
+import { rewordedScores, wordingReasons, type RewordedScore } from "./stability.ts"
 import {
   anchorsInOrder,
   fitBradleyTerry,
@@ -67,22 +68,56 @@ const namesOf = (set: RatingSet, ids: string[]): string =>
     .map((subject) => subject.name)
     .join(", ") || "none"
 
-const thinEvidenceLines = (set: RatingSet): string[] => {
-  const lines = set.packets
-    .filter((packet) => packet.items.length > 0)
-    .map((packet) => ({ packet, reasons: thinEvidenceReasons(set, packet) }))
-    .filter(({ reasons }) => reasons.length > 0)
-    .map(({ packet, reasons }) => `- ${namesOf(set, [packet.id])}: ${reasons.join("; ")}`)
-  return lines.length > 0 ? lines : ["- none"]
-}
-
 export interface RunSummary {
   highAnchorId: string
   lowAnchorId: string
   scaleIsValid: boolean
   scores: Scores
+  reworded: RewordedScore[]
   agreementAcrossOrders: number
   wonByFirstListed: number
+}
+
+export const heldBackReasons = (set: RatingSet, run: RunSummary, packet: Packet): string[] => [
+  ...thinEvidenceReasons(set, packet),
+  ...wordingReasons(set, run.scores, run.reworded, packet.id),
+]
+
+const heldBackLines = (set: RatingSet, run: RunSummary): string[] => {
+  const lines = set.packets
+    .filter((packet) => packet.items.length > 0)
+    .map((packet) => ({ packet, reasons: heldBackReasons(set, run, packet) }))
+    .filter(({ reasons }) => reasons.length > 0)
+    .map(({ packet, reasons }) => `- ${namesOf(set, [packet.id])}: ${reasons.join("; ")}`)
+  return lines.length > 0 ? lines : ["- none"]
+}
+
+const rewordingSection = (set: RatingSet, { scores, reworded }: RunSummary): string[] => {
+  if (set.rewordings.length === 0) return []
+  const versions = set.rewordings
+    .map((rewording) => rewording.version)
+    .filter((id, index, all) => all.indexOf(id) === index)
+  const scoreOf = (baseId: string, version: string): string => {
+    const found = reworded.find((entry) => entry.baseId === baseId && entry.version === version)
+    return found ? wholeNumber(found.score) : ""
+  }
+  const rows = set.packets
+    .filter((packet) => set.rewordings.some((rewording) => rewording.baseId === packet.id))
+    .toSorted((a, b) => scores[b.id] - scores[a.id])
+    .map(({ id }) => [namesOf(set, [id]), wholeNumber(scores[id]), ...versions.map((version) => scoreOf(id, version))])
+    .map((cells) => `| ${cells.join(" | ")} |`)
+  return [
+    "## Scores when reworded",
+    "",
+    `- Reworded versions scored: ${reworded.length} of ${set.rewordings.length}`,
+    `- Comparisons: ${set.stability.length}`,
+    "- Each score is the one the record would have had with that wording in its place.",
+    "",
+    `| Record | Score | ${versions.map((version) => `Version ${version}`).join(" | ")} |`,
+    `|---|---|${versions.map(() => "---|").join("")}`,
+    ...rows,
+    "",
+  ]
 }
 
 export const summarizeRun = (set: RatingSet): RunSummary => {
@@ -94,11 +129,13 @@ export const summarizeRun = (set: RatingSet): RunSummary => {
     ratedPackets(set).map((packet) => packet.id),
     toOutcomes(set.comparisons),
   )
+  const scaleIsValid = anchorsInOrder(fitted, anchorIds)
   return {
     highAnchorId,
     lowAnchorId,
-    scaleIsValid: anchorsInOrder(fitted, anchorIds),
+    scaleIsValid,
     scores: toAnchoredScale(fitted, highAnchorId, lowAnchorId),
+    reworded: scaleIsValid ? rewordedScores(set) : [],
     agreementAcrossOrders: shareOfPairsAgreeingAcrossOrders(set.comparisons),
     wonByFirstListed: shareWonByFirstListed(set.comparisons),
   }
@@ -127,8 +164,8 @@ export const previousScores = (set: RatingSet): Scores | undefined => {
 }
 
 export const buildReport = (set: RatingSet): string => {
-  const { highAnchorId, lowAnchorId, scaleIsValid, scores, agreementAcrossOrders, wonByFirstListed } =
-    summarizeRun(set)
+  const run = summarizeRun(set)
+  const { highAnchorId, lowAnchorId, scaleIsValid, scores, agreementAcrossOrders, wonByFirstListed } = run
   return [
     `# ${set.category.title}: rating report`,
     "",
@@ -150,9 +187,10 @@ export const buildReport = (set: RatingSet): string => {
       ? scoreTable(set, scores)
       : ["Scores are withheld. The anchors did not come out in their intended order, so the scale is not valid."]),
     "",
-    "## Held back from the site for thin evidence",
+    ...rewordingSection(set, run),
+    "## Held back from the site",
     "",
-    ...thinEvidenceLines(set),
+    ...heldBackLines(set, run),
     "",
     "## Not rated",
     "",

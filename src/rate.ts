@@ -6,6 +6,8 @@ import {
   currentComparisons,
   fingerprintRecords,
   remainingMatchups,
+  stabilityMatchups,
+  stabilityRun,
   supersededComparisons,
   type Matchup,
 } from "./comparisons.ts"
@@ -27,14 +29,16 @@ export type RateOutcome =
   | { status: "waiting"; batchId: string; processing: number }
   | { status: "collected"; rated: number; failed: number; remaining: number }
 
+type RunFiles = Pick<CategoryPaths, "comparisons" | "superseded" | "pendingBatch">
+
 const asLines = (comparisons: Comparison[]): string => comparisons.map((saved) => `${JSON.stringify(saved)}\n`).join("")
 
-const setAsideSuperseded = async (set: RatingSet, paths: CategoryPaths): Promise<RatingSet> => {
+const setAsideSuperseded = async (set: RatingSet, files: RunFiles): Promise<RatingSet> => {
   const superseded = supersededComparisons(set)
   if (superseded.length === 0) return set
   const current = currentComparisons(set)
-  await appendFile(paths.superseded, asLines(superseded))
-  await writeFile(paths.comparisons, asLines(current))
+  await appendFile(files.superseded, asLines(superseded))
+  await writeFile(files.comparisons, asLines(current))
   return { ...set, comparisons: current }
 }
 
@@ -59,23 +63,28 @@ const toComparison = (pending: PendingBatch, { id, verdict }: RatedRequest): Com
       secondHash: request.secondHash,
     }))
 
-const collect = async (set: RatingSet, paths: CategoryPaths, pending: PendingBatch): Promise<RateOutcome> => {
+const collect = async (
+  set: RatingSet,
+  files: RunFiles,
+  planned: Matchup[] | undefined,
+  pending: PendingBatch,
+): Promise<RateOutcome> => {
   const progress = await createBatchRater(pending.model).collect(pending.batchId)
   if (!progress.ended) return { status: "waiting", batchId: pending.batchId, processing: progress.processing }
   const rated = progress.rated.flatMap((result) => toComparison(pending, result))
-  await appendFile(paths.comparisons, asLines(rated))
-  await rm(paths.pendingBatch)
+  await appendFile(files.comparisons, asLines(rated))
+  await rm(files.pendingBatch)
   return {
     status: "collected",
     rated: rated.length,
     failed: progress.failed.length,
-    remaining: remainingMatchups({ ...set, comparisons: [...set.comparisons, ...rated] }).length,
+    remaining: remainingMatchups({ ...set, comparisons: [...set.comparisons, ...rated] }, planned).length,
   }
 }
 
 const submit = async (
   set: RatingSet,
-  paths: CategoryPaths,
+  files: RunFiles,
   model: string,
   matchups: Matchup[],
   remaining: number,
@@ -97,8 +106,35 @@ const submit = async (
     })),
   )
   const pending: PendingBatch = { batchId, model, submittedAt: new Date().toISOString(), requests }
-  await writeFile(paths.pendingBatch, `${JSON.stringify(pending)}\n`)
+  await writeFile(files.pendingBatch, `${JSON.stringify(pending)}\n`)
   return { status: "submitted", batchId, count: matchups.length, remaining: remaining - matchups.length }
+}
+
+interface Run {
+  categoryId: string
+  set: RatingSet
+  files: RunFiles
+  planned?: Matchup[]
+}
+
+const rateRun = async (run: Run, model: string, limit: number): Promise<RateOutcome> => {
+  const set = await setAsideSuperseded(run.set, run.files)
+  assertOneModel(set, run.categoryId, model)
+
+  const pending = await loadPendingBatch(run.files.pendingBatch)
+  if (pending) return collect(set, run.files, run.planned, pending)
+  const unrated = remainingMatchups(set, run.planned)
+  if (unrated.length === 0) return { status: "complete" }
+  return submit(set, run.files, model, unrated.slice(0, limit), unrated.length)
+}
+
+const loadForRating = async (root: string, categoryId: string): Promise<{ set: RatingSet; paths: CategoryPaths }> => {
+  const paths = pathsFor(root, categoryId)
+  const set = await loadRatingSet(root, categoryId)
+  const problems = findSetProblems(set)
+  if (problems.length > 0) throw new Error(`Fix these before rating:\n${problems.join("\n")}`)
+  await mkdir(paths.runDir, { recursive: true })
+  return { set, paths }
 }
 
 export const rateCategory = async (
@@ -107,17 +143,26 @@ export const rateCategory = async (
   model: string,
   limit = Number.POSITIVE_INFINITY,
 ): Promise<RateOutcome> => {
-  const paths = pathsFor(root, categoryId)
-  const loaded = await loadRatingSet(root, categoryId)
-  const problems = findSetProblems(loaded)
-  if (problems.length > 0) throw new Error(`Fix these before rating:\n${problems.join("\n")}`)
-  await mkdir(paths.runDir, { recursive: true })
-  const set = await setAsideSuperseded(loaded, paths)
-  assertOneModel(set, categoryId, model)
+  const { set, paths } = await loadForRating(root, categoryId)
+  return rateRun({ categoryId, set, files: paths }, model, limit)
+}
 
-  const pending = await loadPendingBatch(paths.pendingBatch)
-  if (pending) return collect(set, paths, pending)
-  const unrated = remainingMatchups(set)
-  if (unrated.length === 0) return { status: "complete" }
-  return submit(set, paths, model, unrated.slice(0, limit), unrated.length)
+export const rateStability = async (
+  root: string,
+  categoryId: string,
+  model: string,
+  limit = Number.POSITIVE_INFINITY,
+): Promise<RateOutcome> => {
+  const { set, paths } = await loadForRating(root, categoryId)
+  const unrated = remainingMatchups(set).length
+  if (unrated > 0) {
+    throw new Error(`Rate ${categoryId} before its rewordings: ${unrated} comparisons remain. Run rate first.`)
+  }
+  assertOneModel(set, categoryId, model)
+  const files = {
+    comparisons: paths.stability,
+    superseded: paths.stabilitySuperseded,
+    pendingBatch: paths.stabilityBatch,
+  }
+  return rateRun({ categoryId, set: stabilityRun(set), files, planned: stabilityMatchups(set) }, model, limit)
 }

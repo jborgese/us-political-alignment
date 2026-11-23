@@ -21,6 +21,7 @@ Only `rate` needs the `.env` file.
 |---|---|---|
 | `npm run check -- welfare-health` | Validates the category, its packets, and the key. Lists what is missing and how much is left to rate. | No |
 | `npm run rate -- welfare-health` | Submits the unrated pairs as one batch, or collects the answers of the batch it submitted earlier. | Yes, paid |
+| `npm run stability -- welfare-health` | Does the same for the reworded versions of the category's records. See [Testing the wording](#testing-the-wording). | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
 | `npm run site -- welfare-health` | Writes the public page to `dist/index.html` from the saved run. | No |
 | `npm test` | Runs the tests. | No |
@@ -30,8 +31,8 @@ Only `rate` needs the `.env` file.
 
 To spend less before a full run:
 
-- `check` prints how many comparisons are left and roughly how many input tokens they hold.
-- `npm run rate -- welfare-health 30` submits only the first 30. They include the anchors, so the report's checks on a sample show early whether the scale is sound.
+- `check` prints how many comparisons are left and roughly how many input tokens they hold, for the category and for its reworded versions.
+- `npm run rate -- welfare-health 30` submits only the first 30. They include the anchors, so the report's checks on a sample show early whether the scale is sound. `stability` takes the same limit.
 
 ## Files
 
@@ -41,7 +42,9 @@ To spend less before a full run:
 | `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
 | `key.json` | The name and legislature behind each blinded id, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
+| `rewordings/<category-id>/<version>.json` | One more wording of each record under test, with the same facts |
 | `runs/<category-id>/comparisons.jsonl` | One saved answer per line |
+| `runs/<category-id>/stability.jsonl` | One saved answer per line for the reworded versions |
 | `runs/<category-id>/report.md` | Scores with names |
 | `runs/<category-id>/spot-check.md` | Ten random pairs with no names or ids, for a human to judge |
 
@@ -138,6 +141,19 @@ Scores run from 0 at the low anchor to 100 at the high anchor. A subject can sco
 
 Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. They judge each pair, then open the rater's answer under it.
 
+## Testing the wording
+
+A record's score should come from its facts, not from how they were phrased. The stability test rates other wordings of the same record and measures how far the score moves.
+
+- Each file in `rewordings/<category-id>/` is one version. Under `records` it gives, for each record it rewords, one text for each item of that record's packet, in the packet's order: the new text of an item, or the new stance where the item is a stance on an event. Under `events` it gives, by legislature, the new wording of each event those stances refer to, so a version still words each event once.
+- A rewording keeps the slot, tier, and sources of the item it replaces. `check` refuses a rewording that contains a revealing term, changes the digits of a number, or repeats the original wording. It cannot check a number written as a word, so read those yourself.
+- `npm run stability -- <category-id>` rates each reworded version against every other record's original, in both orders, with the model that rated the category. Its answers go to `stability.jsonl`, so the category's own run is not touched. It refuses to start until the category itself is fully rated.
+- A reworded version's score is the one its record would have had with that wording in its place: the record's own comparisons are swapped for the version's and the scale is fitted again.
+- A record fails when any version scores more than 10 points from the record's own score. The largest move between two runs of the pilot was 5 points, so the line sits at twice the noise seen so far.
+- `report.md` lists each version's score. Nothing is shown or held back for a record until every one of its versions is fully rated.
+
+The pilot rewords each of the 18 records on the page twice, which is 1,656 comparisons.
+
 ## The site
 
 `npm run site -- welfare-health` builds one self-contained page: every record placed by strength of support, and the evidence behind whichever record the reader selects.
@@ -148,6 +164,7 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 - The page is built from the current packets and the saved run, so build it only when the two match.
 - It refuses to build when the anchors came out of order, for the same reason the report withholds scores.
 - A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
+- A record is also held back when it fails the [wording test](#testing-the-wording). A record that passes shows a bar on its marker from its lowest to its highest score across wordings.
 - When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
 - The stylesheet and the browser script are in `site/`. `src/site.ts` inlines them.
 - `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`.
@@ -156,6 +173,8 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 ## Changing things after a run has started
 
 - Each saved answer records which version of its two records it was given. After you change a packet, an event, an anchor, or the question, `rate` moves the answers that no longer match into `superseded.jsonl` and submits only those pairs again. A change to the question or the prompt supersedes every answer.
+- `stability` does the same with `stability-superseded.jsonl` when a rewording, or a record it was compared with, has changed.
+- When you change what a packet says, change its rewordings to match. `check` catches a different number of items or a changed number, but not a changed fact.
 - `report` refuses to run until every pair has a current answer.
 - A run uses one model. `rate` refuses to add answers from a second model to an existing run.
 

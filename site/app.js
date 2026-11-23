@@ -71,6 +71,12 @@ const changeText = (record) => {
   return `${change > 0 ? "up" : "down"} ${Math.abs(change)} since the previous run`
 }
 
+const rangeText = (record) => {
+  if (!record.range) return ""
+  if (record.range.low === record.range.high) return "same score when reworded"
+  return `${record.range.low} to ${record.range.high} when reworded`
+}
+
 const showEvidence = (record) => {
   const head = document.getElementById("evidence-head")
   head.dataset.kind = record.kind
@@ -80,6 +86,7 @@ const showEvidence = (record) => {
   document.getElementById("evidence-detail").textContent = record.detail
   document.getElementById("evidence-score").textContent = String(record.score)
   document.getElementById("evidence-change").textContent = changeText(record)
+  document.getElementById("evidence-range").textContent = rangeText(record)
   document.getElementById("evidence-sections").replaceChildren(...record.sections.map(sectionNode))
 }
 
@@ -129,7 +136,11 @@ const tooltip = document.getElementById("tooltip")
 const showTooltip = (marker) => {
   const record = data.records[Number(marker.dataset.index)]
   const box = marker.querySelector(".glyph").getBoundingClientRect()
-  tooltip.replaceChildren(`${record.name} `, element("b", "", String(record.score)))
+  tooltip.replaceChildren(
+    `${record.name} `,
+    element("b", "", String(record.score)),
+    ...(record.range ? [` (${rangeText(record)})`] : []),
+  )
   tooltip.hidden = false
   const left = Math.min(Math.max(8, box.left + box.width / 2 - tooltip.offsetWidth / 2), innerWidth - tooltip.offsetWidth - 8)
   tooltip.style.left = `${left}px`
