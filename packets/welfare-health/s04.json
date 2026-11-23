@@ -9,6 +9,15 @@
       ]
     },
     {
+      "slot": "keeps-income",
+      "tier": "official_act",
+      "text": "In government, keeps in place the existing income support, in which mandatory pension schemes replace about 45 percent of an average worker's net earnings and a single adult with no other income is guaranteed about 21 percent of the median income.",
+      "sources": [
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://en.wikipedia.org/wiki/List_of_countries_by_guaranteed_minimum_income"
+      ]
+    },
+    {
       "event": "annual-budget-health",
       "stance": "In government, passed"
     },
@@ -43,7 +52,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-income",
     "seeks"
   ]
 }

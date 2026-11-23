@@ -12,6 +12,15 @@
     {
       "slot": "keeps-income",
       "tier": "official_act",
+      "text": "In government, keeps in place the existing income support, in which mandatory pension schemes replace about 54 percent of an average worker's net earnings and a single adult with no other income is guaranteed about 54 percent of the median income.",
+      "sources": [
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://en.wikipedia.org/wiki/List_of_countries_by_guaranteed_minimum_income"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "official_act",
       "text": "In government, has kept the rule that raises the public pension every year by the highest of prices, wages, or 2.5 percent.",
       "sources": [
         "https://www.itv.com/news/2026-09-29/andy-burnham-social-care-nhs-triple-lock-pensions"
