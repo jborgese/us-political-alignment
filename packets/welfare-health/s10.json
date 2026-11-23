@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Voted to leave public health coverage for older residents intact: the budget law cut none of that coverage's benefits for citizens. In the existing system, public health coverage is guaranteed only to older, disabled, and low-income residents, and about 8 percent of residents have no coverage.",
+      "text": "Votes to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, less the reductions listed under changes.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
@@ -10,46 +11,29 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Abstained on the chamber's first passage of a budget bill that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance, then voted for the final version.",
+      "event": "budget-law-health",
+      "stance": "Abstained on the first passage, then voted for the final version, of",
       "sources": [
-        "https://clerk.house.gov/Votes/2025145",
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+        "https://clerk.house.gov/Votes/2025145"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Cosponsored a bill to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share.",
+      "event": "subsidy-extension",
+      "stance": "Voted against"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Abstained on the first passage, then voted for the final version, of",
       "sources": [
-        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against"
+        "https://clerk.house.gov/Votes/2025145"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Voted against a three-year extension of expanded premium subsidies for individually purchased health insurance.",
-      "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Voted for a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll349",
-        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Voted for a funding bill that did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll285",
-        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
-      ]
-    },
-    {
+      "slot": "changes-health",
       "tier": "influence",
       "text": "As head of a group of legislators, warned party leaders that the group's members would withhold their votes from any funding bill carrying an extension of the expanded premium subsidies.",
       "sources": [
@@ -57,11 +41,23 @@
       ]
     },
     {
+      "slot": "changes-health",
       "tier": "statement",
       "text": "After the budget law passed, said its work requirements and its limits on the financing arrangements regional governments use would discourage further expansion of public health coverage for low-income residents.",
       "sources": [
         "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people"
       ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against"
+      ]
     }
+  ],
+  "emptySlots": [
+    "keeps-income"
   ]
 }

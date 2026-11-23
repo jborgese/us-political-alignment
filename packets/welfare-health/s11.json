@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Voted to leave public health coverage for older residents intact: the budget law cut none of that coverage's benefits for citizens. In the existing system, public health coverage is guaranteed only to older, disabled, and low-income residents, and about 8 percent of residents have no coverage.",
+      "text": "Votes to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, less the reductions listed under changes.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
@@ -10,38 +11,31 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Voted for a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "event": "budget-law-health",
+      "stance": "Voted for"
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted against"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Voted for"
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Called the employer health plan bill a solid first step toward lower costs.",
       "sources": [
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+        "https://rsc-pfluger.house.gov/media/press-releases/rsc-chairman-pfluger-calls-health-care-bill-solid-first-step-lower-costs-after"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Voted against a three-year extension of expanded premium subsidies for individually purchased health insurance.",
-      "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Voted for a bill that loosened rules for employer and association health plans and did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll349",
-        "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Voted for a funding bill that did not extend the expiring premium subsidies.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll285",
-        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
-      ]
-    },
-    {
+      "slot": "seeks",
       "tier": "official_act",
       "text": "Introduced a bill to replace premium subsidies paid to insurers with personal health accounts that people use to buy their own coverage.",
       "sources": [
@@ -50,19 +44,16 @@
       ]
     },
     {
+      "slot": "seeks",
       "tier": "influence",
       "text": "As chair of a group of legislators, released a framework urging the party to pass a bill that makes all non-citizens ineligible for public health coverage for low-income residents, food assistance, and housing assistance, and that ends a dedicated fund for disease prevention.",
       "sources": [
         "https://punchbowl.news/wp-content/uploads/RSC-reconciliation-plan.pdf",
         "https://pfluger.house.gov/news/documentsingle.aspx?DocumentID=2737"
       ]
-    },
-    {
-      "tier": "statement",
-      "text": "Called the employer health plan bill a solid first step toward lower costs.",
-      "sources": [
-        "https://rsc-pfluger.house.gov/media/press-releases/rsc-chairman-pfluger-calls-health-care-bill-solid-first-step-lower-costs-after"
-      ]
     }
+  ],
+  "emptySlots": [
+    "keeps-income"
   ]
 }

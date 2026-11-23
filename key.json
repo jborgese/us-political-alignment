@@ -180,6 +180,7 @@
       "name": "Chip Roy",
       "kind": "member",
       "group": "House Freedom Caucus",
+      "legislature": "us-house",
       "aliases": [
         "Roy"
       ]
@@ -189,6 +190,7 @@
       "name": "Ben Cline",
       "kind": "member",
       "group": "Republican Study Committee",
+      "legislature": "us-house",
       "aliases": [
         "Cline"
       ]
@@ -198,6 +200,7 @@
       "name": "Brad Schneider",
       "kind": "member",
       "group": "New Democrat Coalition",
+      "legislature": "us-house",
       "aliases": [
         "Schneider"
       ]
@@ -207,6 +210,7 @@
       "name": "Liberal Party of Canada",
       "kind": "party",
       "group": "Canada",
+      "legislature": "ca-commons",
       "aliases": [
         "Liberal Party",
         "Liberals",
@@ -218,6 +222,7 @@
       "name": "Alexandria Ocasio-Cortez",
       "kind": "member",
       "group": "Congressional Progressive Caucus",
+      "legislature": "us-house",
       "aliases": [
         "Ocasio-Cortez",
         "AOC"
@@ -228,6 +233,7 @@
       "name": "Marie Gluesenkamp Perez",
       "kind": "member",
       "group": "Blue Dog Coalition",
+      "legislature": "us-house",
       "aliases": [
         "Gluesenkamp Perez",
         "Gluesenkamp",
@@ -240,6 +246,7 @@
       "name": "Pramila Jayapal",
       "kind": "member",
       "group": "Congressional Progressive Caucus",
+      "legislature": "us-house",
       "aliases": [
         "Jayapal"
       ]
@@ -249,6 +256,7 @@
       "name": "CDU/CSU",
       "kind": "party",
       "group": "Germany",
+      "legislature": "de-bundestag",
       "aliases": [
         "CDU",
         "CSU",
@@ -261,6 +269,7 @@
       "name": "House Freedom Caucus",
       "kind": "caucus",
       "group": "US House",
+      "legislature": "us-house",
       "aliases": [
         "Freedom Caucus",
         "HFC"
@@ -271,6 +280,7 @@
       "name": "Andy Harris",
       "kind": "member",
       "group": "House Freedom Caucus",
+      "legislature": "us-house",
       "aliases": [
         "Harris"
       ]
@@ -280,6 +290,7 @@
       "name": "August Pfluger",
       "kind": "member",
       "group": "Republican Study Committee",
+      "legislature": "us-house",
       "aliases": [
         "Pfluger"
       ]
@@ -289,6 +300,7 @@
       "name": "Labour Party",
       "kind": "party",
       "group": "United Kingdom",
+      "legislature": "uk-commons",
       "aliases": [
         "Labour"
       ]
@@ -298,6 +310,7 @@
       "name": "Jared Golden",
       "kind": "member",
       "group": "Blue Dog Coalition",
+      "legislature": "us-house",
       "aliases": [
         "Golden"
       ]
@@ -307,6 +320,7 @@
       "name": "New Democrat Coalition",
       "kind": "caucus",
       "group": "US House",
+      "legislature": "us-house",
       "aliases": [
         "New Dems",
         "New Dem",
@@ -318,6 +332,7 @@
       "name": "Republican Study Committee",
       "kind": "caucus",
       "group": "US House",
+      "legislature": "us-house",
       "aliases": [
         "RSC"
       ]
@@ -327,6 +342,7 @@
       "name": "Congressional Progressive Caucus",
       "kind": "caucus",
       "group": "US House",
+      "legislature": "us-house",
       "aliases": [
         "Progressive Caucus",
         "CPC"
@@ -337,6 +353,7 @@
       "name": "New Democratic Party",
       "kind": "party",
       "group": "Canada",
+      "legislature": "ca-commons",
       "aliases": [
         "NDP",
         "New Democrats"
@@ -347,6 +364,7 @@
       "name": "Reform UK",
       "kind": "party",
       "group": "United Kingdom",
+      "legislature": "uk-commons",
       "aliases": [
         "Reform Party"
       ]
@@ -356,6 +374,7 @@
       "name": "Pete Aguilar",
       "kind": "member",
       "group": "New Democrat Coalition",
+      "legislature": "us-house",
       "aliases": [
         "Aguilar"
       ]
@@ -365,6 +384,7 @@
       "name": "Rassemblement National",
       "kind": "party",
       "group": "France",
+      "legislature": "fr-assemblee",
       "aliases": [
         "RN",
         "National Rally",
@@ -376,6 +396,7 @@
       "name": "Blue Dog Coalition",
       "kind": "caucus",
       "group": "US House",
+      "legislature": "us-house",
       "aliases": [
         "Blue Dogs",
         "Blue Dog"

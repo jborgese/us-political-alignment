@@ -31,14 +31,48 @@ Only `rate` needs the `.env` file.
 
 | Path | Holds |
 |---|---|
-| `categories/<category-id>.json` | The question, the two ends of the scale, and the anchor records, listed from the high end to the low end |
-| `key.json` | The name behind each blinded id, and the terms no record may contain |
+| `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, and the anchor records, listed from the high end to the low end |
+| `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
+| `key.json` | The name and legislature behind each blinded id, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
 | `runs/<category-id>/comparisons.jsonl` | One saved answer per line |
 | `runs/<category-id>/report.md` | Scores with names |
 | `runs/<category-id>/spot-check.md` | Ten random pairs with no names or ids, for a human to judge |
 
-## Writing a packet
+## Writing evidence
+
+Four rules keep a record's place on the scale from depending on how its evidence was written. `check` enforces the first three.
+
+1. **Same slots for every record.** The category file lists the slots. A record fills each slot or names it in `emptySlots`, and the rater then reads "No recorded act" there. `check` refuses a record that does neither, or both.
+2. **Same events for every record from one legislature.** The events file lists the program changes of the period for each legislature. Choose them by the size in the official cost estimate, before looking at how anyone voted. Every record from that legislature takes a stance on each one, and `check` refuses a record that skips one.
+3. **One wording per event.** The wording lives in the events file. A record supplies only its stance, and the tool joins the two. Records can then differ in what they did, never in how a measure is described.
+4. **Size and reach as shares.** Say what a measure changes as a share of the program's funding, of residents, or of recipients. Take the figure from the official estimate, and say so in the text when it comes from anywhere else. Use no adjective for size: "by about 14 percent", not "deeply". This rule is checked by reading, not by the tool.
+
+### Events
+
+```json
+{
+  "legislatures": [
+    {
+      "id": "sample-house",
+      "events": [
+        {
+          "id": "budget-law-health",
+          "slot": "changes-health",
+          "text": "a budget law that reduced national funding for public health coverage for low-income residents by about 14 percent over ten years",
+          "sources": ["https://example.org/roll-call/123", "https://example.org/cost-estimate"]
+        }
+      ]
+    }
+  ]
+}
+```
+
+- The rater reads `<stance> <text>.`, so begin the text with "a" or "the" and leave off the final period.
+- One vote that changes two programs is two events with the same stance, one in each slot.
+- A subject's `legislature` in `key.json` picks its events.
+
+### Packets
 
 Name the file after the subject's id in `key.json`, for example `packets/welfare-health/s05.json`.
 
@@ -46,18 +80,24 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Voted against a budget that reduced funding for public health coverage for low-income residents.",
-      "sources": ["https://example.org/roll-call/123", "https://example.org/budget-summary"]
+      "text": "Votes to keep in place public health coverage for older and low-income residents.",
+      "sources": ["https://example.org/roll-call/123"]
     },
+    { "event": "budget-law-health", "stance": "Voted against" },
     {
+      "slot": "seeks",
       "tier": "statement",
       "text": "Announced the intention to introduce a bill extending public health coverage to all residents.",
       "sources": ["https://example.org/press/456"]
     }
-  ]
+  ],
+  "emptySlots": ["keeps-income", "changes-income"]
 }
 ```
+
+An item is either a stance on an event or a free item with its own slot, tier, text, and sources. A stance counts as an official act and takes the event's slot. Give a stance its own `sources` when the event's sources do not show how this subject acted.
 
 **Tiers**
 
@@ -65,18 +105,17 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
 - `influence`: an endorsement, or public pressure on other officials.
 - `statement`: a statement about an act taken or intended. Talk that is tied to no act stays out.
 
-**Rules**
+**Rules for the text**
 
-- Every item needs at least one link in `sources`: the record of the act, and a second link when the first does not say what the act does. Sources are for you and for audits; they are never sent to the rater.
+- Every free item needs at least one link in `sources`: the record of the act, and a second link when the first does not say what the act does. Sources are for you and for audits; they are never sent to the rater.
 - Describe what an act does, not what it is called. Write "public health coverage for people over 65", not the program's name.
-- Leave out every name of a person, party, country, region, institution, office, program, and currency. `check` refuses a packet that contains a term from `key.json`, but the list is a starting point, so read each packet for tells the list does not have.
+- Leave out every name of a person, party, country, region, institution, office, program, and currency. `check` refuses a record that contains a term from `key.json`, but the list is a starting point, so read each record for tells the list does not have.
 - Use "they" for the subject. Gendered pronouns give the person away.
 - Use words that fit any system: "regional governments" and "national", not "states" and "federal"; "legislator", "head of government", "legislative term".
 - Use US spelling and plain international wording everywhere: "retirees", "recipients", "supplement". Spelling and idiom give the country away.
 - For a party, start each official act with "In government," when it enacted the policy while governing.
 - For a caucus, file votes its members cast as a bloc under `official_act`, and positions it published to press its party under `influence`.
-- Give every subject one or two items for what it keeps in place: the scope of the health and income guarantee it maintains through its votes or its government. Say who the guarantee covers. Without these items the rater sees only recent changes, and a subject that defends a broad system looks the same as one that defends a narrow one.
-- Give amounts as shares or percentages.
+- In the slots for what a record keeps in place, describe the guarantee in the same words for every record from one country, and say who it covers.
 - Use at most 12 items, chosen for consequence, not for recency or volume. A long record must not win by length.
 - Use the same window for every subject: acts from 3 January 2025 onward.
 - When a subject has no usable evidence in a category, save `{ "items": [] }`. The subject is left out of the rating and listed in the report.
@@ -95,7 +134,7 @@ Give `spot-check.md` to someone who has not opened `report.md` or `key.json`. Th
 
 ## Changing things after a run has started
 
-- Saved answers are never re-rated. After changing a packet, an anchor, or the question, move `runs/<category-id>/` into `runs/archive/` and rate again.
+- Saved answers are never re-rated. After changing a packet, an event, an anchor, or the question, move `runs/<category-id>/` into `runs/archive/` and rate again.
 - A run uses one model. `rate` refuses to add answers from a second model to an existing run.
 
 ## Limits

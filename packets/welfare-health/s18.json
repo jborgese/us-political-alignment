@@ -1,33 +1,32 @@
 {
   "items": [
     {
-      "tier": "official_act",
-      "text": "Five of its eight legislators voted against a law removing the rule that limited child-related benefit payments to a family's first two children, and two voted for it.",
-      "sources": [
-        "https://votes.theyworkforyou.com/decisions/division/commons/2026-02-03/424"
-      ]
-    },
-    {
-      "tier": "official_act",
-      "text": "Its three voting legislators voted against a law that raised the standard rate of the main benefit for working-age people above inflation and cut its health-related supplement by about half for new applicants.",
-      "sources": [
-        "https://votes.parliament.uk/votes/commons/division/2091",
-        "https://www.scope.org.uk/news-and-stories/the-universal-credit-bill-becomes-law-here-are-the-changes-to-disability-benefits-you-need-to-know-about"
-      ]
-    },
-    {
-      "tier": "influence",
-      "text": "Announced a plan to abolish the main disability benefit and the health-related supplement to the main benefit for working-age adults, replacing them with a regularly reviewed allowance for the most severely ill and locally run support accounts, to cut benefit spending substantially.",
-      "sources": [
-        "https://www.itv.com/news/2026-08-16/reform-uk-vows-to-cut-welfare-system-to-save-50-billion"
-      ]
-    },
-    {
+      "slot": "keeps-health",
       "tier": "statement",
-      "text": "Says the public health service will always stay free at the point of use, while its leader has repeatedly said the way that service is funded should be re-examined and has been open to other funding models.",
+      "text": "Says the tax-funded health service will always stay free of charge at the point of use, while its leader has repeatedly said the way that service is funded should be re-examined and has been open to other funding models.",
       "sources": [
         "https://fullfact.org/health/reform-nigel-farage-pay-for-nhs-labour/"
       ]
+    },
+    {
+      "event": "benefit-law",
+      "stance": "Its three voting legislators voted against"
+    },
+    {
+      "event": "child-limit-removal",
+      "stance": "Five of its eight legislators voted against, and two voted for,"
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Announced a plan to abolish the main disability benefit and the health-related supplement to the main benefit for working-age adults, replacing them with a regularly reviewed allowance for the most severely ill and locally run support accounts, in order to reduce benefit spending.",
+      "sources": [
+        "https://www.itv.com/news/2026-08-16/reform-uk-vows-to-cut-welfare-system-to-save-50-billion"
+      ]
     }
+  ],
+  "emptySlots": [
+    "keeps-income",
+    "changes-health"
   ]
 }

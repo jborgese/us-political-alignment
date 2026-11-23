@@ -1,7 +1,7 @@
 import { writeFile } from "node:fs/promises"
 
 import { describeEvidence, remainingMatchups } from "./comparisons.ts"
-import { loadRatingSet, pathsFor, type Comparison, type Packet, type RatingSet } from "./files.ts"
+import { loadRatingSet, pathsFor, type Comparison, type Packet, type RatingSet, type Slot } from "./files.ts"
 import { packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
 import {
   anchorsInOrder,
@@ -109,16 +109,21 @@ export const buildReport = (set: RatingSet): string => {
   ].join("\n")
 }
 
-const spotCheckSection = (packets: Record<string, Packet>, comparison: Comparison, index: number): string[] => [
+const spotCheckSection = (
+  slots: Slot[],
+  packets: Record<string, Packet>,
+  comparison: Comparison,
+  index: number,
+): string[] => [
   `## Pair ${index + 1}`,
   "",
   "**Record A**",
   "",
-  describeEvidence(packets[comparison.first]),
+  describeEvidence(packets[comparison.first], slots),
   "",
   "**Record B**",
   "",
-  describeEvidence(packets[comparison.second]),
+  describeEvidence(packets[comparison.second], slots),
   "",
   "<details><summary>Rater's answer</summary>",
   "",
@@ -139,7 +144,7 @@ export const buildSpotCheck = (set: RatingSet, random: () => number): string => 
     "Decide which record fits the question better before opening the rater's answer.",
     "",
     ...pickSpotChecks(set.comparisons, SPOT_CHECK_COUNT, random).flatMap((comparison, index) =>
-      spotCheckSection(packets, comparison, index),
+      spotCheckSection(set.category.slots, packets, comparison, index),
     ),
   ].join("\n")
 }

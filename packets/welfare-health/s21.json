@@ -1,8 +1,9 @@
 {
   "items": [
     {
+      "slot": "keeps-health",
       "tier": "official_act",
-      "text": "Its members work to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, voting against reducing it and for extending its subsidies.",
+      "text": "Its members vote to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage.",
       "sources": [
         "https://clerk.house.gov/Votes/2025190",
         "https://clerk.house.gov/evs/2026/roll011",
@@ -10,44 +11,45 @@
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Its members voted unanimously against a budget law that reduced funding for public health coverage for low-income residents, added work requirements to that coverage, and reduced food assistance.",
+      "event": "budget-law-health",
+      "stance": "Its members voted unanimously against",
       "sources": [
-        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-statement-gop-budget-bill",
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/",
-        "https://www.cbo.gov/system/files/2025-06/61505-SNAP.pdf"
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-statement-gop-budget-bill"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Its members voted for a three-year extension of expanded premium subsidies for individually purchased health insurance.",
+      "event": "subsidy-extension",
+      "stance": "Its members voted for"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "None of its members voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Its members voted unanimously against",
       "sources": [
-        "https://clerk.house.gov/evs/2026/roll011"
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-statement-gop-budget-bill"
       ]
     },
     {
-      "tier": "official_act",
-      "text": "Four of its ten members voted for a funding bill that did not extend the expiring premium subsidies, and six voted against it.",
-      "sources": [
-        "https://clerk.house.gov/evs/2025/roll285",
-        "https://bluedogs-gluesenkampperez.house.gov/members",
-        "https://www.axios.com/2025/11/13/government-shutdown-end-six-democrats-voted"
-      ]
-    },
-    {
-      "tier": "influence",
-      "text": "Endorsed a bill to make the expanded premium subsidies permanent and to reverse the health coverage reductions in the budget law.",
-      "sources": [
-        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-endorses-protecting-health-care-and-lowering-costs"
-      ]
-    },
-    {
+      "slot": "changes-health",
       "tier": "influence",
       "text": "Issued a statement opposing the budget law for cutting public health coverage for low-income residents and for adding to public debt.",
       "sources": [
         "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-statement-gop-budget-bill"
       ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Endorsed a bill to make the expanded premium subsidies permanent and to reverse the health coverage reductions in the budget law.",
+      "sources": [
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-endorses-protecting-health-care-and-lowering-costs"
+      ]
     }
+  ],
+  "emptySlots": [
+    "keeps-income"
   ]
 }
