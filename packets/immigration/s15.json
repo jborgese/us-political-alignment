@@ -1,0 +1,45 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "Nearly all of its members voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "Nearly all of its members voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214",
+        "https://rsc-pfluger.house.gov/media/press-releases/icymi-rsc-members-applaud-house-passage-secure-america-act-democrat-proof"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "All but six of its members who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120",
+        "https://en.wikipedia.org/wiki/Republican_Study_Committee"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its chair called the other party's conditions on funding immigration agents radical and said any future funding bill for the department in charge of immigration enforcement must require local governments that limit cooperation to honor requests to hold people for immigration agents.",
+      "sources": [
+        "https://rsc-pfluger.house.gov/media/press-releases/statement-rsc-chairman-pfluger-democrats-demands-dhs-funding-bill"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}

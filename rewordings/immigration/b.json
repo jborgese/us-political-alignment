@@ -1,0 +1,208 @@
+{
+  "events": {
+    "us-house": {
+      "budget-law-enforcement": "a budget law providing extra money, about 0.6 percent of a year's economic output, for border barriers and immigration enforcement, mainly over four years; it lifts annual funding for immigration detention roughly fourfold and introduces fees on asylum claims, on asylum seekers' permits to work, and on temporary protection from removal",
+      "detention-mandate-law": "a law that makes immigration authorities detain any resident lacking legal status who has been charged, though not convicted, with theft, burglary, shoplifting, or assault on a police officer. By the immigration authorities' own estimate, the first year costs about 0.1 percent of a year's economic output",
+      "enforcement-funding-law": "a budget law providing extra money for immigration enforcement, about 0.23 percent of a year's economic output across about three years, mainly for enforcement operations and for hiring more enforcement officers",
+      "protected-status-bill": "a bill that would make the government extend by three years the temporary shield from removal, including work permits, held by about 350,000 people from a single country, about 0.1 percent of the population, after the government had acted to end it"
+    },
+    "uk-commons": {
+      "work-visa-rules": "changes to the rules ending overseas recruitment of care workers on work visas and lifting the skill level for other work visas to degree level. The government expected work visas to fall by about 12,000 to 15,000 a year, about 0.02 percent of the population",
+      "asylum-bill": "a bill narrowing family and private-life claims in immigration cases, folding refugee status and humanitarian protection into a single status and setting when it may be withdrawn, and requiring asylum seekers to pay back support when able. The government expected about 14,000 more refusals a year of requests to stay on family or private-life grounds, about 0.02 percent of the population",
+      "settlement-wait-decision": "a decision lengthening the standard wait before migrants may settle permanently from five years to ten, setting waits of at least twenty years for refugees on the main protection route and for those who used public benefits, and cutting the wait for high earners. The government expected more than 500,000 people, about 0.7 percent of the population, to become eligible to settle later over five years than under the old rules"
+    },
+    "de-bundestag": {
+      "family-reunification-suspension": "a law that pauses family reunification for two years for people with subsidiary protection, except in hardship cases; it had allowed about 12,000 visas a year, about 0.01 percent of the population"
+    },
+    "fr-assemblee": {
+      "territory-birthright-law": "a law requiring, before a child born to foreign parents in one overseas territory can become a citizen, that both parents and not just one had legal residence in the country for at least a year, instead of three months, when the child was born. About 1,577 minors a year, about 0.002 percent of the population, had become citizens under the previous rule",
+      "detention-210-law": "a law that extends the longest immigration detention from 90 to 210 days for foreigners facing removal orders who are considered a particularly serious threat to public order"
+    },
+    "ca-commons": {
+      "levels-plan": "a three-year plan for immigration that fixes new temporary residents next year at about 0.9 percent of the population, a target 43 percent lower than the year before, and holds new permanent residents at about 0.9 percent of the population each year, a target about 4 percent lower than the year before",
+      "borders-act": "a law denying a hearing to asylum claims filed more than a year after first entry, or more than 14 days after a crossing of the land border between official crossings, and empowering the government to cancel, suspend, or stop processing whole groups of immigration documents and applications",
+      "citizenship-descent-law": "a law granting citizenship by descent to children born abroad beyond the first generation where the citizen parent had lived in the country for at least three years in total before the birth, and restoring it to those excluded by the previous one-generation cap. Official estimates put the number affected between tens of thousands and about 115,000, up to about 0.3 percent of the population",
+      "permanent-residence-measure": "a one-off step in next year's immigration plan offering permanent residence to as many as 200,000 temporary residents already living in the country, about 0.5 percent of the population, with yearly targets left as they were"
+    }
+  },
+  "records": {
+    "s01": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Opposed with its vote",
+      "Introduced a bill halting nearly every immigration admission except tourist visas until a list of restrictions was written into law: family immigration only for spouses and minor children, no visa lottery, citizenship at birth only for children of citizens or permanent residents, and no means-tested benefits for noncitizens.",
+      "Signed on from the start as a cosponsor of a bill under which children born in the country would not be citizens at birth unless a parent is a citizen, a permanent resident, or serving with legal status in the armed forces. An independent estimate of a similar measure put the affected births at about 255,000 a year, about 0.07 percent of the population."
+    ],
+    "s02": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Opposed with its vote",
+      "Introduced a bill tying local police departments' eligibility for a national policing grant to signing agreements to assist with immigration enforcement.",
+      "Signed on from the start as a cosponsor of a bill under which children born in the country would not be citizens at birth unless a parent is a citizen, a permanent resident, or serving with legal status in the armed forces. An independent estimate of a similar measure put the affected births at about 255,000 a year, about 0.07 percent of the population."
+    ],
+    "s03": [
+      "Opposed with its vote",
+      "Voted no on a narrower earlier version of, and was absent from the final vote on,",
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Signed on from the start as a cosponsor of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population."
+    ],
+    "s04": [
+      "While governing, put in place",
+      "While governing, made law",
+      "While governing, made law, with all its voting legislators backing it,",
+      "While governing, put in place"
+    ],
+    "s05": [
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Signed on from the start as a cosponsor of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population."
+    ],
+    "s06": [
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Said it supported yearly funding for the department in charge of immigration enforcement because the package attached guardrails to immigration agents, and called withholding it a mistake, since multi-year money approved earlier already covered the agents and the chance for more accountability slipped away."
+    ],
+    "s07": [
+      "Opposed with its vote",
+      "Voted no on a narrower earlier version of, and was absent from the final vote on,",
+      "Opposed with its vote",
+      "Supported with its vote",
+      "As one of its two lead sponsors, introduced a bill to end required immigration detention, wind down privately run detention centers and the use of jails within three years, presume release for most people waiting on a decision, and stop detaining families with children; 122 other legislators cosponsored it.",
+      "As a lead sponsor, reintroduced a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population."
+    ],
+    "s08": [
+      "Within a coalition government, made law",
+      "Within a coalition government, ordered police at land borders to turn away people who asked for asylum there, turning back 514 in the latest six months reported, about half of all who asked.",
+      "Within a coalition government, made law a measure allowing the government to list safe countries of origin by regulation without a vote of either chamber, and removing the right to an appointed lawyer for those held in detention pending removal.",
+      "Within a coalition government, made law fast-track asylum procedures at airports and seaports for applicants from low-recognition countries, removal directly from there when refused, and centers where those awaiting transfer to another country responsible for their claims have to stay; the same law lets asylum seekers in reception centers work after three months instead of six.",
+      "Within a coalition government, made law the end of citizenship after three years' residence for especially well-integrated residents, a route opened only the year before, so five years became the shortest wait once more.",
+      "Within a coalition government, approved in cabinet a bill still pending in the legislature that would shift refugees from one country at war who arrive after a set date off the general benefit for job seekers and onto the lower benefit for asylum seekers; it assumes about 12,000 new arrivals a month, about 0.17 percent of the population a year."
+    ],
+    "s09": [
+      "Its members all backed the final version of",
+      "Its members who voted all backed",
+      "Its members who voted all backed",
+      "Its chair opposed, and no member of it is recorded among the legislators of its party voting for,",
+      "A number of its members signed on from the start as cosponsors of a bill under which children born in the country would not be citizens at birth unless a parent is a citizen, a permanent resident, or serving with legal status in the armed forces. An independent estimate of a similar measure put the affected births at about 255,000 a year, about 0.07 percent of the population.",
+      "Its board sent the head of government a letter calling for immigration enforcement to continue in a city where it had met protests, using all tools up to emergency powers to deploy troops, for local governments that limit cooperation to lose national funding, and for full funding of the department in charge of immigration enforcement.",
+      "During the lapse in funding for the department in charge of immigration enforcement, rejected its party leaders' plan and called instead for a budget bill passed by its party alone that funds the whole department, including robust funding for immigration enforcement and border agencies, through the end of the head of government's term.",
+      "Pushed its party's leaders to schedule a floor vote on a bill that would write the head of government's border measures into law, such as completing the border wall, no longer releasing migrants awaiting hearings, and stricter asylum standards."
+    ],
+    "s10": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Opposed with its vote",
+      "Was chair of a group of legislators whose board sent the head of government a letter calling for immigration enforcement to continue in a city where it had met protests, using all tools up to emergency powers to deploy troops, for local governments that limit cooperation to lose national funding, and for full funding of the department in charge of immigration enforcement.",
+      "Pushed party leaders to schedule a floor vote on a bill that would write the head of government's border measures into law, such as completing the border wall, no longer releasing migrants awaiting hearings, and stricter asylum standards."
+    ],
+    "s11": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Opposed with its vote",
+      "Speaking as chair of a large group of legislators from its party, described the other party's funding conditions for immigration agents as radical and said every future funding bill for the department in charge of immigration enforcement must require local governments that limit cooperation to hold people when immigration agents request it."
+    ],
+    "s12": [
+      "While governing, put in place",
+      "While governing, introduced, and passed in the lower chamber over the final-vote opposition of 14 of its legislators,",
+      "While governing, put in place",
+      "While governing, put in place rule changes shortening post-study work visas from two years to 18 months, lifting the language requirement for skilled work visas and the charge on employers that sponsor them, and opening two routes wider for highly skilled people; the government expected about 3,000 fewer arrivals a year net, under 0.01 percent of the population.",
+      "While governing, cut initial refugee status from five years to 30 months, with protection renewed after that only if still needed.",
+      "Almost all of its voting legislators rejected an amendment from one of its own backbenchers that would have stopped rule changes extending the wait for permanent residence or otherwise reducing the rights of skilled-work visa holders already living in the country.",
+      "Every one of its legislators opposed an amendment setting a minimum of ten years' legal residence before almost anyone could get permanent residence, limited even then to people above an income threshold who had not relied on public benefits and had no criminal record."
+    ],
+    "s13": [
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Said it voted against the second enforcement budget law because the spending was unnecessary, not because of the officers who enforce immigration law, whom it supports, noting the agencies still held most of their earlier funds.",
+      "Stated that immigration authorities have both the right and responsibility to enforce immigration law, describing a targeted operation against people committing crimes in the legislator's home region as in the public interest, but asked that enforcement prioritize public safety, spare people with legal status, follow court orders, and respect due process."
+    ],
+    "s14": [
+      "Its members all opposed",
+      "About one in three of its members who voted backed, while the rest opposed,",
+      "Its members who voted all opposed",
+      "Its members all backed",
+      "Almost nine in ten of its members signed on from the start as cosponsors of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population.",
+      "A working group of its members put forward a plan to pay for at least 22,000 border agents and added border technology, create 100,000 more permanent residence visas a year for the country's own college graduates and remove country caps on work visas, open a path to citizenship for people brought to the country as children, and grant adults without legal status a temporary legal status leading toward permanent residence if they have five years in the country, no felony record, and work or study."
+    ],
+    "s15": [
+      "Its members almost all backed",
+      "Its members who voted all backed",
+      "Its members almost all backed",
+      "All of its voting members but six opposed",
+      "Its chair described the other party's funding conditions for immigration agents as radical and said every future funding bill for the department in charge of immigration enforcement must require local governments that limit cooperation to hold people when immigration agents request it."
+    ],
+    "s16": [
+      "Its members all opposed",
+      "All of its voting members but four opposed",
+      "Its members who voted all opposed",
+      "Its members all backed",
+      "Nearly every one of its members signed on from the start as a cosponsor of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population.",
+      "Decided by a vote of its members to oppose any spending bill funding the immigration enforcement agencies unless and until their enforcement practices changed substantially."
+    ],
+    "s17": [
+      "Its legislators all backed",
+      "Asked the chamber to reject, and offered 13 amendments, none of which passed, to",
+      "Its new leader vowed to reverse the temporary-resident cuts in",
+      "Its spokesperson on immigration said the party's amendments to the law barring hearings for late asylum claims would have preserved those hearings, shielded unaccompanied minors and survivors of gender-based violence, and put the power to cancel documents and applications in bulk under parliamentary oversight.",
+      "Its new leader vowed to scrap the law barring hearings for late asylum claims and to create a single-tier system with permanent residence on arrival."
+    ],
+    "s18": [
+      "Its legislators backed an amendment to block a second reading of, supported stricter amendments to, and voted no at the final lower-chamber vote on,",
+      "Its voting legislators rejected an amendment that would have stopped rule changes extending the wait for permanent residence or otherwise reducing the rights of skilled-work visa holders already living in the country.",
+      "Its voting legislators backed an amendment setting a minimum of ten years' legal residence before almost anyone could get permanent residence, limited even then to people above an income threshold who had not relied on public benefits and had no criminal record.",
+      "Promised to withdraw from the regional human rights convention, detain all people in the country without permission at old military bases and deport them, with an estimated 600,000 asylum seekers removed in its first term, about 0.9 percent of the population, and to offer payments to people who leave voluntarily.",
+      "Vowed to go beyond, by abolishing permanent residence outright even for current holders,",
+      "Promised to swap permanent residence for a visa that must be renewed every five years, with stricter salary and language requirements, and to cut off benefits for anyone who is not a citizen."
+    ],
+    "s19": [
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Signed on from the start as a cosponsor of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population."
+    ],
+    "s20": [
+      "Its legislators who voted all backed",
+      "Its legislators who voted all backed",
+      "Put forward a resolution, adopted by a single vote, urging the government to withdraw from a bilateral agreement giving one country's nationals their own rules on residence, work, and family reunification; it does not bind the government.",
+      "Put forward a bill that would again make unlawful presence in the country a crime; after amendments stripped it, the party pulled it.",
+      "Its program from 2024, adopted before this period, promises an emergency law to end citizenship by birth on the country's soil, to limit free medical care for people without legal status to life-threatening emergencies, and to remove foreign offenders faster. Its acts in this period affirm that program: it voted for both restrictions put to a vote and introduced a bill to criminalize unlawful presence again."
+    ],
+    "s21": [
+      "Its members all opposed",
+      "Of its ten members, eight backed, one opposed, and one did not vote on",
+      "Its members all opposed",
+      "Its members all backed",
+      "Of its ten members, seven signed on from the start as cosponsors of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population."
+    ],
+    "s22": [
+      "Its legislators in both chambers all voted no on",
+      "About one in four of its legislators in both chambers who voted backed, while the rest opposed,",
+      "Its voting legislators in the lower chamber all opposed",
+      "Its legislators in the lower chamber all backed",
+      "About nine in ten of its lower-chamber legislators signed on from the start as cosponsors of a bill that offers people who came to the country as children, and people holding temporary protection from removal, permanent residence with a path to citizenship. An independent estimate for an identical earlier version found up to about 4.4 million people potentially eligible, about 1.3 percent of the population.",
+      "Its leaders in both chambers would vote for the yearly funding of the department in charge of immigration enforcement only if immigration agents unmasked and showed identification, obtained warrants signed by judges before entering private property, kept body cameras on, stopped indiscriminate arrests and racial profiling, kept away from hospitals, schools, and places of worship, and let detained people see a lawyer immediately. Funding lapsed for about eleven weeks and came back without money for the immigration enforcement agencies, which a separate budget law paid for.",
+      "Its national platform, adopted before this period, promises a path to citizenship for long-term residents without legal status, among them people brought to the country as children, farmworkers, and care workers, and about 250,000 additional immigrant visas over five years; it also promises more border staff, tougher requirements for asylum claims, and emergency power to expel people crossing unlawfully when the system is overwhelmed."
+    ],
+    "s23": [
+      "While governing, made law, backed by all but two of its legislators in the lower chamber and all but three in the upper chamber,",
+      "While governing, made law, backed by all its voting legislators in both chambers,",
+      "While governing, made law, backed by all its voting legislators in the lower chamber,",
+      "All but 10 of its voting legislators in the lower chamber opposed",
+      "While governing, cut the annual cap on refugees resettled from abroad from 125,000 to 7,500, then raised it to 17,500.",
+      "While governing, acted to end the temporary protection from removal and work permits of about 1.1 million people from 13 countries, about 0.3 percent of the population.",
+      "Its national platform, adopted before this period, promises to deport large numbers of people without legal status, complete the border wall, stop releasing people who crossed unlawfully, favor merit over family-based immigration beyond the immediate family, and withdraw national funding from local governments that limit cooperation with immigration enforcement."
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "event": "work-visa-rules",
+      "stance": "In government, made",
+      "sources": [
+        "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-997-1-july-2025/spring-2025-immigration-rules-impact-assessment-skilled-worker-and-care-worker-july-2025-accessible-version"
+      ]
+    },
+    {
+      "event": "asylum-bill",
+      "stance": "In government, introduced and passed in the lower chamber, with 14 of its legislators voting against at the final vote there,",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-07-13/54",
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-11-17/127"
+      ]
+    },
+    {
+      "event": "settlement-wait-decision",
+      "stance": "In government, made",
+      "sources": [
+        "https://www.gov.uk/government/consultations/earned-settlement/outcome/a-fairer-pathway-to-settlement-government-response-to-the-consultation"
+      ]
+    },
+    {
+      "slot": "changes-entry",
+      "tier": "official_act",
+      "text": "In government, made rule changes shortening post-study work visas from two years to 18 months, raising the language level for skilled work visas, and raising a charge on employers who sponsor them, while widening two routes for highly skilled people. The government estimated a net fall of about 3,000 arrivals a year, under 0.01 percent of the population.",
+      "sources": [
+        "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-1333-14-october-2025/autumn-2025-immigration-rules-impact-assessment-accessible-version"
+      ]
+    },
+    {
+      "slot": "changes-rights",
+      "tier": "official_act",
+      "text": "In government, cut the first grant of refugee status from five years to 30 months, after which protection must be renewed if still needed.",
+      "sources": [
+        "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-1619-5-march-2026/explanatory-memorandum-to-the-statement-of-changes-in-the-immigration-rules-hc-1691-5-march-2026-accessible"
+      ]
+    },
+    {
+      "slot": "changes-rights",
+      "tier": "official_act",
+      "text": "Nearly all of its legislators who voted voted against an amendment, moved by one of its own backbenchers, that would have barred rule changes lengthening the wait for permanent residence or otherwise reducing the rights of skilled-work visa holders already in the country.",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-11-17/126"
+      ]
+    },
+    {
+      "slot": "changes-rights",
+      "tier": "official_act",
+      "text": "Its legislators voted unanimously against an amendment requiring at least ten years of legal residence before nearly anyone could get permanent residence, and then only for people above an income threshold who had not relied on public benefits and had no criminal record.",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-11-17/125"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-enforcement",
+    "seeks"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "As chair of a large group of legislators of its party, called the other party's conditions on funding immigration agents radical and said any future funding bill for the department in charge of immigration enforcement must require local governments that limit cooperation to honor requests to hold people for immigration agents.",
+      "sources": [
+        "https://rsc-pfluger.house.gov/media/press-releases/statement-rsc-chairman-pfluger-democrats-demands-dhs-funding-bill"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}

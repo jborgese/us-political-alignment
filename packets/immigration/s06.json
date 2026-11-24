@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "changes-enforcement",
+      "tier": "statement",
+      "text": "Said it voted for a yearly funding package for the department in charge of immigration enforcement that attached guardrails to immigration agents, and that withholding that funding was a mistake because earlier multi-year money already covered the agents, so the chance to make them more accountable was lost.",
+      "sources": [
+        "https://gluesenkampperez.house.gov/posts/gluesenkamp-perez-statement-on-dhs-funding-vote"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights",
+    "seeks"
+  ]
+}

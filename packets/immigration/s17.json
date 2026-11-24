@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "event": "citizenship-descent-law",
+      "stance": "All of its legislators voted for",
+      "sources": [
+        "https://openparliament.ca/votes/45-1/47/"
+      ]
+    },
+    {
+      "event": "borders-act",
+      "tier": "statement",
+      "stance": "Called on the chamber to reject, and proposed 13 amendments, all defeated, to",
+      "sources": [
+        "https://www.ndp.ca/news/ndp-mps-join-womens-organizations-and-migrant-rights-advocates-condemning-bill-c-12",
+        "https://openparliament.ca/debates/2025/12/11/jenny-kwan-1/"
+      ]
+    },
+    {
+      "event": "levels-plan",
+      "tier": "statement",
+      "stance": "Its new leader pledged to reverse the cuts to temporary residents in",
+      "sources": [
+        "https://www.visaverge.com/immigration/avi-lewis-pledges-to-reverse-bill-c-12-and-carneys-immigration-cuts/"
+      ]
+    },
+    {
+      "slot": "changes-entry",
+      "tier": "statement",
+      "text": "Its immigration critic said the party's amendments to the law barring hearings for late asylum claims would have kept hearings for those claims, protected survivors of gender-based violence and unaccompanied minors, and required parliamentary oversight of the power to cancel documents and applications in bulk.",
+      "sources": [
+        "https://openparliament.ca/debates/2025/12/11/jenny-kwan-1/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its new leader pledged to repeal the law barring hearings for late asylum claims and to move to a single-tier system giving permanent residence on arrival.",
+      "sources": [
+        "https://www.visaverge.com/immigration/avi-lewis-pledges-to-reverse-bill-c-12-and-carneys-immigration-cuts/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-enforcement"
+  ],
+  "noPosition": [
+    "permanent-residence-measure"
+  ]
+}

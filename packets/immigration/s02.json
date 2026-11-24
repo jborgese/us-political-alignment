@@ -1,0 +1,53 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced a bill making local police departments eligible for a national policing grant only if they sign agreements to help enforce immigration law.",
+      "sources": [
+        "https://riponadvance.com/stories/police-grants-would-be-tied-to-cooperation-with-ice-under-clines-bill/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored from its introduction a bill ending citizenship at birth for children born in the country unless a parent is a citizen, a permanent resident, or serving in the armed forces with legal status. An independent estimate for a similar measure put the births affected at about 255,000 a year, about 0.07 percent of the population.",
+      "sources": [
+        "https://www.congress.gov/119/bills/hr569/BILLS-119hr569ih.htm",
+        "https://www.migrationpolicy.org/news/birthright-citizenship-repeal-projections",
+        "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}

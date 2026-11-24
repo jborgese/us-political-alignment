@@ -54,7 +54,7 @@ To spend less before a full run:
 Four rules keep a record's place on the scale from depending on how its evidence was written. `check` enforces the first three.
 
 1. **Same slots for every record.** The category file lists the slots. A record fills each slot or names it in `emptySlots`, and the rater then reads "No recorded act" there. `check` refuses a record that does neither, or both.
-2. **Same events for every record from one legislature.** The events file lists the program changes of the period for each legislature. Choose them by the size in the official cost estimate, before looking at how anyone voted. Every record from that legislature takes a stance on each one, and `check` refuses a record that skips one.
+2. **Same events for every record from one legislature.** The events file lists the program changes of the period for each legislature. Choose them by the size in the official cost estimate, before looking at how anyone voted. Every record from that legislature takes a stance on each one or names it in `noPosition` when it had neither a vote nor a stated position, and the rater then reads nothing for that event. `check` refuses a record that does neither, or both.
 3. **One wording per event.** The wording lives in the events file. A record supplies only its stance, and the tool joins the two. Records can then differ in what they did, never in how a measure is described.
 4. **Size and reach as shares.** Say what a measure changes as a share of the program's funding, of residents, or of recipients. Take the figure from the official estimate, and say so in the text when it comes from anywhere else. Use no adjective for size: "by about 14 percent", not "deeply". This rule is checked by reading, not by the tool.
 
@@ -107,7 +107,7 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
 }
 ```
 
-An item is either a stance on an event or a free item with its own slot, tier, text, and sources. A stance counts as an official act and takes the event's slot. Give a stance its own `sources` when the event's sources do not show how this subject acted.
+An item is either a stance on an event or a free item with its own slot, tier, text, and sources. A stance takes the event's slot and counts as an official act, unless it gives a `tier` of its own for a position the record stated or pressed for without a vote. Give a stance its own `sources` when the event's sources do not show how this subject acted.
 
 **Tiers**
 
@@ -129,6 +129,7 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - Use at most 12 items, chosen for consequence, not for recency or volume. A long record must not win by length.
 - Use the same window for every subject: acts from 3 January 2025 onward. One exception: a national party's platform adopted before the window may serve as its baseline, but only alongside acts in the window that affirm or adjust it, and the record says which.
 - When a subject has no usable evidence in a category, save `{ "items": [] }`. The subject is left out of the rating and listed in the report.
+- Collect a record's own pushes for change, not only its stances on the events: bills it introduced or cosponsored, amendments it moved or voted for, motions it carried. A party out of government gets to vote only on what the government brings, so without these the rater sees its opponents' agenda instead of its own.
 
 ## Reading the report
 
@@ -137,6 +138,8 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - **Anchors in order.** The anchors must come out in the order they were written. When they do not, the scale is not valid and the report withholds every score.
 - **Agreement across orders.** Each pair is rated twice, once in each order. A low share means the rater's answers depend on presentation.
 - **First-listed wins.** A share far from 50% means position bias.
+
+Then compare the foreign parties' order with the Chapel Hill expert survey on the matching variable, such as `immigrate_policy` for immigration or `lrecon` for economics. The survey measures stated positions and the scale measures acts in the period, so single disagreements can be real. A run of reversals, especially between parties in and out of government, means the rater is scoring power to act rather than position: check the weighing and the opposition records before publishing.
 
 Scores run from 0 at the low anchor to 100 at the high anchor. A subject can score outside that range.
 
@@ -170,7 +173,7 @@ The pilot rewords each of the 18 records on the page twice, which is 1,656 compa
 - A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
 - A record is also held back when it fails the [wording test](#testing-the-wording). A record that passes shows a bar on its marker from its lowest to its highest score across wordings.
 - When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
-- When a category has `systems/<category-id>.json`, its page adds a strip above the chart that places each country's own system on a separate 0 to 100 scale; selecting a country lights up its records. Each figure in the file lists its value for every OECD country, with the year. A country's level scales each figure from 0 at the lowest value listed to 100 at the highest, averages the figures within each half, and averages the halves, so a half with more figures does not count for more. A country's `overrides` replace a listed value with its own sourced figure. The bar on each row runs from the lowest to the highest level across other reasonable choices: goalposts at the 5th and 95th percentiles or without the countries in `exclusion`, a geometric mean of the halves, the listed value in place of each override, and leaving out each figure in turn. The code is `src/systems.ts`.
+- When a category has `systems/<category-id>.json`, its page adds a strip above the chart that places each country's own system on a separate 0 to 100 scale; selecting a country lights up its records. The file's `scope` names what the figures cover and opens the strip's note. Each figure lists its value for each OECD country it covers, with the year. A country's level scales each figure from 0 at the lowest value listed to 100 at the highest, averages the figures within each half, and averages the halves, so a half with more figures does not count for more. A country's `overrides` replace a listed value with its own sourced figure. The bar on each row runs from the lowest to the highest level across other reasonable choices: goalposts at the 5th and 95th percentiles or without the countries in `exclusion`, a geometric mean of the halves, the listed value in place of each override, and leaving out each figure in turn. The code is `src/systems.ts`.
 - The stylesheet and the browser scripts are in `site/`; `dodge.js` is shared by both pages. `src/site.ts` inlines them.
 - `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`. The category in that build command is left from the one-page site and is ignored.
 - A push to any other branch builds a preview of the page with `npx wrangler preview`, which needs the `previews` block in `wrangler.jsonc` even when it is empty. `preview_urls` gives each preview a public address on `workers.dev`, named after the branch; it takes effect at the next deploy from `main`.

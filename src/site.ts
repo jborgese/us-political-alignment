@@ -76,6 +76,7 @@ export interface SiteRecord {
 
 export interface SiteSystems {
   title: string
+  scope: string
   countries: SystemLevel[]
 }
 
@@ -186,6 +187,7 @@ const roundedSystems = (systems: RatingSet["systems"]): SiteSystems | null =>
     ? null
     : {
         title: systems.title,
+        scope: systems.scope,
         countries: systemLevels(systems).map((country) => ({
           ...country,
           level: Math.round(country.level),
@@ -318,7 +320,7 @@ const systemStrip = (systems: SiteSystems | null): string =>
     : [
         `<section class="systems" aria-label="${escapeHtml(systems.title)}">`,
         `<h2>${icon("scale")}${escapeHtml(systems.title)}</h2>`,
-        `<p class="systems-note">Taxes and work rules in place before the period, from 0 at the lowest value among OECD countries to 100 at the highest. Its own scale, not the scale of the records below. Bars show the range under other reasonable choices. Select a country to light up its records.</p>`,
+        `<p class="systems-note">${escapeHtml(systems.scope)} in place before the period, from 0 at the lowest value among OECD countries to 100 at the highest. Its own scale, not the scale of the records below. Bars show the range under other reasonable choices. Select a country to light up its records.</p>`,
         `<div class="strip-axis" aria-hidden="true"><span class="track">${SYSTEM_TICKS.map((tick) => `<span class="strip-tick" style="--level:${tick}">${tick}</span>`).join("")}</span></div>`,
         `<ul class="countries">${systems.countries.map(countryRow).join("")}</ul>`,
         `</section>`,

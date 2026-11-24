@@ -1,0 +1,161 @@
+{
+  "legislatures": [
+    {
+      "id": "us-house",
+      "events": [
+        {
+          "id": "budget-law-enforcement",
+          "slot": "changes-enforcement",
+          "text": "a budget law adding money for immigration enforcement and border barriers equal to about 0.6 percent of a year's economic output, to be spent mostly over four years, which raises yearly funding for immigration detention about fourfold and adds new fees on asylum applications, asylum seekers' work permits, and temporary protection from removal",
+          "sources": [
+            "https://www.americanimmigrationcouncil.org/fact-sheet/big-beautiful-bill-immigration-border-security/",
+            "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
+          ]
+        },
+        {
+          "id": "detention-mandate-law",
+          "slot": "changes-enforcement",
+          "text": "a law requiring immigration authorities to detain residents without legal status who are charged with, though not convicted of, theft, burglary, shoplifting, or assaulting a police officer. Immigration authorities estimated its first-year cost at about 0.1 percent of annual economic output",
+          "sources": [
+            "https://www.npr.org/2025/01/22/nx-s1-5253926/congress-laken-riley-act",
+            "https://www.npr.org/2025/01/16/nx-s1-5262921/laken-riley-act-deportation-ice",
+            "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
+          ]
+        },
+        {
+          "id": "enforcement-funding-law",
+          "slot": "changes-enforcement",
+          "text": "a budget law adding money for immigration enforcement equal to about 0.23 percent of a year's economic output, to be spent over about three years, mostly on hiring enforcement officers and on enforcement operations",
+          "sources": [
+            "https://www.everycrsreport.com/reports/R49032.html",
+            "https://clerk.house.gov/evs/2026/roll214",
+            "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
+          ]
+        },
+        {
+          "id": "protected-status-bill",
+          "slot": "changes-entry",
+          "text": "a bill requiring the government to extend for three years the temporary protection from removal, with work permits, of about 350,000 people from one country, about 0.1 percent of the population, after the government had moved to end it",
+          "sources": [
+            "https://www.everycrsreport.com/reports/R49346.html",
+            "https://clerk.house.gov/evs/2026/roll120",
+            "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uk-commons",
+      "events": [
+        {
+          "id": "work-visa-rules",
+          "slot": "changes-entry",
+          "text": "rule changes that end work visas for care workers recruited from abroad and raise the skill level required for other work visas to degree level. The government estimated about 12,000 to 15,000 fewer work visas a year, about 0.02 percent of the population",
+          "sources": [
+            "https://www.gov.uk/government/publications/statement-of-changes-to-the-immigration-rules-hc-997-1-july-2025/spring-2025-immigration-rules-impact-assessment-skilled-worker-and-care-worker-july-2025-accessible-version",
+            "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025"
+          ]
+        },
+        {
+          "id": "asylum-bill",
+          "slot": "changes-rights",
+          "text": "a bill that narrows the right to family and private life in immigration cases, replaces refugee status and humanitarian protection with a single status and sets when it can be revoked, and has asylum seekers repay support once they are able. The government estimated about 14,000 more refusals a year of applications to stay on family or private-life grounds, about 0.02 percent of the population",
+          "sources": [
+            "https://assets.publishing.service.gov.uk/media/6ace03e32de3184ccf8b8006/2026-10-12_Revised_Impact_Assessment_-_Immigration_and_Asylum_Bill.pdf",
+            "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025"
+          ]
+        },
+        {
+          "id": "settlement-wait-decision",
+          "slot": "changes-rights",
+          "text": "a decision doubling the usual wait before migrants can settle permanently from five years to ten, setting waits of twenty years or more for refugees on the main protection route and for people who have used public benefits, and shortening the wait for high earners. The government estimated that over five years more than 500,000 people, about 0.7 percent of the population, would become eligible to settle later than under the earlier rules",
+          "sources": [
+            "https://www.gov.uk/government/consultations/earned-settlement/outcome/a-fairer-pathway-to-settlement-government-response-to-the-consultation",
+            "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-bundestag",
+      "events": [
+        {
+          "id": "family-reunification-suspension",
+          "slot": "changes-rights",
+          "text": "a law suspending for two years, except in cases of hardship, family reunification for people with subsidiary protection, which had allowed about 12,000 visas a year, about 0.01 percent of the population",
+          "sources": [
+            "https://www.bundestag.de/dokumente/textarchiv/2025/kw26-de-familiennachzug-1084812",
+            "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/06/PD26_203_124.html"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-assemblee",
+      "events": [
+        {
+          "id": "territory-birthright-law",
+          "slot": "changes-rights",
+          "text": "a law requiring, for a child born in one overseas territory to foreign parents to become a citizen, that both parents, not just one, had lived in the country legally for at least a year, not three months, at the birth. About 1,577 minors a year, about 0.002 percent of the population, had become citizens under the earlier rule",
+          "sources": [
+            "https://www.maire-info.com/la-loi-durcissant-le-droit-du-sol-%C3%A0-mayotte-promulguee-avec-une-petite-reserve-du-conseil-constitutionnel-article2-29692",
+            "https://www.assemblee-nationale.fr/dyn/media/17/organes/commissions-permanentes-legislatives/lois/eat/eat-2025/eat-ppl-693-conditions-d-acces-a-la-nationalite-francaise-a-mayotte",
+            "https://www.insee.fr/fr/statistiques/fichier/8719824/ip2087.pdf"
+          ]
+        },
+        {
+          "id": "detention-210-law",
+          "slot": "changes-enforcement",
+          "text": "a law allowing foreigners under removal orders who are judged a particularly serious threat to public order to be held in immigration detention for up to 210 days instead of 90",
+          "sources": [
+            "https://lcp.fr/actualites/loi-philippine-les-deputes-allongent-la-duree-de-retention-des-etrangers-en-situation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca-commons",
+      "events": [
+        {
+          "id": "levels-plan",
+          "slot": "changes-entry",
+          "text": "a three-year immigration plan that sets new temporary residents for the coming year at about 0.9 percent of the population, 43 percent fewer than the previous year's target, and holds new permanent residents at about 0.9 percent of the population a year, about 4 percent fewer than the previous year's target",
+          "sources": [
+            "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/mandate/corporate-initiatives/levels/supplementary-immigration-levels-2026-2028",
+            "https://www.canada.ca/en/immigration-refugees-citizenship/news/notices/supplementary-immigration-levels-2025-2027.html",
+            "https://www150.statcan.gc.ca/n1/daily-quotidien/250924/dq250924a-eng.htm"
+          ]
+        },
+        {
+          "id": "borders-act",
+          "slot": "changes-entry",
+          "text": "a law barring referral to a hearing of asylum claims made more than a year after the person first entered, or more than 14 days after crossing the land border between official crossings, and letting the government cancel, suspend or stop processing groups of immigration documents and applications",
+          "sources": [
+            "https://www.canada.ca/en/immigration-refugees-citizenship/news/2026/03/new-immigration-and-asylum-measures-from-bill-c-12-the-strengthening-canadas-immigration-system-and-borders-act-have-become-law.html"
+          ]
+        },
+        {
+          "id": "citizenship-descent-law",
+          "slot": "changes-rights",
+          "text": "a law extending citizenship by descent to children born abroad beyond the first generation when the citizen parent had spent at least three years in total in the country before the birth, and restoring it to people excluded by the earlier one-generation limit. Official estimates of the people affected ranged from tens of thousands to about 115,000, up to about 0.3 percent of the population",
+          "sources": [
+            "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/transparency/committees/cimm-oct-2-2025/bill-c-3-act-amend-citizenship-act.html",
+            "https://openparliament.ca/votes/45-1/47/",
+            "https://www150.statcan.gc.ca/n1/daily-quotidien/250924/dq250924a-eng.htm"
+          ]
+        },
+        {
+          "id": "permanent-residence-measure",
+          "slot": "changes-entry",
+          "text": "a one-time measure in the next year's immigration plan giving permanent residence to up to 200,000 temporary residents already in the country, about 0.5 percent of the population, while leaving yearly targets unchanged",
+          "sources": [
+            "https://www.canada.ca/en/immigration-refugees-citizenship/corporate/immigration-system/levels/supplementary-immigration-levels-2027-2029.html",
+            "https://www.bnnbloomberg.ca/business/politics/2026/11/06/canadas-new-immigration-plan-revealed-in-federal-budget/",
+            "https://moving2canada.com/2026/11/200k-pr-admissions-hidden-in-budget-2026/",
+            "https://www150.statcan.gc.ca/n1/daily-quotidien/250924/dq250924a-eng.htm"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "All but four of its members who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023",
+        "https://en.wikipedia.org/wiki/Congressional_Progressive_Caucus"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "All of its members who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "Its members voted unanimously for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Nearly all of its members cosponsored from its introduction a bill giving people brought to the country as children, and holders of temporary protection from removal, permanent residence and a path to citizenship. An independent estimate of an identical earlier version put those potentially eligible at up to about 4.4 million people, about 1.3 percent of the population.",
+      "sources": [
+        "https://www.govinfo.gov/bulkdata/BILLS/119/1/hr/BILLS-119hr1589ih.xml",
+        "https://www.migrationpolicy.org/content/american-dream-and-promise-act-2021-eligibility",
+        "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html",
+        "https://en.wikipedia.org/wiki/Congressional_Progressive_Caucus"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Voted as a group to oppose any spending bill funding the immigration enforcement agencies until their enforcement practices changed substantially.",
+      "sources": [
+        "https://progressives.house.gov/2026/1/progressive-caucus-demands-no-new-funding-for-dhs-immigration-enforcement-until-reforms"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}
