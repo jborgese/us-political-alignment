@@ -42,7 +42,8 @@ const describeOutcome = (outcome: RateOutcome): string => {
     return `Submitted ${outcome.count} comparisons as batch ${outcome.batchId}. ${outcome.remaining} more are not yet submitted. Run the same command again later to collect the answers.`
   }
   if (outcome.status === "waiting") {
-    return `Batch ${outcome.batchId} is still running: ${outcome.finished} of ${outcome.total} comparisons finished. Run the same command again later.`
+    const minutes = Math.round((Date.now() - Date.parse(outcome.submittedAt)) / 60_000)
+    return `Batch ${outcome.batchId} is still running: ${outcome.total} comparisons, submitted ${minutes} ${minutes === 1 ? "minute" : "minutes"} ago. Their answers arrive together when the batch ends, usually within an hour. Run the same command again later.`
   }
   return `Collected ${outcome.rated} answers. ${outcome.failed} failed and ${outcome.remaining} comparisons remain; run the same command again to submit them.`
 }
