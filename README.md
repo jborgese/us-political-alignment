@@ -39,7 +39,7 @@ To spend less before a full run:
 | Path | Holds |
 |---|---|
 | `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, the anchor records listed from the high end to the low end, and optionally a `weighing` rule that replaces the default one in the rater's instructions |
-| `events/<category-id>.json` | For each legislature, an optional country context and the program changes of the period, each worded once |
+| `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
 | `key.json` | The name and legislature behind each blinded id, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
 | `rewordings/<category-id>/<version>.json` | One more wording of each record under test, with the same facts |
@@ -80,7 +80,6 @@ Four rules keep a record's place on the scale from depending on how its evidence
 - The rater reads `<stance> <text>.`, so begin the text with "a" or "the" and leave off the final period.
 - One vote that changes two programs is two events with the same stance, one in each slot.
 - A subject's `legislature` in `key.json` picks its events.
-- A legislature may also have a `context`, with `text` and `sources`: the system already in place in that country, worded once. The rater sees it above every record from that legislature, marked as not the record's own act, and `check` scans it for revealing terms like any item.
 
 ### Packets
 
@@ -126,7 +125,6 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - For a party, start each official act with "In government," when it enacted the policy while governing.
 - For a caucus, file votes its members cast as a bloc under `official_act`, and positions it published to press its party under `influence`.
 - In the slots for what a record keeps in place, describe the guarantee in the same words for every record from one country, and say who it covers.
-- Where a category gives a country context, its keep slots hold only what the record acts to keep or defend: a governing party keeping the system, or an opposition party's own alternative budget or plan. Otherwise list them in `emptySlots`.
 - Use at most 12 items, chosen for consequence, not for recency or volume. A long record must not win by length.
 - Use the same window for every subject: acts from 3 January 2025 onward. One exception: a national party's platform adopted before the window may serve as its baseline, but only alongside acts in the window that affirm or adjust it, and the record says which.
 - When a subject has no usable evidence in a category, save `{ "items": [] }`. The subject is left out of the rating and listed in the report.

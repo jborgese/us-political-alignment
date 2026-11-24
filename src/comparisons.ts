@@ -15,7 +15,6 @@ const TIER_TAGS: Record<Tier, string> = {
 }
 
 const NO_RECORDED_ACT = "- No recorded act."
-const CONTEXT_HEADING = "Country context, the system already in place (not an act of this record):"
 const DEFAULT_WEIGHING =
   "Judge the whole position a record supports. A guarantee the record keeps in place counts as support for it, as much as a change the record seeks."
 
@@ -30,10 +29,7 @@ const describeSlot = (packet: Packet, slot: Slot): string[] => {
 }
 
 export const describeEvidence = (packet: Packet, slots: Slot[]): string =>
-  [
-    ...(packet.context === undefined ? [] : [CONTEXT_HEADING, packet.context]),
-    ...slots.flatMap((slot) => describeSlot(packet, slot)),
-  ].join("\n")
+  slots.flatMap((slot) => describeSlot(packet, slot)).join("\n")
 
 export const buildSystemPrompt = ({ question, weighing }: Pick<Category, "question" | "weighing">): string =>
   [

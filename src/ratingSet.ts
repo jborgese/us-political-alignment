@@ -58,8 +58,10 @@ const forbiddenTerms = (set: RatingSet): string[] => [
 const leakProblems = (set: RatingSet): string[] => {
   const terms = forbiddenTerms(set)
   return [...ratedPackets(set), ...set.rewordings].flatMap((packet) =>
-    [...packet.items.map((item) => item.text), ...(packet.context === undefined ? [] : [packet.context])].flatMap((text) =>
-      terms.filter((term) => mentions(text, term)).map((term) => `${packet.id} mentions "${term}": ${text}`),
+    packet.items.flatMap((item) =>
+      terms
+        .filter((term) => mentions(item.text, term))
+        .map((term) => `${packet.id} mentions "${term}": ${item.text}`),
     ),
   )
 }

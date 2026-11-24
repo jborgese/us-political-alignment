@@ -1,15 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "statement",
-      "text": "Its economic plan keeps the country's tax system, apart from the changes listed under further changes it seeks.",
-      "sources": [
-        "https://www.lbc.co.uk/politics/uk-politics/reform-pledges-raise-tax-free-personal-allowance/",
-        "https://www.gbnews.com/politics/robert-jenrick-economic-plan-backed-reform-boss-failed-labour-government"
-      ]
-    },
-    {
       "event": "finance-law-2025",
       "stance": "Its three voting legislators voted against",
       "sources": [
@@ -47,8 +38,5 @@
         "https://www.hrgrapevine.com/content/article/2026-02-27-reform-uk-vows-to-scrap-employment-rights-act-if-elected"
       ]
     }
-  ],
-  "emptySlots": [
-    "keeps-rules"
   ]
 }

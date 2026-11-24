@@ -1,23 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "In government, keeps the country's tax system in place, apart from the cuts listed under changes.",
-      "sources": [
-        "https://www.cbo.gov/publication/61570",
-        "https://clerk.house.gov/Votes/2025190"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "In government, keeps the country's market and work rules in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://www.whitehouse.gov/fact-sheets/2025/01/fact-sheet-president-donald-j-trump-launches-massive-10-to-1-deregulation-initiative"
-      ]
-    },
-    {
       "event": "budget-law-tax",
       "stance": "In government, enacted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
       "sources": [

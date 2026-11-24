@@ -1,18 +1,10 @@
 {
   "title": "Economics",
   "question": "Which record shows stronger support for the government reducing income inequality through taxes and setting firm rules for markets and work?",
-  "weighing": "Judge the whole position a record supports. Some records begin with their country's context: the system already in place there, which the record did not create. Place such a record where its own acts and aims would leave that system. Count a part of that system as the record's support only where the record acts to keep or defend it, and then count it as much as a change the record seeks.",
-  "highPole": "government taxes progressively and sets firm rules for markets and work",
+  "weighing": "Judge only the changes a record supports or opposes: those it votes on, presses for, or seeks, by their direction and size. Opposing a change counts as support for what the change would have removed. The taxes and rules a record inherited are not part of its position.",
+  "highPole": "taxes made more progressive and rules for markets and work made firmer",
   "lowPole": "taxes and rules on markets and work are cut back",
   "slots": [
-    {
-      "id": "keeps-tax",
-      "heading": "Parts of the tax system it acts to keep"
-    },
-    {
-      "id": "keeps-rules",
-      "heading": "Parts of the market and work rules it acts to keep"
-    },
     {
       "id": "changes-tax",
       "heading": "Changes to taxes in the period"
@@ -30,16 +22,6 @@
     {
       "id": "anchor-redistributive",
       "items": [
-        {
-          "slot": "keeps-tax",
-          "tier": "official_act",
-          "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 47 percent of annual economic output, the top tax rate on earnings is about 60 percent, starting at about 3 times the average wage, and the tax rate on company profits is about 33 percent."
-        },
-        {
-          "slot": "keeps-rules",
-          "tier": "official_act",
-          "text": "Votes to keep in place the existing rules, in which the minimum wage is about 65 percent of the median full-time wage, collective agreements cover about 99 percent of employees, and an employer must give a valid reason, consult worker representatives, and pay severance of about two months' wages per year of service to dismiss a permanent employee."
-        },
         {
           "slot": "changes-tax",
           "tier": "official_act",
@@ -71,16 +53,6 @@
       "id": "anchor-mixed",
       "items": [
         {
-          "slot": "keeps-tax",
-          "tier": "official_act",
-          "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 34 percent of annual economic output, the top tax rate on earnings is about 45 percent, starting at about 4 times the average wage, and the tax rate on company profits is about 25 percent."
-        },
-        {
-          "slot": "keeps-rules",
-          "tier": "official_act",
-          "text": "Votes to keep in place the existing rules, in which the minimum wage is about 50 percent of the median full-time wage, collective agreements cover about 30 percent of employees, and an employer must give notice and a valid reason to dismiss a permanent employee after two years of service."
-        },
-        {
           "slot": "changes-tax",
           "tier": "official_act",
           "text": "Voted for a law raising the amount of earnings free of tax by about 10 percent, paid for by limiting deductions for the top tenth of earners."
@@ -108,16 +80,6 @@
     {
       "id": "anchor-market",
       "items": [
-        {
-          "slot": "keeps-tax",
-          "tier": "official_act",
-          "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 22 percent of annual economic output, the top tax rate on earnings is about 30 percent, starting at about 10 times the average wage, and the tax rate on company profits is about 15 percent, less the cuts listed under changes."
-        },
-        {
-          "slot": "keeps-rules",
-          "tier": "official_act",
-          "text": "Votes to keep in place the existing rules, in which the minimum wage is about 20 percent of the median full-time wage, collective agreements cover about 5 percent of employees, and an employer may dismiss an employee at any time without notice, reason, or severance, less the protections ended under changes."
-        },
         {
           "slot": "changes-tax",
           "tier": "official_act",

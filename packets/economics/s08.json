@@ -1,24 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "In a governing coalition, keeps the country's tax system in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://www.bundesregierung.de/breg-de/schwerpunkte/wirksam-regieren/wachstumsbooster-2351752",
-        "https://www.lto.de/recht/hintergruende/h/arbeitsrecht-im-koalitionsvertrag-zeiterfassung-mehrarbeit-arbeitszeit-mindestlohn-tariftreue"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "In a governing coalition, keeps the country's market and work rules in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-steigt-2391010",
-        "https://www.lto.de/recht/hintergruende/h/arbeitsrecht-im-koalitionsvertrag-zeiterfassung-mehrarbeit-arbeitszeit-mindestlohn-tariftreue"
-      ]
-    },
-    {
       "event": "investment-tax-law",
       "stance": "In a governing coalition, enacted",
       "sources": [

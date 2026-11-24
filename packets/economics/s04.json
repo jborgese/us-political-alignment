@@ -1,23 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "In government, keeps the country's tax system in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://budget.canada.ca/2025/report-rapport/anx1-en.html",
-        "https://www.pm.gc.ca/en/news/news-releases/2025/03/21/prime-minister-mark-carney-cancels-proposed-capital-gains-tax-increase"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "In government, keeps the country's market and work rules in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://www.canada.ca/en/employment-social-development/news/2025/08/statement-from-minister-hajdu.html"
-      ]
-    },
-    {
       "event": "income-tax-cut",
       "stance": "In government, enacted",
       "sources": [

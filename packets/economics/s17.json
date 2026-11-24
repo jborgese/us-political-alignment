@@ -26,8 +26,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-tax",
-    "keeps-rules",
     "changes-rules"
   ]
 }

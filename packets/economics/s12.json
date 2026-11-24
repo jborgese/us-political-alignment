@@ -1,23 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "In government, keeps the country's tax system in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/",
-        "https://www.gov.uk/government/publications/autumn-budget-2024/autumn-budget-2024-html"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "In government, keeps the country's market and work rules in place, apart from the changes listed under changes.",
-      "sources": [
-        "https://assets.publishing.service.gov.uk/media/695d3ebfbd1c076f787e7399/employment-rights-act-2025-economic-analysis.pdf"
-      ]
-    },
-    {
       "event": "finance-law-2025",
       "stance": "In government, enacted",
       "sources": [

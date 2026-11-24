@@ -1,15 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "influence",
-      "text": "Its alternative budget kept the country's tax system and sought savings mainly through spending cuts, apart from the changes listed under further changes it seeks.",
-      "sources": [
-        "https://www.lagazettefrance.fr/article/budget-le-rn-propose-36-milliards-d-economies-principalement-via-des-baisses-de-depenses",
-        "https://www.publicsenat.fr/actualites/economie/contre-budget-du-rn-des-propositions-qui-manquent-de-credibilite-economique-mais-trahissent-une-veritable-coherence-doctrinale"
-      ]
-    },
-    {
       "event": "budget-2025",
       "stance": "Its legislators did not vote for a motion to bring down the government over",
       "sources": [
@@ -48,7 +39,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-rules",
     "changes-rules"
   ]
 }
