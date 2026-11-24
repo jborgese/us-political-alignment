@@ -43,6 +43,38 @@ Question put to the rater: Which record shows stronger support for the governmen
 | House Freedom Caucus | caucus | US House | 7 |
 | anchor-market | anchor |  | 0 |
 
+## Scores when reworded
+
+- Reworded versions scored: 46 of 46
+- Comparisons: 2300
+- Each score is the one the record would have had with that wording in its place.
+
+| Record | Score | Version a | Version b |
+|---|---|---|---|
+| Pramila Jayapal | 107 | 107 | 107 |
+| Labour Party | 94 | 94 | 94 |
+| Alexandria Ocasio-Cortez | 89 | 89 | 87 |
+| Democratic Party | 85 | 92 | 83 |
+| Jared Golden | 78 | 80 | 80 |
+| Congressional Progressive Caucus | 76 | 78 | 78 |
+| Marie Gluesenkamp Perez | 75 | 73 | 75 |
+| Blue Dog Coalition | 69 | 66 | 69 |
+| Brad Schneider | 62 | 62 | 62 |
+| New Democrat Coalition | 62 | 62 | 64 |
+| Pete Aguilar | 62 | 62 | 62 |
+| New Democratic Party | 55 | 55 | 55 |
+| CDU/CSU | 49 | 45 | 49 |
+| Rassemblement National | 47 | 50 | 50 |
+| Liberal Party of Canada | 42 | 42 | 42 |
+| Reform UK | 38 | 38 | 38 |
+| Republican Study Committee | 35 | 35 | 35 |
+| Chip Roy | 29 | 29 | 29 |
+| Ben Cline | 29 | 29 | 29 |
+| August Pfluger | 23 | 23 | 23 |
+| Republican Party | 18 | 21 | 18 |
+| Andy Harris | 13 | 13 | 16 |
+| House Freedom Caucus | 7 | 7 | 7 |
+
 ## Held back from the site
 
 - none
