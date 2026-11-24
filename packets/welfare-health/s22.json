@@ -1,0 +1,85 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "Its legislators vote to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://clerk.house.gov/evs/2026/roll011",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "official_act",
+      "text": "Its legislators vote to keep in place the existing income support, in which mandatory pension schemes replace about 51 percent of an average worker's net earnings, unemployment benefits replace about 35 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 6 percent of the median income, housing support included.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
+        "https://stat.link/qetyb2",
+        "https://stat.link/xiqc6l"
+      ]
+    },
+    {
+      "event": "budget-law-health",
+      "stance": "All of its legislators in both chambers voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "All of its legislators voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "influence",
+      "text": "Its legislators in the upper chamber withheld the votes needed to fund the government for 43 days to demand an extension of the expanded premium subsidies, ended the standoff with only a promise of a vote, and then all voted for a three-year extension that fell short of the votes it needed.",
+      "sources": [
+        "https://www.pbs.org/newshour/politics/trump-signs-government-funding-bill-ending-record-43-day-shutdown",
+        "https://www.cbsnews.com/news/how-the-longest-government-shutdown-in-history-came-to-an-end",
+        "https://www.axios.com/2025/12/11/senate-aca-subsidies-vote-obamacare"
+      ]
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "All of its legislators who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll349"
+      ]
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "All of its legislators in both chambers voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its national platform, adopted before this period, pledges to make the expanded premium subsidies permanent and to extend public health coverage to the 2.8 million uninsured low-income adults left out of it, under 1 percent of residents. Its votes and its funding standoff in the period, listed above, affirm the first pledge.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-democratic-party-platform",
+        "https://clerk.house.gov/evs/2026/roll011",
+        "https://www.axios.com/2025/12/11/senate-aca-subsidies-vote-obamacare"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "The same platform rejects any cut to the public pension and pledges to raise its benefits by raising taxes on the highest earners.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-democratic-party-platform"
+      ]
+    }
+  ],
+  "emptySlots": []
+}
