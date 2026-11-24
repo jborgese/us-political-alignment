@@ -1,31 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "Its members vote to keep in place the existing tax system, in which tax revenue equals about 26 percent of annual economic output, the top tax rate on earnings is about 44 percent in a typical city, counting regional and local taxes that vary by place, starting at about 9 times the average wage, and the tax rate on company profits is about 26 percent counting regional taxes.",
-      "sources": [
-        "https://clerk.house.gov/Votes/2025190",
-        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
-        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "Its members vote to keep in place the existing rules, in which the national minimum wage is about 24 percent of the median full-time wage, with higher minimums set by about 60 percent of regional governments, collective agreements cover about 11 percent of employees, and an employer may dismiss most employees at any time without a stated reason, notice, or severance.",
-      "sources": [
-        "https://clerk.house.gov/Votes/2025190",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
-        "https://www.dol.gov/agencies/whd/minimum-wage/state",
-        "https://www.bls.gov/news.release/union2.nr0.htm",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
-        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-States-EPL.pdf"
-      ]
-    },
-    {
       "event": "budget-law-tax",
       "stance": "Its members voted unanimously for the final version of",
       "sources": [
@@ -65,5 +40,9 @@
         "https://joewilson.house.gov/media/press-releases/wilson-reintroduces-national-right-work-act"
       ]
     }
+  ],
+  "emptySlots": [
+    "keeps-tax",
+    "keeps-rules"
   ]
 }

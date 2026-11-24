@@ -38,6 +38,11 @@ describe("findSetProblems", () => {
     expect(findSetProblems(setWithPacketText("Voted for the Medicareplus pilot."))).toEqual([])
   })
 
+  it("checks a record's country context as well as its items", () => {
+    const leaky = buildSet({ packets: [{ ...record("s01", [act("Voted for the bill.")]), context: "Medicare covers older residents." }] })
+    expect(findSetProblems(leaky)).toEqual(['s01 mentions "Medicare": Medicare covers older residents.'])
+  })
+
   it("checks the anchors as well as the packets", () => {
     const set = buildSet()
     const leaky = {

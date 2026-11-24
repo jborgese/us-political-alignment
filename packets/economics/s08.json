@@ -3,25 +3,19 @@
     {
       "slot": "keeps-tax",
       "tier": "official_act",
-      "text": "In a governing coalition, keeps in place the existing tax system, in which tax revenue equals about 38 percent of annual economic output, the top tax rate on earnings is about 47 percent, starting at about 4 times the average wage, and the tax rate on company profits is about 30 percent counting local taxes.",
+      "text": "In a governing coalition, keeps the country's tax system in place, apart from the changes listed under changes.",
       "sources": [
-        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
-        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
+        "https://www.bundesregierung.de/breg-de/schwerpunkte/wirksam-regieren/wachstumsbooster-2351752",
+        "https://www.lto.de/recht/hintergruende/h/arbeitsrecht-im-koalitionsvertrag-zeiterfassung-mehrarbeit-arbeitszeit-mindestlohn-tariftreue"
       ]
     },
     {
       "slot": "keeps-rules",
       "tier": "official_act",
-      "text": "In a governing coalition, keeps in place the existing rules, in which the minimum wage is about 50 percent of the median full-time wage, collective agreements cover about 49 percent of employees, and an employer with more than 10 employees needs a recognized reason to dismiss anyone employed over six months, must give notice of 4 weeks to 7 months depending on length of service, and must first hear worker representatives where they exist.",
+      "text": "In a governing coalition, keeps the country's market and work rules in place, apart from the changes listed under changes.",
       "sources": [
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
-        "https://www.gesetze-im-internet.de/kschg/__1.html",
-        "https://www.gesetze-im-internet.de/kschg/__23.html",
-        "https://www.gesetze-im-internet.de/bgb/__622.html",
-        "https://www.gesetze-im-internet.de/betrvg/__102.html"
+        "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-steigt-2391010",
+        "https://www.lto.de/recht/hintergruende/h/arbeitsrecht-im-koalitionsvertrag-zeiterfassung-mehrarbeit-arbeitszeit-mindestlohn-tariftreue"
       ]
     },
     {

@@ -1,14 +1,30 @@
 {
   "title": "Economics",
   "question": "Which record shows stronger support for the government reducing income inequality through taxes and setting firm rules for markets and work?",
+  "weighing": "Judge the whole position a record supports. Some records begin with their country's context: the system already in place there, which the record did not create. Place such a record where its own acts and aims would leave that system. Count a part of that system as the record's support only where the record acts to keep or defend it, and then count it as much as a change the record seeks.",
   "highPole": "government taxes progressively and sets firm rules for markets and work",
   "lowPole": "taxes and rules on markets and work are cut back",
   "slots": [
-    { "id": "keeps-tax", "heading": "Taxes it keeps in place", "required": true },
-    { "id": "keeps-rules", "heading": "Market and work rules it keeps in place", "required": true },
-    { "id": "changes-tax", "heading": "Changes to taxes in the period" },
-    { "id": "changes-rules", "heading": "Changes to market and work rules in the period" },
-    { "id": "seeks", "heading": "Further changes it seeks" }
+    {
+      "id": "keeps-tax",
+      "heading": "Parts of the tax system it acts to keep"
+    },
+    {
+      "id": "keeps-rules",
+      "heading": "Parts of the market and work rules it acts to keep"
+    },
+    {
+      "id": "changes-tax",
+      "heading": "Changes to taxes in the period"
+    },
+    {
+      "id": "changes-rules",
+      "heading": "Changes to market and work rules in the period"
+    },
+    {
+      "id": "seeks",
+      "heading": "Further changes it seeks"
+    }
   ],
   "anchors": [
     {
@@ -85,7 +101,9 @@
           "text": "Voted against a law making each industry's collective agreement binding on employers that did not sign it."
         }
       ],
-      "emptySlots": ["seeks"]
+      "emptySlots": [
+        "seeks"
+      ]
     },
     {
       "id": "anchor-market",

@@ -30,6 +30,7 @@ const packetSchema = z.strictObject({
 const categorySchema = z.strictObject({
   title: z.string().min(1),
   question: z.string().min(1),
+  weighing: z.string().min(1).optional(),
   highPole: z.string().min(1),
   lowPole: z.string().min(1),
   slots: z
@@ -50,6 +51,7 @@ const eventsSchema = z.strictObject({
   legislatures: z.array(
     z.strictObject({
       id: z.string().min(1),
+      context: z.strictObject({ text: z.string().min(1), sources: sourcesSchema }).optional(),
       events: z.array(
         z.strictObject({
           id: z.string().min(1),
@@ -138,6 +140,7 @@ export interface Packet {
   id: string
   items: Evidence[]
   emptySlots: string[]
+  context?: string
 }
 
 export interface Rewording extends Packet {
@@ -194,10 +197,13 @@ export const pathsFor = (root: string, categoryId: string): CategoryPaths => {
   }
 }
 
-export const eventsFor = (set: Pick<RatingSet, "legislatures" | "key">, subjectId: string): PolicyEvent[] => {
+const legislatureOf = (set: Pick<RatingSet, "legislatures" | "key">, subjectId: string): Legislature | undefined => {
   const legislatureId = set.key.subjects.find((subject) => subject.id === subjectId)?.legislature
-  return set.legislatures.find((legislature) => legislature.id === legislatureId)?.events ?? []
+  return set.legislatures.find((legislature) => legislature.id === legislatureId)
 }
+
+export const eventsFor = (set: Pick<RatingSet, "legislatures" | "key">, subjectId: string): PolicyEvent[] =>
+  legislatureOf(set, subjectId)?.events ?? []
 
 const parseAs = <Schema extends z.ZodType>(schema: Schema, value: unknown, origin: string): z.infer<Schema> => {
   const result = schema.safeParse(value)
@@ -263,6 +269,7 @@ const reword = (base: Packet, texts: string[], events: Record<string, string>, f
     baseId: base.id,
     version,
     emptySlots: base.emptySlots,
+    context: base.context,
     items: base.items.map((item, index) => ({
       ...item,
       text: item.event === undefined ? texts[index] : `${texts[index]} ${wordingOf(item.event)}.`,
@@ -310,11 +317,12 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
   ])
   const packets = packetFiles.map(({ file, content }) => {
     const id = path.basename(file, ".json")
-    const events = eventsFor({ legislatures, key }, id)
+    const legislature = legislatureOf({ legislatures, key }, id)
     return {
       id,
-      items: content.items.map((item) => toEvidence(events, file, item)),
+      items: content.items.map((item) => toEvidence(legislature?.events ?? [], file, item)),
       emptySlots: content.emptySlots,
+      context: legislature?.context?.text,
     }
   })
   const rewordings = rewordingFiles.flatMap(({ file, content }) =>

@@ -2,25 +2,11 @@
   "items": [
     {
       "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "Its legislators vote to keep in place the existing tax system, in which tax revenue equals about 34 percent of annual economic output, the top tax rate on earnings is 45 percent, starting at about 2 times the average wage, and the tax rate on company profits is 25 percent.",
+      "tier": "statement",
+      "text": "Its economic plan keeps the country's tax system, apart from the changes listed under further changes it seeks.",
       "sources": [
-        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
-        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "Its legislators vote to keep in place the existing rules, in which the minimum wage is about 62 percent of the median full-time wage, collective agreements cover about 27 percent of employees, and an employer needs a fair reason to dismiss an employee with two years of service, must give notice of about one week per year of service up to twelve weeks, and must make a redundancy payment when cutting the job of such an employee.",
-      "sources": [
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
-        "https://www.gov.uk/government/statistics/trade-union-statistics-2024/trade-union-membership-uk-1995-to-2024-statistical-bulletin",
-        "https://www.gov.uk/dismissal",
-        "https://www.gov.uk/redundant-your-rights",
-        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-Kingdom-EPL.pdf"
+        "https://www.lbc.co.uk/politics/uk-politics/reform-pledges-raise-tax-free-personal-allowance/",
+        "https://www.gbnews.com/politics/robert-jenrick-economic-plan-backed-reform-boss-failed-labour-government"
       ]
     },
     {
@@ -61,5 +47,8 @@
         "https://www.hrgrapevine.com/content/article/2026-02-27-reform-uk-vows-to-scrap-employment-rights-act-if-elected"
       ]
     }
+  ],
+  "emptySlots": [
+    "keeps-rules"
   ]
 }

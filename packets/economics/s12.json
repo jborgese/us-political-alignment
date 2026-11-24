@@ -3,24 +3,18 @@
     {
       "slot": "keeps-tax",
       "tier": "official_act",
-      "text": "In government, keeps in place the existing tax system, in which tax revenue equals about 34 percent of annual economic output, the top tax rate on earnings is 45 percent, starting at about 2 times the average wage, and the tax rate on company profits is 25 percent.",
+      "text": "In government, keeps the country's tax system in place, apart from the changes listed under changes.",
       "sources": [
-        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
-        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
+        "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/",
+        "https://www.gov.uk/government/publications/autumn-budget-2024/autumn-budget-2024-html"
       ]
     },
     {
       "slot": "keeps-rules",
       "tier": "official_act",
-      "text": "In government, keeps in place the existing rules, in which the minimum wage is about 62 percent of the median full-time wage, collective agreements cover about 27 percent of employees, and an employer needs a fair reason to dismiss an employee with two years of service, must give notice of about one week per year of service up to twelve weeks, and must make a redundancy payment when cutting the job of such an employee.",
+      "text": "In government, keeps the country's market and work rules in place, apart from the changes listed under changes.",
       "sources": [
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
-        "https://www.gov.uk/government/statistics/trade-union-statistics-2024/trade-union-membership-uk-1995-to-2024-statistical-bulletin",
-        "https://www.gov.uk/dismissal",
-        "https://www.gov.uk/redundant-your-rights",
-        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-Kingdom-EPL.pdf"
+        "https://assets.publishing.service.gov.uk/media/695d3ebfbd1c076f787e7399/employment-rights-act-2025-economic-analysis.pdf"
       ]
     },
     {

@@ -2,24 +2,11 @@
   "items": [
     {
       "slot": "keeps-tax",
-      "tier": "official_act",
-      "text": "Its legislators vote to keep in place the existing tax system, in which tax revenue equals about 44 percent of annual economic output, the top tax rate on earnings is about 55 percent, starting at about 13 times the average wage, and the tax rate on company profits is about 26 percent.",
+      "tier": "influence",
+      "text": "Its alternative budget kept the country's tax system and sought savings mainly through spending cuts, apart from the changes listed under further changes it seeks.",
       "sources": [
-        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
-        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
-      ]
-    },
-    {
-      "slot": "keeps-rules",
-      "tier": "official_act",
-      "text": "Its legislators vote to keep in place the existing rules, in which the minimum wage is about 62 percent of the median full-time wage, collective agreements cover about 98 percent of employees, and an employer needs a real and serious reason and a formal procedure to dismiss an employee, must give one to two months' notice after six months of service, and must pay severance of at least a quarter of a month's pay per year of service, with court awards for unfair dismissal capped on a scale.",
-      "sources": [
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
-        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
-        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/France-EPL.pdf",
-        "https://www.service-public.fr/particuliers/vosdroits/F987"
+        "https://www.lagazettefrance.fr/article/budget-le-rn-propose-36-milliards-d-economies-principalement-via-des-baisses-de-depenses",
+        "https://www.publicsenat.fr/actualites/economie/contre-budget-du-rn-des-propositions-qui-manquent-de-credibilite-economique-mais-trahissent-une-veritable-coherence-doctrinale"
       ]
     },
     {
@@ -61,6 +48,7 @@
     }
   ],
   "emptySlots": [
+    "keeps-rules",
     "changes-rules"
   ]
 }

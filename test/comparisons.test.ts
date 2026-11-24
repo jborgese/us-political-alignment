@@ -122,6 +122,26 @@ describe("describeEvidence", () => {
   })
 })
 
+describe("country context", () => {
+  it("shows a record's country context before its sections, marked as not its own act", () => {
+    const packet = { ...record("s01", [act("Voted for the bill.", "changes")]), context: "Taxes equal about 40 percent of output." }
+    expect(describeEvidence(packet, [{ id: "changes", heading: "Changes in the period" }])).toBe(
+      [
+        "Country context, the system already in place (not an act of this record):",
+        "Taxes equal about 40 percent of output.",
+        "Changes in the period:",
+        "- [Official act] Voted for the bill.",
+      ].join("\n"),
+    )
+  })
+
+  it("replaces the default weighing rule with the category's own when it has one", () => {
+    const prompt = buildSystemPrompt({ question: "Which record shows more support?", weighing: "Judge by the record's own acts." })
+    expect(prompt).toContain("Judge by the record's own acts.")
+    expect(prompt).not.toContain("A guarantee the record keeps in place counts as support for it")
+  })
+})
+
 describe("what the rater is sent", () => {
   it("leaves out record ids, slot ids, and event ids", () => {
     const first = record("s01", [{ ...act("Voted for the bill.", "slot-one"), event: "event-one" }])
@@ -135,7 +155,7 @@ describe("what the rater is sent", () => {
   })
 
   it("states the question, the tier rule, that keeping a guarantee counts, and how to read an empty section", () => {
-    const prompt = buildSystemPrompt("Which record shows more support?")
+    const prompt = buildSystemPrompt({ question: "Which record shows more support?" })
     expect(prompt).toContain("Question: Which record shows more support?")
     expect(prompt).toContain("Where tiers conflict, the higher tier governs.")
     expect(prompt).toContain("A guarantee the record keeps in place counts as support for it")

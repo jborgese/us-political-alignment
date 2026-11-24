@@ -2,6 +2,21 @@
   "legislatures": [
     {
       "id": "us-house",
+      "context": {
+        "text": "Tax revenue equals about 26 percent of annual economic output. The top tax rate on earnings is about 44 percent in a typical city, counting regional and local taxes that vary by place, and starts at about 9 times the average wage. The tax rate on company profits is about 26 percent counting regional taxes. The national minimum wage is about 24 percent of the median full-time wage, with higher minimums set by about 60 percent of regional governments. Collective agreements cover about 11 percent of employees. An employer may dismiss most employees at any time without a stated reason, notice, or severance.",
+        "sources": [
+          "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+          "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+          "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+          "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-States-EPL.pdf",
+          "https://www.dol.gov/agencies/whd/minimum-wage/state",
+          "https://www.bls.gov/news.release/union2.nr0.htm"
+        ]
+      },
       "events": [
         {
           "id": "budget-law-tax",
@@ -36,6 +51,22 @@
     },
     {
       "id": "uk-commons",
+      "context": {
+        "text": "Tax revenue equals about 34 percent of annual economic output. The top tax rate on earnings is 45 percent, starting at about 2 times the average wage. The tax rate on company profits is 25 percent. The minimum wage is about 62 percent of the median full-time wage. Collective agreements cover about 27 percent of employees. An employer needs a fair reason to dismiss an employee with two years of service, must give notice of about one week per year of service up to twelve weeks, and must make a redundancy payment when cutting the job of such an employee.",
+        "sources": [
+          "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+          "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+          "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+          "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-Kingdom-EPL.pdf",
+          "https://www.gov.uk/government/statistics/trade-union-statistics-2024/trade-union-membership-uk-1995-to-2024-statistical-bulletin",
+          "https://www.gov.uk/dismissal",
+          "https://www.gov.uk/redundant-your-rights"
+        ]
+      },
       "events": [
         {
           "id": "finance-law-2025",
@@ -70,6 +101,23 @@
     },
     {
       "id": "de-bundestag",
+      "context": {
+        "text": "Tax revenue equals about 38 percent of annual economic output. The top tax rate on earnings is about 47 percent, starting at about 4 times the average wage. The tax rate on company profits is about 30 percent counting local taxes. The minimum wage is about 50 percent of the median full-time wage. Collective agreements cover about 49 percent of employees. An employer with more than 10 employees needs a recognized reason to dismiss anyone employed over six months, must give notice of 4 weeks to 7 months depending on length of service, and must first hear worker representatives where they exist.",
+        "sources": [
+          "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+          "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+          "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+          "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/Germany-EPL.pdf",
+          "https://www.gesetze-im-internet.de/kschg/__1.html",
+          "https://www.gesetze-im-internet.de/kschg/__23.html",
+          "https://www.gesetze-im-internet.de/bgb/__622.html",
+          "https://www.gesetze-im-internet.de/betrvg/__102.html"
+        ]
+      },
       "events": [
         {
           "id": "investment-tax-law",
@@ -102,6 +150,20 @@
     },
     {
       "id": "fr-assemblee",
+      "context": {
+        "text": "Tax revenue equals about 44 percent of annual economic output. The top tax rate on earnings is about 55 percent, starting at about 13 times the average wage. The tax rate on company profits is about 26 percent. The minimum wage is about 62 percent of the median full-time wage. Collective agreements cover about 98 percent of employees. An employer needs a real and serious reason and a formal procedure to dismiss an employee, must give one to two months' notice after six months of service, and must pay severance of at least a quarter of a month's pay per year of service, with court awards for unfair dismissal capped on a scale.",
+        "sources": [
+          "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+          "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+          "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+          "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/France-EPL.pdf",
+          "https://www.service-public.fr/particuliers/vosdroits/F987"
+        ]
+      },
       "events": [
         {
           "id": "budget-2025",
@@ -135,6 +197,21 @@
     },
     {
       "id": "ca-commons",
+      "context": {
+        "text": "Tax revenue equals about 35 percent of annual economic output. The top tax rate on earnings is about 54 percent in a typical region, counting regional taxes that vary by region, and starts at about 3 times the average wage. The tax rate on company profits is about 26 percent counting regional taxes. The minimum wage is about 49 percent of the median full-time wage. Collective agreements cover about 30 percent of employees. In a typical region an employer may dismiss an employee without a stated reason but must give notice or pay of about one week per year of service, up to eight weeks, and larger employers must also pay severance to long-serving staff.",
+        "sources": [
+          "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+          "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+          "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+          "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+          "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/Canada-EPL.pdf",
+          "https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment",
+          "https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay"
+        ]
+      },
       "events": [
         {
           "id": "income-tax-cut",

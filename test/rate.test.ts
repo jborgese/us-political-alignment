@@ -245,6 +245,17 @@ describe("rateCategory", () => {
     expect(sentText()).not.toContain("event-one")
   })
 
+  it("sends each record its legislature's country context", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    const context = { text: "Public coverage reaches about 90 percent of residents.", sources: [source] }
+    const legislature = { id: "sample-house", context, events: [] }
+    await writeFile(eventsFile(root), JSON.stringify({ legislatures: [legislature] }))
+
+    await rate(root)
+
+    expect(sentText()).toContain("Public coverage reaches about 90 percent of residents.")
+  })
+
   it("rejects a stance on an event its legislature does not have", async () => {
     const root = await writeProject({})
     await writeFile(packetFile(root, "s01"), JSON.stringify({ items: [{ event: "event-one", stance: "Voted against" }] }))
