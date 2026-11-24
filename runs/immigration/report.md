@@ -43,6 +43,38 @@ Question put to the rater: Which record shows stronger support for admitting mor
 | Chip Roy | member | House Freedom Caucus | 7 |
 | anchor-restrictive | anchor |  | 0 |
 
+## Scores when reworded
+
+- Reworded versions scored: 46 of 46
+- Comparisons: 2300
+- Each score is the one the record would have had with that wording in its place.
+
+| Record | Score | Version a | Version b |
+|---|---|---|---|
+| Pramila Jayapal | 93 | 93 | 93 |
+| Pete Aguilar | 85 | 85 | 83 |
+| Congressional Progressive Caucus | 83 | 88 | 81 |
+| Alexandria Ocasio-Cortez | 81 | 83 | 83 |
+| Brad Schneider | 75 | 75 | 75 |
+| Democratic Party | 71 | 71 | 71 |
+| New Democrat Coalition | 68 | 68 | 68 |
+| Blue Dog Coalition | 65 | 65 | 65 |
+| New Democratic Party | 61 | 61 | 61 |
+| Marie Gluesenkamp Perez | 58 | 58 | 58 |
+| Jared Golden | 55 | 55 | 55 |
+| Liberal Party of Canada | 49 | 49 | 49 |
+| CDU/CSU | 45 | 45 | 45 |
+| Labour Party | 42 | 42 | 42 |
+| Rassemblement National | 39 | 39 | 39 |
+| Republican Study Committee | 36 | 36 | 36 |
+| August Pfluger | 32 | 32 | 32 |
+| Andy Harris | 29 | 29 | 29 |
+| Ben Cline | 25 | 25 | 25 |
+| House Freedom Caucus | 19 | 21 | 19 |
+| Reform UK | 19 | 17 | 19 |
+| Republican Party | 12 | 15 | 19 |
+| Chip Roy | 7 | 7 | 7 |
+
 ## Held back from the site
 
 - New Democratic Party: 1 official act, fewer than 3
