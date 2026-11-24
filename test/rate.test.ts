@@ -153,11 +153,11 @@ describe("rateCategory", () => {
   it("waits while the batch is still running", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
     await rate(root)
-    collect.mockResolvedValueOnce({ ended: false, processing: 6 })
+    collect.mockResolvedValueOnce({ ended: false, processing: 4 })
 
     const waiting = await rate(root)
 
-    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", processing: 6 })
+    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", finished: 2, total: 6 })
     expect(await savedRows(root, "comparisons.jsonl")).toEqual([])
     expect(await rate(root)).toMatchObject({ status: "collected", rated: 6 })
   })
@@ -293,6 +293,19 @@ describe("rateStability", () => {
     await rateRewordings(root)
 
     expect(sentText()).toContain("- [Official act] Cast a vote against a budget lowering public coverage by 5 percent.")
+  })
+
+  it("reports how many reworded comparisons have finished while the batch is still running", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
+    await rateFully(root)
+    await rateRewordings(root)
+    collect.mockResolvedValueOnce({ ended: false, processing: 3 })
+
+    const waiting = await rateRewordings(root)
+
+    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", finished: 1, total: 4 })
+    expect(await savedRows(root, "stability.jsonl")).toEqual([])
   })
 
   it("refuses to rate rewordings before the category itself is rated", async () => {
