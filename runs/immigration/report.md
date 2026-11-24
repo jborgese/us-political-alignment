@@ -22,9 +22,9 @@ Question put to the rater: Which record shows stronger support for admitting mor
 | Pete Aguilar | member | New Democrat Coalition | 85 |
 | Congressional Progressive Caucus | caucus | US House | 79 |
 | Brad Schneider | member | New Democrat Coalition | 75 |
-| New Democrat Coalition | caucus | US House | 71 |
-| Blue Dog Coalition | caucus | US House | 68 |
-| Democratic Party | party | United States | 64 |
+| Democratic Party | party | United States | 71 |
+| New Democrat Coalition | caucus | US House | 68 |
+| Blue Dog Coalition | caucus | US House | 64 |
 | Marie Gluesenkamp Perez | member | Blue Dog Coalition | 61 |
 | Jared Golden | member | Blue Dog Coalition | 58 |
 | New Democratic Party | party | Canada | 55 |
