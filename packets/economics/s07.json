@@ -1,0 +1,77 @@
+{
+  "items": [
+    {
+      "slot": "keeps-tax",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 26 percent of annual economic output, the top tax rate on earnings is about 44 percent in a typical city, counting regional and local taxes that vary by place, starting at about 9 times the average wage, and the tax rate on company profits is about 26 percent counting regional taxes.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
+      ]
+    },
+    {
+      "slot": "keeps-rules",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing rules, in which the national minimum wage is about 24 percent of the median full-time wage, with higher minimums set by about 60 percent of regional governments, collective agreements cover about 11 percent of employees, and an employer may dismiss most employees at any time without a stated reason, notice, or severance.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+        "https://www.dol.gov/agencies/whd/minimum-wage/state",
+        "https://www.bls.gov/news.release/union2.nr0.htm",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-States-EPL.pdf"
+      ]
+    },
+    {
+      "event": "budget-law-tax",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced, as one of its lead sponsors, a bill to tax household wealth above about 260 times the median household's wealth at 2 percent a year and above about 5,000 times it at 3 percent, reaching about the richest 0.15 percent of households. Its sponsors estimate it would raise about 1.7 percent of annual economic output a year.",
+      "sources": [
+        "https://jayapal.house.gov/2026/03/26/jayapal-warren-boyle-45-lawmakers-renew-push-for-wealth-tax-on-ultra-millionaires-and-billionaires/",
+        "https://www.warren.senate.gov/?p=28450",
+        "https://www.federalreserve.gov/publications/files/scf23.pdf",
+        "https://www.cbo.gov/publication/61172"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored from its introduction a bill raising the national minimum wage by about 135 percent by 2030 and ending the lower minimums for tipped, young, and disabled workers.",
+      "sources": [
+        "https://democrats-edworkforce.house.gov/media/press-releases/04/08/2025/labor-leaders-introduce-bill-to-raise-minimum-wage"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill that adds penalties for employers that violate workers' organizing rights, bars mandatory anti-union meetings, and lets unions collect fees from every worker they represent.",
+      "sources": [
+        "https://bobbyscott.house.gov/media-center/press-releases/bipartisan-labor-leaders-introduce-bill-protect-workers-right-0"
+      ]
+    }
+  ]
+}
