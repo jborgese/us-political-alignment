@@ -129,6 +129,7 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - Use at most 12 items, chosen for consequence, not for recency or volume. A long record must not win by length.
 - Use the same window for every subject: acts from 3 January 2025 onward. One exception: a national party's platform adopted before the window may serve as its baseline, but only alongside acts in the window that affirm or adjust it, and the record says which.
 - When a subject has no usable evidence in a category, save `{ "items": [] }`. The subject is left out of the rating and listed in the report.
+- Collect a record's own pushes for change, not only its stances on the events: bills it introduced or cosponsored, amendments it moved or voted for, motions it carried. A party out of government gets to vote only on what the government brings, so without these the rater sees its opponents' agenda instead of its own.
 
 ## Reading the report
 
@@ -137,6 +138,8 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - **Anchors in order.** The anchors must come out in the order they were written. When they do not, the scale is not valid and the report withholds every score.
 - **Agreement across orders.** Each pair is rated twice, once in each order. A low share means the rater's answers depend on presentation.
 - **First-listed wins.** A share far from 50% means position bias.
+
+Then compare the foreign parties' order with the Chapel Hill expert survey on the matching variable, such as `immigrate_policy` for immigration or `lrecon` for economics. The survey measures stated positions and the scale measures acts in the period, so single disagreements can be real. A run of reversals, especially between parties in and out of government, means the rater is scoring power to act rather than position: check the weighing and the opposition records before publishing.
 
 Scores run from 0 at the low anchor to 100 at the high anchor. A subject can score outside that range.
 
