@@ -126,7 +126,7 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - For a caucus, file votes its members cast as a bloc under `official_act`, and positions it published to press its party under `influence`.
 - In the slots for what a record keeps in place, describe the guarantee in the same words for every record from one country, and say who it covers.
 - Use at most 12 items, chosen for consequence, not for recency or volume. A long record must not win by length.
-- Use the same window for every subject: acts from 3 January 2025 onward.
+- Use the same window for every subject: acts from 3 January 2025 onward. One exception: a national party's platform adopted before the window may serve as its baseline, but only alongside acts in the window that affirm or adjust it, and the record says which.
 - When a subject has no usable evidence in a category, save `{ "items": [] }`. The subject is left out of the rating and listed in the report.
 
 ## Reading the report

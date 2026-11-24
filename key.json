@@ -416,6 +416,30 @@
         "Blue Dogs",
         "Blue Dog"
       ]
+    },
+    {
+      "id": "s22",
+      "name": "Democratic Party",
+      "kind": "party",
+      "group": "United States",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Democrats",
+        "Democratic"
+      ]
+    },
+    {
+      "id": "s23",
+      "name": "Republican Party",
+      "kind": "party",
+      "group": "United States",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Republicans",
+        "GOP"
+      ]
     }
   ]
 }

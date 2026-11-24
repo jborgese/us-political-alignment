@@ -102,18 +102,41 @@
         {
           "id": "retirement-age-suspension",
           "slot": "changes-income",
-          "text": "a suspension of a law raising the retirement age, which freezes that age until 2028",
+          "text": "a suspension of a law raising the retirement age, which freezes that age at 62 years and 9 months until 2028 and lets people born from 1964 to 1968, about 5 percent of residents, retire three to six months earlier",
           "sources": [
             "https://nosparlementaires.fr/actualites/suspension-retraites-1er-septembre-rn-111-voix-lfi-contre",
-            "https://datan.fr/votes/legislature-17/vote_3684"
+            "https://datan.fr/votes/legislature-17/vote_3684",
+            "https://www.lafinancepourtous.com/2025/12/18/budget-de-la-securite-sociale-2026-ce-qui-va-changer-pour-les-retraites/",
+            "https://lcp.fr/actualites/suspension-de-la-reforme-des-retraites-qui-beneficiera-de-la-mesure-proposee-par",
+            "https://www.insee.fr/fr/statistiques/8719824"
           ]
         },
         {
           "id": "social-insurance-budget",
           "slot": "changes-income",
-          "text": "the annual social insurance budget, which carried that suspension and dropped a planned freeze on pensions and minimum benefits",
+          "text": "the annual social insurance budget, which carried that suspension and dropped a planned freeze on pensions and minimum benefits, so that they rose about 0.9 percent in line with prices",
           "sources": [
-            "https://www.commons-media.fr/economie/plfss-2026-adopte-definitivement-par-lassemblee-nationale-victoire-tactique-de-sebastien-lecornu-avec-concessions-sociales-et-suspens-sur-le-budget-et-le-risque-de-recours-au-49-3/"
+            "https://www.commons-media.fr/economie/plfss-2026-adopte-definitivement-par-lassemblee-nationale-victoire-tactique-de-sebastien-lecornu-avec-concessions-sociales-et-suspens-sur-le-budget-et-le-risque-de-recours-au-49-3/",
+            "https://www.lafinancepourtous.com/2025/12/18/budget-de-la-securite-sociale-2026-ce-qui-va-changer-pour-les-retraites/"
+          ]
+        },
+        {
+          "id": "social-insurance-budget-health",
+          "slot": "changes-health",
+          "text": "the same annual social insurance budget, which raised the national target for public health spending by about 3 percent over the previous year",
+          "sources": [
+            "https://lcp.fr/actualites/les-principales-mesures-du-budget-de-la-secu-definitivement-adopte-par-l-assemblee",
+            "https://lcp.fr/actualites/adoption-definitive-du-budget-de-la-securite-sociale-qui-a-vote-quoi-lors-de-l-ultime"
+          ]
+        },
+        {
+          "id": "negotiated-exit-benefits",
+          "slot": "changes-income",
+          "text": "a law that cut the longest unemployment benefit period for people who leave a job by mutual agreement, from 18 to 15 months for those under 55 and by up to about a quarter for older workers. Such exits account for over a quarter of unemployment benefit spending, and the government estimated the saving at up to about 3 percent of that spending",
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/scrutins/7260",
+            "https://lcp.fr/actualites/ruptures-conventionnelles-pourquoi-le-gouvernement-veut-reduire-leur-duree-d",
+            "https://www.lexisveille.fr/rupture-conventionnelle-et-assurance-chomage-le-projet-de-loi-est-definitivement-adopte"
           ]
         }
       ]
@@ -133,10 +156,12 @@
         {
           "id": "annual-budget-meals",
           "slot": "changes-income",
-          "text": "the same annual budget, which also made a national school meals program permanent",
+          "text": "the same annual budget, which also made a national school meals program permanent, reaching up to 400,000 more children a year, about 1 percent of residents",
           "sources": [
             "https://www.canadianaffairs.news/2025/11/04/carney-budget-taps-brakes-on-new-social-programs/",
-            "https://islandsocialtrends.ca/federal-budget-2025-passes-by-slim-margin/"
+            "https://islandsocialtrends.ca/federal-budget-2025-passes-by-slim-margin/",
+            "https://www.canada.ca/en/employment-social-development/news/2026/06/backgrounder-federal-vision-for-a-national-school-food-program.html",
+            "https://www150.statcan.gc.ca/n1/pub/71-607-x/71-607-x2018005-eng.htm"
           ]
         }
       ]

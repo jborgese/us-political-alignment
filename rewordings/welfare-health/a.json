@@ -17,7 +17,13 @@
     },
     "ca-commons": {
       "annual-budget-health": "the annual budget, under which the public dental plan, public drug coverage, and subsidized child care carry on with no new funding added for them",
-      "annual-budget-meals": "the same annual budget, under which a national school meals program also becomes permanent"
+      "annual-budget-meals": "the same annual budget, under which a national school meals program also becomes permanent, reaching up to 400,000 more children a year, about 1 percent of residents"
+    },
+    "fr-assemblee": {
+      "retirement-age-suspension": "a pause in a law that was raising the retirement age, under which that age stays at 62 years and 9 months until 2028, so that people born from 1964 to 1968, about 5 percent of residents, can retire three to six months sooner",
+      "social-insurance-budget": "the annual social insurance budget, under which that pause took effect and a planned freeze on pensions and minimum benefits was abandoned, so that they rose about 0.9 percent with prices",
+      "social-insurance-budget-health": "the same annual social insurance budget, under which the national target for public health spending rose by about 3 percent from the previous year",
+      "negotiated-exit-benefits": "a law under which people who leave a job by mutual agreement can draw unemployment benefits for a shorter maximum period, from 18 down to 15 months for those under 55 and up to about a quarter less for older workers. Such exits make up over a quarter of unemployment benefit spending, and the government put the saving at up to about 3 percent of that spending"
     }
   },
   "records": {
@@ -208,6 +214,55 @@
       "All of its members cast votes against",
       "Put out a statement that opposed the budget law on two grounds: that it cuts public health coverage for low-income residents and that it adds to public debt.",
       "Gave its endorsement to a bill that would make the expanded premium subsidies permanent and undo the reductions in health coverage made by the budget law."
+    ],
+    "s17": [
+      "Its new leader ran for the leadership promising to keep the existing public insurance for doctor and hospital care and to widen it to cover prescription drugs and dental, vision, hearing, and mental health care.",
+      "Its new leader ran for the leadership promising wider unemployment benefits within the existing income support, under which mandatory pension schemes pay out about 45 percent of an average worker's net earnings, unemployment benefits cover about 48 percent of an average earner's net income in the second month without work, and a single adult who has no other income is guaranteed about 18 percent of the median income, counting housing support: benefits of 75 percent of previous earnings, paid for up to 104 weeks, with more workers eligible.",
+      "Of its seven legislators, five voted against and two abstained on",
+      "Its leaders publicly pressed the government two times to sign public drug coverage agreements with every remaining regional government, to release the money promised for them, and to complete the program's first phase.",
+      "Its new leader asked for funding to take public drug coverage nationwide after the government's spring economic update provided none.",
+      "Of its seven legislators, five voted against and two abstained on",
+      "Its legislators put forward two bills to bring mental health and addiction services under the universal public insurance for doctor and hospital care."
+    ],
+    "s18": [
+      "Says that the tax-funded health service will always remain free at the point of use, while its leader has said more than once that the way the service is paid for should be reconsidered and has been open to other ways of funding it.",
+      "Promised to keep the rule under which the public pension rises each year by the highest of prices, wages, or 2.5 percent, within the existing income support, under which mandatory pension schemes pay out about 54 percent of an average worker's net earnings, unemployment benefits cover about 33 percent of an average earner's net income in the second month without work, and a single adult who has no other income is guaranteed about 50 percent of the median income, counting housing support. It said cuts to working-age benefits would pay for that rule.",
+      "All three of its legislators who voted cast votes against",
+      "Of its eight legislators, five voted against and two voted for",
+      "Announced a plan to end the main disability benefit and the health-related supplement to the main benefit for working-age adults, putting in their place a regularly reviewed allowance for the most severely ill and locally run support accounts, so as to lower benefit spending. On its own figures, about 57 percent of the people currently receiving those payments would see them changed or withdrawn.",
+      "Its deputy leader put forward a bill to restrict the main working-age benefit to citizens. Official figures show about 15 percent of recipients are not citizens."
+    ],
+    "s20": [
+      "Its alternative budget proposed leaving unchanged the public health insurance covering everyone who works or lives legally in the country. The only health measure reported in it was turning medical aid for undocumented migrants into emergency-only care.",
+      "Its alternative budget proposed no cut for citizens to the existing income support, under which mandatory pension schemes pay out about 70 percent of an average worker's net earnings, unemployment benefits cover about 68 percent of an average earner's net income in the second month without work, and a single adult who has no other income is guaranteed about 36 percent of the median income, counting housing support. It proposed letting benefits rise with prices instead of a planned freeze.",
+      "Its legislators all voted for",
+      "Its legislators opposed",
+      "Its legislators opposed",
+      "115 of its 122 legislators supported, with none opposed,",
+      "Published an alternative budget that proposed ending non-contributory benefits for foreigners who have not worked full-time for at least five years.",
+      "Its leaders set out a plan to lower the retirement age to between 60 and 62, while reducing a pension by 5 percent for each missing quarter of contributions, up to half of it, cutting the pension rights earned during unemployment, and adding a second, mandatory pension funded by savings for workers aged 52 or under."
+    ],
+    "s22": [
+      "Its legislators vote to leave in place the existing system, under which public health coverage is guaranteed to older, disabled, and low-income residents, most others depend on employer or subsidized private insurance, and about 8 percent of residents are uninsured.",
+      "Its legislators vote to leave in place the existing income support, under which mandatory pension schemes pay out about 51 percent of an average worker's net earnings, unemployment benefits cover about 35 percent of an average earner's net income in the second month without work, and a single adult who has no other income is guaranteed about 6 percent of the median income, counting housing support.",
+      "Its legislators in both chambers all voted against",
+      "Its legislators all voted for",
+      "Its legislators in the upper chamber held back the votes needed to fund the government for 43 days to press for an extension of the expanded premium subsidies, ended the standoff with nothing more than a promise of a vote, and then all voted for a three-year extension that did not get the votes it needed.",
+      "Its legislators who voted all voted against",
+      "Its legislators in both chambers all voted against",
+      "Its national platform, adopted before this period, promises to make the expanded premium subsidies permanent and to bring public health coverage to the 2.8 million uninsured low-income adults it leaves out, under 1 percent of residents. Its votes and funding standoff in the period, shown above, affirm the first promise.",
+      "That platform also opposes any cut to the public pension and promises higher benefits paid for by raising taxes on the top earners."
+    ],
+    "s23": [
+      "While in government, leaves in place the existing system, under which public health coverage is guaranteed to older, disabled, and low-income residents, most others depend on employer or subsidized private insurance, and about 8 percent of residents are uninsured, minus the reductions listed under changes.",
+      "While in government, leaves in place the existing income support, under which mandatory pension schemes pay out about 51 percent of an average worker's net earnings, unemployment benefits cover about 35 percent of an average earner's net income in the second month without work, and a single adult who has no other income is guaranteed about 6 percent of the median income, counting housing support, minus the reductions listed under changes.",
+      "Its national platform, adopted before this period, promises no cuts to the public pension or to public health coverage for older residents, and no change in the retirement age. The budget law it passed in the period, listed below, cut none of that coverage's benefits for citizens.",
+      "While in government, adopted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
+      "While in government, issued a rule that shortens enrollment periods and tightens eligibility checks for subsidized individually purchased health insurance. By the official estimate, about 0.2 to 0.6 percent of residents could lose their coverage as a result.",
+      "17 of its legislators supported, and 196 opposed,",
+      "216 of its legislators supported, and 1 opposed,",
+      "While in government, adopted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
+      "Its head of government urged legislators to send health subsidy money straight to people, perhaps into personal health savings accounts, rather than to insurers, and to make hospitals post all their prices."
     ]
   }
 }
