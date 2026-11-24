@@ -1,0 +1,185 @@
+{
+  "legislatures": [
+    {
+      "id": "us-house",
+      "events": [
+        {
+          "id": "budget-law-energy",
+          "slot": "changes-energy",
+          "text": "a budget law ending tax credits for new wind and solar power plants that start construction after mid-2026 or start operating after 2027 and for buying electric vehicles, canceling unspent public funds for clean energy, and requiring two offshore oil and gas lease sales a year through 2040, with the tax changes worth about 0.17 percent of a year's economic output a year over ten years by the official estimate",
+          "sources": [
+            "https://clerk.house.gov/evs/2025/roll190",
+            "https://www.everycrsreport.com/files/2025-12-12_IN12624_5ec28812fa0a12c3d36698e8138e350a14e55e78.html",
+            "https://www.everycrsreport.com/reports/IN12625.html",
+            "https://www.americanactionforum.org/insight/evaluating-the-obbbas-energy-provisions/",
+            "https://www.everycrsreport.com/files/2025-12-04_R44692_70526995cb5d02e01f9ad466cdced4dac5ca7e49.pdf",
+            "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
+          ]
+        },
+        {
+          "id": "vehicle-waiver-revocation",
+          "slot": "changes-climate",
+          "text": "a resolution, which became law, revoking one regional government's authority to require that all new cars sold there be zero-emission by 2035, a rule several other regional governments had adopted, which that regional government estimated would cut carbon dioxide from cars there by about 395 million tons from 2026 to 2040, about 6 percent of one year's national emissions",
+          "sources": [
+            "https://clerk.house.gov/evs/2025/roll114",
+            "https://www.congress.gov/119/plaws/publ16/PLAW-119publ16.htm",
+            "https://ww2.arb.ca.gov/node/21981",
+            "https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks"
+          ]
+        },
+        {
+          "id": "methane-fee-repeal",
+          "slot": "changes-climate",
+          "text": "a resolution, which became law, ending a fee on methane emissions above set limits from oil and gas facilities, whose repeal the official estimate put at about 0.002 percent of a year's economic output a year in lost revenue",
+          "sources": [
+            "https://clerk.house.gov/evs/2025/roll052",
+            "https://www.congress.gov/119/bills/hjres35/BILLS-119hjres35enr.htm",
+            "https://www.taxpayer.net/energy-natural-resources/house-votes-to-repeal-methane-waste-emissions-charge/",
+            "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
+          ]
+        },
+        {
+          "id": "review-limits-bill",
+          "slot": "changes-nature",
+          "text": "a bill, passed by the lower chamber but not yet law, limiting national environmental reviews of projects to effects they closely cause, adding deadlines for agency decisions, and cutting the time to challenge a review in court from six years to 150 days, with no official estimate of how many reviews it covers",
+          "sources": [
+            "https://clerk.house.gov/evs/2025/roll356",
+            "https://www.everycrsreport.com/reports/IF13180.html",
+            "https://www.everycrsreport.com/files/2026-10-09_R49485_016e876a4c7f489af4bc882e3fdde722e4e257cd.html"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uk-commons",
+      "events": [
+        {
+          "id": "carbon-budget-order",
+          "slot": "changes-climate",
+          "text": "a legal limit on the country's greenhouse gas emissions for 2038 to 2042, set to reach 87 percent below 1990 levels by 2040, which the government's assessment put at a net investment cost of about 1.2 percent of a year's economic output a year",
+          "sources": [
+            "https://votes.theyworkforyou.com/decisions/division/commons/2026-06-24/41",
+            "https://www.carbonbrief.org/qa-how-uks-seventh-carbon-budget-will-deliver-865bn-in-economic-benefits",
+            "https://parallelparliament.co.uk/debate/2026-06-02/commons/written-statements/setting-the-seventh-carbon-budget"
+          ]
+        },
+        {
+          "id": "planning-infrastructure-law",
+          "slot": "changes-nature",
+          "text": "a law shortening approval of large infrastructure, including power plants and grid lines, and letting builders pay into a national nature fund instead of meeting habitat protection duties site by site, which the government expected to speed about 150 decisions on major projects within the legislative term and valued at about 0.1 percent of a year's economic output over ten years",
+          "sources": [
+            "https://votes.theyworkforyou.com/decisions/division/commons/2025-06-10/223",
+            "https://assets.publishing.service.gov.uk/media/6819bf013c3bba3526f03b99/Overarching_IA_-_Planning_and_Infrastructure_Bill.pdf",
+            "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/"
+          ]
+        },
+        {
+          "id": "nuclear-plant-decision",
+          "slot": "changes-energy",
+          "text": "a final government decision to build a new 3.2-gigawatt nuclear power plant, with public funding of about 0.5 percent of a year's economic output, enough power for the equivalent of about 6 million homes",
+          "sources": [
+            "https://www.gov.uk/government/news/sizewell-c-gets-green-light-with-final-investment-decision",
+            "https://world-nuclear-news.org/articles/uk-government-announces-gbp142-billion-for-sizewell-c",
+            "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-bundestag",
+      "events": [
+        {
+          "id": "climate-fund-amendment",
+          "slot": "changes-climate",
+          "text": "a constitutional amendment creating a debt-financed infrastructure fund of about 11 percent of a year's economic output to be spent over twelve years, of which about 2.3 percent of a year's economic output goes to the fund for cutting emissions, and adding net zero emissions by 2045 to the fund's purpose",
+          "sources": [
+            "https://www.bundestag.de/dokumente/textarchiv/2025/kw12-de-grundgesetz-1056916",
+            "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/01/PD26%5F017%5F811.html"
+          ]
+        },
+        {
+          "id": "heating-law-rewrite",
+          "slot": "changes-climate",
+          "text": "a law ending the requirement that new heating systems run on at least 65 percent renewable energy and allowing new oil and gas heating if it burns a rising share of low-carbon fuel, from 10 percent in 2029 to 60 percent in 2040, which the government said saves households about 0.1 percent of a year's economic output a year and whose effect on emissions it said it could not yet estimate",
+          "sources": [
+            "https://www.bundestag.de/dokumente/textarchiv/2026/kw28-de-heizungsgesetz-1194534",
+            "https://www.bundestag.de/presse/hib/kurzmeldungen-1184060",
+            "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/01/PD26%5F017%5F811.html"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-assemblee",
+      "events": [
+        {
+          "id": "energy-programming-bill",
+          "slot": "changes-energy",
+          "text": "a bill setting the national energy plan, which would have started building about 14 new nuclear reactors to add 27 gigawatts by 2050, about 43 percent more than current nuclear capacity, and, as amended, halted all new wind and solar power projects, and which the lower chamber rejected",
+          "sources": [
+            "https://www.banquedesterritoires.fr/programmation-energetique-la-proposition-de-loi-gremillet-largement-rejetee-par-les-deputes",
+            "https://www.connaissancedesenergies.org/afp/lassemblee-les-deputes-approuvent-une-relance-massive-du-nucleaire-250618",
+            "https://www.banquedesterritoires.fr/un-moratoire-sur-leolien-et-le-solaire-fait-derailler-lexamen-de-la-proposition-de-loi-de",
+            "https://www.hellowatt.fr/blog/assemblee-vote-contre-moratoire-enr/"
+          ]
+        },
+        {
+          "id": "low-emission-zones-repeal",
+          "slot": "changes-nature",
+          "text": "a law abolishing the zones in 25 urban areas where older, more polluting vehicles may be barred, with restrictions in force in the two largest, which the constitutional court later struck down",
+          "sources": [
+            "https://www.maire-info.com/lois/avenir-zfe-desormais-suspendu-une-decision-du-conseil-constitutionnel-article-30693",
+            "https://www.statistiques.developpement-durable.gouv.fr/le-parc-de-vehicules-au-1er-janvier-2025-dans-les-territoires-zfe-et-les-territoires-de-vigilance",
+            "https://lcp.fr/actualites/zfe-le-conseil-constitutionnel-censure-la-suppression-des-zones-a-faibles-emissions"
+          ]
+        },
+        {
+          "id": "farm-pesticide-law",
+          "slot": "changes-nature",
+          "text": "a law reauthorizing a banned insecticide of a class that harms bees, a provision the constitutional court struck down, raising the herd sizes above which livestock farms face fuller environmental permitting, for example from 151 to 201 dairy cows, and presuming new farm water reservoirs to be of major public interest",
+          "sources": [
+            "https://www.banquedesterritoires.fr/agriculture-le-parlement-adopte-definitivement-la-loi-duplomb",
+            "https://www.reussir.fr/loi-duplomb-icpe-les-decrets-relevant-les-seuils-de-declaration-environnementale-des-elevages-enfin",
+            "https://reporterre.net/Loi-Duplomb-la-reintroduction-de-l-acetamipride-censuree-par-le-Conseil-constitutionnel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca-commons",
+      "events": [
+        {
+          "id": "consumer-carbon-price-end",
+          "slot": "changes-climate",
+          "text": "the end of the carbon price on fuels bought by households and businesses, which the government estimated forgoes emission cuts of about 12.6 million tons from 2025 to 2031, about 1.8 percent of one year's national emissions",
+          "sources": [
+            "https://gazette.gc.ca/rp-pr/p2/2025/2025-03-15-x2/html/sor-dors107-eng.html",
+            "https://www.canada.ca/en/environment-climate-change/news/2025/03/2025-national-inventory-report-supports-canadas-climate-plan-is-working-emissions-have-dropped-to-their-lowest-level-in-27-years-excluding-pandemic.html"
+          ]
+        },
+        {
+          "id": "major-projects-law",
+          "slot": "changes-nature",
+          "text": "a law letting the cabinet name projects of national interest, which are then deemed approved under national laws on environmental assessment, fisheries, and species at risk, subject to conditions it sets, with projects worth about 4 percent of a year's economic output sent to the office it created in its first five months",
+          "sources": [
+            "https://globalnews.ca/news/11251166/house-of-commons-summer-break-bill-c5-vote",
+            "https://laws-lois.justice.gc.ca/eng/acts/B-9.89/page-4.html",
+            "https://www.canada.ca/en/privy-council/major-projects-office/advancing-nation-building-projects/projects-designated-under-building-canada-act.html",
+            "https://www.pm.gc.ca/en/news/news-releases/2025/11/13/prime-minister-carney-announces-second-tranche-nation-building-projects",
+            "https://budget.canada.ca/2025/report-rapport/anx1-en.html"
+          ]
+        },
+        {
+          "id": "regional-energy-accord",
+          "slot": "changes-climate",
+          "text": "an agreement with one regional government dropping the planned cap on oil and gas emissions, which was to cut a further 13.4 million tons by 2030 to 2032, about 2 percent of one year's national emissions, and suspending clean electricity rules in that region, while it raises its carbon price on industry to an effective 130 per ton and backs a new oil export pipeline tied to carbon capture",
+          "sources": [
+            "https://www.pm.gc.ca/en/news/backgrounders/2025/11/27/canada-alberta-memorandum-understanding",
+            "https://www.canada.ca/en/environment-climate-change/news/2024/11/oil-and-gas-greenhouse-gas-pollution-cap--backgrounder-to-cgi-regulations.html",
+            "https://www.canada.ca/en/environment-climate-change/news/2025/03/2025-national-inventory-report-supports-canadas-climate-plan-is-working-emissions-have-dropped-to-their-lowest-level-in-27-years-excluding-pandemic.html"
+          ]
+        }
+      ]
+    }
+  ]
+}

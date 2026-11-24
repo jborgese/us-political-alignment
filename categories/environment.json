@@ -1,0 +1,115 @@
+{
+  "title": "Environment",
+  "question": "Which record shows stronger support for cutting greenhouse gas emissions and protecting nature, even at some cost to growth or energy prices?",
+  "weighing": "Judge the changes a record supports or opposes, whether it enacted them in government, voted on them, pressed for them, or seeks them, by their direction and size. Judge energy measures by their effect on emissions: building or keeping low-emission power counts toward cutting emissions whether it is nuclear, wind, solar, or another source, and halting it counts against. Judge the size of what a record supports, not what it had the power to achieve: a record that backs every change in one direction put before it and seeks larger ones supports more change in that direction than one that enacted smaller changes. The tier shows how firmly an item commits the actor, not how large the change is; where a record's items point in opposite directions, the higher tier governs. A vote against a change counts as support for what the change would have removed, unless the record shows it opposed the change for not going far enough, for example by backing stricter or wider versions of it; then it counts as support for going further. The environmental rules a record inherited are not part of its position.",
+  "highPole": "emissions cut faster and nature protected more, even at some cost to growth or energy prices",
+  "lowPole": "growth and cheap energy put first, with climate and nature rules cut back",
+  "slots": [
+    {
+      "id": "changes-climate",
+      "heading": "Changes to emissions limits, carbon pricing, and public spending on cutting emissions in the period"
+    },
+    {
+      "id": "changes-energy",
+      "heading": "Changes to support for or limits on fossil, nuclear, and renewable energy in the period"
+    },
+    {
+      "id": "changes-nature",
+      "heading": "Changes to pollution limits, nature protection, and environmental review in the period"
+    },
+    {
+      "id": "seeks",
+      "heading": "Further changes it seeks"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "anchor-protective",
+      "items": [
+        {
+          "slot": "changes-climate",
+          "tier": "official_act",
+          "text": "Voted for a law setting a legal limit that cuts national greenhouse gas emissions by 90 percent within fifteen years and tripling the carbon price on all fuels, raising about 2 percent of a year's economic output a year."
+        },
+        {
+          "slot": "changes-energy",
+          "tier": "official_act",
+          "text": "Voted for a law ending new oil, gas, and coal extraction permits and tripling public support for wind, solar, and nuclear power, to about 1 percent of a year's economic output a year."
+        },
+        {
+          "slot": "changes-nature",
+          "tier": "official_act",
+          "text": "Voted for a law closing 30 percent of the country's land and coastal waters to new mining, drilling, and building."
+        },
+        {
+          "slot": "changes-nature",
+          "tier": "official_act",
+          "text": "Voted against a law shortening environmental reviews of large projects and limiting the time to challenge them in court."
+        },
+        {
+          "slot": "seeks",
+          "tier": "statement",
+          "text": "Pledged to end sales of new cars that burn fossil fuel within five years."
+        }
+      ]
+    },
+    {
+      "id": "anchor-mixed",
+      "items": [
+        {
+          "slot": "changes-climate",
+          "tier": "official_act",
+          "text": "Voted for a law raising the carbon price on industry by about 20 percent while removing it from household heating and motor fuel."
+        },
+        {
+          "slot": "changes-energy",
+          "tier": "official_act",
+          "text": "Voted for a law funding two new nuclear reactors and opening new offshore areas to oil and gas drilling, each adding about 2 percent to national energy supply."
+        },
+        {
+          "slot": "changes-nature",
+          "tier": "official_act",
+          "text": "Voted for a law tightening limits on river pollution from farms by about 15 percent while exempting farms below a set size."
+        },
+        {
+          "slot": "changes-nature",
+          "tier": "official_act",
+          "text": "Voted against a law adding protected status to about 2 percent of the country's coastline."
+        }
+      ],
+      "emptySlots": [
+        "seeks"
+      ]
+    },
+    {
+      "id": "anchor-deregulatory",
+      "items": [
+        {
+          "slot": "changes-climate",
+          "tier": "official_act",
+          "text": "Voted for a law repealing every legal limit on greenhouse gas emissions and abolishing the carbon price."
+        },
+        {
+          "slot": "changes-energy",
+          "tier": "official_act",
+          "text": "Voted for a law ending all public support for wind and solar power, halting new wind and solar projects, and opening all public land and waters to oil, gas, and coal extraction."
+        },
+        {
+          "slot": "changes-nature",
+          "tier": "official_act",
+          "text": "Voted for a law removing protection from half of the country's protected areas and ending environmental review of energy projects."
+        },
+        {
+          "slot": "changes-nature",
+          "tier": "official_act",
+          "text": "Voted against a law tightening limits on soot from power plants."
+        },
+        {
+          "slot": "seeks",
+          "tier": "influence",
+          "text": "Publicly urged fellow legislators to withdraw from the international climate agreement and stop measuring national emissions."
+        }
+      ]
+    }
+  ]
+}
