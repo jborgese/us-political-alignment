@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced, with a legislator from the other main party, a bill capping credit card interest rates at 10 percent, less than half the current average of about 24 percent.",
+      "sources": [
+        "https://ocasio-cortez.house.gov/media/press-releases/ocasio-cortez-luna-introduce-bill-cap-credit-card-interest-rates-10"
+      ]
+    }
+  ]
+}

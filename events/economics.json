@@ -1,0 +1,162 @@
+{
+  "legislatures": [
+    {
+      "id": "us-house",
+      "events": [
+        {
+          "id": "budget-law-tax",
+          "slot": "changes-tax",
+          "text": "a budget law that cut national tax revenue by about 1.25 percent of annual economic output a year over ten years, mainly by making permanent lower tax rates on earnings and business income that were due to expire, raising the amount of inherited wealth free of tax, and adding deductions for tips and overtime pay through 2028",
+          "sources": [
+            "https://www.cbo.gov/publication/61570",
+            "https://www.cbo.gov/publication/61172",
+            "https://www.cbh.com/insights/articles/2025-final-budget-reconciliation-bill-a-closer-look/"
+          ]
+        },
+        {
+          "id": "overdraft-rule-repeal",
+          "slot": "changes-rules",
+          "text": "a repeal of a rule that would have capped the fees large banks and credit unions charge on overdrawn accounts at a low fixed amount or at their cost. By the regulator's figures, about one in six households pay such fees",
+          "sources": [
+            "https://www.everycrsreport.com/reports/IN12513.html",
+            "https://www.consumerfinance.gov/about-us/newsroom/cfpb-closes-overdraft-loophole-to-save-americans-billions-in-fees/"
+          ]
+        },
+        {
+          "id": "federal-bargaining-bill",
+          "slot": "changes-rules",
+          "text": "a bill restoring the right to bargain collectively to national government employees at agencies where orders of the head of government had removed it. By government data, the share of national government employees represented by a union fell from about 56 to about 38 percent in the year the orders took effect",
+          "sources": [
+            "https://www.congress.gov/119/bills/hr2550/BILLS-119hr2550eh.htm",
+            "https://data.opm.gov/explore-data/analytics/labor-unions-and-bargaining-units",
+            "https://marylandmatters.org/2026/01/09/opm-data-overhaul-reveals-deep-drops-in-federal-jobs-union-membership-telework/"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uk-commons",
+      "events": [
+        {
+          "id": "finance-law-2025",
+          "slot": "changes-tax",
+          "text": "a finance law that raised tax rates on investment gains, added sales tax to private school fees, raised the extra purchase tax on second homes, and replaced a rule that let some long-term residents avoid tax on income kept abroad, raising tax revenue by about 0.15 percent of annual economic output by 2030",
+          "sources": [
+            "https://bills.parliament.uk/bills/3873/stages",
+            "https://www.gov.uk/government/publications/autumn-budget-2024/autumn-budget-2024-html",
+            "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/"
+          ]
+        },
+        {
+          "id": "finance-law-2026",
+          "slot": "changes-tax",
+          "text": "a finance law that keeps income tax thresholds fixed for three more years, raises tax rates on dividend, savings, and property income by 2 points, and applies inheritance tax to unused pension savings and to more farm and business assets, raising tax revenue by about 0.35 percent of annual economic output by 2030",
+          "sources": [
+            "https://www.legislation.gov.uk/ukpga/2026/11/contents",
+            "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/",
+            "https://www.gov.uk/government/publications/autumn-budget-2024/autumn-budget-2024-html"
+          ]
+        },
+        {
+          "id": "employment-rights-law",
+          "slot": "changes-rules",
+          "text": "a law that protects employees against unfair dismissal after six months of service instead of two years, pays sick pay from the first day of illness, gives workers on variable hours a right to guaranteed hours, limits dismissing and rehiring staff on worse terms, and eases rules on union organizing and strikes. The government estimated that it gives new rights to about 60 percent of workers",
+          "sources": [
+            "https://assets.publishing.service.gov.uk/media/695d3ebfbd1c076f787e7399/employment-rights-act-2025-economic-analysis.pdf",
+            "https://cms.law/en/gbr/legal-updates/important-changes-for-uk-employers-the-employment-rights-act-2025"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "de-bundestag",
+      "events": [
+        {
+          "id": "investment-tax-law",
+          "slot": "changes-tax",
+          "text": "a law cutting the tax rate on company profits by 5 points in steps from 2028 to 2032, from about 30 to about 25 percent counting local taxes, and allowing faster deduction of investment costs until 2027. The official estimate puts its cost at up to about 0.25 percent of annual economic output a year",
+          "sources": [
+            "https://www.bundestag.de/presse/hib/kurzmeldungen-1084334",
+            "https://www.bundesregierung.de/breg-de/schwerpunkte/wirksam-regieren/wachstumsbooster-2351752",
+            "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/01/PD26%5F017%5F811.html"
+          ]
+        },
+        {
+          "id": "tax-amendment-law",
+          "slot": "changes-tax",
+          "text": "a tax law that permanently cut the sales tax on restaurant meals from 19 to 7 percent and raised the deduction for commuting costs. The official estimate puts its cost at about 0.1 percent of annual economic output a year",
+          "sources": [
+            "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-steueraenderungsgesetz-1128142"
+          ]
+        },
+        {
+          "id": "procurement-pay-law",
+          "slot": "changes-rules",
+          "text": "a law requiring companies that carry out national government contracts above a set value to give their workers the pay and conditions of the relevant collective agreements. The government counted about 16,000 such contracts a year",
+          "sources": [
+            "https://www.bundestag.de/dokumente/textarchiv/2026/kw09-de-tariftreuegesetz-1149750",
+            "https://dserver.bundestag.de/btd/21/019/2101941.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fr-assemblee",
+      "events": [
+        {
+          "id": "budget-2025",
+          "slot": "changes-tax",
+          "text": "an annual budget, passed without a vote on its text, that added a temporary surtax on the profits of about 400 companies with the largest revenue and a minimum 20 percent tax rate on the highest incomes, raising tax revenue by about 0.3 percent of annual economic output",
+          "sources": [
+            "https://lcp.fr/actualites/le-budget-2025-definitivement-adopte-par-le-parlement-que-contient-le-projet-de-loi-de",
+            "https://www.insee.fr/fr/statistiques/8988797"
+          ]
+        },
+        {
+          "id": "budget-2026",
+          "slot": "changes-tax",
+          "text": "the next annual budget, also passed without a vote on its text, that extended that surtax for a second year to fewer companies and added a 20 percent tax on luxury assets held through family holding companies. An unofficial estimate puts the surtax's yield at about 0.25 percent of annual economic output",
+          "sources": [
+            "https://bofip.impots.gouv.fr/bofip/15092-PGP.html/ACTU-2026-00097",
+            "https://www.taxspoc.com/articles/french-finance-act-2026-tax-changes/",
+            "https://qualifisc.com/en/tax-updates-insights/a-hard-won-2026-budget-the-key-takeaways/"
+          ]
+        },
+        {
+          "id": "wealth-floor-bill",
+          "slot": "changes-tax",
+          "text": "a bill setting a minimum annual tax of 2 percent of wealth on fortunes above about 500 times the median household's wealth, passed by the lower chamber and rejected by the upper chamber. A legislative committee estimated its yield at about 0.1 percent of annual economic output, and its author at about 0.7 percent",
+          "sources": [
+            "https://www.assemblee-nationale.fr/dyn/17/textes/l17t0058_texte-adopte-provisoire",
+            "https://www.senat.fr/fileadmin/cru-1750816532/Commissions/Finances/2024-2025/Textes_legislatifs/Essentiel_PPL_IPF_Post_com.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ca-commons",
+      "events": [
+        {
+          "id": "income-tax-cut",
+          "slot": "changes-tax",
+          "text": "a law cutting the lowest income tax rate from 15 to 14 percent. The official estimate puts its cost at about 0.15 percent of annual economic output a year, with the savings in amount rising with income up to the second bracket",
+          "sources": [
+            "https://www.pbo-dpb.ca/en/publications/LEG-2526-002-S--reducing-lowest-federal-personal-income-tax-rate-14-per-cent--reduire-14-taux-plus-bas-impot-federal-revenu-particuliers",
+            "https://www.canada.ca/en/department-finance/news/2026/03/legislation-to-make-life-more-affordable-receives-royal-assent.html",
+            "https://budget.canada.ca/2025/report-rapport/anx1-en.html"
+          ]
+        },
+        {
+          "id": "budget-law-investment",
+          "slot": "changes-tax",
+          "text": "a budget law that lets businesses deduct the cost of new investment faster. The official estimate puts its cost at about 0.1 percent of annual economic output a year over five years",
+          "sources": [
+            "https://www.canada.ca/en/department-finance/news/2026/03/legislation-passes-to-implement-budget-2025-canada-strong.html",
+            "https://www.pbo-dpb.ca/en/publications/LEG-2526-012-S--accelerated-capital-cost-allowance-immediate-expensing-measures--mesures-deduction-amortissement-accelere-passation-charges-immediate",
+            "https://budget.canada.ca/2025/report-rapport/anx1-en.html"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "changes-rules",
+      "tier": "official_act",
+      "text": "Led the petition that forced a floor vote on the bill restoring bargaining rights to national government employees.",
+      "sources": [
+        "https://golden.house.gov/media/press-releases/golden-s-bill-to-restore-federal-workers-union-rights-clears-threshold-to-force-house-action",
+        "https://federalnewsnetwork.com/unions/2025/11/house-majority-forces-vote-on-bill-to-restore-collective-bargaining-for-most-federal-employees/",
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "changes-tax",
+      "tier": "influence",
+      "text": "Led a letter pressing the majority's leaders not to extend expiring tax cuts across the board, but to let those for the wealthiest expire and offset the rest with spending cuts and new revenue.",
+      "sources": [
+        "https://golden.house.gov/media/press-releases/golden-blue-dogs-push-house-gop-leaders-to-prioritize-fiscal-sustainability-not-tax-cuts-for-the-wealthy"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

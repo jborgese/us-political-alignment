@@ -60,6 +60,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
 - `rewordings/<category-id>/`: one file per reworded version of the category's records, used only by the stability test
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
+- `systems/<category-id>.json`: optional OECD policy figures that place each country's own system on a separate scale on the site; never sent to the rater
 - `site/`: the stylesheet and browser scripts of the public pages, inlined by `src/site.ts`, and `categories.json`, the issues the site plans to cover and which of them are published
 - `src/`: the tool; `scoring.ts` is the reference for pure logic and `rater.ts` is the only file that touches the SDK
 - `test/`: Vitest tests, one file per `src/` module

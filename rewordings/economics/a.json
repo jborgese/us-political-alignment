@@ -1,0 +1,176 @@
+{
+  "events": {
+    "us-house": {
+      "budget-law-tax": "a budget law that reduced national tax revenue by about 1.25 percent of yearly economic output each year across ten years, chiefly by making permanent the lower tax rates on earnings and business income that had been set to expire, increasing the amount of inherited wealth exempt from tax, and creating deductions for tips and overtime pay until 2028",
+      "overdraft-rule-repeal": "the repeal of a rule that would have limited the fees that large banks and credit unions charge on overdrawn accounts to a low fixed amount or to their cost. The regulator's figures show that about one in six households pay these fees",
+      "federal-bargaining-bill": "a bill giving back the right to collective bargaining to national government employees at agencies where the head of government's orders had taken it away. Government data show the share of national government employees represented by a union dropped from about 56 to about 38 percent in the year the orders took effect"
+    },
+    "uk-commons": {
+      "finance-law-2025": "a finance law that increased tax rates on investment gains, applied sales tax to private school fees, increased the additional purchase tax on second homes, and replaced a rule allowing some long-term residents to avoid tax on income held abroad, adding about 0.15 percent of annual economic output to tax revenue by 2030",
+      "finance-law-2026": "a finance law that holds income tax thresholds fixed for a further three years, increases tax rates on dividend, savings, and property income by 2 points, and extends inheritance tax to unused pension savings and to more farm and business assets, adding about 0.35 percent of annual economic output to tax revenue by 2030",
+      "employment-rights-law": "a law that shields employees from unfair dismissal after six months of service rather than two years, makes sick pay due from the first day of illness, gives workers on variable hours a right to guaranteed hours, restricts dismissing staff and rehiring them on worse terms, and relaxes rules on union organizing and strikes. By the government's estimate, it gives new rights to about 60 percent of workers"
+    },
+    "de-bundestag": {
+      "investment-tax-law": "a law that lowers the tax rate on company profits by 5 points in stages from 2028 to 2032, from about 30 to about 25 percent including local taxes, and permits faster deduction of investment costs until 2027. Its cost, by the official estimate, is up to about 0.25 percent of annual economic output a year",
+      "tax-amendment-law": "a tax law that permanently lowered the sales tax on restaurant meals from 19 to 7 percent and increased the deduction for commuting costs. Its cost, by the official estimate, is about 0.1 percent of annual economic output a year",
+      "procurement-pay-law": "a law that obliges companies carrying out national government contracts above a set value to give their workers the pay and conditions of the applicable collective agreements. The government counted about 16,000 of these contracts a year"
+    },
+    "fr-assemblee": {
+      "budget-2025": "an annual budget, adopted without a vote on its text, that introduced a temporary surtax on the profits of about 400 companies with the highest revenue and a minimum tax rate of 20 percent on the top incomes, increasing tax revenue by about 0.3 percent of annual economic output",
+      "budget-2026": "the following annual budget, likewise adopted without a vote on its text, that kept that surtax for a second year on fewer companies and introduced a 20 percent tax on luxury assets held through family holding companies. By an unofficial estimate, the surtax yields about 0.25 percent of annual economic output",
+      "wealth-floor-bill": "a bill that sets a minimum yearly tax of 2 percent of wealth on fortunes larger than about 500 times the median household's wealth, approved by the lower chamber and voted down by the upper chamber. A legislative committee put its yield at about 0.1 percent of annual economic output, and its author at about 0.7 percent"
+    },
+    "ca-commons": {
+      "income-tax-cut": "a law that lowered the lowest income tax rate from 15 to 14 percent. Its cost, by the official estimate, is about 0.15 percent of annual economic output a year, and the amount saved rises with income up to the second bracket",
+      "budget-law-investment": "a budget law that allows businesses to deduct the cost of new investment more quickly. Its cost, by the official estimate, is about 0.1 percent of annual economic output a year over five years"
+    }
+  },
+  "records": {
+    "s01": [
+      "Cast a vote for",
+      "Cast a vote for",
+      "Cast a vote against",
+      "Was a cosponsor of a bill allowing workers anywhere in the country to refuse to join or pay a union as a condition of employment."
+    ],
+    "s02": [
+      "Cast a vote for",
+      "Cast a vote for",
+      "Cast a vote against",
+      "Was a cosponsor of a bill allowing workers anywhere in the country to refuse to join or pay a union as a condition of employment."
+    ],
+    "s03": [
+      "Cast a vote against",
+      "Cast a vote against",
+      "Cast a vote for"
+    ],
+    "s04": [
+      "While in government, enacted",
+      "While in government, enacted",
+      "While in government, called off a planned rise in the taxable share of large investment gains from one half to two thirds.",
+      "While in government, ordered binding arbitration to end a flight attendants' strike at the largest airline on its first day, extending their old contract until an arbitrator sets a new one."
+    ],
+    "s05": [
+      "Cast a vote against",
+      "Cast a vote against",
+      "Cast a vote for",
+      "Introduced, together with a legislator from the other main party, a bill to cap credit card interest rates at 10 percent, under half the current average of about 24 percent."
+    ],
+    "s06": [
+      "Cast a vote against",
+      "Cast a vote against",
+      "Cast a vote for",
+      "Introduced, together with a legislator from the other main party, a bill affirming that vehicle owners, rather than manufacturers, control their repair and diagnostic data, so that owners and independent shops can use it."
+    ],
+    "s07": [
+      "Cast a vote against",
+      "Cast a vote against",
+      "Cast a vote for",
+      "Introduced, as one of its lead sponsors, a bill taxing household wealth above about 260 times the median household's wealth at 2 percent a year and above about 5,000 times that level at 3 percent, which would reach roughly the richest 0.15 percent of households. Its sponsors estimate the tax would raise about 1.7 percent of annual economic output a year.",
+      "Was an original cosponsor of a bill to raise the national minimum wage by about 135 percent by 2030 and to end the lower minimums for tipped, young, and disabled workers.",
+      "Was a cosponsor of a bill that adds penalties for employers violating workers' organizing rights, prohibits mandatory anti-union meetings, and allows unions to collect fees from every worker they represent."
+    ],
+    "s08": [
+      "As part of a governing coalition, enacted",
+      "As part of a governing coalition, enacted",
+      "As part of a governing coalition, enacted",
+      "As part of a governing coalition, raised the minimum wage by regulation by about 8 percent for 2026 and another 5 percent for 2027, following the recommendation of a commission of employers and unions. According to the government, more than 6 million workers benefit, about 13 percent of people in work.",
+      "As part of a governing coalition, approved a bill that would allow employers to offer fixed-term contracts with no stated reason for up to four years rather than two, and would make it easier to dismiss the highest earners, those paid more than about 3 times the average wage, in return for severance.",
+      "Its coalition agreement promises to replace the daily cap on working hours with a weekly cap and to make extra pay for overtime free of income tax."
+    ],
+    "s09": [
+      "All of its members voted for the final version of",
+      "Every one of its members voted for",
+      "Its chair cast a vote against, and no member of it appears among the legislators from its party who voted for,",
+      "Its chair and several of its members were cosponsors of a bill to abolish the national income, payroll, and inheritance taxes and replace them with a national sales tax.",
+      "Several of its members, a former chair among them, were cosponsors of a bill allowing workers anywhere in the country to refuse to join or pay a union as a condition of employment."
+    ],
+    "s10": [
+      "Cast a vote for",
+      "Cast a vote for",
+      "Cast a vote against",
+      "Was a cosponsor of a bill to abolish the national income, payroll, and inheritance taxes and replace them with a national sales tax."
+    ],
+    "s11": [
+      "Cast a vote for",
+      "Cast a vote for",
+      "Cast a vote against",
+      "Was a cosponsor of a bill allowing workers anywhere in the country to refuse to join or pay a union as a condition of employment.",
+      "Led a group of its party's legislators in publishing a budget plan that calls for abolishing the tax on inherited wealth and for protecting workers' right not to join or pay a union."
+    ],
+    "s12": [
+      "While in government, enacted",
+      "While in government, enacted",
+      "While in government, enacted",
+      "While in government, increased the minimum wage for workers aged 21 and over by about 6.7 percent in 2025 and another 4.1 percent in 2026."
+    ],
+    "s13": [
+      "Cast a vote against",
+      "Cast a vote against",
+      "Cast a vote for",
+      "Led the petition that compelled a floor vote on the bill to restore bargaining rights to national government employees.",
+      "Led a letter urging the majority's leaders not to extend the expiring tax cuts across the board but to let those for the wealthiest lapse and to offset the rest with spending cuts and new revenue."
+    ],
+    "s14": [
+      "All of its members voted against",
+      "All of its members who voted cast votes against",
+      "All of its members who voted cast votes for"
+    ],
+    "s15": [
+      "Almost all of its members cast votes for",
+      "Almost all of its members cast votes for",
+      "Most of its members, its chair among them, cast votes against",
+      "Published a budget plan that calls for abolishing the tax on inherited wealth and for protecting workers' right not to join or pay a union."
+    ],
+    "s16": [
+      "All of its members voted against",
+      "All of its members who voted cast votes against",
+      "All of its members who voted cast votes for",
+      "Issued an agenda of bills that includes a tax on oil companies' excess profits paid back to consumers as rebates, two weeks of guaranteed paid leave for full-time workers, and higher pay for overtime."
+    ],
+    "s17": [
+      "Its legislators cast votes for",
+      "All seven of its legislators cast votes against",
+      "Introduced a bill to abolish the power that allows the national government to end strikes by ordering binding arbitration."
+    ],
+    "s18": [
+      "Its three legislators who voted cast votes against",
+      "Seven of its eight legislators cast votes against",
+      "Its one legislator who voted cast a vote against",
+      "Promised to increase the amount of earnings exempt from income tax by about 19 percent in its first budget, costing about 0.6 percent of annual economic output a year, funded mainly through benefit cuts.",
+      "Its spokesperson on business said it would pass a law to repeal the new employment rights law together with other recent laws."
+    ],
+    "s19": [
+      "Cast a vote against",
+      "Cast a vote against",
+      "Cast a vote for"
+    ],
+    "s20": [
+      "Its legislators withheld their votes from a motion to bring down the government over",
+      "All of its legislators cast votes for motions to bring down the government over",
+      "28 of its legislators abstained on, and none cast a vote for or against,",
+      "Its legislators, the only group voting for it, passed a budget amendment that raises the tax on companies' purchases of their own shares from 8 to 33 percent and applies it to more companies.",
+      "Proposed swapping the tax on property wealth for a tax on financial wealth that leaves out business assets, small-company shares, and middle-class housing, and opposed an increase in the tax rate on investment income."
+    ],
+    "s21": [
+      "All of its members voted against",
+      "All of its members who voted cast votes against",
+      "All of its members who voted cast votes for",
+      "In a letter, urged the majority's leaders not to extend the expiring tax cuts across the board but to let those for the wealthiest lapse and to offset the rest with spending cuts and new revenue."
+    ],
+    "s22": [
+      "Every one of its legislators in both chambers cast votes against",
+      "Every one of its legislators in the lower chamber who voted cast a vote against",
+      "Every one of its legislators who voted cast a vote for",
+      "Its national platform, adopted before this period, promises to increase the tax rate on company profits from 21 to 28 percent, impose a minimum tax rate of 25 percent on billionaires, end the lower tax rate on investment gains for incomes above about 12 times the median household income, and raise no taxes on anyone earning less than about 5 times that median. During this period all of its legislators voted against the tax cuts in the budget law.",
+      "That platform also promises to raise the national minimum wage to at least about twice its current level and to pass a bill strengthening workers' organizing rights. During this period about two-thirds of its legislators in the lower chamber were cosponsors of a bill to raise the minimum wage by about 135 percent by 2030, and more than 90 percent cosponsored the organizing-rights bill."
+    ],
+    "s23": [
+      "While in government, enacted, with all but two of its lower-chamber legislators and all but three of its upper-chamber legislators voting for,",
+      "While in government, enacted, with all but one of its lower-chamber legislators who voted casting a vote for,",
+      "20 of its legislators cast votes for, and 195 cast votes against,",
+      "While in government, its head of government ordered collective bargaining ended at about 40 national agencies and agency units.",
+      "While in government, its head of government ordered national agencies to scrap at least ten existing rules for every new rule they issue.",
+      "Its national platform, adopted before this period, promises to make the expiring tax cuts permanent, end taxes on tips, and cut regulations. During this period it enacted versions of the first two through the budget law, the second as a temporary deduction."
+    ]
+  }
+}

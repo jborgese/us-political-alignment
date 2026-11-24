@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "event": "budget-2025",
+      "stance": "Its legislators did not vote for a motion to bring down the government over",
+      "sources": [
+        "https://lcp.fr/actualites/les-motions-de-censure-defendues-par-lfi-rejetees-le-budget-2025-adopte-a-l-assemblee"
+      ]
+    },
+    {
+      "event": "budget-2026",
+      "stance": "Its legislators all voted for motions to bring down the government over",
+      "sources": [
+        "https://lcp.fr/actualites/les-motions-de-censure-lfi-et-rn-sur-les-recettes-du-budget-rejetees-qui-a-vote-ou-pas"
+      ]
+    },
+    {
+      "event": "wealth-floor-bill",
+      "stance": "28 of its legislators abstained on, and none voted for or against,",
+      "sources": [
+        "https://questions.assemblee-nationale.fr/dyn/17/scrutins/881"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Its legislators passed, as the only group voting for it, a budget amendment raising the tax on companies' purchases of their own shares from 8 to 33 percent and extending it to more companies.",
+      "sources": [
+        "https://lcp.fr/index%2ephp/actualites/des-amendements-lfi-et-rn-alourdissent-encore-la-fiscalite-sur-les-grandes-entreprises"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Proposed replacing the tax on property wealth with a tax on financial wealth that excludes business assets, small-company shares, and middle-class housing, and opposed raising the tax rate on investment income.",
+      "sources": [
+        "https://www.publicsenat.fr/actualites/economie/budget-2026-le-rn-seloigne-de-la-gauche-sur-la-fiscalite"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rules"
+  ]
+}

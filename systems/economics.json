@@ -1,0 +1,965 @@
+{
+  "title": "How firm each country's system already is",
+  "halves": [
+    {
+      "id": "taxes",
+      "label": "Taxes"
+    },
+    {
+      "id": "rules",
+      "label": "Work rules"
+    }
+  ],
+  "figures": [
+    {
+      "id": "tax-revenue",
+      "half": "taxes",
+      "label": "Tax revenue as a share of GDP",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_REV_COMP_OECD%40DF_RSOECD&df[ag]=OECD.CTP.TPS",
+      "values": {
+        "AUS": {
+          "value": 29.867254,
+          "year": 2023
+        },
+        "AUT": {
+          "value": 43.374411,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 42.571263,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 34.90457,
+          "year": 2024
+        },
+        "CHE": {
+          "value": 27.169048,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 20.479447,
+          "year": 2024
+        },
+        "COL": {
+          "value": 19.865884,
+          "year": 2024
+        },
+        "CRI": {
+          "value": 24.840079,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 33.975018,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 38.021492,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 45.177061,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 36.682055,
+          "year": 2024
+        },
+        "EST": {
+          "value": 35.231248,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 42.217254,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 43.462209,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 34.366806,
+          "year": 2024
+        },
+        "GRC": {
+          "value": 39.826849,
+          "year": 2024
+        },
+        "HUN": {
+          "value": 34.353895,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 21.694294,
+          "year": 2024
+        },
+        "ISL": {
+          "value": 36.948753,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 30.877349,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 42.752192,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 33.733304,
+          "year": 2023
+        },
+        "KOR": {
+          "value": 25.333638,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 33.129851,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 41.458699,
+          "year": 2024
+        },
+        "LVA": {
+          "value": 34.90567,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 18.280109,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 38.541274,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 40.190578,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 32.891771,
+          "year": 2024
+        },
+        "POL": {
+          "value": 36.64229,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 35.134621,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 35.551369,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 38.296929,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 41.437904,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 23.954049,
+          "year": 2024
+        },
+        "USA": {
+          "value": 25.618333,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "top-income-tax",
+      "half": "taxes",
+      "label": "Top income tax rate",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+      "values": {
+        "AUS": {
+          "value": 47.0,
+          "year": 2024
+        },
+        "AUT": {
+          "value": 55.0,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 52.7351,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 53.5296,
+          "year": 2024
+        },
+        "CHE": {
+          "value": 41.41,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 39.999999,
+          "year": 2024
+        },
+        "COL": {
+          "value": 39.000005,
+          "year": 2024
+        },
+        "CRI": {
+          "value": 25.0,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 23.0,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 47.475,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 55.9044,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 48.5718,
+          "year": 2024
+        },
+        "EST": {
+          "value": 20.0,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 51.46,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 55.368,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 45.0,
+          "year": 2024
+        },
+        "GRC": {
+          "value": 44.0,
+          "year": 2024
+        },
+        "HUN": {
+          "value": 15.0,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 48.0,
+          "year": 2024
+        },
+        "ISL": {
+          "value": 46.28,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 50.0,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 47.23,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 55.945,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 49.500003,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 32.0,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 45.78,
+          "year": 2024
+        },
+        "LVA": {
+          "value": 31.155779,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 35.0,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 49.5,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 39.6,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 39.0,
+          "year": 2024
+        },
+        "POL": {
+          "value": 32.0,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 53.0,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 25.0,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 50.0,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 52.37,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 40.76,
+          "year": 2024
+        },
+        "USA": {
+          "value": 43.65,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "company-tax",
+      "half": "taxes",
+      "label": "Company tax rate, central and regional combined",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS",
+      "values": {
+        "AUS": {
+          "value": 30.0,
+          "year": 2024
+        },
+        "AUT": {
+          "value": 23.0,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 25.0,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 25.99,
+          "year": 2024
+        },
+        "CHE": {
+          "value": 19.608138,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 27.0,
+          "year": 2024
+        },
+        "COL": {
+          "value": 35.0,
+          "year": 2024
+        },
+        "CRI": {
+          "value": 30.0,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 21.0,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 30.133026,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 22.0,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 25.0,
+          "year": 2024
+        },
+        "EST": {
+          "value": 20.0,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 20.0,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 25.825,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 25.0,
+          "year": 2024
+        },
+        "GRC": {
+          "value": 22.0,
+          "year": 2024
+        },
+        "HUN": {
+          "value": 9.0,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 12.5,
+          "year": 2024
+        },
+        "ISL": {
+          "value": 21.0,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 23.0,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 27.81,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 29.74,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 26.4,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 15.0,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 24.94,
+          "year": 2024
+        },
+        "LVA": {
+          "value": 20.0,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 30.0,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 25.8,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 22.0,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 28.0,
+          "year": 2024
+        },
+        "POL": {
+          "value": 19.0,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 31.5,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 21.0,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 22.0,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 20.6,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 25.0,
+          "year": 2024
+        },
+        "USA": {
+          "value": 25.631375,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "minimum-wage",
+      "half": "rules",
+      "label": "Minimum wage against the median full-time wage",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+      "values": {
+        "AUS": {
+          "value": 53.8764705882353,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 47.6226051533204,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 49.907063197026,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 69.5380626734505,
+          "year": 2024
+        },
+        "COL": {
+          "value": 92.3076923076923,
+          "year": 2024
+        },
+        "CRI": {
+          "value": 87.1116235861407,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 45.2781371280724,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 50.1291334016893,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 55.2026937197825,
+          "year": 2024
+        },
+        "EST": {
+          "value": 41.8480050597442,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 62.4800099592974,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 61.1111111111111,
+          "year": 2024
+        },
+        "GRC": {
+          "value": 48.7458189496007,
+          "year": 2024
+        },
+        "HUN": {
+          "value": 47.9599063811123,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 50.1138942791167,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 49.2079599558909,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 46.7912462485877,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 60.5047040195049,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 48.4118449167791,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 55.9343277853962,
+          "year": 2024
+        },
+        "LVA": {
+          "value": 45.7071408724646,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 73.6963854577045,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 47.6784149634452,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 65.6784492588369,
+          "year": 2024
+        },
+        "POL": {
+          "value": 58.3750756866847,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 58.1579989150619,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 50.3418885457437,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 60.8290013408671,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 51.2831740390591,
+          "year": 2024
+        },
+        "USA": {
+          "value": 25.0172532781228,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "bargaining-coverage",
+      "half": "rules",
+      "label": "Employees covered by collective agreements",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+      "values": {
+        "AUS": {
+          "value": 59.700001,
+          "year": 2023
+        },
+        "AUT": {
+          "value": 98.0,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 100.0,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 30.200001,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 19.299999,
+          "year": 2023
+        },
+        "CRI": {
+          "value": 10.4,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 43.200001,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 49.0,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 81.599998,
+          "year": 2023
+        },
+        "ESP": {
+          "value": 92.099998,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 88.800003,
+          "year": 2022
+        },
+        "FRA": {
+          "value": 98.0,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 40.200001,
+          "year": 2024
+        },
+        "HUN": {
+          "value": 20.4,
+          "year": 2022
+        },
+        "ISL": {
+          "value": 90.0,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 45.799999,
+          "year": 2023
+        },
+        "ITA": {
+          "value": 100.0,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 15.2,
+          "year": 2023
+        },
+        "KOR": {
+          "value": 16.299999,
+          "year": 2023
+        },
+        "LTU": {
+          "value": 29.0,
+          "year": 2023
+        },
+        "LUX": {
+          "value": 57.299999,
+          "year": 2022
+        },
+        "LVA": {
+          "value": 25.799999,
+          "year": 2022
+        },
+        "MEX": {
+          "value": 8.1999998,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 72.099998,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 72.0,
+          "year": 2022
+        },
+        "NZL": {
+          "value": 18.700001,
+          "year": 2024
+        },
+        "POL": {
+          "value": 11.6,
+          "year": 2023
+        },
+        "PRT": {
+          "value": 83.300003,
+          "year": 2023
+        },
+        "SVK": {
+          "value": 27.6,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 88.0,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 12.7,
+          "year": 2024
+        },
+        "USA": {
+          "value": 11.1,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "dismissal-protection",
+      "half": "rules",
+      "label": "Protection against dismissal, OECD index from 0 to 6",
+      "source": "https://www.oecd.org/en/data/datasets/oecd-indicators-of-employment-protection.html",
+      "values": {
+        "AUS": {
+          "value": 1.7001,
+          "year": 2025
+        },
+        "AUT": {
+          "value": 1.9435,
+          "year": 2025
+        },
+        "BEL": {
+          "value": 2.5911,
+          "year": 2025
+        },
+        "CAN": {
+          "value": 1.0178,
+          "year": 2025
+        },
+        "CHE": {
+          "value": 1.607,
+          "year": 2025
+        },
+        "CHL": {
+          "value": 2.3418,
+          "year": 2025
+        },
+        "COL": {
+          "value": 1.4358,
+          "year": 2025
+        },
+        "CRI": {
+          "value": 0.6369,
+          "year": 2025
+        },
+        "CZE": {
+          "value": 3.0253,
+          "year": 2025
+        },
+        "DEU": {
+          "value": 2.3324,
+          "year": 2025
+        },
+        "DNK": {
+          "value": 1.9377,
+          "year": 2025
+        },
+        "ESP": {
+          "value": 2.4305,
+          "year": 2025
+        },
+        "EST": {
+          "value": 1.9342,
+          "year": 2025
+        },
+        "FIN": {
+          "value": 2.4798,
+          "year": 2025
+        },
+        "FRA": {
+          "value": 2.6759,
+          "year": 2025
+        },
+        "GBR": {
+          "value": 1.9017,
+          "year": 2025
+        },
+        "GRC": {
+          "value": 2.3214,
+          "year": 2025
+        },
+        "HUN": {
+          "value": 1.8923,
+          "year": 2025
+        },
+        "IRL": {
+          "value": 2.1732,
+          "year": 2025
+        },
+        "ISL": {
+          "value": 2.2031,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 2.8321,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 2.8556,
+          "year": 2025
+        },
+        "JPN": {
+          "value": 2.0809,
+          "year": 2025
+        },
+        "KOR": {
+          "value": 2.3502,
+          "year": 2025
+        },
+        "LTU": {
+          "value": 1.8489,
+          "year": 2025
+        },
+        "LUX": {
+          "value": 2.5418,
+          "year": 2025
+        },
+        "LVA": {
+          "value": 2.7081,
+          "year": 2025
+        },
+        "MEX": {
+          "value": 2.4308,
+          "year": 2025
+        },
+        "NLD": {
+          "value": 2.8809,
+          "year": 2025
+        },
+        "NOR": {
+          "value": 2.3735,
+          "year": 2025
+        },
+        "NZL": {
+          "value": 2.2227,
+          "year": 2025
+        },
+        "POL": {
+          "value": 2.421,
+          "year": 2025
+        },
+        "PRT": {
+          "value": 2.961,
+          "year": 2025
+        },
+        "SVK": {
+          "value": 2.3306,
+          "year": 2025
+        },
+        "SVN": {
+          "value": 2.3221,
+          "year": 2025
+        },
+        "SWE": {
+          "value": 2.5099,
+          "year": 2025
+        },
+        "TUR": {
+          "value": 2.9497,
+          "year": 2025
+        },
+        "USA": {
+          "value": 0.7658,
+          "year": 2025
+        }
+      }
+    }
+  ],
+  "exclusion": [
+    "CHL",
+    "COL",
+    "CRI",
+    "MEX"
+  ],
+  "countries": [
+    {
+      "legislature": "fr-assemblee",
+      "code": "FRA",
+      "name": "France",
+      "flag": "fr"
+    },
+    {
+      "legislature": "de-bundestag",
+      "code": "DEU",
+      "name": "Germany",
+      "flag": "de"
+    },
+    {
+      "legislature": "uk-commons",
+      "code": "GBR",
+      "name": "United Kingdom",
+      "flag": "uk",
+      "overrides": [
+        {
+          "figure": "bargaining-coverage",
+          "value": 27.0,
+          "year": 2024,
+          "source": "https://www.gov.uk/government/statistics/trade-union-statistics-2024/trade-union-membership-uk-1995-to-2024-statistical-bulletin"
+        }
+      ]
+    },
+    {
+      "legislature": "ca-commons",
+      "code": "CAN",
+      "name": "Canada",
+      "flag": "ca"
+    },
+    {
+      "legislature": "us-house",
+      "code": "USA",
+      "name": "United States",
+      "flag": "us"
+    }
+  ]
+}

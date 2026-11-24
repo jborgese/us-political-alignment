@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "event": "investment-tax-law",
+      "stance": "In a governing coalition, enacted",
+      "sources": [
+        "https://blogs.pwc.de/de/steuern-und-recht/article/249590/bundestag-stimmt-fuer-investitionssofort-programm-der-koalition/"
+      ]
+    },
+    {
+      "event": "tax-amendment-law",
+      "stance": "In a governing coalition, enacted",
+      "sources": [
+        "https://www.zdfheute.de/politik/deutschland/bundestag-steuerpaket-pendlerpauschale-mehrwertsteuer-gastronomie-100.html"
+      ]
+    },
+    {
+      "event": "procurement-pay-law",
+      "stance": "In a governing coalition, enacted",
+      "sources": [
+        "https://www.beck-aktuell.de/heute-im-recht/rechtspolitik-gesetzgebung/bundestag-tariftreuegesetz-abstimmung-koalition-2026-02-26"
+      ]
+    },
+    {
+      "slot": "changes-rules",
+      "tier": "official_act",
+      "text": "In a governing coalition, raised the minimum wage by about 8 percent for 2026 and a further 5 percent for 2027 by regulation, as a commission of employers and unions recommended. The government said more than 6 million workers benefit, about 13 percent of people in work.",
+      "sources": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/mindestlohn-steigt-2391010",
+        "https://www.zdfheute.de/wirtschaft/erwerbstaetigkeit-stagniert-2025-100.html"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "In a governing coalition, approved a bill that would let employers offer fixed-term contracts without a stated reason for up to four years instead of two, and make it easier to end the employment of the highest earners, those paid above about 3 times the average wage, in exchange for severance.",
+      "sources": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/arbeitsrechtspaket-kabinett-2461564",
+        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its coalition agreement pledges to replace the daily limit on working hours with a weekly one and to exempt extra pay for overtime from income tax.",
+      "sources": [
+        "https://www.lto.de/recht/hintergruende/h/arbeitsrecht-im-koalitionsvertrag-zeiterfassung-mehrarbeit-arbeitszeit-mindestlohn-tariftreue"
+      ]
+    }
+  ]
+}

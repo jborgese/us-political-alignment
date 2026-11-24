@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced, as one of its lead sponsors, a bill to tax household wealth above about 260 times the median household's wealth at 2 percent a year and above about 5,000 times it at 3 percent, reaching about the richest 0.15 percent of households. Its sponsors estimate it would raise about 1.7 percent of annual economic output a year.",
+      "sources": [
+        "https://jayapal.house.gov/2026/03/26/jayapal-warren-boyle-45-lawmakers-renew-push-for-wealth-tax-on-ultra-millionaires-and-billionaires/",
+        "https://www.warren.senate.gov/?p=28450",
+        "https://www.federalreserve.gov/publications/files/scf23.pdf",
+        "https://www.cbo.gov/publication/61172"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored from its introduction a bill raising the national minimum wage by about 135 percent by 2030 and ending the lower minimums for tipped, young, and disabled workers.",
+      "sources": [
+        "https://democrats-edworkforce.house.gov/media/press-releases/04/08/2025/labor-leaders-introduce-bill-to-raise-minimum-wage"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill that adds penalties for employers that violate workers' organizing rights, bars mandatory anti-union meetings, and lets unions collect fees from every worker they represent.",
+      "sources": [
+        "https://bobbyscott.house.gov/media-center/press-releases/bipartisan-labor-leaders-introduce-bill-protect-workers-right-0"
+      ]
+    }
+  ]
+}

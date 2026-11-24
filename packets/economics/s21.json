@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Its members who voted all voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Its members who voted all voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "changes-tax",
+      "tier": "influence",
+      "text": "Pressed the majority's leaders in a letter not to extend expiring tax cuts across the board, but to let those for the wealthiest expire and offset the rest with spending cuts and new revenue.",
+      "sources": [
+        "https://golden.house.gov/media/press-releases/golden-blue-dogs-push-house-gop-leaders-to-prioritize-fiscal-sustainability-not-tax-cuts-for-the-wealthy"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

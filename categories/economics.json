@@ -1,0 +1,116 @@
+{
+  "title": "Economics",
+  "question": "Which record shows stronger support for the government reducing income inequality through taxes and setting firm rules for markets and work?",
+  "weighing": "Judge only the changes a record supports or opposes: those it votes on, presses for, or seeks, by their direction and size. Opposing a change counts as support for what the change would have removed. The taxes and rules a record inherited are not part of its position.",
+  "highPole": "taxes made more progressive and rules for markets and work made firmer",
+  "lowPole": "taxes and rules on markets and work are cut back",
+  "slots": [
+    {
+      "id": "changes-tax",
+      "heading": "Changes to taxes in the period"
+    },
+    {
+      "id": "changes-rules",
+      "heading": "Changes to market and work rules in the period"
+    },
+    {
+      "id": "seeks",
+      "heading": "Further changes it seeks"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "anchor-redistributive",
+      "items": [
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted for a law raising the top tax rate on earnings by 5 points and taxing investment gains at the same rates as wages."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted against a law halving the tax rate on dividends."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted for a law raising the minimum wage by about 15 percent and requiring employers to make a fixed-term job permanent after one year."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "influence",
+          "text": "Publicly pressed fellow legislators to make each industry's collective agreement binding on every employer in that industry."
+        },
+        {
+          "slot": "seeks",
+          "tier": "statement",
+          "text": "Announced a bill to cap the pay of a company's top executives at 20 times the lowest wage it pays."
+        }
+      ]
+    },
+    {
+      "id": "anchor-mixed",
+      "items": [
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted for a law raising the amount of earnings free of tax by about 10 percent, paid for by limiting deductions for the top tenth of earners."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted against a law raising the top tax rate on earnings by 5 points."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted for a law giving workers on variable hours the right to a guaranteed minimum schedule, with no change to dismissal rules."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted against a law making each industry's collective agreement binding on employers that did not sign it."
+        }
+      ],
+      "emptySlots": [
+        "seeks"
+      ]
+    },
+    {
+      "id": "anchor-market",
+      "items": [
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted for a law replacing graduated tax rates on earnings with a single rate of 15 percent and ending the tax on inherited wealth, reducing tax revenue by about 10 percent."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted against a law raising the tax rate on investment gains to match the rates on wages."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted for a law ending the minimum wage and letting employers require, as a condition of hiring, that a worker not join a union."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted to end rules requiring sellers of loans and investments to disclose their full cost."
+        },
+        {
+          "slot": "seeks",
+          "tier": "official_act",
+          "text": "Introduced a bill requiring two-thirds of the legislature to approve any tax increase."
+        },
+        {
+          "slot": "seeks",
+          "tier": "influence",
+          "text": "Publicly urged fellow legislators to end every rule requiring employers to bargain with unions."
+        }
+      ]
+    }
+  ]
+}

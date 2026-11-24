@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "event": "finance-law-2025",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-03-03/112"
+      ]
+    },
+    {
+      "event": "finance-law-2026",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-03-11/449"
+      ]
+    },
+    {
+      "event": "employment-rights-law",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-03-12/123"
+      ]
+    },
+    {
+      "slot": "changes-rules",
+      "tier": "official_act",
+      "text": "In government, raised the minimum wage for workers aged 21 and over by about 6.7 percent in 2025 and a further 4.1 percent in 2026.",
+      "sources": [
+        "https://www.gov.uk/government/news/national-living-wage-increases-to-1271-per-hour",
+        "https://www.gov.uk/government/news/chancellor-announces-increase-to-the-national-living-wage-and-national-minimum-wage"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Nearly all of its members voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Nearly all of its members voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Most of its members, including its chair, voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Released a budget plan that calls for ending the tax on inherited wealth and protecting workers' right not to join or pay a union.",
+      "sources": [
+        "https://atr.org/rsc-budget-builds-on-historic-reforms-to-protect-taxpayers-and-empower-working-families",
+        "https://rsc-pfluger.house.gov/media/press-releases/thats-fiscal-responsibility-rsc-unveils-comprehensive-budget-end-runaway"
+      ]
+    }
+  ]
+}

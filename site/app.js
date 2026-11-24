@@ -142,18 +142,26 @@ const layoutScale = () => {
 
 const plot = document.querySelector(".plot")
 const groupButtons = [...document.querySelectorAll(".group")]
+const countryButtons = [...document.querySelectorAll(".country")]
 
-const highlight = (name) => {
-  groupButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.group === name)))
-  plot.toggleAttribute("data-highlight", name !== null)
-  recordMarkers.forEach((marker) => marker.classList.toggle("lit", marker.dataset.group === name))
+const highlight = (key, value) => {
+  groupButtons.forEach((button) =>
+    button.setAttribute("aria-pressed", String(key === "group" && button.dataset.group === value)),
+  )
+  countryButtons.forEach((button) =>
+    button.setAttribute("aria-pressed", String(key === "legislature" && button.dataset.legislature === value)),
+  )
+  plot.toggleAttribute("data-highlight", value !== null)
+  recordMarkers.forEach((marker) => marker.classList.toggle("lit", value !== null && marker.dataset[key] === value))
 }
 
-groupButtons.forEach((button) =>
+const toggleOn = (key) => (button) =>
   button.addEventListener("click", () =>
-    highlight(button.getAttribute("aria-pressed") === "true" ? null : button.dataset.group),
-  ),
-)
+    highlight(key, button.getAttribute("aria-pressed") === "true" ? null : button.dataset[key]),
+  )
+
+groupButtons.forEach(toggleOn("group"))
+countryButtons.forEach(toggleOn("legislature"))
 
 const tooltip = document.getElementById("tooltip")
 

@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Its members voted unanimously for the final version of",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Its members all voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Its chair voted against, and none of its members is recorded among the legislators from its party who voted for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Its chair and several of its members cosponsored a bill to repeal the national income, payroll, and inheritance taxes and replace them with a national sales tax.",
+      "sources": [
+        "https://legiscan.com/US/bill/HB25/2025",
+        "https://fairtax.org/articles/carter-introduces-fair-tax-act"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Several of its members, including a former chair, cosponsored a bill letting workers everywhere in the country decline to join or pay a union as a condition of employment.",
+      "sources": [
+        "https://www.billtrack50.com/billdetail/1831017",
+        "https://joewilson.house.gov/media/press-releases/wilson-reintroduces-national-right-work-act"
+      ]
+    }
+  ]
+}

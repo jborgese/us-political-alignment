@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill to repeal the national income, payroll, and inheritance taxes and replace them with a national sales tax.",
+      "sources": [
+        "https://legiscan.com/US/bill/HB25/2025",
+        "https://fairtax.org/articles/carter-introduces-fair-tax-act"
+      ]
+    }
+  ]
+}

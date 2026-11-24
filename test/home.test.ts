@@ -13,6 +13,7 @@ const record = (name: string, kind: SiteRecord["kind"], score: number, extra: Pa
   kind,
   detail: "Sample Caucus",
   group: "Sample Caucus",
+  legislature: "sample-house",
   score,
   previousScore: null,
   range: null,
@@ -34,6 +35,7 @@ const siteData = (records: SiteRecord[]): SiteData => ({
   records,
   selected: 1,
   heldBack: [],
+  systems: null,
 })
 
 const PLANNED = [

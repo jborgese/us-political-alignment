@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced, with a legislator from the other main party, a bill confirming that vehicle owners, not manufacturers, control their repair and diagnostic data, so owners and independent shops can use it.",
+      "sources": [
+        "https://gluesenkampperez.house.gov/posts/gluesenkamp-perez-dunn-introduce-bipartisan-bill-to-defend-americans-right-to-fix-their-own-vehicles-keep-repair-costs-down"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "event": "finance-law-2025",
+      "stance": "Its three voting legislators voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-03-03/112"
+      ]
+    },
+    {
+      "event": "finance-law-2026",
+      "stance": "Seven of its eight legislators voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-03-11/449"
+      ]
+    },
+    {
+      "event": "employment-rights-law",
+      "stance": "Its one voting legislator voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-03-12/123"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged to raise the amount of earnings free of income tax by about 19 percent in its first budget, at a cost of about 0.6 percent of annual economic output a year, paid for mainly by cutting benefits.",
+      "sources": [
+        "https://www.lbc.co.uk/politics/uk-politics/reform-pledges-raise-tax-free-personal-allowance/",
+        "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its business spokesperson said it would pass a law repealing the new employment rights law along with other recent laws.",
+      "sources": [
+        "https://www.hrgrapevine.com/content/article/2026-02-27-reform-uk-vows-to-scrap-employment-rights-act-if-elected"
+      ]
+    }
+  ]
+}

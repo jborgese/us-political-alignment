@@ -1,0 +1,33 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "Its members who voted all voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "Its members who voted all voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Published an agenda of bills including a tax on oil companies' excess profits returned to consumers as rebates, two weeks of guaranteed paid leave for full-time workers, and higher overtime pay.",
+      "sources": [
+        "https://www.washingtontimes.com/news/2026/apr/29/house-liberals-unveil-new-affordability-agenda-ahead-midterms/"
+      ]
+    }
+  ]
+}

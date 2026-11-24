@@ -227,6 +227,36 @@ describe("buildSitePage", () => {
     expect(body.match(/data-group="Sample Caucus"/g)).toHaveLength(3)
   })
 
+  it("draws each country's system on its own strip, a button that lights up that country's records", () => {
+    const value = (amount: number) => ({ value: amount, year: 2024 })
+    const systems = {
+      title: "How firm each system is",
+      halves: [
+        { id: "taxes", label: "Taxes" },
+        { id: "rules", label: "Work rules" },
+      ],
+      figures: [
+        { id: "tax", half: "taxes", label: "Tax", source: "https://example.org/tax", values: { AAA: value(20), BBB: value(40) } },
+        { id: "wage", half: "rules", label: "Wage", source: "https://example.org/wage", values: { AAA: value(0), BBB: value(100) } },
+      ],
+      exclusion: [],
+      countries: [{ legislature: "sample-house", code: "BBB", name: "Sampleland", flag: "us", overrides: [] }],
+    }
+
+    const { body } = buildSitePage(buildSiteData({ ...rankedSet(IN_ORDER), systems }), { css: "", js: "" }, [])
+
+    expect(body).toContain('<section class="systems" aria-label="How firm each system is">')
+    expect(body).toContain('class="country" data-legislature="sample-house" aria-pressed="false"')
+    expect(body).toContain('style="--level:100;--low:100;--high:100"')
+    expect(body.match(/class="marker"[^>]*data-legislature="sample-house"/g)).toHaveLength(3)
+  })
+
+  it("draws no system strip for a category without one", () => {
+    const { body } = buildSitePage(buildSiteData(rankedSet(IN_ORDER)), { css: "", js: "" }, [])
+
+    expect(body).not.toContain('class="systems"')
+  })
+
   it("shows no issue list when it is given none", () => {
     const { body } = buildSitePage(buildSiteData(rankedSet(IN_ORDER)), { css: "", js: "" }, [])
 

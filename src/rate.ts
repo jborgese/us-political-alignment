@@ -92,7 +92,7 @@ const submit = async (
   remaining: number,
 ): Promise<RateOutcome> => {
   const hashes = fingerprintRecords(set)
-  const system = buildSystemPrompt(set.category.question)
+  const system = buildSystemPrompt(set.category)
   const requests = matchups.map(({ first, second }, index) => ({
     id: `pair-${index}`,
     first: first.id,

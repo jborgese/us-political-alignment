@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "event": "budget-law-tax",
+      "stance": "All of its legislators in both chambers voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "overdraft-rule-repeal",
+      "stance": "All of its legislators in the lower chamber who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll096"
+      ]
+    },
+    {
+      "event": "federal-bargaining-bill",
+      "stance": "All of its legislators who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll332"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its national platform, adopted before this period, pledges to raise the tax rate on company profits from 21 to 28 percent, set a minimum 25 percent tax rate on billionaires, end the lower tax rate on investment gains for incomes above about 12 times the median household income, and raise no taxes on anyone earning under about 5 times that median. In this period all of its legislators voted against the budget law's tax cuts.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-democratic-party-platform",
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.census.gov/library/publications/2024/demo/p60-282.html"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "The same platform pledges to raise the national minimum wage to at least about double its current level and to pass a bill strengthening workers' organizing rights. In this period about two-thirds of its legislators in the lower chamber cosponsored a bill raising the minimum wage by about 135 percent by 2030, and over 90 percent cosponsored the organizing-rights bill.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-democratic-party-platform",
+        "https://democrats-edworkforce.house.gov/media/press-releases/04/08/2025/labor-leaders-introduce-bill-to-raise-minimum-wage",
+        "https://bobbyscott.house.gov/media-center/press-releases/bipartisan-labor-leaders-introduce-bill-protect-workers-right-0"
+      ]
+    }
+  ]
+}
