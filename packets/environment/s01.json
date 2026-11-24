@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Signed a letter with 37 other legislators of its party urging the tax-writing committee to repeal in full, rather than phase out, the tax credits for clean energy and electric vehicles.",
+      "sources": [
+        "https://hageman.house.gov/sites/evo-subsites/hageman.house.gov/files/evo-media-document/ira-repeal-letter.pdf"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Pressed its party's leaders to end the tax credits for clean energy faster than the draft budget law did, saying it had not meant to leave 40 to 45 percent of them in place.",
+      "sources": [
+        "https://www.spglobal.com/energy/en/news-research/latest-news/lng/052125-us-house-reconciliation-bill-stalls-amid-push-for-swift-end-to-energy-tax-credits"
+      ]
+    }
+  ]
+}

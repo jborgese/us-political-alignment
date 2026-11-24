@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "event": "consumer-carbon-price-end",
+      "stance": "In government, enacted"
+    },
+    {
+      "event": "major-projects-law",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://globalnews.ca/news/11251166/house-of-commons-summer-break-bill-c5-vote"
+      ]
+    },
+    {
+      "event": "regional-energy-accord",
+      "stance": "In government, signed, and later confirmed in an implementation agreement,",
+      "sources": [
+        "https://www.pm.gc.ca/en/news/backgrounders/2026/05/15/implementation-agreement-canada-alberta-memorandum"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, finalized rules cutting methane from oil and gas facilities and landfills, which the government estimated would cut about 30 million tons a year on average through 2040, about 4 percent of national emissions.",
+      "sources": [
+        "https://www.canada.ca/en/environment-climate-change/news/2025/12/government-of-canada-delivers-on-climate-competitiveness-strategy-commitment-to-lower-methane-emissions-from-major-sources.html",
+        "https://www.canada.ca/en/environment-climate-change/news/2025/03/2025-national-inventory-report-supports-canadas-climate-plan-is-working-emissions-have-dropped-to-their-lowest-level-in-27-years-excluding-pandemic.html"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, paused the rule requiring that 20 percent of new cars and light trucks sold in 2026 be zero-emission, pending a review of the later targets.",
+      "sources": [
+        "https://www.cbc.ca/lite/story/1.7625992",
+        "https://www.ctvnews.ca/politics/article/carney-pauses-2026-ev-target-announces-buy-canada-policy/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-energy",
+    "seeks"
+  ]
+}

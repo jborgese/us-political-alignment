@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Its members voted unanimously for the final version of",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Its leaders withheld support from the draft budget law until the tax credits for clean energy ended faster, and its chair said as much of them as possible should go.",
+      "sources": [
+        "https://www.spglobal.com/energy/en/news-research/latest-news/lng/052125-us-house-reconciliation-bill-stalls-amid-push-for-swift-end-to-energy-tax-credits"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Its board warned that it would not accept any change to the budget law in the upper chamber that weakened the repeal of tax credits for clean energy.",
+      "sources": [
+        "https://harris.house.gov/media/press-releases/house-freedom-caucus-board-we-stand-firm-no-senate-rollbacks-conservative-wins"
+      ]
+    }
+  ]
+}

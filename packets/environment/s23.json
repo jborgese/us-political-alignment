@@ -1,0 +1,66 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "In government, enacted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "In government, enacted, with all of its legislators in the lower chamber who voted voting for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "In government, enacted, with all but one of its legislators in the lower chamber who voted voting for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "All but one of its legislators in the lower chamber who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, withdrew from the international climate agreement.",
+      "sources": [
+        "https://www.whitehouse.gov/presidential-actions/2025/01/putting-america-first-in-international-environmental-agreements/"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, repealed the finding that greenhouse gases endanger health and, with it, all greenhouse gas limits on new cars and trucks, a sector that produces about 28 percent of national emissions.",
+      "sources": [
+        "https://www.govinfo.gov/content/pkg/FR-2026-02-18/pdf/2026-03157.pdf",
+        "https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks"
+      ]
+    },
+    {
+      "slot": "changes-energy",
+      "tier": "official_act",
+      "text": "In government, suspended the leases of all five large offshore wind farms then under construction.",
+      "sources": [
+        "https://doi.gov/pressreleases/trump-administration-protects-us-national-security-pausing-offshore-wind-leases"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its national platform, adopted before this period, pledges to expand oil, gas, and coal production, end electric vehicle mandates, and roll back environmental rules on energy. Its acts in this period affirm this.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-republican-party-platform"
+      ]
+    }
+  ]
+}

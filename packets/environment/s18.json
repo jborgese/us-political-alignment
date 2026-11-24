@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "event": "carbon-budget-order",
+      "stance": "Its legislators voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-06-24/41"
+      ]
+    },
+    {
+      "event": "planning-infrastructure-law",
+      "stance": "Its legislators who voted voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-06-10/223"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In local government, scrapped climate targets in seven of the nine councils it leads, rescinded declarations of a climate emergency in three, and in one called human-caused climate change unproven.",
+      "sources": [
+        "https://www.lse.ac.uk/granthaminstitute/news/7-out-of-9-reform-led-councils-have-scrapped-climate-targets-study-finds/",
+        "https://www.itv.com/news/meridian/2025-09-18/reform-council-removes-climate-emergency-declaration"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged to scrap the national net zero target and the subsidies for wind and solar power, and its deputy leader said it would strike down guaranteed-price contracts for new wind and solar power awarded in the government's next auction, before saying hours later that a legally binding contract would stand.",
+      "sources": [
+        "https://www.businessgreen.com/news/4516520/clown-car-economics-reform-rows-threat-strike-clean-power-contracts",
+        "https://www.irishnews.com/news/uk/reform-tells-energy-firms-it-would-scrap-their-clean-power-subsidies-O3CERASNHNMOTKLONKKVV2DS6Q/",
+        "https://www.carbonbrief.org/qa-how-uks-seventh-carbon-budget-will-deliver-865bn-in-economic-benefits"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged to reverse on its first day in government the ban on new oil and gas drilling at sea, with the government taking a stake in new projects.",
+      "sources": [
+        "https://www.inkl.com/news/reform-uk-promises-to-reverse-ban-on-north-sea-oil-drilling-if-elected"
+      ]
+    }
+  ],
+  "noPosition": [
+    "nuclear-plant-decision"
+  ],
+  "emptySlots": [
+    "changes-energy"
+  ]
+}

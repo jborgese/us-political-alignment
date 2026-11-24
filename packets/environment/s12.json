@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "event": "carbon-budget-order",
+      "stance": "In government, set, with all of its legislators who voted voting for,",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-06-24/41"
+      ]
+    },
+    {
+      "event": "planning-infrastructure-law",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-06-10/223"
+      ]
+    },
+    {
+      "event": "nuclear-plant-decision",
+      "stance": "In government, made"
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, committed public funding of about 0.5 percent of a year's economic output, to 2030, for insulation, heat pumps, and solar panels in up to 5 million homes.",
+      "sources": [
+        "https://gov.uk/government/news/families-to-save-in-biggest-home-upgrade-plan-in-british-history",
+        "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, kept the end of new gasoline and diesel car sales in 2030 but allowed new hybrid cars to be sold until 2035 and eased carmakers' yearly electric vehicle sales targets until 2030.",
+      "sources": [
+        "https://www.gov.uk/government/news/backing-british-business-prime-minister-unveils-plan-to-support-carmakers"
+      ]
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In government, backed building a third runway at the country's busiest airport.",
+      "sources": [
+        "https://www.gov.uk/government/news/government-backs-heathrow-expansion-to-kickstart-economic-growth"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "In government, introduced a bill, still before the legislature, ending all new licenses to explore for oil and gas, while allowing some added production linked to fields already licensed.",
+      "sources": [
+        "https://www.gov.uk/government/publications/energy-independence-bill-factsheets/ending-new-oil-and-gas-licences-and-introducing-transitional-energy-certificates",
+        "https://fullfact.org/government-tracker/new-oil-gas-field-licences/"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

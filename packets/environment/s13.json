@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "Introduced, together with the committee chair from the other party, and voted for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml",
+        "https://golden.house.gov/media/press-releases/golden-s-permitting-reform-bill-gets-first-hearing-before-house-natural-resources-committee"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}
