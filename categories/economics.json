@@ -1,0 +1,136 @@
+{
+  "title": "Economics",
+  "question": "Which record shows stronger support for the government reducing income inequality through taxes and setting firm rules for markets and work?",
+  "highPole": "government taxes progressively and sets firm rules for markets and work",
+  "lowPole": "taxes and rules on markets and work are cut back",
+  "slots": [
+    { "id": "keeps-tax", "heading": "Taxes it keeps in place", "required": true },
+    { "id": "keeps-rules", "heading": "Market and work rules it keeps in place", "required": true },
+    { "id": "changes-tax", "heading": "Changes to taxes in the period" },
+    { "id": "changes-rules", "heading": "Changes to market and work rules in the period" },
+    { "id": "seeks", "heading": "Further changes it seeks" }
+  ],
+  "anchors": [
+    {
+      "id": "anchor-redistributive",
+      "items": [
+        {
+          "slot": "keeps-tax",
+          "tier": "official_act",
+          "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 47 percent of annual economic output, the top tax rate on earnings is about 60 percent, starting at about 3 times the average wage, and the tax rate on company profits is about 33 percent."
+        },
+        {
+          "slot": "keeps-rules",
+          "tier": "official_act",
+          "text": "Votes to keep in place the existing rules, in which the minimum wage is about 65 percent of the median full-time wage, collective agreements cover about 99 percent of employees, and an employer must give a valid reason, consult worker representatives, and pay severance of about two months' wages per year of service to dismiss a permanent employee."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted for a law raising the top tax rate on earnings by 5 points and taxing investment gains at the same rates as wages."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted against a law halving the tax rate on dividends."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted for a law raising the minimum wage by about 15 percent and requiring employers to make a fixed-term job permanent after one year."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "influence",
+          "text": "Publicly pressed fellow legislators to make each industry's collective agreement binding on every employer in that industry."
+        },
+        {
+          "slot": "seeks",
+          "tier": "statement",
+          "text": "Announced a bill to cap the pay of a company's top executives at 20 times the lowest wage it pays."
+        }
+      ]
+    },
+    {
+      "id": "anchor-mixed",
+      "items": [
+        {
+          "slot": "keeps-tax",
+          "tier": "official_act",
+          "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 34 percent of annual economic output, the top tax rate on earnings is about 45 percent, starting at about 4 times the average wage, and the tax rate on company profits is about 25 percent."
+        },
+        {
+          "slot": "keeps-rules",
+          "tier": "official_act",
+          "text": "Votes to keep in place the existing rules, in which the minimum wage is about 50 percent of the median full-time wage, collective agreements cover about 30 percent of employees, and an employer must give notice and a valid reason to dismiss a permanent employee after two years of service."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted for a law raising the amount of earnings free of tax by about 10 percent, paid for by limiting deductions for the top tenth of earners."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted against a law raising the top tax rate on earnings by 5 points."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted for a law giving workers on variable hours the right to a guaranteed minimum schedule, with no change to dismissal rules."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted against a law making each industry's collective agreement binding on employers that did not sign it."
+        }
+      ],
+      "emptySlots": ["seeks"]
+    },
+    {
+      "id": "anchor-market",
+      "items": [
+        {
+          "slot": "keeps-tax",
+          "tier": "official_act",
+          "text": "Votes to keep in place the existing tax system, in which tax revenue equals about 22 percent of annual economic output, the top tax rate on earnings is about 30 percent, starting at about 10 times the average wage, and the tax rate on company profits is about 15 percent, less the cuts listed under changes."
+        },
+        {
+          "slot": "keeps-rules",
+          "tier": "official_act",
+          "text": "Votes to keep in place the existing rules, in which the minimum wage is about 20 percent of the median full-time wage, collective agreements cover about 5 percent of employees, and an employer may dismiss an employee at any time without notice, reason, or severance, less the protections ended under changes."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted for a law replacing graduated tax rates on earnings with a single rate of 15 percent and ending the tax on inherited wealth, reducing tax revenue by about 10 percent."
+        },
+        {
+          "slot": "changes-tax",
+          "tier": "official_act",
+          "text": "Voted against a law raising the tax rate on investment gains to match the rates on wages."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted for a law ending the minimum wage and letting employers require, as a condition of hiring, that a worker not join a union."
+        },
+        {
+          "slot": "changes-rules",
+          "tier": "official_act",
+          "text": "Voted to end rules requiring sellers of loans and investments to disclose their full cost."
+        },
+        {
+          "slot": "seeks",
+          "tier": "official_act",
+          "text": "Introduced a bill requiring two-thirds of the legislature to approve any tax increase."
+        },
+        {
+          "slot": "seeks",
+          "tier": "influence",
+          "text": "Publicly urged fellow legislators to end every rule requiring employers to bargain with unions."
+        }
+      ]
+    }
+  ]
+}
