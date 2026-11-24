@@ -1,0 +1,53 @@
+{
+  "items": [
+    {
+      "slot": "keeps-tax",
+      "tier": "official_act",
+      "text": "Its legislators vote to keep in place the existing tax system, in which tax revenue equals about 35 percent of annual economic output, the top tax rate on earnings is about 54 percent in a typical region, counting regional taxes that vary by region, starting at about 3 times the average wage, and the tax rate on company profits is about 26 percent counting regional taxes.",
+      "sources": [
+        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
+      ]
+    },
+    {
+      "slot": "keeps-rules",
+      "tier": "official_act",
+      "text": "Its legislators vote to keep in place the existing rules, in which the minimum wage is about 49 percent of the median full-time wage, collective agreements cover about 30 percent of employees, and in a typical region an employer may dismiss an employee without a stated reason but must give notice or pay of about one week per year of service, up to eight weeks, and larger employers must also pay severance to long-serving staff.",
+      "sources": [
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/Canada-EPL.pdf",
+        "https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment",
+        "https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay"
+      ]
+    },
+    {
+      "event": "income-tax-cut",
+      "stance": "Its legislators voted for",
+      "sources": [
+        "https://www.parl.ca/legisinfo/en/bill/45-1/C-4"
+      ]
+    },
+    {
+      "event": "budget-law-investment",
+      "stance": "All seven of its legislators voted against",
+      "sources": [
+        "https://openparliament.ca/votes/45-1/82/",
+        "https://www.parl.ca/LegisInfo/en/bill/45-1/C-15"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Announced a bill to repeal the power that lets the national government end strikes by ordering binding arbitration.",
+      "sources": [
+        "https://globalnews.ca/news/11431013/ndp-section-107-labour-code-strikes/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rules"
+  ]
+}

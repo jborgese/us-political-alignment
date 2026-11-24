@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "slot": "keeps-tax",
+      "tier": "official_act",
+      "text": "In government, keeps in place the existing tax system, in which tax revenue equals about 35 percent of annual economic output, the top tax rate on earnings is about 54 percent in a typical region, counting regional taxes that vary by region, starting at about 3 times the average wage, and the tax rate on company profits is about 26 percent counting regional taxes.",
+      "sources": [
+        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
+      ]
+    },
+    {
+      "slot": "keeps-rules",
+      "tier": "official_act",
+      "text": "In government, keeps in place the existing rules, in which the minimum wage is about 49 percent of the median full-time wage, collective agreements cover about 30 percent of employees, and in a typical region an employer may dismiss an employee without a stated reason but must give notice or pay of about one week per year of service, up to eight weeks, and larger employers must also pay severance to long-serving staff.",
+      "sources": [
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TUD_CBC%40DF_CBC&df[ag]=OECD.ELS.SAE",
+        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/Canada-EPL.pdf",
+        "https://www.ontario.ca/document/your-guide-employment-standards-act-0/termination-employment",
+        "https://www.ontario.ca/document/your-guide-employment-standards-act-0/severance-pay"
+      ]
+    },
+    {
+      "event": "income-tax-cut",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://www.parl.ca/legisinfo/en/bill/45-1/C-4"
+      ]
+    },
+    {
+      "event": "budget-law-investment",
+      "stance": "In government, enacted",
+      "sources": [
+        "https://openparliament.ca/votes/45-1/82/",
+        "https://www.parl.ca/LegisInfo/en/bill/45-1/C-15"
+      ]
+    },
+    {
+      "slot": "changes-tax",
+      "tier": "official_act",
+      "text": "In government, cancelled a planned increase in the taxable share of large investment gains from one half to two thirds.",
+      "sources": [
+        "https://www.pm.gc.ca/en/news/news-releases/2025/03/21/prime-minister-mark-carney-cancels-proposed-capital-gains-tax-increase"
+      ]
+    },
+    {
+      "slot": "changes-rules",
+      "tier": "official_act",
+      "text": "In government, ordered binding arbitration to end a strike by flight attendants at the largest airline on the strike's first day, extending their old contract until an arbitrator sets a new one.",
+      "sources": [
+        "https://www.canada.ca/en/employment-social-development/news/2025/08/statement-from-minister-hajdu.html",
+        "https://www.ctvnews.ca/edmonton/article/hajdu-orders-binding-arbitration-resumption-of-operations-to-end-air-canada-strike/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

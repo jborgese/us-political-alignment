@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "slot": "keeps-tax",
+      "tier": "official_act",
+      "text": "Its legislators vote to keep in place the existing tax system, in which tax revenue equals about 34 percent of annual economic output, the top tax rate on earnings is 45 percent, starting at about 2 times the average wage, and the tax rate on company profits is 25 percent.",
+      "sources": [
+        "https://www.oecd.org/en/publications/revenue-statistics-2025_3a264267-en/full-report/tax-revenue-trends-1965-2024_98c75833.html",
+        "https://www.oecd.org/ctp/tax-policy/personal-income-tax-rates-explanatory-annex.pdf",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_PIT%40DF_PIT_TOP_EARN_THRESH&df[ag]=OECD.CTP.TPS",
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_TAX_CIT%40DF_CIT&df[ag]=OECD.CTP.TPS"
+      ]
+    },
+    {
+      "slot": "keeps-rules",
+      "tier": "official_act",
+      "text": "Its legislators vote to keep in place the existing rules, in which the minimum wage is about 62 percent of the median full-time wage, collective agreements cover about 27 percent of employees, and an employer needs a fair reason to dismiss an employee with two years of service, must give notice of about one week per year of service up to twelve weeks, and must make a redundancy payment when cutting the job of such an employee.",
+      "sources": [
+        "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_EARNINGS%40MIN2AVE&df[ag]=OECD.ELS.SAE",
+        "https://www.gov.uk/government/statistics/trade-union-statistics-2024/trade-union-membership-uk-1995-to-2024-statistical-bulletin",
+        "https://www.gov.uk/dismissal",
+        "https://www.gov.uk/redundant-your-rights",
+        "https://www.oecd.org/content/dam/oecd/en/data/datasets/indicators-of-employment-protection/United-Kingdom-EPL.pdf"
+      ]
+    },
+    {
+      "event": "finance-law-2025",
+      "stance": "Its three voting legislators voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-03-03/112"
+      ]
+    },
+    {
+      "event": "finance-law-2026",
+      "stance": "Seven of its eight legislators voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-03-11/449"
+      ]
+    },
+    {
+      "event": "employment-rights-law",
+      "stance": "Its one voting legislator voted against",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2025-03-12/123"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged to raise the amount of earnings free of income tax by about 19 percent in its first budget, at a cost of about 0.6 percent of annual economic output a year, paid for mainly by cutting benefits.",
+      "sources": [
+        "https://www.lbc.co.uk/politics/uk-politics/reform-pledges-raise-tax-free-personal-allowance/",
+        "https://obr.uk/efo/economic-and-fiscal-outlook-november-2025/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its business spokesperson said it would pass a law repealing the new employment rights law along with other recent laws.",
+      "sources": [
+        "https://www.hrgrapevine.com/content/article/2026-02-27-reform-uk-vows-to-scrap-employment-rights-act-if-elected"
+      ]
+    }
+  ]
+}
