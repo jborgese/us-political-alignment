@@ -54,7 +54,7 @@ To spend less before a full run:
 Four rules keep a record's place on the scale from depending on how its evidence was written. `check` enforces the first three.
 
 1. **Same slots for every record.** The category file lists the slots. A record fills each slot or names it in `emptySlots`, and the rater then reads "No recorded act" there. `check` refuses a record that does neither, or both.
-2. **Same events for every record from one legislature.** The events file lists the program changes of the period for each legislature. Choose them by the size in the official cost estimate, before looking at how anyone voted. Every record from that legislature takes a stance on each one, and `check` refuses a record that skips one.
+2. **Same events for every record from one legislature.** The events file lists the program changes of the period for each legislature. Choose them by the size in the official cost estimate, before looking at how anyone voted. Every record from that legislature takes a stance on each one or names it in `noPosition` when it had neither a vote nor a stated position, and the rater then reads nothing for that event. `check` refuses a record that does neither, or both.
 3. **One wording per event.** The wording lives in the events file. A record supplies only its stance, and the tool joins the two. Records can then differ in what they did, never in how a measure is described.
 4. **Size and reach as shares.** Say what a measure changes as a share of the program's funding, of residents, or of recipients. Take the figure from the official estimate, and say so in the text when it comes from anywhere else. Use no adjective for size: "by about 14 percent", not "deeply". This rule is checked by reading, not by the tool.
 
@@ -107,7 +107,7 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
 }
 ```
 
-An item is either a stance on an event or a free item with its own slot, tier, text, and sources. A stance counts as an official act and takes the event's slot. Give a stance its own `sources` when the event's sources do not show how this subject acted.
+An item is either a stance on an event or a free item with its own slot, tier, text, and sources. A stance takes the event's slot and counts as an official act, unless it gives a `tier` of its own for a position the record stated or pressed for without a vote. Give a stance its own `sources` when the event's sources do not show how this subject acted.
 
 **Tiers**
 

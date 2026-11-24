@@ -1,0 +1,63 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "In government, enacted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "In government, enacted, with all of its legislators who voted in both chambers voting for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023",
+        "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1191/vote_119_1_00007.htm"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "In government, enacted, with all of its legislators in the lower chamber who voted voting for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214",
+        "https://news.ballotpedia.org/2026/06/13/trump-signs-the-secure-america-act-into-law/"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "All but 10 of its legislators in the lower chamber who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "changes-entry",
+      "tier": "official_act",
+      "text": "In government, cut the yearly ceiling on refugees resettled from abroad from 125,000 to 7,500, later raised to 17,500.",
+      "sources": [
+        "https://www.everycrsreport.com/reports/IF13277.html"
+      ]
+    },
+    {
+      "slot": "changes-entry",
+      "tier": "official_act",
+      "text": "In government, moved to end temporary protection from removal, with work permits, for people from 13 countries, about 1.1 million people, about 0.3 percent of the population.",
+      "sources": [
+        "https://www.everycrsreport.com/reports/R49346.html",
+        "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its national platform, adopted before this period, pledges to remove people without legal status in large numbers, finish the border wall, halt releases of people who crossed unlawfully, end family-based immigration beyond the immediate family in favor of merit, and cut national funding to local governments that limit cooperation with immigration enforcement.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-republican-party-platform"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "event": "family-reunification-suspension",
+      "stance": "In a governing coalition, enacted",
+      "sources": [
+        "https://www.bundestag.de/dokumente/textarchiv/2025/kw26-de-familiennachzug-1084812"
+      ]
+    },
+    {
+      "slot": "changes-entry",
+      "tier": "official_act",
+      "text": "In a governing coalition, had police at the land borders turn back people asking for asylum there. In the latest six months reported they turned back 514, about half of those who asked.",
+      "sources": [
+        "https://www.infranken.de/deutschland/an-landgrenzen-gut-jeder-zweite-asylsuchende-zurueckgewiesen-art-6393226"
+      ]
+    },
+    {
+      "slot": "changes-enforcement",
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a law letting the government name safe countries of origin by regulation, without a vote in either chamber, and ending the right to an appointed lawyer for people held in detention before removal.",
+      "sources": [
+        "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung/?id=986",
+        "https://www.evangelisch.de/inhalte/250306/05-12-2025/bundestag-schafft-pflichtanwalt-bei-abschiebungen-wieder-ab"
+      ]
+    },
+    {
+      "slot": "changes-enforcement",
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a law adding fast asylum procedures at airports and seaports for applicants from countries with low recognition rates, with removal directly from there if refused, and centers where people awaiting transfer to another country responsible for their claims must stay. The law also lets asylum seekers in reception centers work after three months instead of six.",
+      "sources": [
+        "https://www.zdfheute.de/politik/deutschland/geas-bundestag-abstimmung-asylreform-100.html",
+        "https://www.abgeordnetenwatch.de/node/6419"
+      ]
+    },
+    {
+      "slot": "changes-rights",
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a law ending citizenship after three years of residence for especially well-integrated residents, a route opened the year before, so that five years again became the shortest wait.",
+      "sources": [
+        "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung?id=962",
+        "https://migrando.de/news/einbuergerung/turbo-einbuergerung-offiziell-abgeschafft-bundestag-stimmt-gegen-deutschen-pass-nach-drei-jahren/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "In a governing coalition, approved a bill moving refugees from one country at war who arrive after a set date from the general benefit for job seekers to the lower benefit for asylum seekers. The bill assumes about 12,000 new arrivals a month, about 0.17 percent of the population a year.",
+      "sources": [
+        "https://www.bundesregierung.de/breg-de/aktuelles/kabinett-rechtskreiswechsel-2382474",
+        "https://dserver.bundestag.de/brd/2025/0763-25.pdf",
+        "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/06/PD26_203_124.html"
+      ]
+    }
+  ]
+}

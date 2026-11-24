@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "event": "asylum-bill",
+      "stance": "Its legislators voted for an amendment to deny a second reading to, and those who voted at the final vote in the lower chamber voted against,",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-07-13/54",
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-11-17/127"
+      ]
+    },
+    {
+      "slot": "changes-rights",
+      "tier": "official_act",
+      "text": "Its legislators who voted voted against an amendment that would have barred rule changes lengthening the wait for permanent residence or otherwise reducing the rights of skilled-work visa holders already in the country.",
+      "sources": [
+        "https://votes.theyworkforyou.com/decisions/division/commons/2026-11-17/126"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged to leave the regional human rights convention, detain everyone in the country without permission in former military bases and remove them, estimating about 600,000 removals of asylum seekers in its first term, about 0.9 percent of the population, and to pay people who agree to leave.",
+      "sources": [
+        "https://www.itv.com/news/2025-08-26/reform-announce-plan-to-tackle-small-boats-crisis-through-mass-deportations",
+        "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2025"
+      ]
+    },
+    {
+      "event": "settlement-wait-decision",
+      "tier": "statement",
+      "stance": "Pledged to go further, abolishing permanent residence altogether even for people who already hold it, than",
+      "sources": [
+        "https://www.expressandstar.com/uk-news/2025/09/21/farage-vows-to-axe-indefinite-leave-to-remain-and-ban-migrants-benefits-access"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged to replace permanent residence with a visa renewed every five years with higher salary and language requirements, and to end benefits for everyone who is not a citizen.",
+      "sources": [
+        "https://www.expressandstar.com/uk-news/2025/09/21/farage-vows-to-axe-indefinite-leave-to-remain-and-ban-migrants-benefits-access"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-entry",
+    "changes-enforcement"
+  ],
+  "noPosition": [
+    "work-visa-rules"
+  ]
+}

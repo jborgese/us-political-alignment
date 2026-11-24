@@ -1,0 +1,47 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "Eight of its ten members voted for, one voted against, and one did not vote on",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023",
+        "https://en.wikipedia.org/wiki/List_of_members_of_the_Blue_Dog_Coalition"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "Its members voted unanimously for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Seven of its ten members cosponsored from its introduction a bill giving people brought to the country as children, and holders of temporary protection from removal, permanent residence and a path to citizenship. An independent estimate of an identical earlier version put those potentially eligible at up to about 4.4 million people, about 1.3 percent of the population.",
+      "sources": [
+        "https://www.govinfo.gov/bulkdata/BILLS/119/1/hr/BILLS-119hr1589ih.xml",
+        "https://www.migrationpolicy.org/content/american-dream-and-promise-act-2021-eligibility",
+        "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html",
+        "https://en.wikipedia.org/wiki/List_of_members_of_the_Blue_Dog_Coalition"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}

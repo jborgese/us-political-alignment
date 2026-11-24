@@ -19,12 +19,14 @@ const evidenceSchema = z.strictObject({
 const stanceSchema = z.strictObject({
   event: z.string().min(1),
   stance: z.string().min(1),
+  tier: z.enum(TIERS).optional(),
   sources: sourcesSchema.optional(),
 })
 
 const packetSchema = z.strictObject({
   items: z.array(z.union([evidenceSchema.extend({ sources: sourcesSchema }), stanceSchema])).max(MAX_ITEMS_PER_PACKET),
   emptySlots: emptySlotsSchema,
+  noPosition: z.array(z.string().min(1)).default([]),
 })
 
 const categorySchema = z.strictObject({
@@ -170,6 +172,7 @@ export interface Packet {
   id: string
   items: Evidence[]
   emptySlots: string[]
+  noPosition?: string[]
 }
 
 export interface Rewording extends Packet {
@@ -263,7 +266,7 @@ const toEvidence = (events: PolicyEvent[], origin: string, item: PacketItem): Ev
   if (!event) throw new Error(`${origin} takes a stance on "${item.event}", which is not an event of its legislature`)
   return {
     slot: event.slot,
-    tier: "official_act",
+    tier: item.tier ?? "official_act",
     text: `${item.stance} ${event.text}.`,
     event: event.id,
     sources: [...event.sources, ...(item.sources ?? [])],
@@ -354,6 +357,7 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
       id,
       items: content.items.map((item) => toEvidence(events, file, item)),
       emptySlots: content.emptySlots,
+      noPosition: content.noPosition,
     }
   })
   const rewordings = rewordingFiles.flatMap(({ file, content }) =>

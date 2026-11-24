@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "event": "budget-law-enforcement",
+      "stance": "All of its legislators in both chambers voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "detention-mandate-law",
+      "stance": "About a quarter of its legislators in both chambers who voted voted for, and the rest voted against,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll023",
+        "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1191/vote_119_1_00007.htm"
+      ]
+    },
+    {
+      "event": "enforcement-funding-law",
+      "stance": "All of its legislators in the lower chamber who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll214"
+      ]
+    },
+    {
+      "event": "protected-status-bill",
+      "stance": "All of its legislators in the lower chamber voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll120"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Its leaders in both chambers made their votes for the yearly funding of the department in charge of immigration enforcement conditional on immigration agents unmasking and showing identification, needing warrants signed by judges to enter private property, keeping body cameras on, ending indiscriminate arrests and racial profiling, staying away from hospitals, schools, and places of worship, and giving detained people immediate access to a lawyer. The funding lapsed for about eleven weeks and was restored without money for the immigration enforcement agencies, which were funded by a separate budget law.",
+      "sources": [
+        "https://www.pbs.org/newshour/politics/democrats-demand-dramatic-changes-for-ice-on-masks-cameras-and-judicial-warrants",
+        "https://www.democrats.senate.gov/imo/media/doc/leaders_jeffries_and_schumer_to_speaker_johnson_and_leader_thune_2.pdf",
+        "https://www.pbs.org/newshour/politics/house-approves-bill-to-fund-homeland-security-and-end-the-record-shutdown"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its national platform, adopted before this period, pledges a path to citizenship for people brought to the country as children, farmworkers, care workers, and other long-term residents without legal status, and about 250,000 more immigrant visas over five years. It also pledges more border personnel, stricter requirements for asylum claims, and emergency authority to expel people crossing unlawfully when the system is overwhelmed.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-democratic-party-platform"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-rights"
+  ]
+}

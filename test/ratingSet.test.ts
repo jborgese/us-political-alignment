@@ -105,12 +105,30 @@ describe("events", () => {
 
   it("flags a record that takes no stance on an event of its legislature", () => {
     const set = setWithBudgetEvent(record("s01", [act("Voted to hold coverage flat.")]))
-    expect(findSetProblems(set)).toEqual(["s01 takes no stance on the event budget"])
+    expect(findSetProblems(set)).toEqual([
+      "s01 takes no stance on the event budget: add a stance or list it in noPosition",
+    ])
   })
 
   it("accepts a record with a stance on every event of its legislature", () => {
     const set = setWithBudgetEvent(record("s01", [{ ...act("Voted against a budget."), event: "budget" }]))
     expect(findSetProblems(set)).toEqual([])
+  })
+
+  it("accepts a record that lists an event it took no position on", () => {
+    const set = setWithBudgetEvent({ ...record("s01", [act("Voted to hold coverage flat.")]), noPosition: ["budget"] })
+    expect(findSetProblems(set)).toEqual([])
+  })
+
+  it("flags a noPosition entry that is not an event of its legislature or that it also takes a stance on", () => {
+    const set = setWithBudgetEvent({
+      ...record("s01", [{ ...act("Voted against a budget."), event: "budget" }]),
+      noPosition: ["budget", "tariffs"],
+    })
+    expect(findSetProblems(set)).toEqual([
+      "s01 lists tariffs under noPosition, which is not an event of its legislature",
+      "s01 lists budget under noPosition but takes a stance on it",
+    ])
   })
 })
 

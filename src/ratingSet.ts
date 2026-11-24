@@ -101,14 +101,25 @@ const slotProblems = (set: RatingSet): string[] => {
   return ratedPackets(set).flatMap((packet) => slotProblemsOf(packet, slotIds))
 }
 
+const stanceProblemsOf = (set: RatingSet, packet: Packet): string[] => {
+  const eventIds = eventsFor(set, packet.id).map((event) => event.id)
+  const stanced = packet.items.flatMap((item) => (item.event === undefined ? [] : [item.event]))
+  const noPosition = packet.noPosition ?? []
+  return [
+    ...eventIds
+      .filter((id) => !stanced.includes(id) && !noPosition.includes(id))
+      .map((id) => `${packet.id} takes no stance on the event ${id}: add a stance or list it in noPosition`),
+    ...noPosition
+      .filter((id) => !eventIds.includes(id))
+      .map((id) => `${packet.id} lists ${id} under noPosition, which is not an event of its legislature`),
+    ...noPosition
+      .filter((id) => stanced.includes(id))
+      .map((id) => `${packet.id} lists ${id} under noPosition but takes a stance on it`),
+  ]
+}
+
 const missingStanceProblems = (set: RatingSet): string[] =>
-  set.packets
-    .filter((packet) => packet.items.length > 0)
-    .flatMap((packet) =>
-      eventsFor(set, packet.id)
-        .filter((event) => !packet.items.some((item) => item.event === event.id))
-        .map((event) => `${packet.id} takes no stance on the event ${event.id}`),
-    )
+  set.packets.filter((packet) => packet.items.length > 0).flatMap((packet) => stanceProblemsOf(set, packet))
 
 const numbersIn = (text: string): string => (text.match(/\d+(?:[.,]\d+)*/g) ?? []).toSorted().join(", ") || "none"
 

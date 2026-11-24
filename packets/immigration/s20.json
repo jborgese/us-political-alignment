@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "event": "territory-birthright-law",
+      "stance": "All of its legislators who voted voted for",
+      "sources": [
+        "https://datan.fr/votes/legislature-17/vote_1308"
+      ]
+    },
+    {
+      "event": "detention-210-law",
+      "stance": "All of its legislators who voted voted for",
+      "sources": [
+        "https://www.assemblee-nationale.fr/dyn/17/scrutins/7405"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced a resolution, adopted by one vote, calling on the government to end a bilateral agreement that gives nationals of one country their own rules for residence, work, and family reunification. The resolution does not bind the government.",
+      "sources": [
+        "https://lcp.fr/actualites/denonciation-des-accords-franco-algeriens-de-1968-un-texte-du-rn-adopte-a-une-voix-pres"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced a bill making unlawful presence in the country a criminal offence again; amendments stripped it and the party withdrew it.",
+      "sources": [
+        "https://lcp.fr/index%2ephp/actualites/niche-parlementaire-rn-une-victoire-et-trois-echecs-recit-d-une-journee-qualifiee-d"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-entry"
+  ]
+}
