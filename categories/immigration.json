@@ -1,0 +1,115 @@
+{
+  "title": "Immigration",
+  "question": "Which record shows stronger support for admitting more immigrants and refugees and for widening the rights of migrants already in the country?",
+  "weighing": "Judge only the changes a record supports or opposes: those it votes on, presses for, or seeks, by their direction and size. Opposing a change counts as support for what the change would have removed. The immigration rules a record inherited are not part of its position.",
+  "highPole": "more immigrants and refugees admitted, with wider rights once in the country",
+  "lowPole": "fewer admitted, with stricter enforcement, detention and removal",
+  "slots": [
+    {
+      "id": "changes-entry",
+      "heading": "Changes to who may come and stay in the period"
+    },
+    {
+      "id": "changes-enforcement",
+      "heading": "Changes to enforcement, detention, and removal in the period"
+    },
+    {
+      "id": "changes-rights",
+      "heading": "Changes to migrants' rights and the path to citizenship in the period"
+    },
+    {
+      "id": "seeks",
+      "heading": "Further changes it seeks"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "anchor-open",
+      "items": [
+        {
+          "slot": "changes-entry",
+          "tier": "official_act",
+          "text": "Voted for a law doubling the yearly number of refugees resettled from abroad and opening a work visa for any job offer paying at least the minimum wage, raising new arrivals by about 1 percent of the population a year."
+        },
+        {
+          "slot": "changes-enforcement",
+          "tier": "official_act",
+          "text": "Voted for a law ending immigration detention of families with children and limiting any other immigration detention to 30 days."
+        },
+        {
+          "slot": "changes-rights",
+          "tier": "official_act",
+          "text": "Voted for a law giving residents without legal status who have lived in the country for five years a path to permanent residence, about 2 percent of the population."
+        },
+        {
+          "slot": "changes-rights",
+          "tier": "official_act",
+          "text": "Voted against a law ending citizenship by birth for children of parents without legal status."
+        },
+        {
+          "slot": "seeks",
+          "tier": "statement",
+          "text": "Pledged to let asylum seekers work from the day they apply."
+        }
+      ]
+    },
+    {
+      "id": "anchor-mixed",
+      "items": [
+        {
+          "slot": "changes-entry",
+          "tier": "official_act",
+          "text": "Voted for a law raising skilled work visas by about 20 percent while cutting visas for lower-paid jobs by about the same number."
+        },
+        {
+          "slot": "changes-enforcement",
+          "tier": "official_act",
+          "text": "Voted for a law setting a six-month limit for deciding asylum appeals and hiring more officers to remove people whose claims fail."
+        },
+        {
+          "slot": "changes-rights",
+          "tier": "official_act",
+          "text": "Voted for a law lowering the residence needed for citizenship from eight years to six."
+        },
+        {
+          "slot": "changes-rights",
+          "tier": "official_act",
+          "text": "Voted against a law letting asylum seekers bring their families before a decision on their claims."
+        }
+      ],
+      "emptySlots": [
+        "seeks"
+      ]
+    },
+    {
+      "id": "anchor-restrictive",
+      "items": [
+        {
+          "slot": "changes-entry",
+          "tier": "official_act",
+          "text": "Voted for a law halting all asylum claims and refugee resettlement for four years and cutting work visas by half."
+        },
+        {
+          "slot": "changes-enforcement",
+          "tier": "official_act",
+          "text": "Voted for a law requiring detention of everyone who entered without permission until removal, with no time limit."
+        },
+        {
+          "slot": "changes-rights",
+          "tier": "official_act",
+          "text": "Voted for a law ending citizenship by birth for children of parents without legal status and removing permanent residence from anyone convicted of any offence."
+        },
+        {
+          "slot": "changes-rights",
+          "tier": "official_act",
+          "text": "Voted against a law allowing family reunification for recognized refugees."
+        },
+        {
+          "slot": "seeks",
+          "tier": "influence",
+          "text": "Publicly urged fellow legislators to remove every resident without legal status within two years."
+        }
+      ]
+    }
+  ]
+}
