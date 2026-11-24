@@ -26,7 +26,7 @@ import { findSetProblems } from "./ratingSet.ts"
 export type RateOutcome =
   | { status: "complete" }
   | { status: "submitted"; batchId: string; count: number; remaining: number }
-  | { status: "waiting"; batchId: string; finished: number; total: number }
+  | { status: "waiting"; batchId: string; total: number; submittedAt: string }
   | { status: "collected"; rated: number; failed: number; remaining: number }
 
 type RunFiles = Pick<CategoryPaths, "comparisons" | "superseded" | "pendingBatch">
@@ -71,8 +71,7 @@ const collect = async (
 ): Promise<RateOutcome> => {
   const progress = await createBatchRater(pending.model).collect(pending.batchId)
   if (!progress.ended) {
-    const total = pending.requests.length
-    return { status: "waiting", batchId: pending.batchId, finished: total - progress.processing, total }
+    return { status: "waiting", batchId: pending.batchId, total: pending.requests.length, submittedAt: pending.submittedAt }
   }
   const rated = progress.rated.flatMap((result) => toComparison(pending, result))
   await appendFile(files.comparisons, asLines(rated))

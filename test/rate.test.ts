@@ -157,7 +157,7 @@ describe("rateCategory", () => {
 
     const waiting = await rate(root)
 
-    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", finished: 2, total: 6 })
+    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", total: 6, submittedAt: expect.any(String) })
     expect(await savedRows(root, "comparisons.jsonl")).toEqual([])
     expect(await rate(root)).toMatchObject({ status: "collected", rated: 6 })
   })
@@ -295,7 +295,7 @@ describe("rateStability", () => {
     expect(sentText()).toContain("- [Official act] Cast a vote against a budget lowering public coverage by 5 percent.")
   })
 
-  it("reports how many reworded comparisons have finished while the batch is still running", async () => {
+  it("reports the size of a reworded batch that is still running", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
     await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
     await rateFully(root)
@@ -304,7 +304,7 @@ describe("rateStability", () => {
 
     const waiting = await rateRewordings(root)
 
-    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", finished: 1, total: 4 })
+    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", total: 4, submittedAt: expect.any(String) })
     expect(await savedRows(root, "stability.jsonl")).toEqual([])
   })
 
