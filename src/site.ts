@@ -27,6 +27,7 @@ import {
   pageHead,
   partyKey,
   tickLabels,
+  usPartyKey,
   type Axis,
   type SiteAssets,
   type SitePage,
@@ -36,8 +37,7 @@ import { heldBackReasons, previousScores, summarizeRun } from "./report.ts"
 import { wordingRange, type WordingRange } from "./stability.ts"
 
 const HOME_HREF = "../"
-const PARTY_LANE = "Parties abroad"
-const ANCHOR_LANE = "Reference records"
+const US_PARTIES = "US parties"
 const LONGEST_PARTY_LABEL = 12
 const FLAGS: Record<string, string> = { Canada: "ca", France: "fr", Germany: "de", "United Kingdom": "uk" }
 const PARTY_SYMBOLS: Record<string, string> = { Democratic: "donkey", Republican: "elephant" }
@@ -65,7 +65,7 @@ export interface SiteRecord {
   symbol: string | null
   kind: SiteKind
   detail: string
-  lane: string
+  group: string | null
   score: number
   previousScore: number | null
   range: WordingRange | null
@@ -82,16 +82,16 @@ export interface SiteData {
   ratedOn: string
   agreementAcrossOrders: number
   wonByFirstListed: number
-  lanes: SiteLane[]
+  groups: SiteGroup[]
   records: SiteRecord[]
   selected: number
   heldBack: HeldBack[]
 }
 
-export interface SiteLane {
+export interface SiteGroup {
   name: string
-  short: string
-  icon: string
+  kind: Exclude<SiteKind, "anchor" | "member">
+  flag: string | null
 }
 
 export interface HeldBack {
@@ -115,20 +115,22 @@ const initials = (name: string): string =>
 
 const capitalized = (text: string): string => text.charAt(0).toUpperCase() + text.slice(1)
 
-type Placement = Pick<SiteRecord, "label" | "glyph" | "flag" | "detail" | "lane">
+type Placement = Pick<SiteRecord, "label" | "glyph" | "flag" | "detail" | "group">
 
 const describeSubject = (subject: Subject): Placement => {
   if (subject.kind === "caucus") {
-    return { label: "", glyph: initials(subject.name), flag: null, detail: "House caucus", lane: subject.name }
+    const label = subject.aliases[0] ?? subject.name
+    return { label, glyph: initials(subject.name), flag: null, detail: "House caucus", group: subject.name }
   }
   if (subject.kind === "party") {
     const short = subject.name.length <= LONGEST_PARTY_LABEL ? subject.name : (subject.aliases[0] ?? subject.name)
+    const american = subject.legislature.startsWith("us-")
     return {
       label: short,
       glyph: initials(subject.name),
       flag: FLAGS[subject.group] ?? null,
-      detail: subject.group,
-      lane: PARTY_LANE,
+      detail: american ? "US party" : subject.group,
+      group: american ? US_PARTIES : subject.group,
     }
   }
   const words = subject.name.split(" ")
@@ -137,7 +139,7 @@ const describeSubject = (subject: Subject): Placement => {
     glyph: initials(`${words[0]} ${words[words.length - 1]}`),
     flag: null,
     detail: subject.group,
-    lane: subject.group,
+    group: subject.group,
   }
 }
 
@@ -151,21 +153,25 @@ const sectionsOf = (set: RatingSet, packet: Packet): SiteSection[] =>
     })),
   }))
 
-const mean = (values: number[]): number => values.reduce((sum, value) => sum + value, 0) / values.length
+const GROUP_ORDER: SiteGroup["kind"][] = ["caucus", "party"]
 
-const describeLane = (name: string): SiteLane => {
-  if (name === PARTY_LANE) return { name, short: "Abroad", icon: "party" }
-  if (name === ANCHOR_LANE) return { name, short: "Ref", icon: "anchor" }
-  return { name, short: initials(name), icon: "caucus" }
+const groupOf = (records: SiteRecord[], name: string): SiteGroup => {
+  const caucus = records.some((record) => record.group === name && record.kind !== "party")
+  const flag = records.find((record) => record.group === name && record.flag)?.flag ?? null
+  return { name, kind: caucus ? "caucus" : "party", flag }
 }
 
-const laneOrder = (records: SiteRecord[]): SiteLane[] => {
-  const lanes = records.map((record) => record.lane).filter((lane, index, all) => all.indexOf(lane) === index)
-  const position = (lane: string): number => (lane === PARTY_LANE ? 0 : lane === ANCHOR_LANE ? 2 : 1)
-  const average = (lane: string): number =>
-    mean(records.filter((record) => record.lane === lane).map((record) => record.score))
-  return lanes.toSorted((a, b) => position(a) - position(b) || average(b) - average(a)).map(describeLane)
-}
+const groupsOf = (records: SiteRecord[]): SiteGroup[] =>
+  records
+    .flatMap((record) => (record.group === null ? [] : [record.group]))
+    .filter((name, index, all) => all.indexOf(name) === index)
+    .map((name) => groupOf(records, name))
+    .toSorted(
+      (a, b) =>
+        GROUP_ORDER.indexOf(a.kind) - GROUP_ORDER.indexOf(b.kind) ||
+        Number(a.flag !== null) - Number(b.flag !== null) ||
+        a.name.localeCompare(b.name),
+    )
 
 const formatDay = (isoTime: string): string =>
   new Date(isoTime).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
@@ -206,7 +212,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       symbol: null,
       kind: "anchor",
       detail: "Written reference record",
-      lane: ANCHOR_LANE,
+      group: null,
       score: scoreOf(anchor.id),
       previousScore: previousOf(anchor.id),
       range: null,
@@ -224,7 +230,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
     ratedOn: formatDay(set.comparisons[set.comparisons.length - 1].ratedAt),
     agreementAcrossOrders: run.agreementAcrossOrders,
     wonByFirstListed: run.wonByFirstListed,
-    lanes: laneOrder(records),
+    groups: groupsOf(records),
     records,
     selected: records.findIndex((record) => record.kind !== "anchor"),
     heldBack: rated
@@ -243,21 +249,34 @@ const rangeBar = ({ score, range }: SiteRecord, axis: Axis): string =>
 const spoken = ({ name, score, range }: SiteRecord): string =>
   range ? `${name}, ${score}, ${rangeText(range)} when reworded` : `${name}, ${score}`
 
+const label = (record: SiteRecord): string =>
+  record.kind === "anchor"
+    ? `<span class="name">${escapeHtml(record.label)}</span>`
+    : `<span class="leader"></span><span class="name"><b class="score">${record.score}</b>${escapeHtml(record.label)}<span class="detail">${escapeHtml(record.detail)}</span></span>`
+
 const marker = (record: SiteRecord, index: number, axis: Axis): string => {
-  const label = record.label ? `<span class="name">${escapeHtml(record.label)}</span>` : ""
   const symbol = record.symbol ? ` data-symbol="${record.symbol}"` : ""
-  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol} style="--y:${axis.position(record.score)}" aria-pressed="false" aria-label="${escapeHtml(spoken(record))}">${rangeBar(record, axis)}${glyph(record)}${label}</button>`
+  const group = record.group === null ? "" : ` data-group="${escapeHtml(record.group)}"`
+  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol}${group} style="--y:${axis.position(record.score)}" aria-pressed="false" aria-label="${escapeHtml(spoken(record))}">${rangeBar(record, axis)}${glyph(record)}${label(record)}</button>`
 }
 
-const column = (data: SiteData, lane: SiteLane, axis: Axis): string => {
-  const markers = data.records
-    .map((record, index) => (record.lane === lane.name ? marker(record, index, axis) : ""))
-    .join("")
-  return `<div class="column">${gridLines(axis)}${markers}</div>`
+const column = (data: SiteData, className: string, axis: Axis, keep: (record: SiteRecord) => boolean): string => {
+  const markers = data.records.map((record, index) => (keep(record) ? marker(record, index, axis) : "")).join("")
+  return `<div class="column ${className}">${gridLines(axis)}${markers}</div>`
 }
 
-const columnHead = (lane: SiteLane): string =>
-  `<div class="column-head" title="${escapeHtml(lane.name)}">${icon(lane.icon)}<span class="full">${escapeHtml(lane.name)}</span><span class="short">${escapeHtml(lane.short)}</span></div>`
+const groupIcon = (group: SiteGroup): string =>
+  group.flag
+    ? `<span class="group-flag" data-kind="party">${glyph({ glyph: "", flag: group.flag, symbol: null })}</span>`
+    : icon(group.kind === "caucus" ? "caucus" : "party")
+
+const groupButtons = (groups: SiteGroup[]): string =>
+  `<ul class="groups" aria-label="Highlight a group">${groups
+    .map(
+      (group) =>
+        `<li><button type="button" class="group" data-group="${escapeHtml(group.name)}" aria-pressed="false">${groupIcon(group)}${escapeHtml(group.name)}</button></li>`,
+    )
+    .join("")}</ul>`
 
 const isReworded = (records: SiteRecord[]): boolean => records.some((record) => record.range !== null)
 
@@ -320,15 +339,16 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets, issues: SiteIs
       largestRewordedMove(data.records),
       `</ul>`,
       `<section class="scale" aria-label="Records by strength of support">`,
-      `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li><li><span class="glyph anchor"></span>Reference record</li>${isReworded(data.records) ? `<li><span class="range-key"></span>Range when reworded</li>` : ""}</ul>`,
+      `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li>${usPartyKey(data.records)}<li><span class="glyph anchor"></span>Reference record</li>${isReworded(data.records) ? `<li><span class="range-key"></span>Range when reworded</li>` : ""}</ul>`,
+      groupButtons(data.groups),
       `<div class="pole">${icon("shield")}${escapeHtml(capitalized(data.highPole))}</div>`,
-      `<div class="plot" style="--columns:${data.lanes.length}">`,
+      `<div class="plot one-scale">`,
       `<div class="y-axis">${tickLabels(axis)}</div>`,
-      ...data.lanes.map((lane) => column(data, lane, axis)),
-      `<div></div>`,
-      ...data.lanes.map(columnHead),
+      column(data, "records", axis, (record) => record.kind !== "anchor"),
+      column(data, "reference", axis, (record) => record.kind === "anchor"),
       `</div>`,
       `<div class="pole">${icon("cut")}${escapeHtml(capitalized(data.lowPole))}</div>`,
+      `<p class="scale-note">${icon("move")}Only height is measured. Marks shift sideways only to stay visible.</p>`,
       `</section>`,
       heldBack(data.heldBack),
       `<section class="evidence" aria-live="polite" aria-label="Evidence for the selected record">`,
@@ -357,9 +377,10 @@ const issuesFor = (planned: PlannedCategory[], published: Record<string, SiteDat
   }))
 
 export const writeSite = async (root: string): Promise<string[]> => {
-  const [planned, css, pageScript, homeScript] = await Promise.all([
+  const [planned, css, dodgeScript, pageScript, homeScript] = await Promise.all([
     loadPlannedCategories(fileURLToPath(new URL("../site/categories.json", import.meta.url))),
     readAsset("style.css"),
+    readAsset("dodge.js"),
     readAsset("app.js"),
     readAsset("home.js"),
   ])
@@ -367,10 +388,10 @@ export const writeSite = async (root: string): Promise<string[]> => {
   const sets = await Promise.all(ids.map((id) => loadRatingSet(root, id)))
   const published = Object.fromEntries(ids.map((id, index) => [id, buildSiteData(sets[index])]))
   const pages = [
-    { file: "index.html", page: buildHomePage(buildHomeData(planned, published), { css, js: homeScript }) },
+    { file: "index.html", page: buildHomePage(buildHomeData(planned, published), { css, js: `${dodgeScript}\n${homeScript}` }) },
     ...Object.entries(published).map(([id, data]) => ({
       file: path.join(id, "index.html"),
-      page: buildSitePage(data, { css, js: pageScript }, issuesFor(planned, published, id)),
+      page: buildSitePage(data, { css, js: `${dodgeScript}\n${pageScript}` }, issuesFor(planned, published, id)),
     })),
   ]
   return Promise.all(

@@ -23,3 +23,9 @@ marks.forEach((mark) => {
   mark.addEventListener("pointerleave", hideTooltip)
 })
 addEventListener("scroll", hideTooltip, { passive: true })
+
+const layoutColumns = () =>
+  document.querySelectorAll(".overview .column").forEach((column) => dodge([...column.querySelectorAll(".marker")]))
+
+new ResizeObserver(layoutColumns).observe(document.querySelector(".scale"))
+document.fonts?.ready.then(layoutColumns)

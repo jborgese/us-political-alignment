@@ -158,8 +158,9 @@ The pilot rewords each of the 18 records on the page twice, which is 1,656 compa
 
 `npm run site` builds an overview, `dist/index.html`, and one self-contained page per published category, `dist/<category-id>/index.html`: every record placed by strength of support, and the evidence behind whichever record the reader selects.
 
-- Support runs from bottom to top. Left to right is one column per group, ordered by support. A left-right position will replace the columns once the project has its own measure of it.
-- A member or caucus shows its party's symbol when `key.json` gives it a `party` the page knows (Democratic or Republican). A party abroad shows its country's flag.
+- Support runs from bottom to top, and every record sits on that one scale. Side-to-side position means nothing: marks move sideways only where two would overlap, and each label sits to the right, joined to its mark by a line. Buttons above the chart light up one caucus, one country, or the US parties. A left-right position will become the horizontal axis once the project has its own measure of it.
+- In the overview, each issue's column is one scale in the same way.
+- A member or caucus shows its party's symbol when `key.json` gives it a `party` the page knows (Democratic or Republican). A party abroad shows its country's flag. A party whose `legislature` starts with `us-` is a US party: it shows its own symbol, filled and ringed, in a lane of its own.
 
 - `site/categories.json` lists the issues the site plans to cover, in the order shown, and says which are published. Saving a run publishes nothing: a category reaches the site when its `published` is set to `true`. The others are dimmed in the overview and in each page's list of issues.
 - The overview has one column per issue and marks each record's score in it. It leaves out the reference records.
@@ -168,7 +169,7 @@ The pilot rewords each of the 18 records on the page twice, which is 1,656 compa
 - A record is held back from the page when its evidence is thin: a section marked `required` in the category file is empty, it has fewer than three official acts, or more than 15% of its pairs changed winner with the order shown. The page and the report both name each record held back and say why.
 - A record is also held back when it fails the [wording test](#testing-the-wording). A record that passes shows a bar on its marker from its lowest to its highest score across wordings.
 - When `superseded.jsonl` holds earlier answers and the anchors have not changed since, the page also shows each record's score before the latest change to the evidence.
-- The stylesheet and the browser scripts are in `site/`. `src/site.ts` inlines them.
+- The stylesheet and the browser scripts are in `site/`; `dodge.js` is shared by both pages. `src/site.ts` inlines them.
 - `wrangler.jsonc` serves `dist/` on uspolitics.frootsnoops.com. Cloudflare builds it with `npm run site -- welfare-health` and deploys with `npx wrangler deploy` on each push to `main`. The category in that build command is left from the one-page site and is ignored.
 - A push to any other branch builds a preview of the page with `npx wrangler preview`, which needs the `previews` block in `wrangler.jsonc` even when it is empty. `preview_urls` gives each preview a public address on `workers.dev`, named after the branch; it takes effect at the next deploy from `main`.
 

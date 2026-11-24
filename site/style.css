@@ -321,6 +321,12 @@ h1 {
   background: var(--ink-2);
   border-color: var(--ink-2);
 }
+.key .glyph.us-party {
+  --mark: 16px;
+  background: var(--ink-2);
+  border-color: var(--ink-2);
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--ink-2);
+}
 .key .glyph.anchor {
   --mark: 10px;
   border-radius: 1px;
@@ -424,12 +430,6 @@ a.column-head:hover .full {
   --slot: 50%;
   cursor: inherit;
 }
-.overview .marker[data-kind="caucus"] {
-  --slot: 30%;
-}
-.overview .marker[data-kind="member"] {
-  --slot: 70%;
-}
 .overview .glyph {
   border-width: 1.5px;
   font-size: 0;
@@ -460,12 +460,6 @@ a.column-head:hover .full {
   cursor: pointer;
   white-space: nowrap;
   border-radius: 999px;
-}
-.marker[data-kind="caucus"] {
-  --slot: 20%;
-}
-.marker[data-kind="member"] {
-  --slot: 44%;
 }
 [data-symbol="donkey"] {
   --party: var(--democratic);
@@ -514,6 +508,17 @@ a.column-head:hover .full {
 [data-kind="party"] .glyph svg {
   width: 100%;
   height: 100%;
+}
+[data-kind="party"][data-symbol] .glyph {
+  --symbol-detail: var(--party, var(--ink));
+  border: 2px solid var(--party, var(--ink-2));
+  background: var(--party, var(--ink-2));
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 3.5px var(--party, var(--ink-2));
+}
+[data-kind="party"][data-symbol] .glyph svg {
+  width: 80%;
+  height: 80%;
+  color: var(--surface);
 }
 .marker[data-kind="anchor"] .glyph {
   width: 16px;
@@ -566,11 +571,94 @@ a.column-head:hover .full {
 .marker .name {
   font-size: 12px;
   color: var(--ink-2);
-  margin-left: var(--label-indent, 0px);
-  transform: translateY(var(--label-shift, 0px));
   background: color-mix(in srgb, var(--surface) 80%, transparent);
   border-radius: 3px;
   padding-inline: 2px;
+}
+.one-scale {
+  --line: 96px;
+  grid-template-columns: 34px minmax(0, 1fr) 150px;
+}
+.records .marker {
+  --slot: var(--line);
+}
+.records .name {
+  position: absolute;
+  top: 50%;
+  left: var(--label-x, calc(var(--mark) + 32px));
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  transform: translateY(calc(-50% + var(--label-shift, 0px)));
+}
+.records .score {
+  min-width: 2ch;
+  font-family: var(--font-data);
+  font-weight: 500;
+  color: var(--ink);
+  text-align: right;
+}
+.records .detail {
+  font-size: 11.5px;
+  color: var(--ink-3);
+}
+.leader {
+  position: absolute;
+  top: 50%;
+  left: var(--mark);
+  width: var(--leader-length, 32px);
+  height: 1px;
+  background: var(--rule-strong);
+  transform: rotate(var(--leader-angle, 0rad));
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.plot[data-highlight] .records .marker:not(.lit) {
+  opacity: 0.18;
+}
+.plot[data-highlight] .records .lit .name {
+  color: var(--ink);
+}
+.groups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 6px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.group:hover {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+.group[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.group-flag .glyph {
+  --mark: 16px;
+}
+.scale-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-3);
 }
 .marker:hover,
 .marker[aria-pressed="true"] {
@@ -825,10 +913,23 @@ footer {
     right: 5px;
     font-size: 10px;
   }
-  .marker .name,
+  .reference .name,
+  .records .detail,
   .column-head .full,
   .column-head svg.icon {
     display: none;
+  }
+  .one-scale {
+    --line: 44px;
+    grid-template-columns: 28px minmax(0, 1fr) 36px;
+  }
+  .groups {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .group {
+    white-space: nowrap;
   }
   .column-head .short {
     display: inline;
@@ -840,15 +941,6 @@ footer {
     justify-content: center;
     padding-inline: 2px;
     font-size: 10.5px;
-  }
-  .marker {
-    --slot: 50%;
-  }
-  .marker[data-kind="caucus"] {
-    --slot: 30%;
-  }
-  .marker[data-kind="member"] {
-    --slot: 70%;
   }
   .scale {
     padding: 14px 10px 12px;

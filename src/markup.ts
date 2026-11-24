@@ -113,6 +113,11 @@ export const partyKey = (records: { party: string | null; symbol: string | null 
     )
     .join("")
 
+export const usPartyKey = (records: { kind: string; symbol: string | null }[]): string =>
+  records.some((record) => record.kind === "party" && record.symbol)
+    ? `<li><span class="glyph us-party"></span>US party</li>`
+    : ""
+
 export const pageHead = (css: string): string =>
   [
     `<title>${SITE_NAME}</title>`,

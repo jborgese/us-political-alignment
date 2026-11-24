@@ -65,24 +65,46 @@ describe("buildSiteData", () => {
     expect(data.selected).toBe(1)
   })
 
-  it("puts parties first, then caucus lanes, then the reference records", () => {
-    expect(buildSiteData(rankedSet(IN_ORDER)).lanes).toEqual([
-      { name: "Parties abroad", short: "Abroad", icon: "party" },
-      { name: "Sample Caucus", short: "SC", icon: "caucus" },
-      { name: "Reference records", short: "Ref", icon: "anchor" },
+  it("offers one highlight per group, caucuses before countries, and none for the reference records", () => {
+    expect(buildSiteData(rankedSet(IN_ORDER)).groups).toEqual([
+      { name: "Sample Caucus", kind: "caucus", flag: null },
+      { name: "Canada", kind: "party", flag: "ca" },
     ])
   })
 
   it("labels a member, a caucus, and a party each in its own way", () => {
     const labels = buildSiteData(rankedSet(IN_ORDER))
       .records.filter((entry) => entry.kind !== "anchor")
-      .map(({ label, flag, symbol, lane, detail }) => ({ label, flag, symbol, lane, detail }))
+      .map(({ label, flag, symbol, group, detail }) => ({ label, flag, symbol, group, detail }))
 
     expect(labels).toEqual([
-      { label: "Example Party", flag: "ca", symbol: null, lane: "Parties abroad", detail: "Canada" },
-      { label: "Sample", flag: null, symbol: "donkey", lane: "Sample Caucus", detail: "Sample Caucus" },
-      { label: "", flag: null, symbol: "donkey", lane: "Sample Caucus", detail: "House caucus" },
+      { label: "Example Party", flag: "ca", symbol: null, group: "Canada", detail: "Canada" },
+      { label: "Sample", flag: null, symbol: "donkey", group: "Sample Caucus", detail: "Sample Caucus" },
+      { label: "Sample Caucus", flag: null, symbol: "donkey", group: "Sample Caucus", detail: "House caucus" },
     ])
+  })
+
+  it("groups the parties at home together, with their party symbol and a key entry", () => {
+    const base = rankedSet(IN_ORDER)
+    const party = { ...subject("s04", "Sample Party", "party", "United States", [], "Republican"), legislature: "us-house" }
+    const set = {
+      ...base,
+      packets: [...base.packets, record("s04", [act("In government, enacted the budget law."), ...moreActs])],
+      key: { ...base.key, subjects: [...base.key.subjects, party] },
+      comparisons: completeComparisons(["anchor-high", "s03", "s01", "s04", "s02", "anchor-low"]),
+    }
+
+    const data = buildSiteData(set)
+    const placed = data.records.find((entry) => entry.name === "Sample Party")
+
+    expect(placed && { flag: placed.flag, symbol: placed.symbol, group: placed.group, detail: placed.detail }).toEqual({
+      flag: null,
+      symbol: "elephant",
+      group: "US parties",
+      detail: "US party",
+    })
+    expect(data.groups.map(({ name }) => name)).toEqual(["Sample Caucus", "US parties", "Canada"])
+    expect(buildSitePage(data, { css: "", js: "" }, []).body).toContain('<span class="glyph us-party"></span>US party')
   })
 
   it("carries each item's sources into its section", () => {
@@ -195,6 +217,14 @@ describe("buildSitePage", () => {
     expect(body).toContain('<a class="issue" href="../economics/">')
     expect(body).toContain('<span class="issue unpublished" title="Not yet published">')
     expect(body).not.toContain('href="../immigration/"')
+  })
+
+  it("draws every record on one scale, tagged with its group, with a button per group", () => {
+    const { body } = buildSitePage(buildSiteData(rankedSet(IN_ORDER)), { css: "", js: "" }, [])
+
+    expect(body.match(/<div class="column [a-z]+">/g)).toEqual(['<div class="column records">', '<div class="column reference">'])
+    expect(body).toContain('<button type="button" class="group" data-group="Sample Caucus" aria-pressed="false">')
+    expect(body.match(/data-group="Sample Caucus"/g)).toHaveLength(3)
   })
 
   it("shows no issue list when it is given none", () => {
