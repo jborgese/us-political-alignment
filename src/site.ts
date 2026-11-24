@@ -35,6 +35,7 @@ import {
 import { itemsInSlot, ratedPackets } from "./ratingSet.ts"
 import { heldBackReasons, previousScores, summarizeRun } from "./report.ts"
 import { wordingRange, type WordingRange } from "./stability.ts"
+import { systemLevels, type SystemLevel } from "./systems.ts"
 
 const HOME_HREF = "../"
 const US_PARTIES = "US parties"
@@ -66,10 +67,16 @@ export interface SiteRecord {
   kind: SiteKind
   detail: string
   group: string | null
+  legislature: string | null
   score: number
   previousScore: number | null
   range: WordingRange | null
   sections: SiteSection[]
+}
+
+export interface SiteSystems {
+  title: string
+  countries: SystemLevel[]
 }
 
 export interface SiteData {
@@ -86,6 +93,7 @@ export interface SiteData {
   records: SiteRecord[]
   selected: number
   heldBack: HeldBack[]
+  systems: SiteSystems | null
 }
 
 export interface SiteGroup {
@@ -173,6 +181,20 @@ const groupsOf = (records: SiteRecord[]): SiteGroup[] =>
         a.name.localeCompare(b.name),
     )
 
+const roundedSystems = (systems: RatingSet["systems"]): SiteSystems | null =>
+  systems === null
+    ? null
+    : {
+        title: systems.title,
+        countries: systemLevels(systems).map((country) => ({
+          ...country,
+          level: Math.round(country.level),
+          low: Math.round(country.low),
+          high: Math.round(country.high),
+          halves: country.halves.map((half) => ({ ...half, level: Math.round(half.level) })),
+        })),
+      }
+
 const formatDay = (isoTime: string): string =>
   new Date(isoTime).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
 
@@ -196,6 +218,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       party: subject.party ?? null,
       symbol: PARTY_SYMBOLS[subject.party ?? ""] ?? null,
       ...describeSubject(subject),
+      legislature: subject.legislature,
       score: scoreOf(subject.id),
       previousScore: previousOf(subject.id),
       range: wordingRange(set, run.scores, run.reworded, subject.id) ?? null,
@@ -213,6 +236,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       kind: "anchor",
       detail: "Written reference record",
       group: null,
+      legislature: null,
       score: scoreOf(anchor.id),
       previousScore: previousOf(anchor.id),
       range: null,
@@ -236,6 +260,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
     heldBack: rated
       .filter(({ reasons }) => reasons.length > 0)
       .map(({ subject, reasons }) => ({ name: subject.name, reasons })),
+    systems: roundedSystems(set.systems),
   }
 }
 
@@ -257,7 +282,8 @@ const label = (record: SiteRecord): string =>
 const marker = (record: SiteRecord, index: number, axis: Axis): string => {
   const symbol = record.symbol ? ` data-symbol="${record.symbol}"` : ""
   const group = record.group === null ? "" : ` data-group="${escapeHtml(record.group)}"`
-  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol}${group} style="--y:${axis.position(record.score)}" aria-pressed="false" aria-label="${escapeHtml(spoken(record))}">${rangeBar(record, axis)}${glyph(record)}${label(record)}</button>`
+  const legislature = record.legislature === null ? "" : ` data-legislature="${escapeHtml(record.legislature)}"`
+  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol}${group}${legislature} style="--y:${axis.position(record.score)}" aria-pressed="false" aria-label="${escapeHtml(spoken(record))}">${rangeBar(record, axis)}${glyph(record)}${label(record)}</button>`
 }
 
 const column = (data: SiteData, className: string, axis: Axis, keep: (record: SiteRecord) => boolean): string => {
@@ -277,6 +303,26 @@ const groupButtons = (groups: SiteGroup[]): string =>
         `<li><button type="button" class="group" data-group="${escapeHtml(group.name)}" aria-pressed="false">${groupIcon(group)}${escapeHtml(group.name)}</button></li>`,
     )
     .join("")}</ul>`
+
+const SYSTEM_TICKS = [0, 25, 50, 75, 100]
+
+const countryRow = (country: SystemLevel): string => {
+  const halves = country.halves.map((half) => `${half.label} ${half.level}`).join(", ")
+  const spokenRow = `${country.name}, ${country.level}, ${country.low} to ${country.high} under other choices; ${halves}`
+  return `<li><button type="button" class="country" data-legislature="${escapeHtml(country.legislature)}" aria-pressed="false" aria-label="${escapeHtml(spokenRow)}" style="--level:${country.level};--low:${country.low};--high:${country.high}"><span class="country-name">${escapeHtml(country.name)} <b class="name-level">${country.level}</b></span><span class="track"><span class="spread"></span>${glyph({ glyph: "", flag: country.flag, symbol: null })}<b class="level">${country.level}</b></span><span class="halves">${country.halves.map((half) => `<span>${escapeHtml(half.label)} <b>${half.level}</b></span>`).join("")}</span></button></li>`
+}
+
+const systemStrip = (systems: SiteSystems | null): string =>
+  systems === null
+    ? ""
+    : [
+        `<section class="systems" aria-label="${escapeHtml(systems.title)}">`,
+        `<h2>${icon("scale")}${escapeHtml(systems.title)}</h2>`,
+        `<p class="systems-note">Taxes and work rules in place before the period, from 0 at the lowest value among OECD countries to 100 at the highest. Its own scale, not the scale of the records below. Bars show the range under other reasonable choices. Select a country to light up its records.</p>`,
+        `<div class="strip-axis" aria-hidden="true"><span class="track">${SYSTEM_TICKS.map((tick) => `<span class="strip-tick" style="--level:${tick}">${tick}</span>`).join("")}</span></div>`,
+        `<ul class="countries">${systems.countries.map(countryRow).join("")}</ul>`,
+        `</section>`,
+      ].join("")
 
 const isReworded = (records: SiteRecord[]): boolean => records.some((record) => record.range !== null)
 
@@ -338,6 +384,7 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets, issues: SiteIs
       largestMove(data.records),
       largestRewordedMove(data.records),
       `</ul>`,
+      systemStrip(data.systems),
       `<section class="scale" aria-label="Records by strength of support">`,
       `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li>${usPartyKey(data.records)}<li><span class="glyph anchor"></span>Reference record</li>${isReworded(data.records) ? `<li><span class="range-key"></span>Range when reworded</li>` : ""}</ul>`,
       groupButtons(data.groups),

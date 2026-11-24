@@ -100,6 +100,36 @@ const plannedCategoriesSchema = z
   )
   .min(1)
 
+const figureValueSchema = z.strictObject({ value: z.number(), year: z.number().int() })
+
+const systemsSchema = z.strictObject({
+  title: z.string().min(1),
+  halves: z.array(z.strictObject({ id: z.string().min(1), label: z.string().min(1) })).min(1),
+  figures: z
+    .array(
+      z.strictObject({
+        id: z.string().min(1),
+        half: z.string().min(1),
+        label: z.string().min(1),
+        source: z.url(),
+        values: z.record(z.string(), figureValueSchema),
+      }),
+    )
+    .min(1),
+  exclusion: z.array(z.string().min(1)),
+  countries: z
+    .array(
+      z.strictObject({
+        legislature: z.string().min(1),
+        code: z.string().min(1),
+        name: z.string().min(1),
+        flag: z.string().regex(/^[a-z]{2}$/),
+        overrides: z.array(figureValueSchema.extend({ figure: z.string().min(1), source: z.url() })).default([]),
+      }),
+    )
+    .min(1),
+})
+
 const pendingBatchSchema = z.strictObject({
   batchId: z.string().min(1),
   model: z.string().min(1),
@@ -126,6 +156,7 @@ export type Key = z.infer<typeof keySchema>
 export type Comparison = z.infer<typeof comparisonSchema>
 export type PendingBatch = z.infer<typeof pendingBatchSchema>
 export type PlannedCategory = z.infer<typeof plannedCategoriesSchema>[number]
+export type Systems = z.infer<typeof systemsSchema>
 
 export interface Evidence {
   slot: string
@@ -156,11 +187,13 @@ export interface RatingSet {
   superseded: Comparison[]
   stability: Comparison[]
   stabilitySuperseded: Comparison[]
+  systems: Systems | null
 }
 
 export interface CategoryPaths {
   category: string
   events: string
+  systems: string
   packets: string
   rewordings: string
   key: string
@@ -180,6 +213,7 @@ export const pathsFor = (root: string, categoryId: string): CategoryPaths => {
   return {
     category: path.join(root, "categories", `${categoryId}.json`),
     events: path.join(root, "events", `${categoryId}.json`),
+    systems: path.join(root, "systems", `${categoryId}.json`),
     packets: path.join(root, "packets", categoryId),
     rewordings: path.join(root, "rewordings", categoryId),
     key: path.join(root, "key.json"),
@@ -296,6 +330,7 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
     superseded,
     stability,
     stabilitySuperseded,
+    systems,
   ] = await Promise.all([
     readJson(paths.category).then((value) => parseAs(categorySchema, value, paths.category)),
     readJson(paths.events).then((value) => parseAs(eventsSchema, value, paths.events)),
@@ -308,6 +343,9 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
     loadComparisons(paths.superseded),
     loadComparisons(paths.stability),
     loadComparisons(paths.stabilitySuperseded),
+    readJson(paths.systems)
+      .then((value) => parseAs(systemsSchema, value, paths.systems))
+      .catch(whenMissing(null)),
   ])
   const packets = packetFiles.map(({ file, content }) => {
     const id = path.basename(file, ".json")
@@ -326,5 +364,16 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
       return reword(base, texts, content.events[legislatureId] ?? {}, file)
     }),
   )
-  return { category, legislatures, packets, rewordings, key, comparisons, superseded, stability, stabilitySuperseded }
+  return {
+    category,
+    legislatures,
+    packets,
+    rewordings,
+    key,
+    comparisons,
+    superseded,
+    stability,
+    stabilitySuperseded,
+    systems,
+  }
 }

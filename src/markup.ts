@@ -53,6 +53,7 @@ export const SYMBOLS = `<svg width="0" height="0" style="position:absolute" aria
 <symbol id="flag-de" viewBox="0 0 24 24"><rect width="24" height="8" fill="#000000"/><rect y="8" width="24" height="8" fill="#dd0000"/><rect y="16" width="24" height="8" fill="#ffce00"/></symbol>
 <symbol id="flag-ca" viewBox="0 0 24 24"><rect width="24" height="24" fill="#ffffff"/><rect width="6" height="24" fill="#d52b1e"/><rect x="18" width="6" height="24" fill="#d52b1e"/><polygon fill="#d52b1e" points="12,5 13,7.4 14.6,6.6 14.1,10 16,8.6 16.5,9.9 18,9.6 17.2,12 18,12.6 14.8,15 15.2,16.3 12.5,15.9 12.5,19 11.5,19 11.5,15.9 8.8,16.3 9.2,15 6,12.6 6.8,12 6,9.6 7.5,9.9 8,8.6 9.9,10 9.4,6.6 11,7.4"/></symbol>
 <symbol id="flag-uk" viewBox="0 0 24 24"><rect width="24" height="24" fill="#012169"/><path d="M0 0l24 24M24 0L0 24" stroke="#ffffff" stroke-width="4.8"/><path d="M0 0l24 24M24 0L0 24" stroke="#c8102e" stroke-width="1.8"/><path d="M12 0v24M0 12h24" stroke="#ffffff" stroke-width="7"/><path d="M12 0v24M0 12h24" stroke="#c8102e" stroke-width="4"/></symbol>
+<symbol id="flag-us" viewBox="0 0 24 24"><rect width="24" height="24" fill="#ffffff"/><path d="M0 .92h24M0 4.62h24M0 8.31h24M0 12h24M0 15.69h24M0 19.38h24M0 23.08h24" stroke="#b22234" stroke-width="1.85"/><rect width="11" height="12.92" fill="#3c3b6e"/></symbol>
 </defs></svg>`
 
 export interface Axis {

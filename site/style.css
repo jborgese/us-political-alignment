@@ -660,6 +660,176 @@ a.column-head:hover .full {
   font-size: 12px;
   color: var(--ink-3);
 }
+/* Country systems: a separate 0 to 100 scale, one row per country */
+.systems {
+  --name: 150px;
+  --halves: 200px;
+  --track-pad: 14px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.systems h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.systems-note {
+  margin: 0;
+  max-width: 76ch;
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+.countries {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.strip-axis,
+.country {
+  display: grid;
+  grid-template-columns: var(--name) minmax(0, 1fr) var(--halves);
+  align-items: center;
+  column-gap: 12px;
+}
+.strip-axis {
+  padding-inline: 7px;
+}
+.strip-axis .track {
+  grid-column: 2;
+  height: 16px;
+}
+.strip-axis .track::before {
+  display: none;
+}
+.track {
+  --at: calc(var(--track-pad) + (100% - 2 * var(--track-pad)) * var(--level) / 100);
+  position: relative;
+  height: 30px;
+}
+.track::before {
+  content: "";
+  position: absolute;
+  inset: 0 var(--track-pad);
+  background-image: linear-gradient(to right, var(--rule) 1px, transparent 1px);
+  background-size: 25% 100%;
+  border-right: 1px solid var(--rule);
+}
+.strip-tick {
+  position: absolute;
+  top: 0;
+  left: calc(var(--track-pad) + (100% - 2 * var(--track-pad)) * var(--level) / 100);
+  transform: translateX(-50%);
+  font-family: var(--font-data);
+  font-size: 11px;
+  line-height: 16px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.spread {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(var(--track-pad) + (100% - 2 * var(--track-pad)) * var(--low) / 100);
+  width: calc((100% - 2 * var(--track-pad)) * (var(--high) - var(--low)) / 100);
+  height: 2px;
+  background: var(--ink-3);
+}
+.spread::before,
+.spread::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 10px;
+  background: inherit;
+}
+.spread::before {
+  left: 0;
+}
+.spread::after {
+  right: 0;
+}
+.track .glyph {
+  --mark: 22px;
+  position: absolute;
+  top: 50%;
+  left: var(--at);
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--flag-edge);
+}
+.track .glyph svg {
+  width: 100%;
+  height: 100%;
+}
+.track .level {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--at) + 15px);
+  transform: translateY(-50%);
+  padding-inline: 2px;
+  border-radius: 3px;
+  background: var(--surface);
+  font-family: var(--font-data);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.country {
+  width: 100%;
+  margin: 0;
+  padding: 2px 6px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.country:hover {
+  background: color-mix(in srgb, var(--accent-soft) 45%, transparent);
+}
+.country[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.country[aria-pressed="true"] .track .level {
+  background: var(--accent-soft);
+}
+.country-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.name-level {
+  display: none;
+  font-family: var(--font-data);
+  font-weight: 500;
+}
+.halves {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.halves b {
+  font-family: var(--font-data);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
 .marker:hover,
 .marker[aria-pressed="true"] {
   z-index: 2;
@@ -944,6 +1114,22 @@ footer {
   }
   .scale {
     padding: 14px 10px 12px;
+  }
+  .systems {
+    --name: 124px;
+    --halves: 0px;
+    --track-pad: 12px;
+    padding: 14px 10px 12px;
+  }
+  .country-name {
+    font-size: 12px;
+  }
+  .name-level {
+    display: inline;
+  }
+  .halves,
+  .track .level {
+    display: none;
   }
   .evidence {
     padding: 16px 14px 18px;
