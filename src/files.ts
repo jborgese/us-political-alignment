@@ -106,6 +106,7 @@ const figureValueSchema = z.strictObject({ value: z.number(), year: z.number().i
 
 const systemsSchema = z.strictObject({
   title: z.string().min(1),
+  scope: z.string().min(1),
   halves: z.array(z.strictObject({ id: z.string().min(1), label: z.string().min(1) })).min(1),
   figures: z
     .array(

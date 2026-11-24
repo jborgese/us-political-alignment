@@ -1,0 +1,775 @@
+{
+  "title": "How open each country's system already is",
+  "scope": "Admissions and migrants' rights",
+  "halves": [
+    {
+      "id": "entry",
+      "label": "Who gets in"
+    },
+    {
+      "id": "rights",
+      "label": "Rights once here"
+    }
+  ],
+  "figures": [
+    {
+      "id": "permanent-inflows",
+      "half": "entry",
+      "label": "New permanent residents per 1,000 people, leaving out free movement",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_MIG_INT%40DF_MIG_INT_PER&df[ag]=OECD.ELS.IMD",
+      "values": {
+        "AUS": {
+          "value": 7.7222,
+          "year": 2024
+        },
+        "AUT": {
+          "value": 4.8366,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 3.7725,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 11.7213,
+          "year": 2024
+        },
+        "CHE": {
+          "value": 3.9178,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 2.5769,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 3.677,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 4.0059,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 5.1475,
+          "year": 2024
+        },
+        "EST": {
+          "value": 4.2111,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 5.2003,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 3.4748,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 6.2629,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 7.3455,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 3.2987,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 2.1958,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 1.4176,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 1.4602,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 1.7561,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 14.8092,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 0.5578,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 5.3767,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 3.2834,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 10.0318,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 9.2758,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 3.6761,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 10.4349,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 4.6289,
+          "year": 2024
+        },
+        "USA": {
+          "value": 4.2111,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "humanitarian-inflows",
+      "half": "entry",
+      "label": "New permanent residents on humanitarian grounds per 1,000 people",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_MIG_INT%40DF_MIG_INT_PER&df[ag]=OECD.ELS.IMD",
+      "values": {
+        "AUS": {
+          "value": 0.7354,
+          "year": 2024
+        },
+        "AUT": {
+          "value": 2.4479,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 1.3896,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 1.8585,
+          "year": 2024
+        },
+        "CHE": {
+          "value": 1.4332,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 0.0186,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 1.7055,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 0.1438,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 0.3901,
+          "year": 2024
+        },
+        "EST": {
+          "value": 0.9976,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 0.3705,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 0.6363,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 0.553,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 0.7249,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 0.0,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 0.1355,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 0.018,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 0.003,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 0.0658,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 1.4756,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 0.1958,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 1.7295,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 0.4994,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 1.145,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 0.0004,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 0.0094,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 0.0865,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 0.3316,
+          "year": 2024
+        },
+        "USA": {
+          "value": 0.7332,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "family-reunion",
+      "half": "rights",
+      "label": "Family reunion, MIPEX score from 0 to 100",
+      "source": "https://www.mipex.eu/play/",
+      "values": {
+        "AUS": {
+          "value": 68.0,
+          "year": 2019
+        },
+        "AUT": {
+          "value": 36.0,
+          "year": 2019
+        },
+        "BEL": {
+          "value": 48.0,
+          "year": 2019
+        },
+        "CAN": {
+          "value": 91.0,
+          "year": 2019
+        },
+        "CHL": {
+          "value": 44.0,
+          "year": 2019
+        },
+        "CZE": {
+          "value": 63.0,
+          "year": 2019
+        },
+        "DNK": {
+          "value": 25.0,
+          "year": 2019
+        },
+        "EST": {
+          "value": 76.0,
+          "year": 2019
+        },
+        "FIN": {
+          "value": 67.0,
+          "year": 2019
+        },
+        "FRA": {
+          "value": 43.0,
+          "year": 2019
+        },
+        "DEU": {
+          "value": 42.0,
+          "year": 2019
+        },
+        "GRC": {
+          "value": 52.0,
+          "year": 2019
+        },
+        "HUN": {
+          "value": 58.0,
+          "year": 2019
+        },
+        "ISL": {
+          "value": 62.0,
+          "year": 2019
+        },
+        "IRL": {
+          "value": 48.0,
+          "year": 2019
+        },
+        "ISR": {
+          "value": 58.0,
+          "year": 2019
+        },
+        "ITA": {
+          "value": 64.0,
+          "year": 2019
+        },
+        "JPN": {
+          "value": 62.0,
+          "year": 2019
+        },
+        "KOR": {
+          "value": 54.0,
+          "year": 2019
+        },
+        "LVA": {
+          "value": 47.0,
+          "year": 2019
+        },
+        "LTU": {
+          "value": 43.0,
+          "year": 2019
+        },
+        "LUX": {
+          "value": 52.0,
+          "year": 2019
+        },
+        "MEX": {
+          "value": 66.0,
+          "year": 2019
+        },
+        "NLD": {
+          "value": 31.0,
+          "year": 2019
+        },
+        "NZL": {
+          "value": 74.0,
+          "year": 2019
+        },
+        "NOR": {
+          "value": 58.0,
+          "year": 2019
+        },
+        "POL": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "PRT": {
+          "value": 87.0,
+          "year": 2019
+        },
+        "SVK": {
+          "value": 59.0,
+          "year": 2019
+        },
+        "SVN": {
+          "value": 72.0,
+          "year": 2019
+        },
+        "ESP": {
+          "value": 63.0,
+          "year": 2019
+        },
+        "SWE": {
+          "value": 71.0,
+          "year": 2019
+        },
+        "CHE": {
+          "value": 41.0,
+          "year": 2019
+        },
+        "TUR": {
+          "value": 53.0,
+          "year": 2019
+        },
+        "USA": {
+          "value": 62.0,
+          "year": 2019
+        },
+        "GBR": {
+          "value": 29.0,
+          "year": 2019
+        }
+      }
+    },
+    {
+      "id": "permanent-residence",
+      "half": "rights",
+      "label": "Path to permanent residence, MIPEX score from 0 to 100",
+      "source": "https://www.mipex.eu/play/",
+      "values": {
+        "AUS": {
+          "value": 46.0,
+          "year": 2019
+        },
+        "AUT": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "BEL": {
+          "value": 75.0,
+          "year": 2019
+        },
+        "CAN": {
+          "value": 81.0,
+          "year": 2019
+        },
+        "CHL": {
+          "value": 79.0,
+          "year": 2019
+        },
+        "CZE": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "DNK": {
+          "value": 42.0,
+          "year": 2019
+        },
+        "EST": {
+          "value": 67.0,
+          "year": 2019
+        },
+        "FIN": {
+          "value": 96.0,
+          "year": 2019
+        },
+        "FRA": {
+          "value": 58.0,
+          "year": 2019
+        },
+        "DEU": {
+          "value": 54.0,
+          "year": 2019
+        },
+        "GRC": {
+          "value": 46.0,
+          "year": 2019
+        },
+        "HUN": {
+          "value": 81.0,
+          "year": 2019
+        },
+        "ISL": {
+          "value": 77.0,
+          "year": 2019
+        },
+        "IRL": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "ISR": {
+          "value": 46.0,
+          "year": 2019
+        },
+        "ITA": {
+          "value": 67.0,
+          "year": 2019
+        },
+        "JPN": {
+          "value": 63.0,
+          "year": 2019
+        },
+        "KOR": {
+          "value": 60.0,
+          "year": 2019
+        },
+        "LVA": {
+          "value": 46.0,
+          "year": 2019
+        },
+        "LTU": {
+          "value": 52.0,
+          "year": 2019
+        },
+        "LUX": {
+          "value": 58.0,
+          "year": 2019
+        },
+        "MEX": {
+          "value": 90.0,
+          "year": 2019
+        },
+        "NLD": {
+          "value": 52.0,
+          "year": 2019
+        },
+        "NZL": {
+          "value": 63.0,
+          "year": 2019
+        },
+        "NOR": {
+          "value": 71.0,
+          "year": 2019
+        },
+        "POL": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "PRT": {
+          "value": 71.0,
+          "year": 2019
+        },
+        "SVK": {
+          "value": 65.0,
+          "year": 2019
+        },
+        "SVN": {
+          "value": 77.0,
+          "year": 2019
+        },
+        "ESP": {
+          "value": 75.0,
+          "year": 2019
+        },
+        "SWE": {
+          "value": 90.0,
+          "year": 2019
+        },
+        "CHE": {
+          "value": 48.0,
+          "year": 2019
+        },
+        "TUR": {
+          "value": 42.0,
+          "year": 2019
+        },
+        "USA": {
+          "value": 63.0,
+          "year": 2019
+        },
+        "GBR": {
+          "value": 58.0,
+          "year": 2019
+        }
+      }
+    },
+    {
+      "id": "nationality",
+      "half": "rights",
+      "label": "Access to citizenship, MIPEX score from 0 to 100",
+      "source": "https://www.mipex.eu/play/",
+      "values": {
+        "AUS": {
+          "value": 76.0,
+          "year": 2019
+        },
+        "AUT": {
+          "value": 13.0,
+          "year": 2019
+        },
+        "BEL": {
+          "value": 65.0,
+          "year": 2019
+        },
+        "CAN": {
+          "value": 88.0,
+          "year": 2019
+        },
+        "CHL": {
+          "value": 53.0,
+          "year": 2019
+        },
+        "CZE": {
+          "value": 36.0,
+          "year": 2019
+        },
+        "DNK": {
+          "value": 41.0,
+          "year": 2019
+        },
+        "EST": {
+          "value": 16.0,
+          "year": 2019
+        },
+        "FIN": {
+          "value": 74.0,
+          "year": 2019
+        },
+        "FRA": {
+          "value": 70.0,
+          "year": 2019
+        },
+        "DEU": {
+          "value": 42.0,
+          "year": 2019
+        },
+        "GRC": {
+          "value": 43.0,
+          "year": 2019
+        },
+        "HUN": {
+          "value": 25.0,
+          "year": 2019
+        },
+        "ISL": {
+          "value": 55.0,
+          "year": 2019
+        },
+        "IRL": {
+          "value": 79.0,
+          "year": 2019
+        },
+        "ISR": {
+          "value": 63.0,
+          "year": 2019
+        },
+        "ITA": {
+          "value": 40.0,
+          "year": 2019
+        },
+        "JPN": {
+          "value": 47.0,
+          "year": 2019
+        },
+        "KOR": {
+          "value": 44.0,
+          "year": 2019
+        },
+        "LVA": {
+          "value": 24.0,
+          "year": 2019
+        },
+        "LTU": {
+          "value": 22.0,
+          "year": 2019
+        },
+        "LUX": {
+          "value": 79.0,
+          "year": 2019
+        },
+        "MEX": {
+          "value": 38.0,
+          "year": 2019
+        },
+        "NLD": {
+          "value": 55.0,
+          "year": 2019
+        },
+        "NZL": {
+          "value": 92.0,
+          "year": 2019
+        },
+        "NOR": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "POL": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "PRT": {
+          "value": 86.0,
+          "year": 2019
+        },
+        "SVK": {
+          "value": 28.0,
+          "year": 2019
+        },
+        "SVN": {
+          "value": 22.0,
+          "year": 2019
+        },
+        "ESP": {
+          "value": 30.0,
+          "year": 2019
+        },
+        "SWE": {
+          "value": 83.0,
+          "year": 2019
+        },
+        "CHE": {
+          "value": 28.0,
+          "year": 2019
+        },
+        "TUR": {
+          "value": 50.0,
+          "year": 2019
+        },
+        "USA": {
+          "value": 88.0,
+          "year": 2019
+        },
+        "GBR": {
+          "value": 61.0,
+          "year": 2019
+        }
+      }
+    }
+  ],
+  "exclusion": [
+    "ISR",
+    "LUX"
+  ],
+  "countries": [
+    {
+      "legislature": "fr-assemblee",
+      "code": "FRA",
+      "name": "France",
+      "flag": "fr",
+      "overrides": [
+        {
+          "figure": "permanent-residence",
+          "value": 54.0,
+          "year": 2024,
+          "source": "https://siirtolaisuusinstituutti.fi/wp-content/uploads/2025/09/mipex-2025-eu-country-scores.pdf"
+        }
+      ]
+    },
+    {
+      "legislature": "de-bundestag",
+      "code": "DEU",
+      "name": "Germany",
+      "flag": "de",
+      "overrides": [
+        {
+          "figure": "nationality",
+          "value": 67.0,
+          "year": 2024,
+          "source": "https://siirtolaisuusinstituutti.fi/wp-content/uploads/2025/09/mipex-2025-eu-country-scores.pdf"
+        }
+      ]
+    },
+    {
+      "legislature": "uk-commons",
+      "code": "GBR",
+      "name": "United Kingdom",
+      "flag": "uk",
+      "overrides": []
+    },
+    {
+      "legislature": "ca-commons",
+      "code": "CAN",
+      "name": "Canada",
+      "flag": "ca",
+      "overrides": []
+    },
+    {
+      "legislature": "us-house",
+      "code": "USA",
+      "name": "United States",
+      "flag": "us",
+      "overrides": []
+    }
+  ]
+}

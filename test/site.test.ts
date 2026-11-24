@@ -231,6 +231,7 @@ describe("buildSitePage", () => {
     const value = (amount: number) => ({ value: amount, year: 2024 })
     const systems = {
       title: "How firm each system is",
+      scope: "Taxes and work rules",
       halves: [
         { id: "taxes", label: "Taxes" },
         { id: "rules", label: "Work rules" },
@@ -246,6 +247,7 @@ describe("buildSitePage", () => {
     const { body } = buildSitePage(buildSiteData({ ...rankedSet(IN_ORDER), systems }), { css: "", js: "" }, [])
 
     expect(body).toContain('<section class="systems" aria-label="How firm each system is">')
+    expect(body).toContain('<p class="systems-note">Taxes and work rules in place before the period,')
     expect(body).toContain('class="country" data-legislature="sample-house" aria-pressed="false"')
     expect(body).toContain('style="--level:100;--low:100;--high:100"')
     expect(body.match(/class="marker"[^>]*data-legislature="sample-house"/g)).toHaveLength(3)

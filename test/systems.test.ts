@@ -24,6 +24,7 @@ const country = (code: string, overrides: Country["overrides"] = []): Country =>
 
 const systemsOf = (figures: Figure[], countries: Country[]): Systems => ({
   title: "How firm each system is",
+  scope: "Taxes and rules",
   halves: [
     { id: "taxes", label: "Taxes" },
     { id: "rules", label: "Rules" },
