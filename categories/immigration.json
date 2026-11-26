@@ -1,6 +1,6 @@
 {
   "title": "Immigration",
-  "question": "Which record shows stronger support for admitting more immigrants and refugees and for widening the rights of migrants already in the country?",
+  "question": "Which record's position, as its evidence shows it, is closer to admitting more immigrants and refugees and widening the rights of migrants already in the country?",
   "weighing": "Judge the changes a record supports or opposes, whether it enacted them in government, voted on them, pressed for them, or seeks them, by their direction and size. Judge the size of what a record supports, not what it had the power to achieve: a record that backs every change in one direction put before it and seeks larger ones supports more change in that direction than one that enacted smaller changes. The tier shows how firmly an item commits the actor, not how large the change is; where a record's items point in opposite directions, the higher tier governs. A vote against a change counts as support for what the change would have removed, unless the record shows it opposed the change for not going far enough, for example by backing stricter or wider versions of it; then it counts as support for going further. The immigration rules a record inherited are not part of its position.",
   "highPole": "more immigrants and refugees admitted, with wider rights once in the country",
   "lowPole": "fewer admitted, with stricter enforcement, detention and removal",

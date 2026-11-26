@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "official_act",
       "text": "As a regional legislator, voted for that year's regional health budget law, which raised public health coverage spending by about 4 percent and reversed a proposed funding cut for safety-net hospitals.",
       "sources": [
@@ -44,7 +44,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-income",
     "changes-income"
   ],
   "noPosition": [

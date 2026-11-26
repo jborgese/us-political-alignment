@@ -33,7 +33,6 @@ const categorySchema = z.strictObject({
   title: z.string().min(1),
   question: z.string().min(1),
   weighing: z.string().min(1).optional(),
-  tierRule: z.string().min(1).optional(),
   highPole: z.string().min(1),
   lowPole: z.string().min(1),
   slots: z

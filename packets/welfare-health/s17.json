@@ -1,17 +1,17 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "statement",
-      "text": "Its new leader campaigned for the leadership on keeping the existing public insurance for doctor and hospital care and extending it to prescription drugs and to dental, vision, hearing, and mental health care.",
+      "text": "Its new leader campaigned for the leadership on extending the public insurance for doctor and hospital care to prescription drugs and to dental, vision, hearing, and mental health care.",
       "sources": [
         "https://en.wikipedia.org/wiki/Avi_Lewis"
       ]
     },
     {
-      "slot": "keeps-income",
+      "slot": "changes-income",
       "tier": "statement",
-      "text": "Its new leader campaigned for the leadership on widening unemployment benefits within the existing income support, in which mandatory pension schemes replace about 45 percent of an average worker's net earnings, unemployment benefits replace about 48 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 18 percent of the median income, housing support included: raising those benefits to 75 percent of previous earnings, paying them for up to 104 weeks, and letting more workers qualify.",
+      "text": "Its new leader campaigned for the leadership on widening unemployment benefits: raising them to 75 percent of previous earnings, paying them for up to 104 weeks, and letting more workers qualify.",
       "sources": [
         "https://lewisisleader.ca/ideas/dignified-work-full-plan",
         "https://en.wikipedia.org/wiki/Avi_Lewis",
@@ -55,6 +55,5 @@
         "https://openparliament.ca/bills/45-1/C-280/"
       ]
     }
-  ],
-  "emptySlots": []
+  ]
 }

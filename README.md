@@ -40,7 +40,7 @@ To spend less before a full run:
 
 | Path | Holds |
 |---|---|
-| `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, the anchor records listed from the high end to the low end, and optionally a `weighing` rule and a `tierRule` that replace the defaults in the rater's instructions |
+| `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, the anchor records listed from the high end to the low end, and optionally a `weighing` rule that replaces the default in the rater's instructions |
 | `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
 | `key.json` | The name and legislature behind each blinded id, each member's roll call ID, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
@@ -97,9 +97,9 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "official_act",
-      "text": "Votes to keep in place public health coverage for older and low-income residents.",
+      "text": "Voted for an amendment to restore public health coverage for low-income residents.",
       "sources": ["https://example.org/roll-call/123"]
     },
     { "event": "budget-law-health", "stance": "Voted against" },
@@ -110,7 +110,7 @@ Name the file after the subject's id in `key.json`, for example `packets/welfare
       "sources": ["https://example.org/press/456"]
     }
   ],
-  "emptySlots": ["keeps-income", "changes-income"]
+  "emptySlots": ["changes-income"]
 }
 ```
 
@@ -121,6 +121,8 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - `official_act`: a recorded use of official power, such as a vote, a sponsored bill, or a policy enacted in government.
 - `influence`: an endorsement, or public pressure on other officials.
 - `statement`: a statement about an act taken or intended. Talk that is tied to no act stays out.
+
+The rater uses tiers only inside one record, where its own items point in opposite directions. Between two records it compares the positions their evidence shows, so a record of statements is not placed below a record of votes for that reason alone.
 
 **Rules for the text**
 

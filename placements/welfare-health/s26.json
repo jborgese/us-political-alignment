@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "statement",
       "text": "Pledged to defend public health coverage for older and low-income residents.",
       "sources": [
@@ -9,7 +9,7 @@
       ]
     },
     {
-      "slot": "keeps-income",
+      "slot": "changes-income",
       "tier": "statement",
       "text": "Pledged to defend public pension benefits.",
       "sources": [
@@ -32,9 +32,6 @@
         "https://www.cityandstatepa.com/personality/2026/09/q-janelle-stelson/416304/"
       ]
     }
-  ],
-  "emptySlots": [
-    "changes-income"
   ],
   "noPosition": [
     "budget-law-health",

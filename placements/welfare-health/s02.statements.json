@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "statement",
       "text": "Said they oppose replacing current coverage with a single public health plan for every resident, which they said would bankrupt rural hospitals.",
       "sources": [
@@ -9,7 +9,7 @@
       ]
     },
     {
-      "slot": "keeps-income",
+      "slot": "changes-income",
       "tier": "statement",
       "text": "Said protecting the safety-net programs, including public pensions and health coverage for older residents, is essential, and pledged to keep fighting fraud and abuse in them.",
       "sources": [
@@ -26,7 +26,6 @@
     }
   ],
   "emptySlots": [
-    "changes-income",
     "seeks"
   ],
   "noPosition": [

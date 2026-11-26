@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "statement",
       "text": "Says the tax-funded health service will always stay free of charge at the point of use, while its leader has repeatedly said the way that service is funded should be re-examined and has been open to other funding models.",
       "sources": [
@@ -9,9 +9,9 @@
       ]
     },
     {
-      "slot": "keeps-income",
+      "slot": "changes-income",
       "tier": "statement",
-      "text": "Pledged to keep the rule that raises the public pension every year by the highest of prices, wages, or 2.5 percent, within the existing income support, in which mandatory pension schemes replace about 54 percent of an average worker's net earnings, unemployment benefits replace about 33 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 50 percent of the median income, housing support included. It said it would pay for that rule by cutting working-age benefits.",
+      "text": "Pledged to keep the rule that raises the public pension every year by the highest of prices, wages, or 2.5 percent, and said it would pay for that rule by cutting working-age benefits.",
       "sources": [
         "https://www.aol.com/articles/farage-u-turns-triple-lock-100728843.html",
         "https://www.bloomberg.com/news/articles/2026-04-02/farage-s-reform-uk-vows-to-keep-expensive-pensions-triple-lock",
@@ -46,8 +46,5 @@
         "https://fullfact.org/immigration/what-proportion-of-universal-credit-goes-to-non-british-citizens/"
       ]
     }
-  ],
-  "emptySlots": [
-    "changes-health"
   ]
 }

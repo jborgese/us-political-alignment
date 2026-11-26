@@ -1,34 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
-      "tier": "official_act",
-      "text": "In government, keeps in place a tax-funded health service that is available to every resident and free of charge for doctor and hospital care.",
-      "sources": [
-        "https://www.gov.uk/government/publications/the-nhs-constitution-for-england/the-nhs-constitution-for-england",
-        "https://www.gov.uk/government/publications/spending-review-2025-document/spending-review-2025-html"
-      ]
-    },
-    {
-      "slot": "keeps-income",
-      "tier": "official_act",
-      "text": "In government, keeps in place the existing income support, in which mandatory pension schemes replace about 54 percent of an average worker's net earnings, unemployment benefits replace about 33 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 50 percent of the median income, housing support included.",
-      "sources": [
-        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
-        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
-        "https://stat.link/qetyb2",
-        "https://stat.link/xiqc6l"
-      ]
-    },
-    {
-      "slot": "keeps-income",
-      "tier": "official_act",
-      "text": "In government, has kept the rule that raises the public pension every year by the highest of prices, wages, or 2.5 percent.",
-      "sources": [
-        "https://www.itv.com/news/2026-09-29/andy-burnham-social-care-nhs-triple-lock-pensions"
-      ]
-    },
-    {
       "slot": "changes-health",
       "tier": "official_act",
       "text": "In government, set day-to-day funding for the public health service to grow by an average of 3 percent a year above inflation in its multi-year spending plan.",
@@ -86,6 +58,5 @@
         "https://www.cityam.com/exclusive-timms-welfare-review-to-dismiss-change-to-pip-eligibility/"
       ]
     }
-  ],
-  "emptySlots": []
+  ]
 }
