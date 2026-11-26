@@ -2,7 +2,7 @@ import process from "node:process"
 
 import { estimateInputTokens, remainingMatchups, supersededComparisons } from "./comparisons.ts"
 import { CATEGORY_ID_PATTERN, loadRatingSet, type RatingSet } from "./files.ts"
-import { PANEL_SIZE, placementMatchups, placementRun } from "./placement.ts"
+import { PANEL_SIZE, remainingPlacementMatchups } from "./placement.ts"
 import { panelFor, placeRecords, rateCategory, rateStability, type RateOutcome } from "./rate.ts"
 import { findSetProblems, packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
 import { writeReports } from "./report.ts"
@@ -23,7 +23,7 @@ const placementLines = (set: RatingSet, categoryId: string): string[] => {
       `Placement comparisons still to rate: ${2 * PANEL_SIZE} per record, once ${categoryId} is fully rated with its anchors in order`,
     ]
   }
-  const unrated = remainingMatchups(placementRun(set), placementMatchups(set, panel))
+  const unrated = remainingPlacementMatchups(set, panel)
   return [
     `Records to place: ${set.placements.length}`,
     `Placement comparisons still to rate: ${unrated.length}, about ${estimateInputTokens(set, unrated)} input tokens`,

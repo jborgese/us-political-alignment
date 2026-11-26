@@ -1,9 +1,18 @@
 import { writeFile } from "node:fs/promises"
 
-import { describeEvidence, fingerprintRecords, remainingMatchups } from "./comparisons.ts"
-import { loadRatingSet, pathsFor, type Comparison, type Packet, type RatingSet, type Slot } from "./files.ts"
+import { describeEvidence, fingerprintRecords, remainingMatchups, type Matchup } from "./comparisons.ts"
+import {
+  loadRatingSet,
+  pathsFor,
+  subjectIdOf,
+  type Comparison,
+  type Packet,
+  type RatingSet,
+  type Slot,
+} from "./files.ts"
+import { placedScores, placementMatchups, placementRun, remainingPlacementMatchups } from "./placement.ts"
 import { packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets, thinEvidenceReasons } from "./ratingSet.ts"
-import { rewordedScores, wordingReasons, type RewordedScore } from "./stability.ts"
+import { LARGEST_MOVE_WHEN_REWORDED, rewordedScores, wordingReasons, type RewordedScore } from "./stability.ts"
 import {
   anchorsInOrder,
   fitBradleyTerry,
@@ -16,6 +25,7 @@ import {
 } from "./scoring.ts"
 
 const SPOT_CHECK_COUNT = 10
+const LARGEST_MEAN_CALIBRATION_GAP = 5
 
 export interface ReportPaths {
   report: string
@@ -72,6 +82,7 @@ export interface RunSummary {
   highAnchorId: string
   lowAnchorId: string
   scaleIsValid: boolean
+  fitted: Scores
   scores: Scores
   reworded: RewordedScore[]
   agreementAcrossOrders: number
@@ -120,6 +131,109 @@ const rewordingSection = (set: RatingSet, { scores, reworded }: RunSummary): str
   ]
 }
 
+const nameOf = (set: RatingSet, id: string): string =>
+  set.key.subjects.find((subject) => subject.id === id)?.name ?? id
+
+const copyLabel = (id: string): string => id.slice(subjectIdOf(id).length + 1)
+
+const placedName = (set: RatingSet, id: string): string =>
+  subjectIdOf(id) === id ? nameOf(set, id) : `${nameOf(set, subjectIdOf(id))} (${copyLabel(id)})`
+
+const countInvolving = (matchups: Matchup[], id: string): number =>
+  matchups.filter(({ first, second }) => first.id === id || second.id === id).length
+
+interface Placed {
+  set: RatingSet
+  run: RunSummary
+  panel: string[]
+  scores: Scores
+}
+
+const progressLine = ({ set, panel, scores }: Placed, ids: string[]): string[] => {
+  const planned = placementMatchups(set, panel)
+  const unrated = remainingPlacementMatchups(set, panel)
+  const waiting = ids
+    .filter((id) => !(id in scores))
+    .map((id) => {
+      const total = countInvolving(planned, id)
+      return `${placedName(set, id)} (${total - countInvolving(unrated, id)} of ${total})`
+    })
+  return waiting.length > 0 ? [`- Still to rate: ${waiting.join(", ")}`] : []
+}
+
+const placedSubjectLines = (placed: Placed): string[] => {
+  const { set, panel, scores } = placed
+  const ids = set.placements
+    .filter((packet) => packet.items.length > 0 && subjectIdOf(packet.id) === packet.id)
+    .map((packet) => packet.id)
+  if (ids.length === 0) return []
+  const placedSet = placementRun(set)
+  const rows = set.placements
+    .filter((packet) => ids.includes(packet.id) && packet.id in scores)
+    .toSorted((a, b) => scores[b.id] - scores[a.id])
+    .map((packet) => {
+      const reasons = thinEvidenceReasons(placedSet, packet)
+      return `| ${placedName(set, packet.id)} | ${wholeNumber(scores[packet.id])} | ${reasons.join("; ") || "no"} |`
+    })
+  return [
+    "## Placed on the scale",
+    "",
+    `- Panel: ${panel.map((id) => nameOf(set, id)).join(", ")}`,
+    ...progressLine(placed, ids),
+    "",
+    "| Record | Score | Held back |",
+    "|---|---|---|",
+    ...rows,
+    "",
+  ]
+}
+
+const calibrationVerdict = (gaps: number[]): string[] => {
+  const mean = gaps.reduce((total, gap) => total + Math.abs(gap), 0) / gaps.length
+  const largest = Math.max(...gaps.map(Math.abs))
+  const holds = mean <= LARGEST_MEAN_CALIBRATION_GAP && largest <= LARGEST_MOVE_WHEN_REWORDED
+  return [
+    `- Mean gap: ${mean.toFixed(1)} points. Largest: ${wholeNumber(largest)} points.`,
+    `- The calibration line (mean gap of ${LARGEST_MEAN_CALIBRATION_GAP} points or less, none more than ${LARGEST_MOVE_WHEN_REWORDED}) holds: ${holds ? "yes" : "no"}`,
+  ]
+}
+
+const calibrationLines = (placed: Placed): string[] => {
+  const { set, run, scores } = placed
+  const ids = set.placements
+    .filter((packet) => packet.items.length > 0 && subjectIdOf(packet.id) !== packet.id)
+    .map((packet) => packet.id)
+  if (ids.length === 0) return []
+  const scored = ids.filter((id) => id in scores)
+  const gaps = scored.map((id) => scores[id] - run.scores[subjectIdOf(id)])
+  const rows = scored
+    .map((id, index) => [
+      nameOf(set, subjectIdOf(id)),
+      copyLabel(id),
+      wholeNumber(run.scores[subjectIdOf(id)]),
+      wholeNumber(scores[id]),
+      wholeNumber(gaps[index]),
+    ])
+    .map((cells) => `| ${cells.join(" | ")} |`)
+  return [
+    "## Calibration",
+    "",
+    ...(scored.length === ids.length ? calibrationVerdict(gaps) : progressLine(placed, ids)),
+    "",
+    "| Subject | Copy | Subject's score | Copy's score | Gap |",
+    "|---|---|---|---|---|",
+    ...rows,
+    "",
+  ]
+}
+
+const placementSections = (set: RatingSet, run: RunSummary): string[] => {
+  if (set.placements.length === 0 || !run.scaleIsValid) return []
+  if (!set.panel) return ["## Placed on the scale", "", "- No panel yet. Run place first.", ""]
+  const placed = { set, run, panel: set.panel, scores: placedScores(set, set.panel, run) }
+  return [...placedSubjectLines(placed), ...calibrationLines(placed)]
+}
+
 export const summarizeRun = (set: RatingSet): RunSummary => {
   assertRatingIsComplete(set)
   const anchorIds = set.category.anchors.map((anchor) => anchor.id)
@@ -134,6 +248,7 @@ export const summarizeRun = (set: RatingSet): RunSummary => {
     highAnchorId,
     lowAnchorId,
     scaleIsValid,
+    fitted,
     scores: toAnchoredScale(fitted, highAnchorId, lowAnchorId),
     reworded: scaleIsValid ? rewordedScores(set) : [],
     agreementAcrossOrders: shareOfPairsAgreeingAcrossOrders(set.comparisons),
@@ -188,6 +303,7 @@ export const buildReport = (set: RatingSet): string => {
       : ["Scores are withheld. The anchors did not come out in their intended order, so the scale is not valid."]),
     "",
     ...rewordingSection(set, run),
+    ...placementSections(set, run),
     "## Held back from the site",
     "",
     ...heldBackLines(set, run),
