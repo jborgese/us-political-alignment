@@ -14,6 +14,7 @@
 1. The project needs a score for about 525 more people (the rest of the House and all 100 senators) in each issue. Today every record is compared with every other record in both orders, so the cost grows with the square of the number of records: about 300,000 comparisons per issue at 550 records, against 650 now.
 2. Records written by hand, like the 23 in each issue today, cannot be produced for 525 people per issue. Records built from votes and bill sponsorships can, but nobody yet knows whether a thinner record of that kind scores the same as a researched record of the same person.
 3. Each issue's published scale is the result of a paid run that has passed its gates. Adding people must not move the scores already published.
+4. Members-elect have no record in the House until they take office, yet readers look for them from election day. Many have a record from a prior office; some have only campaign positions.
 
 **Spec category:** Feature. It adds a new way to score records onto the existing tool, alongside the current full rating, without changing how today's scales are built.
 
@@ -50,7 +51,11 @@ As the project owner, I want to score a new person on an issue for a small, fixe
 As the project owner, I want to compare vote-built versions of the 10 pilot members with their researched records so that I decide on the record-building pipeline with evidence.
 **Success signal:** the report lists each pilot member's researched score, vote-built score and the gap, and states whether the calibration line holds.
 
-**Goal 3 — Leave published work alone**
+**Goal 3 — Show members-elect before they have voted**
+As a reader, I want to see where an incoming member stands, marked as provisional, so that new members are not missing for their first months.
+**Success signal:** each of the first six members-elect has a provisional placed score in each live issue's report.
+
+**Goal 4 — Leave published work alone**
 As a reader, I want the scores I have already seen to stay put when new people are added so that the site stays trustworthy.
 **Success signal:** every existing report regenerates unchanged after placements are added.
 
@@ -60,7 +65,7 @@ As a reader, I want the scores I have already seen to stay put when new people a
 
 - **Building records from roll calls and sponsorships:** a separate spec, once calibration shows it is worth doing.
 - **Senate events:** each issue's Senate list is evidence work for that pipeline.
-- **Chamber diagrams and moving House members off the main chart:** the site work comes after people are placed (see the research doc's "Chamber diagrams" section).
+- **Chamber diagrams, moving House members off the main chart, and the provisional mark for members-elect:** the site work comes after people are placed (see the research doc's "Chamber diagrams" section).
 - **Wording stability for placed records:** deferred until there are placed records to sample; the size of the sample is an open decision.
 - **Changing how the current 26-record scales are rated:** they keep the full design.
 
@@ -171,6 +176,29 @@ flowchart LR
 **Decided (26 November 2026):**
 - The calibration line holds when the mean gap is 5 points or less and no copy is more than 10 points from its subject, the same 10-point line as the wording test.
 
+#### 4.3.6 Members-elect
+
+**Responsibility:** place a member-elect from acts in a prior office and stated intentions, and mark the score provisional until their first session ends.
+
+**Interfaces:** `"provisional": true` on the subject in `key.json`; their packets in `placements/<issue>/`; `thinEvidenceReasons` and `findSetProblems` in `src/ratingSet.ts`; the evidence rules in `README.md`, "Members-elect".
+
+**Access and data:** none beyond the existing blinding rules.
+
+**Callouts:**
+- Prior-office acts are official acts worded with their level ("As a regional legislator, …"); campaign positions are statements of an intended act; stances on the House events are statement-tier or listed under `noPosition`.
+- A provisional record needs at least 3 items that are official acts or statements, instead of 3 official acts. The other hold-back rules are unchanged.
+- `check` refuses a provisional subject in `packets/`, so the scale is built only from records of people in office.
+- **Risk:** the rater weighs official acts above statements, so a record of stated intentions may land nearer the middle than its positions warrant. Ticket 4's statement-only copies measure that before any campaign-only record is shown.
+
+**Decided (26 November 2026):**
+- Evidence: prior-office acts plus campaign positions, not an estimate from a group the member belongs to.
+- Display: shown with a provisional mark; the site work is separate (see [§3](#3-out-of-scope)).
+- First six: Claire Valdez, Darializa Avila Chevalier, Janelle Stelson, Houston Gaines, Steve Toth and Ed Gallrein, three from each party, with and without a prior office.
+
+**Open questions:**
+- When the first session ends: how the record is rebuilt from House votes, and whether campaign positions stay as statements.
+- Placed records have no wording test, so a provisional member has no range bar.
+
 ---
 
 ## 5. Implementation plan
@@ -253,7 +281,8 @@ As the project owner, I need vote-built versions of the 10 pilot members on the 
 **Acceptance Criteria (checkbox-ready):**
 - [ ] One copy per pilot member per issue (`<id>.votes.json`): stances on every event plus cosponsored or sponsored bills from an agreed list per issue; no influence or statement items.
 - [ ] `check` passes on all four issues.
-- [ ] After Jared approves, one `place` run per issue (about 200 comparisons, about $1 each); the report states whether the calibration line holds.
+- [ ] Statement-only copies (`<id>.statements.json`) of 4 pilot members spread across each issue's scale: statements of intended acts only, at least 3 items each.
+- [ ] After Jared approves, one `place` run per issue (about 280 comparisons, 80 of them for the statement-only copies); the report states whether the calibration line holds for each kind of copy.
 
 **Callouts:**
 - **External / prerequisites:** the bill list per issue needs Jared's agreement before the copies are written.
@@ -265,13 +294,56 @@ As the project owner, I need vote-built versions of the 10 pilot members on the 
 **Definition of done:** calibration result recorded in the research doc.
 **Rollback / feature flag:** delete the copies and their run files.
 
+### Ticket 5 — Member-elect rules
+
+**User Story:**
+As the project owner, I need the tool to accept members-elect so that they can be placed from the evidence they have.
+
+**Acceptance Criteria (checkbox-ready):**
+- [ ] `key.json` accepts `"provisional": true` on a subject.
+- [ ] A provisional record is held back only when it has fewer than 3 items that are official acts or statements.
+- [ ] `check` refuses a provisional subject in `packets/`.
+- [ ] `README.md` gives the evidence rules for members-elect.
+
+**Callouts:**
+- **Shared types** (`src/files.ts`): the key schema.
+- **Backend logic** (`src/ratingSet.ts`): the hold-back count and the new check.
+
+**Rollout:**
+**Test plan:** `test/ratingSet.test.ts`; regenerate the four live reports and confirm they are unchanged.
+**Legacy / migration handling:** no subject is provisional yet.
+
+**Definition of done:** tests pass; live reports unchanged.
+**Rollback / feature flag:** revert the PR.
+
+### Ticket 6 — The first six members-elect
+
+**User Story:**
+As the project owner, I need records for six members-elect on the four live issues so that the method is tested on both kinds of member before the rest of the freshman class.
+
+**Acceptance Criteria (checkbox-ready):**
+- [ ] Key entries with `"provisional": true` and packets in `placements/<issue>/`, reviewed by Jared before any paid run.
+- [ ] Each prior office confirmed against the legislature's own records.
+- [ ] After Jared approves, one `place` run per issue: 120 comparisons each, 480 in all.
+- [ ] Campaign-only records go on the site only if Ticket 4's statement-only copies hold the calibration line.
+
+**Callouts:**
+- **External / prerequisites:** Tickets 3 to 5 merged.
+
+**Rollout:**
+**Test plan:** `check` on all four issues; the run itself, read in the report.
+**Legacy / migration handling:** none.
+
+**Definition of done:** six provisional scores in each live issue's report.
+**Rollback / feature flag:** delete the packets, key entries and run files.
+
 ---
 
 ## 6. Rollout plan
 
 ### 6.1 Release strategy
 
-Tickets 1 to 3 merge with no paid run and no change to the site or to any published score. Ticket 4 is the only paid step and runs one issue at a time with Jared's approval.
+Tickets 1 to 3 and 5 merge with no paid run and no change to the site or to any published score. Tickets 4 and 6 are the paid steps and run one issue at a time with Jared's approval.
 
 ### 6.2 Operational readiness
 
@@ -281,6 +353,7 @@ Regenerating the four live reports after each merge must give identical files; t
 
 - Any live report changes after a merge: revert that PR.
 - The calibration line fails: stop before the record-building pipeline, and revisit what goes into the records.
+- The statement-only copies fail the calibration line: keep campaign-only members-elect off the site, and revisit how stated intentions are weighed.
 
 ---
 

@@ -76,6 +76,7 @@ const keySchema = z.strictObject({
       party: z.string().min(1).optional(),
       legislature: z.string().min(1),
       aliases: z.array(z.string().min(1)),
+      provisional: z.literal(true).optional(),
     }),
   ),
 })

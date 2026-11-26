@@ -78,6 +78,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - **Rewording**: another wording of one packet with the same facts. The stability test scores it in the packet's place to measure how much the score depends on phrasing.
 - **Matchup**: one ordered pair of records. A category's own run rates every pair in both orders; a stability run rates each pair once, adding the other order for a version that moves more than 6 points.
 - **Key**: `key.json`. It unblinds ids, so its contents never go to the rater or into the spot check.
+- **Provisional**: a member-elect, marked in `key.json`. Placed from prior-office acts and campaign statements, never rated into the scale, until their first session ends.
 
 **Navigation hints:**
 

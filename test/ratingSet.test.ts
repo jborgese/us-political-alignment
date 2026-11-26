@@ -250,6 +250,45 @@ describe("thinEvidenceReasons", () => {
 
     expect(thinEvidenceReasons(set, set.packets[0])).toEqual(["50% of its pairs changed winner with the order shown"])
   })
+
+  describe("for a member-elect", () => {
+    const statement = (text: string) => ({ ...act(text), tier: "statement" as const })
+    const provisionalSet = (packet: Packet) => {
+      const set = buildSet({ packets: [], placements: [packet] })
+      return {
+        ...set,
+        key: { ...set.key, subjects: set.key.subjects.map((subject) => ({ ...subject, provisional: true as const })) },
+      }
+    }
+
+    it("counts stated intentions toward the three items it needs", () => {
+      const packet = record("s01", [
+        act("As a regional legislator, voted for the bill."),
+        statement("Pledged to vote for the second bill."),
+        statement("Said they would introduce a third bill."),
+      ])
+
+      expect(thinEvidenceReasons(provisionalSet(packet), packet)).toEqual([])
+      expect(thinEvidenceReasons(buildSet({ packets: [packet] }), packet)).toEqual(["1 official act, fewer than 3"])
+    })
+
+    it("names a provisional record with fewer than three acts or stated intentions", () => {
+      const packet = record("s01", [statement("Pledged to vote for the bill.")])
+
+      expect(thinEvidenceReasons(provisionalSet(packet), packet)).toEqual([
+        "1 official act or statement, fewer than 3",
+      ])
+    })
+
+    it("keeps a provisional subject off the scale", () => {
+      const set = provisionalSet(record("s01", threeActs))
+
+      expect(findSetProblems({ ...set, packets: set.placements, placements: [] })).toEqual([
+        "s01 is provisional: move it from packets/ to placements/",
+      ])
+      expect(findSetProblems(set)).toEqual([])
+    })
+  })
 })
 
 describe("coverage", () => {
