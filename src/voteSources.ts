@@ -195,7 +195,12 @@ const houseList = async (key: string, congress: number, session: number, offset 
 
 type HouseMembersPage = z.infer<typeof houseMembersSchema>["houseRollCallVoteMemberVotes"]
 
-const houseMembersPages = async (key: string, ref: RollCallRef, offset = 0): Promise<HouseMembersPage[]> => {
+const houseMembersPages = async (
+  key: string,
+  ref: RollCallRef,
+  offset = 0,
+  seenIds: string[] = [],
+): Promise<HouseMembersPage[]> => {
   const page = await getCongress(
     key,
     `/house-vote/${ref.congress}/${ref.session}/${ref.number}/members`,
@@ -204,9 +209,17 @@ const houseMembersPages = async (key: string, ref: RollCallRef, offset = 0): Pro
   )
   if (page === null) return []
   const votes = page.houseRollCallVoteMemberVotes
+  const fresh = { ...votes, results: votes.results.filter((result) => !seenIds.includes(result.bioguideID)) }
+  if (offset > 0 && fresh.results.length === 0) return []
   return isLastPage(votes.results.length, offset)
-    ? [votes]
-    : [votes, ...(await houseMembersPages(key, ref, offset + PAGE_SIZE))]
+    ? [fresh]
+    : [
+        fresh,
+        ...(await houseMembersPages(key, ref, offset + PAGE_SIZE, [
+          ...seenIds,
+          ...fresh.results.map((result) => result.bioguideID),
+        ])),
+      ]
 }
 
 const houseRollCall = async (key: string, ref: RollCallRef): Promise<RollCall | null> => {

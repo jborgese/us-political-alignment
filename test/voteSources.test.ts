@@ -172,6 +172,18 @@ describe("createVoteSources", () => {
     expect(rollCall?.members).toHaveLength(432)
   })
 
+  it("stops paging when Congress.gov ignores the offset and sends the same members again", async () => {
+    const everyone = Array.from({ length: 300 }, (_, index) => ({
+      bioguideID: `M${String(index).padStart(6, "0")}`,
+      firstName: "First",
+      lastName: "Last",
+      voteCast: "Nay",
+    }))
+    fetchMock.mockImplementation(async () => Response.json({ houseRollCallVoteMemberVotes: { results: everyone } }))
+    const rollCall = await createVoteSources().rollCall("us-house", { congress: 119, session: 1, number: 52 })
+    expect({ requests: fetchMock.mock.calls.length, members: rollCall?.members.length }).toEqual({ requests: 2, members: 300 })
+  })
+
   it("gives up on a request that takes longer than a minute and says which one", async () => {
     fetchMock.mockRejectedValueOnce(new DOMException("The operation was aborted due to timeout", "TimeoutError"))
     await expect(createVoteSources().rollCall("us-house", { congress: 119, session: 1, number: 190 })).rejects.toThrow(
