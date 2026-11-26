@@ -6,7 +6,6 @@ import {
   describeEvidence,
   fingerprintRecords,
   remainingMatchups,
-  remainingStabilityMatchups,
   stabilityMatchups,
   supersededComparisons,
 } from "../src/comparisons.ts"
@@ -58,37 +57,34 @@ describe("remainingMatchups", () => {
 describe("stabilityMatchups", () => {
   const base = buildSet()
   const set = { ...base, rewordings: [reworded(base.packets[0], "a", ["Voted to keep public coverage level."])] }
-  const ids = (matchups: ReturnType<typeof stabilityMatchups>): string[] =>
-    matchups.map(({ first, second }) => `${first.id}>${second.id}`)
+  const pairs = (matchups: ReturnType<typeof stabilityMatchups>): string[] =>
+    matchups.map(({ first, second }) => [first.id, second.id].toSorted().join("+"))
+  const firstListedAgainst = (matchups: ReturnType<typeof stabilityMatchups>, otherId: string): string | undefined =>
+    matchups.find(({ first, second }) => first.id === otherId || second.id === otherId)?.first.id
+  const others = Array.from({ length: 12 }, (_, index) =>
+    record(`s${String(index + 2).padStart(2, "0")}`, [act(`Voted on bill ${index}.`)]),
+  )
+  const larger = { ...set, packets: [...set.packets, ...others] }
 
-  it("pairs a rewording with every other record in both orders, and never with its own original", () => {
-    expect(ids(stabilityMatchups(set))).toEqual([
-      "s01.a>anchor-high",
-      "anchor-high>s01.a",
-      "s01.a>anchor-low",
-      "anchor-low>s01.a",
-    ])
+  it("pairs a rewording once with every other record, and never with its own original", () => {
+    expect(pairs(stabilityMatchups(set))).toEqual(["anchor-high+s01.a", "anchor-low+s01.a"])
+  })
+
+  it("lists the rewording first in some pairs and second in others", () => {
+    const listedFirst = stabilityMatchups(larger).map(({ first }) => first.id === "s01.a")
+
+    expect(listedFirst).toContain(true)
+    expect(listedFirst).toContain(false)
+  })
+
+  it("keeps a pair's order when other records are added", () => {
+    expect(firstListedAgainst(stabilityMatchups(larger), "anchor-high")).toEqual(
+      firstListedAgainst(stabilityMatchups(set), "anchor-high"),
+    )
   })
 
   it("plans nothing when the category has no rewordings", () => {
     expect(stabilityMatchups(base)).toEqual([])
-  })
-
-  it("leaves out the pairs already rated, and leaves the category's own pairs alone", () => {
-    const rated = { ...set, stability: [comparison("s01.a", "anchor-high", "anchor-high")] }
-
-    expect(ids(remainingStabilityMatchups(rated))).toEqual([
-      "anchor-high>s01.a",
-      "s01.a>anchor-low",
-      "anchor-low>s01.a",
-    ])
-    expect(remainingMatchups(rated)).toHaveLength(6)
-  })
-
-  it("rates a pair again when the rewording has changed since it was rated", () => {
-    const stale = { ...comparison("s01.a", "anchor-high", "anchor-high"), firstHash: "old-text", secondHash: "old-text" }
-
-    expect(ids(remainingStabilityMatchups({ ...set, stability: [stale] }))).toContain("s01.a>anchor-high")
   })
 })
 

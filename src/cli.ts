@@ -1,16 +1,12 @@
 import process from "node:process"
 
-import {
-  estimateInputTokens,
-  remainingMatchups,
-  remainingStabilityMatchups,
-  supersededComparisons,
-} from "./comparisons.ts"
+import { estimateInputTokens, remainingMatchups, supersededComparisons } from "./comparisons.ts"
 import { CATEGORY_ID_PATTERN, loadRatingSet } from "./files.ts"
 import { rateCategory, rateStability, type RateOutcome } from "./rate.ts"
 import { findSetProblems, packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
 import { writeReports } from "./report.ts"
 import { writeSite } from "./site.ts"
+import { MOVE_THAT_NEEDS_BOTH_ORDERS, remainingStabilityMatchups } from "./stability.ts"
 
 const USAGE = [
   "Usage: node src/cli.ts <check|rate|stability|report> <category-id> [limit]",
@@ -30,7 +26,7 @@ const check = async (root: string, categoryId: string): Promise<void> => {
   const unratedRewordings = remainingStabilityMatchups(set)
   console.log(`Reworded versions: ${set.rewordings.length}`)
   console.log(
-    `Stability comparisons still to rate: ${unratedRewordings.length}, about ${estimateInputTokens(set, unratedRewordings)} input tokens`,
+    `Stability comparisons still to rate: ${unratedRewordings.length}, about ${estimateInputTokens(set, unratedRewordings)} input tokens, plus the other order for any version that moves more than ${MOVE_THAT_NEEDS_BOTH_ORDERS} points`,
   )
   console.log(`Packets with no evidence: ${emptyIds.join(", ") || "none"}`)
   console.log(`Subjects with no packet: ${subjectsWithoutPackets(set).join(", ") || "none"}`)

@@ -102,6 +102,27 @@ const answersFor = (requests: RatingRequest[]): Extract<BatchProgress, { ended: 
   failed: [],
 })
 
+const TEXTS_FROM_STRONGEST = [
+  "Cast a vote for keeping coverage level.",
+  "Voted to expand public coverage.",
+  "Voted to widen coverage.",
+  "Voted to hold coverage flat.",
+  "Voted to cut public coverage.",
+]
+
+const strengthOf = (recordText: string): number =>
+  TEXTS_FROM_STRONGEST.findIndex((known) => recordText.includes(known))
+
+const rankedAnswers = (requests: RatingRequest[]): Extract<BatchProgress, { ended: true }> => ({
+  ended: true,
+  rated: requests.map(({ id, message }) => {
+    const [recordA, recordB] = message.split("<record_b>")
+    const choice = strengthOf(recordA) < strengthOf(recordB) ? "A" : "B"
+    return { id, verdict: { choice, reason: "The chosen record did more." } }
+  }),
+  failed: [],
+})
+
 const sentText = (): string =>
   lastSubmitted()
     .map((request) => `${request.system}\n${request.message}`)
@@ -254,7 +275,7 @@ describe("rateCategory", () => {
 })
 
 describe("rateStability", () => {
-  it("rates a rewording against every other record and keeps the answers apart from the category's own", async () => {
+  it("rates a rewording once against every other record and keeps the answers apart from the category's own", async () => {
     const root = await writeProject({ s01: ["Voted to hold coverage flat."], s02: ["Voted to widen coverage."] })
     await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
     await rateFully(root)
@@ -262,13 +283,27 @@ describe("rateStability", () => {
     const submitted = await rateRewordings(root)
     const collected = await rateRewordings(root)
 
-    expect(submitted).toMatchObject({ status: "submitted", count: 6, remaining: 0 })
-    expect(collected).toEqual({ status: "collected", rated: 6, failed: 0, remaining: 0 })
+    expect(submitted).toMatchObject({ status: "submitted", count: 3, remaining: 0 })
+    expect(collected).toEqual({ status: "collected", rated: 3, failed: 0, remaining: 0 })
     const saved = await savedRows(root, "stability.jsonl")
     expect(saved.every((row) => [row.first, row.second].includes("s01.a"))).toBe(true)
     expect(saved.some((row) => [row.first, row.second].includes("s01"))).toBe(false)
     expect(await savedRows(root, "comparisons.jsonl")).toHaveLength(12)
     expect(await rateRewordings(root)).toEqual({ status: "complete" })
+  })
+
+  it("rates the other order too, in a later batch, for a version that moves more than 6 points", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."], s02: ["Voted to widen coverage."] })
+    await writeRewording(root, { s01: ["Cast a vote for keeping coverage level."] })
+    collect.mockImplementation(async () => rankedAnswers(lastSubmitted()))
+    await rateFully(root)
+
+    await rateRewordings(root)
+    const firstOrders = await rateRewordings(root)
+    const secondOrders = await rateRewordings(root)
+
+    expect(firstOrders).toEqual({ status: "collected", rated: 3, failed: 0, remaining: 3 })
+    expect(secondOrders).toMatchObject({ status: "submitted", count: 3, remaining: 0 })
   })
 
   it("sends the reworded text, never the original it replaces, and no ids", async () => {
@@ -304,7 +339,7 @@ describe("rateStability", () => {
 
     const waiting = await rateRewordings(root)
 
-    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", total: 4, submittedAt: expect.any(String) })
+    expect(waiting).toEqual({ status: "waiting", batchId: "batch-1", total: 2, submittedAt: expect.any(String) })
     expect(await savedRows(root, "stability.jsonl")).toEqual([])
   })
 

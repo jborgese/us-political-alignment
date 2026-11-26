@@ -74,7 +74,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - **Slot**: one section of a record, such as the health coverage it keeps in place. Every record fills each slot or marks it empty.
 - **Event**: one program change in a legislature, worded once in `events/`. A record supplies only its stance on it.
 - **Rewording**: another wording of one packet with the same facts. The stability test scores it in the packet's place to measure how much the score depends on phrasing.
-- **Matchup**: one ordered pair of records. Every pair is rated in both orders.
+- **Matchup**: one ordered pair of records. A category's own run rates every pair in both orders; a stability run rates each pair once, adding the other order for a version that moves more than 6 points.
 - **Key**: `key.json`. It unblinds ids, so its contents never go to the rater or into the spot check.
 
 **Navigation hints:**
