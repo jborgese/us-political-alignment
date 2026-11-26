@@ -1,0 +1,503 @@
+{
+  "title": "How green each country's system already is",
+  "scope": "Green taxes and protected areas",
+  "halves": [
+    {
+      "id": "taxes",
+      "label": "Green taxes"
+    },
+    {
+      "id": "nature",
+      "label": "Nature protected"
+    }
+  ],
+  "figures": [
+    {
+      "id": "green-taxes",
+      "half": "taxes",
+      "label": "Environmental tax revenue as a share of GDP, average of 2017 to 2019",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_ERTR%40DF_ERTR&df[ag]=OECD.ENV.EPI",
+      "values": {
+        "AUS": {
+          "value": 1.864,
+          "year": 2019
+        },
+        "AUT": {
+          "value": 2.4126,
+          "year": 2019
+        },
+        "BEL": {
+          "value": 2.3308,
+          "year": 2019
+        },
+        "CAN": {
+          "value": 1.22,
+          "year": 2019
+        },
+        "CHE": {
+          "value": 1.6842,
+          "year": 2019
+        },
+        "CHL": {
+          "value": 1.2844,
+          "year": 2019
+        },
+        "COL": {
+          "value": 0.6318,
+          "year": 2019
+        },
+        "CRI": {
+          "value": 2.3472,
+          "year": 2019
+        },
+        "CZE": {
+          "value": 2.3551,
+          "year": 2019
+        },
+        "DEU": {
+          "value": 1.6855,
+          "year": 2019
+        },
+        "DNK": {
+          "value": 3.5494,
+          "year": 2019
+        },
+        "ESP": {
+          "value": 1.823,
+          "year": 2019
+        },
+        "EST": {
+          "value": 2.9767,
+          "year": 2019
+        },
+        "FIN": {
+          "value": 2.9163,
+          "year": 2019
+        },
+        "FRA": {
+          "value": 2.9738,
+          "year": 2019
+        },
+        "GBR": {
+          "value": 2.2882,
+          "year": 2019
+        },
+        "GRC": {
+          "value": 3.9543,
+          "year": 2019
+        },
+        "HUN": {
+          "value": 2.598,
+          "year": 2019
+        },
+        "IRL": {
+          "value": 1.514,
+          "year": 2019
+        },
+        "ISL": {
+          "value": 2.0656,
+          "year": 2019
+        },
+        "ISR": {
+          "value": 2.2703,
+          "year": 2019
+        },
+        "ITA": {
+          "value": 3.2737,
+          "year": 2019
+        },
+        "JPN": {
+          "value": 1.2857,
+          "year": 2019
+        },
+        "LTU": {
+          "value": 2.0349,
+          "year": 2019
+        },
+        "LUX": {
+          "value": 1.7057,
+          "year": 2019
+        },
+        "LVA": {
+          "value": 3.5359,
+          "year": 2019
+        },
+        "MEX": {
+          "value": 1.0956,
+          "year": 2019
+        },
+        "NLD": {
+          "value": 3.3248,
+          "year": 2019
+        },
+        "NOR": {
+          "value": 1.8276,
+          "year": 2019
+        },
+        "NZL": {
+          "value": 1.6697,
+          "year": 2019
+        },
+        "POL": {
+          "value": 2.5413,
+          "year": 2019
+        },
+        "PRT": {
+          "value": 2.631,
+          "year": 2019
+        },
+        "SVK": {
+          "value": 2.6426,
+          "year": 2019
+        },
+        "SVN": {
+          "value": 4.2466,
+          "year": 2019
+        },
+        "SWE": {
+          "value": 2.126,
+          "year": 2019
+        },
+        "TUR": {
+          "value": 2.4654,
+          "year": 2019
+        },
+        "USA": {
+          "value": 0.7244,
+          "year": 2019
+        }
+      }
+    },
+    {
+      "id": "protected-land",
+      "half": "nature",
+      "label": "Share of land protected",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PA%40DF_PROT_AREA&df[ag]=OECD.ENV.EPI",
+      "values": {
+        "AUS": {
+          "value": 21.9818,
+          "year": 2024
+        },
+        "AUT": {
+          "value": 29.5034,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 16.2212,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 12.8703,
+          "year": 2024
+        },
+        "CHE": {
+          "value": 12.4294,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 20.2386,
+          "year": 2024
+        },
+        "COL": {
+          "value": 16.9594,
+          "year": 2024
+        },
+        "CRI": {
+          "value": 26.2113,
+          "year": 2024
+        },
+        "CZE": {
+          "value": 21.759,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 39.0888,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 15.3278,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 28.1004,
+          "year": 2024
+        },
+        "EST": {
+          "value": 20.0899,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 13.4744,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 31.8415,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 28.3717,
+          "year": 2024
+        },
+        "GRC": {
+          "value": 34.6247,
+          "year": 2024
+        },
+        "HUN": {
+          "value": 22.5016,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 14.2565,
+          "year": 2024
+        },
+        "ISL": {
+          "value": 20.5302,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 24.6463,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 21.6063,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 30.5792,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 17.3084,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 17.7422,
+          "year": 2024
+        },
+        "LUX": {
+          "value": 38.061,
+          "year": 2024
+        },
+        "LVA": {
+          "value": 18.3823,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 15.3048,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 24.6843,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 17.7445,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 33.239,
+          "year": 2024
+        },
+        "POL": {
+          "value": 39.5488,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 22.6894,
+          "year": 2024
+        },
+        "SVK": {
+          "value": 37.2255,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 40.1545,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 15.3466,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 0.203,
+          "year": 2024
+        },
+        "USA": {
+          "value": 12.8713,
+          "year": 2024
+        }
+      }
+    },
+    {
+      "id": "protected-sea",
+      "half": "nature",
+      "label": "Share of home waters protected",
+      "source": "https://data-explorer.oecd.org/vis?df[ds]=dsDisseminateFinalDMZ&df[id]=DSD_PA%40DF_PROT_AREA&df[ag]=OECD.ENV.EPI",
+      "values": {
+        "AUS": {
+          "value": 45.4004,
+          "year": 2024
+        },
+        "BEL": {
+          "value": 37.6582,
+          "year": 2024
+        },
+        "CAN": {
+          "value": 9.1083,
+          "year": 2024
+        },
+        "CHL": {
+          "value": 41.2504,
+          "year": 2024
+        },
+        "COL": {
+          "value": 37.2062,
+          "year": 2024
+        },
+        "CRI": {
+          "value": 28.0636,
+          "year": 2024
+        },
+        "DEU": {
+          "value": 45.3271,
+          "year": 2024
+        },
+        "DNK": {
+          "value": 18.2431,
+          "year": 2024
+        },
+        "ESP": {
+          "value": 12.7273,
+          "year": 2024
+        },
+        "EST": {
+          "value": 19.2552,
+          "year": 2024
+        },
+        "FIN": {
+          "value": 11.0245,
+          "year": 2024
+        },
+        "FRA": {
+          "value": 33.9111,
+          "year": 2024
+        },
+        "GBR": {
+          "value": 44.0636,
+          "year": 2024
+        },
+        "GRC": {
+          "value": 4.6735,
+          "year": 2024
+        },
+        "IRL": {
+          "value": 2.3512,
+          "year": 2024
+        },
+        "ISL": {
+          "value": 0.4189,
+          "year": 2024
+        },
+        "ISR": {
+          "value": 0.6365,
+          "year": 2024
+        },
+        "ITA": {
+          "value": 7.428,
+          "year": 2024
+        },
+        "JPN": {
+          "value": 13.2715,
+          "year": 2024
+        },
+        "KOR": {
+          "value": 1.8599,
+          "year": 2024
+        },
+        "LTU": {
+          "value": 22.9174,
+          "year": 2024
+        },
+        "LVA": {
+          "value": 16.3988,
+          "year": 2024
+        },
+        "MEX": {
+          "value": 22.541,
+          "year": 2024
+        },
+        "NLD": {
+          "value": 33.5796,
+          "year": 2024
+        },
+        "NOR": {
+          "value": 1.0147,
+          "year": 2024
+        },
+        "NZL": {
+          "value": 29.8193,
+          "year": 2024
+        },
+        "POL": {
+          "value": 24.8316,
+          "year": 2024
+        },
+        "PRT": {
+          "value": 4.5248,
+          "year": 2024
+        },
+        "SVN": {
+          "value": 5.4532,
+          "year": 2024
+        },
+        "SWE": {
+          "value": 16.1292,
+          "year": 2024
+        },
+        "TUR": {
+          "value": 0.1471,
+          "year": 2024
+        },
+        "USA": {
+          "value": 19.0173,
+          "year": 2024
+        }
+      }
+    }
+  ],
+  "exclusion": [
+    "TUR"
+  ],
+  "countries": [
+    {
+      "legislature": "fr-assemblee",
+      "code": "FRA",
+      "name": "France",
+      "flag": "fr"
+    },
+    {
+      "legislature": "de-bundestag",
+      "code": "DEU",
+      "name": "Germany",
+      "flag": "de"
+    },
+    {
+      "legislature": "uk-commons",
+      "code": "GBR",
+      "name": "United Kingdom",
+      "flag": "uk"
+    },
+    {
+      "legislature": "ca-commons",
+      "code": "CAN",
+      "name": "Canada",
+      "flag": "ca"
+    },
+    {
+      "legislature": "us-house",
+      "code": "USA",
+      "name": "United States",
+      "flag": "us"
+    }
+  ]
+}
