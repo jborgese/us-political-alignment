@@ -1,6 +1,6 @@
 # Welfare and health: rating report
 
-Question put to the rater: Which record shows stronger support for government-guaranteed health coverage and income support for the general population?
+Question put to the rater: Which record's position, as its evidence shows it, is closer to government-guaranteed health coverage and income support for the general population?
 
 - Rater model: claude-opus-5-5
 - Comparisons: 650
@@ -9,7 +9,7 @@ Question put to the rater: Which record shows stronger support for government-gu
 ## Checks
 
 - Anchors came out in their intended order: yes
-- Pairs where both presentation orders gave the same winner: 97%
+- Pairs where both presentation orders gave the same winner: 98%
 - Comparisons won by the record listed first: 51% (50% means no position bias)
 
 ## Scores
@@ -17,112 +17,82 @@ Question put to the rater: Which record shows stronger support for government-gu
 | Record | Kind | Group | Score |
 |---|---|---|---|
 | anchor-expansive | anchor |  | 100 |
-| Labour Party | party | United Kingdom | 93 |
-| CDU/CSU | party | Germany | 85 |
-| Liberal Party of Canada | party | Canada | 83 |
-| Pramila Jayapal | member | Congressional Progressive Caucus | 79 |
-| Congressional Progressive Caucus | caucus | US House | 75 |
-| Alexandria Ocasio-Cortez | member | Congressional Progressive Caucus | 71 |
-| New Democrat Coalition | caucus | US House | 64 |
-| New Democratic Party | party | Canada | 63 |
-| Democratic Party | party | United States | 60 |
-| Blue Dog Coalition | caucus | US House | 58 |
-| Brad Schneider | member | New Democrat Coalition | 55 |
-| Pete Aguilar | member | New Democrat Coalition | 52 |
-| Rassemblement National | party | France | 52 |
-| Jared Golden | member | Blue Dog Coalition | 48 |
-| Marie Gluesenkamp Perez | member | Blue Dog Coalition | 46 |
-| anchor-mixed | anchor |  | 40 |
-| Reform UK | party | United Kingdom | 35 |
-| Ben Cline | member | Republican Study Committee | 33 |
-| Republican Study Committee | caucus | US House | 30 |
-| Republican Party | party | United States | 28 |
-| August Pfluger | member | Republican Study Committee | 22 |
-| Andy Harris | member | House Freedom Caucus | 18 |
-| House Freedom Caucus | caucus | US House | 13 |
+| Pramila Jayapal | member | Congressional Progressive Caucus | 93 |
+| Alexandria Ocasio-Cortez | member | Congressional Progressive Caucus | 83 |
+| Congressional Progressive Caucus | caucus | US House | 83 |
+| New Democratic Party | party | Canada | 83 |
+| Democratic Party | party | United States | 75 |
+| New Democrat Coalition | caucus | US House | 71 |
+| Blue Dog Coalition | caucus | US House | 68 |
+| Brad Schneider | member | New Democrat Coalition | 65 |
+| Pete Aguilar | member | New Democrat Coalition | 61 |
+| Jared Golden | member | Blue Dog Coalition | 58 |
+| Marie Gluesenkamp Perez | member | Blue Dog Coalition | 55 |
+| Labour Party | party | United Kingdom | 52 |
+| Liberal Party of Canada | party | Canada | 49 |
+| Rassemblement National | party | France | 44 |
+| anchor-mixed | anchor |  | 44 |
+| CDU/CSU | party | Germany | 39 |
+| Reform UK | party | United Kingdom | 36 |
+| Ben Cline | member | Republican Study Committee | 32 |
+| Republican Party | party | United States | 29 |
+| August Pfluger | member | Republican Study Committee | 25 |
+| Republican Study Committee | caucus | US House | 19 |
+| Andy Harris | member | House Freedom Caucus | 19 |
+| House Freedom Caucus | caucus | US House | 12 |
 | Chip Roy | member | House Freedom Caucus | 7 |
 | anchor-retrenching | anchor |  | 0 |
 
 ## Scores when reworded
 
-- Reworded versions scored: 46 of 46
+- Reworded versions scored: 0 of 46
 - Comparisons: 2300
 - Each score is the one the record would have had with that wording in its place.
 
 | Record | Score | Version a | Version b |
 |---|---|---|---|
-| Labour Party | 93 | 93 | 93 |
-| CDU/CSU | 85 | 75 | 87 |
-| Liberal Party of Canada | 83 | 81 | 83 |
-| Pramila Jayapal | 79 | 81 | 79 |
-| Congressional Progressive Caucus | 75 | 75 | 75 |
-| Alexandria Ocasio-Cortez | 71 | 71 | 71 |
-| New Democrat Coalition | 64 | 58 | 61 |
-| New Democratic Party | 63 | 70 | 67 |
-| Democratic Party | 60 | 65 | 63 |
-| Blue Dog Coalition | 58 | 58 | 58 |
-| Brad Schneider | 55 | 57 | 55 |
-| Pete Aguilar | 52 | 52 | 51 |
-| Rassemblement National | 52 | 50 | 54 |
-| Jared Golden | 48 | 48 | 46 |
-| Marie Gluesenkamp Perez | 46 | 45 | 45 |
-| Reform UK | 35 | 35 | 37 |
-| Ben Cline | 33 | 33 | 33 |
-| Republican Study Committee | 30 | 30 | 28 |
-| Republican Party | 28 | 26 | 26 |
-| August Pfluger | 22 | 18 | 22 |
-| Andy Harris | 18 | 18 | 18 |
-| House Freedom Caucus | 13 | 13 | 13 |
-| Chip Roy | 7 | 7 | 7 |
+| Pramila Jayapal | 93 |  |  |
+| Alexandria Ocasio-Cortez | 83 |  |  |
+| Congressional Progressive Caucus | 83 |  |  |
+| New Democratic Party | 83 |  |  |
+| Democratic Party | 75 |  |  |
+| New Democrat Coalition | 71 |  |  |
+| Blue Dog Coalition | 68 |  |  |
+| Brad Schneider | 65 |  |  |
+| Pete Aguilar | 61 |  |  |
+| Jared Golden | 58 |  |  |
+| Marie Gluesenkamp Perez | 55 |  |  |
+| Labour Party | 52 |  |  |
+| Liberal Party of Canada | 49 |  |  |
+| Rassemblement National | 44 |  |  |
+| CDU/CSU | 39 |  |  |
+| Reform UK | 36 |  |  |
+| Ben Cline | 32 |  |  |
+| Republican Party | 29 |  |  |
+| August Pfluger | 25 |  |  |
+| Republican Study Committee | 19 |  |  |
+| Andy Harris | 19 |  |  |
+| House Freedom Caucus | 12 |  |  |
+| Chip Roy | 7 |  |  |
 
 ## Placed on the scale
 
 - Panel: anchor-expansive, Liberal Party of Canada, Congressional Progressive Caucus, New Democratic Party, Brad Schneider, Jared Golden, Reform UK, Republican Party, Andy Harris, anchor-retrenching
+- Still to rate: Claire Valdez (0 of 20), Janelle Stelson (0 of 20), Houston Gaines (0 of 20), Steve Toth (0 of 20)
 
 | Record | Score | Held back |
 |---|---|---|
-| Claire Valdez | 51 | no |
-| Houston Gaines | 42 | no |
-| Janelle Stelson | 37 | no |
-| Steve Toth | 17 | no |
 
 ## Calibration
 
-- Mean gap: 8.3 points. Largest: 37 points.
-- The calibration line (mean gap of 5 points or less, none more than 10) holds: no
+- Still to rate: Chip Roy (exact) (0 of 20), Chip Roy (statements) (0 of 20), Chip Roy (votes) (0 of 20), Ben Cline (exact) (0 of 20), Ben Cline (statements) (0 of 20), Ben Cline (votes) (0 of 20), Brad Schneider (exact) (0 of 20), Brad Schneider (votes) (0 of 20), Alexandria Ocasio-Cortez (exact) (0 of 20), Alexandria Ocasio-Cortez (statements) (0 of 20), Alexandria Ocasio-Cortez (votes) (0 of 20), Marie Gluesenkamp Perez (exact) (0 of 20), Marie Gluesenkamp Perez (statements) (0 of 20), Marie Gluesenkamp Perez (votes) (0 of 20), Pramila Jayapal (exact) (0 of 20), Pramila Jayapal (statements) (0 of 20), Pramila Jayapal (votes) (0 of 20), Andy Harris (exact) (0 of 20), Andy Harris (statements) (0 of 20), Andy Harris (votes) (0 of 20), August Pfluger (exact) (0 of 20), August Pfluger (votes) (0 of 20), Jared Golden (exact) (0 of 20), Jared Golden (votes) (0 of 20), Pete Aguilar (exact) (0 of 20), Pete Aguilar (votes) (0 of 20)
 
 | Subject | Copy | Subject's score | Copy's score | Gap |
 |---|---|---|---|---|
-| Chip Roy | exact | 7 | 10 | 3 |
-| Chip Roy | statements | 7 | 10 | 3 |
-| Chip Roy | votes | 7 | 37 | 30 |
-| Ben Cline | exact | 33 | 32 | -1 |
-| Ben Cline | statements | 33 | 32 | -1 |
-| Ben Cline | votes | 33 | 32 | -1 |
-| Brad Schneider | exact | 55 | 59 | 4 |
-| Brad Schneider | votes | 55 | 59 | 4 |
-| Alexandria Ocasio-Cortez | exact | 71 | 68 | -3 |
-| Alexandria Ocasio-Cortez | statements | 71 | 42 | -30 |
-| Alexandria Ocasio-Cortez | votes | 71 | 90 | 19 |
-| Marie Gluesenkamp Perez | exact | 46 | 42 | -5 |
-| Marie Gluesenkamp Perez | statements | 46 | 42 | -5 |
-| Marie Gluesenkamp Perez | votes | 46 | 42 | -5 |
-| Pramila Jayapal | exact | 79 | 78 | 0 |
-| Pramila Jayapal | statements | 79 | 42 | -37 |
-| Pramila Jayapal | votes | 79 | 90 | 12 |
-| Andy Harris | exact | 18 | 17 | -1 |
-| Andy Harris | statements | 18 | 22 | 5 |
-| Andy Harris | votes | 18 | 32 | 15 |
-| August Pfluger | exact | 22 | 27 | 6 |
-| August Pfluger | votes | 22 | 27 | 6 |
-| Jared Golden | exact | 48 | 51 | 3 |
-| Jared Golden | votes | 48 | 42 | -6 |
-| Pete Aguilar | exact | 52 | 55 | 3 |
-| Pete Aguilar | votes | 52 | 64 | 12 |
 
 ## Held back from the site
 
-- Rassemblement National: 16% of its pairs changed winner with the order shown
+- none
 
 ## Not rated
 
