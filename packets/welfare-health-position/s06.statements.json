@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "slot": "keeps-income",
+      "tier": "statement",
+      "text": "Pledged to protect the public pension benefits older residents count on, and to strengthen the program's finances without raising the retirement age or reducing benefits.",
+      "sources": [
+        "https://marieforcongress.com/issues",
+        "https://www.aarp.org/states/washington/braun-glusenkamp-perez-congressional-2026-q-and-a/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Said they support bringing back and expanding the tax credit for families with children.",
+      "sources": [
+        "https://marieforcongress.com/issues"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Said lifting the cap on earnings subject to the public pension payroll tax, or taxing high earners more fairly, would go a long way toward keeping the program solvent.",
+      "sources": [
+        "https://www.aarp.org/states/washington/braun-glusenkamp-perez-congressional-2026-q-and-a/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "keeps-health",
+    "changes-health",
+    "changes-income"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

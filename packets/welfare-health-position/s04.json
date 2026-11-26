@@ -1,0 +1,59 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "In government, keeps in place public insurance that gives every eligible resident medically necessary doctor and hospital care without patient charges, enforced through conditions on its health funding to regional governments.",
+      "sources": [
+        "https://www.canada.ca/en/health-canada/services/health-care-system/canada-health-care-system-medicare/canada-health-act.html"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "official_act",
+      "text": "In government, keeps in place the existing income support, in which mandatory pension schemes replace about 45 percent of an average worker's net earnings, unemployment benefits replace about 48 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 18 percent of the median income, housing support included.",
+      "sources": [
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
+        "https://stat.link/qetyb2",
+        "https://stat.link/xiqc6l"
+      ]
+    },
+    {
+      "event": "annual-budget-health",
+      "stance": "In government, passed"
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In government, extended a public dental plan to all uninsured adults aged 18 to 64 with household income below a set threshold.",
+      "sources": [
+        "https://www.canada.ca/en/health-canada/news/2025/03/canadian-dental-care-plan-expands-to-include-millions-of-new-eligible-canadians.html"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In government, provided no new funding for further public drug coverage agreements with regional governments beyond the four already signed.",
+      "sources": [
+        "https://www.policyalternatives.ca/news-research/canadas-federal-government-abandons-national-pharmacare/",
+        "https://www.ndp.ca/news/liberals-break-their-promise-millions-canadians-waiting-free-medicine"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Said in its budget that it was protecting social programs, naming child care, dental care, and drug coverage.",
+      "sources": [
+        "https://www.policyalternatives.ca/news-research/canadas-federal-government-abandons-national-pharmacare/"
+      ]
+    },
+    {
+      "event": "annual-budget-meals",
+      "stance": "In government, passed"
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

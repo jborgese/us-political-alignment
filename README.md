@@ -40,7 +40,7 @@ To spend less before a full run:
 
 | Path | Holds |
 |---|---|
-| `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, the anchor records listed from the high end to the low end, and optionally a `weighing` rule that replaces the default one in the rater's instructions |
+| `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, the anchor records listed from the high end to the low end, and optionally a `weighing` rule and a `tierRule` that replace the defaults in the rater's instructions |
 | `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
 | `key.json` | The name and legislature behind each blinded id, each member's roll call ID, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
