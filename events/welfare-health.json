@@ -11,7 +11,12 @@
             "https://clerk.house.gov/Votes/2025190",
             "https://www.kff.org/medicaid/allocating-cbos-estimates-of-federal-medicaid-spending-reductions-across-the-states-enacted-reconciliation-package/",
             "https://www.kff.org/medicaid/a-closer-look-at-the-work-requirement-provisions-in-the-2025-federal-budget-reconciliation-law/"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 190
+          }
         },
         {
           "id": "subsidy-extension",
@@ -20,7 +25,12 @@
           "sources": [
             "https://clerk.house.gov/evs/2026/roll011",
             "https://www.kff.org/affordable-care-act/aca-marketplace-premium-payments-would-more-than-double-on-average-next-year-if-enhanced-premium-tax-credits-expire/"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 2,
+            "number": 11
+          }
         },
         {
           "id": "employer-plan-bill",
@@ -30,7 +40,12 @@
             "https://clerk.house.gov/evs/2025/roll349",
             "https://www.cbo.gov/publication/61959",
             "https://www.aamc.org/advocacy-policy/washington-highlights/house-passes-health-care-bill-without-extending-enhanced-aca-subsidies"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 349
+          }
         },
         {
           "id": "budget-law-food",
@@ -39,7 +54,12 @@
           "sources": [
             "https://clerk.house.gov/Votes/2025190",
             "https://cosm.aei.org/perspective-on-the-obbbas-snap-cuts/"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 190
+          }
         }
       ]
     },

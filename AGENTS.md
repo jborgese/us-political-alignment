@@ -14,7 +14,7 @@ This file provides operational guidance for **all AI agents** (Cursor, Claude Co
 
 **Prerequisites:** Node.js 22.18 or newer (pinned in `.nvmrc` and in `engines` in `package.json`), npm 10 (pinned in `packageManager`). Run `npm ci`.
 
-Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC_API_KEY` and `RATER_MODEL`. Tests, `check`, and `report` need neither.
+Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC_API_KEY` and `RATER_MODEL`, and `CONGRESS_API_KEY` for `votes`. Tests, `check`, and `report` need none of them.
 
 ---
 
@@ -48,6 +48,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `npm run place -- <category-id> [limit]`: the same for the records in `placements/<category-id>/`, each rated against a fixed panel of the scale's records. It also costs money, so ask first.
 - `npm run report -- <category-id>`: writes the report and the blinded spot check from saved comparisons. No network.
 - `npm run site`: writes the overview to `dist/index.html` and one page per published category to `dist/<category-id>/index.html` from saved comparisons. No network.
+- `npm run votes -- <preview|write> [dir]`: reads House roll calls from Congress.gov and Senate roll calls from Senate.gov. It fills member stances on events that name a `rollCall`, resolves roll call IDs, and ends provisional status. It needs `CONGRESS_API_KEY` (free). `write` changes records and `key.json`, so prefer `preview` unless the user asks.
 
 ---
 
@@ -57,14 +58,15 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 - `categories/`: one file per issue category, holding the question put to the rater, the slots every record fills, and the anchor records
 - `events/`: one file per issue category, holding the shared wording of each program change, listed by legislature
-- `key.json`: maps each blinded id to a name and a legislature, and lists the terms no record may contain
+- `key.json`: maps each blinded id to a name, a legislature, and a member's roll call ID, and lists the terms no record may contain
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
 - `placements/<category-id>/`: packets placed on the finished scale against a fixed panel instead of rated into it; `<id>.<label>.json` is a calibration copy of a subject on the scale
 - `rewordings/<category-id>/`: one file per reworded version of the category's records, used only by the stability test
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
+- `votes.json`: the Congress.gov policy areas that sort votes to consider under each category; read only by the vote listener
 - `systems/<category-id>.json`: optional policy figures across OECD countries that place each country's own system on a separate scale on the site; never sent to the rater
 - `site/`: the stylesheet and browser scripts of the public pages, inlined by `src/site.ts`, and `categories.json`, the issues the site plans to cover and which of them are published
-- `src/`: the tool; `scoring.ts` is the reference for pure logic and `rater.ts` is the only file that touches the SDK
+- `src/`: the tool; `scoring.ts` is the reference for pure logic, `rater.ts` is the only file that touches the SDK, and `voteSources.ts` is the only file that fetches roll calls
 - `test/`: Vitest tests, one file per `src/` module
 
 **Domain vocabulary:**
@@ -79,10 +81,11 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - **Matchup**: one ordered pair of records. A category's own run rates every pair in both orders; a stability run rates each pair once, adding the other order for a version that moves more than 6 points.
 - **Key**: `key.json`. It unblinds ids, so its contents never go to the rater or into the spot check.
 - **Provisional**: a member-elect, marked in `key.json`. Placed from prior-office acts and campaign statements, never rated into the scale, until their first session ends.
+- **Roll call ID**: `rollCallId` in `key.json`, the ID a member's chamber uses in its roll call files: Bioguide ID in the House, LIS member ID in the Senate.
 
 **Navigation hints:**
 
-- New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`. No code changes. It reaches the site only when `site/categories.json` marks it published; an id that file does not list also needs an entry there and an `issue-<id>` icon in `src/markup.ts`.
+- New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`, plus its policy areas in `votes.json` so the vote listener sorts votes under it. No code changes. It reaches the site only when `site/categories.json` marks it published; an id that file does not list also needs an entry there and an `issue-<id>` icon in `src/markup.ts`.
 - New check on what a record may contain? `src/ratingSet.ts`. The rules for writing evidence are in `README.md`.
 - Anything that changes what the rater is sent? `src/comparisons.ts`, and nowhere else.
 - Anything a reader of the site sees? `src/site.ts` builds each category page's data and markup, `src/home.ts` the overview, and `src/markup.ts` what the two share; `site/` styles them and handles selection.

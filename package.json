@@ -15,6 +15,7 @@
     "place": "node --env-file-if-exists=.env src/cli.ts place",
     "report": "node src/cli.ts report",
     "site": "node src/cli.ts site",
+    "votes": "node --env-file-if-exists=.env src/cli.ts votes",
     "test": "vitest --run",
     "typecheck": "tsc --noEmit"
   },
