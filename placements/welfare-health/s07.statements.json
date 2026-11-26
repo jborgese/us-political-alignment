@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Vowed to keep fighting",
+      "tier": "statement",
+      "sources": [
+        "https://jayapal.house.gov/2025/05/22/jayapal-statement-on-budget-reconciliation/"
+      ]
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Vowed to keep fighting",
+      "tier": "statement",
+      "sources": [
+        "https://jayapal.house.gov/2025/05/22/jayapal-statement-on-budget-reconciliation/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Planned to press, in the next legislative term, for committee action on a bill to enroll every resident in a single public health plan.",
+      "sources": [
+        "https://prospect.org/2026/09/21/medicare-for-all-universal-health-care-jayapal-democrats/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "keeps-health",
+    "keeps-income"
+  ],
+  "noPosition": [
+    "subsidy-extension",
+    "employer-plan-bill"
+  ]
+}

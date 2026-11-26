@@ -172,7 +172,10 @@
     "AME",
     "pharmacare",
     "Medicare for All",
-    "Bloc"
+    "Bloc",
+    "Georgia",
+    "Pennsylvania",
+    "Kentucky"
   ],
   "subjects": [
     {
@@ -450,6 +453,85 @@
         "Republicans",
         "GOP"
       ]
+    },
+    {
+      "id": "s24",
+      "name": "Claire Valdez",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Valdez"
+      ],
+      "provisional": true,
+      "firstCongress": 120
+    },
+    {
+      "id": "s25",
+      "name": "Darializa Avila Chevalier",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Avila Chevalier",
+        "Chevalier"
+      ],
+      "provisional": true,
+      "firstCongress": 120
+    },
+    {
+      "id": "s26",
+      "name": "Janelle Stelson",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Stelson"
+      ],
+      "provisional": true,
+      "firstCongress": 120
+    },
+    {
+      "id": "s27",
+      "name": "Houston Gaines",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Gaines"
+      ],
+      "provisional": true,
+      "firstCongress": 120
+    },
+    {
+      "id": "s28",
+      "name": "Steve Toth",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Toth"
+      ],
+      "provisional": true,
+      "firstCongress": 120
+    },
+    {
+      "id": "s29",
+      "name": "Ed Gallrein",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Gallrein"
+      ],
+      "provisional": true,
+      "firstCongress": 120
     }
   ]
 }

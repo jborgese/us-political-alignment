@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "statement",
+      "text": "Said they oppose replacing current coverage with a single public health plan for every resident, which they said would bankrupt rural hospitals.",
+      "sources": [
+        "https://landing.bencline.com/"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "statement",
+      "text": "Said protecting the safety-net programs, including public pensions and health coverage for older residents, is essential, and pledged to keep fighting fraud and abuse in them.",
+      "sources": [
+        "https://landing.bencline.com/"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Said they would pursue other reforms to lower insurance costs rather than extend the expanded premium subsidies, which they said send taxpayers' money to insurers.",
+      "sources": [
+        "https://www.wdbj7.com/2026/01/09/rep-ben-cline-reacts-house-vote-affordable-care-act-extension/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-income",
+    "seeks"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

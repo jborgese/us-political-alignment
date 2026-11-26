@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted against a two-year regional budget that raised funding for public health coverage for low-income residents by about 8 percent over the previous two years.",
+      "sources": [
+        "https://journals.house.texas.gov/HJRNL/89R/HTML/89RDAY79FINAL.HTM",
+        "https://www.lbb.texas.gov/Documents/Appropriations_Bills/89/Conference_Bills/CCRSB1_Summary.pdf"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted against a supplemental spending law that included additional funding for public health coverage for low-income residents.",
+      "sources": [
+        "https://journals.house.texas.gov/HJRNL/89R/HTML/89RDAY78FINAL.HTM",
+        "https://www.lbb.texas.gov/Documents/Appropriations_Bills/89/Conference_Bills/CCRSB1_Summary.pdf"
+      ]
+    },
+    {
+      "slot": "changes-income",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted for a law barring food assistance from paying for sweetened drinks and candy.",
+      "sources": [
+        "https://journals.house.texas.gov/HJRNL/89R/HTML/89RDAY71FINAL.HTM",
+        "https://legiscan.com/TX/bill/SB379"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "keeps-income",
+    "seeks"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

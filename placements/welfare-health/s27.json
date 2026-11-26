@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted for a regional budget that added funding for public health coverage for low-income residents and children.",
+      "sources": [
+        "https://www.legis.ga.gov/legislation/69395",
+        "https://www.wrdw.com/2025/05/09/georgia-budget-includes-more-medicaid-funding-federal-cuts-loom/?outputType=amp"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted for the next regional budget, which raised some payment rates in public health coverage, replaced lost national funding for running food assistance, and kept public health coverage closed to most low-income adults.",
+      "sources": [
+        "https://www.legis.ga.gov/legislation/72234",
+        "https://gbpi.org/sine-die-2026-georgia-rejects-property-tax-caps-and-adds-major-investments-for-gbpi-priorities-eight-year-income-tax-package-threatens-outlook/"
+      ]
+    },
+    {
+      "slot": "changes-income",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted for a bill adding data checks, including of citizenship, before households can receive food assistance, and barring its use on restaurant food and prepared drinks.",
+      "sources": [
+        "https://www.legis.ga.gov/legislation/72145",
+        "https://thecurrentga.org/2026/03/11/proposal-would-require-citizenship-checks-for-georgia-families-to-access-food-aid/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "keeps-income",
+    "seeks"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

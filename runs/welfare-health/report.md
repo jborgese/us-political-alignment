@@ -75,6 +75,39 @@ Question put to the rater: Which record shows stronger support for government-gu
 | House Freedom Caucus | 13 | 13 | 13 |
 | Chip Roy | 7 | 7 | 7 |
 
+## Placed on the scale
+
+- Panel: anchor-expansive, Liberal Party of Canada, Congressional Progressive Caucus, New Democratic Party, Brad Schneider, Jared Golden, Reform UK, Republican Party, Andy Harris, anchor-retrenching
+
+| Record | Score | Held back |
+|---|---|---|
+| Claire Valdez | 51 | no |
+| Houston Gaines | 42 | no |
+| Janelle Stelson | 37 | no |
+| Steve Toth | 17 | no |
+
+## Calibration
+
+- Mean gap: 11.1 points. Largest: 37 points.
+- The calibration line (mean gap of 5 points or less, none more than 10) holds: no
+
+| Subject | Copy | Subject's score | Copy's score | Gap |
+|---|---|---|---|---|
+| Chip Roy | votes | 7 | 37 | 30 |
+| Ben Cline | statements | 33 | 32 | -1 |
+| Ben Cline | votes | 33 | 32 | -1 |
+| Brad Schneider | votes | 55 | 59 | 4 |
+| Alexandria Ocasio-Cortez | votes | 71 | 90 | 19 |
+| Marie Gluesenkamp Perez | statements | 46 | 42 | -5 |
+| Marie Gluesenkamp Perez | votes | 46 | 42 | -5 |
+| Pramila Jayapal | statements | 79 | 42 | -37 |
+| Pramila Jayapal | votes | 79 | 90 | 12 |
+| Andy Harris | statements | 18 | 22 | 5 |
+| Andy Harris | votes | 18 | 32 | 15 |
+| August Pfluger | votes | 22 | 27 | 6 |
+| Jared Golden | votes | 48 | 42 | -6 |
+| Pete Aguilar | votes | 52 | 64 | 12 |
+
 ## Held back from the site
 
 - Rassemblement National: 16% of its pairs changed winner with the order shown

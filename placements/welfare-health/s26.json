@@ -1,0 +1,45 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "statement",
+      "text": "Pledged to defend public health coverage for older and low-income residents.",
+      "sources": [
+        "https://janellestelson.com/"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "statement",
+      "text": "Pledged to defend public pension benefits.",
+      "sources": [
+        "https://janellestelson.com/"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Said the expanded premium subsidies for individually purchased insurance should be restored while longer-term changes are worked out.",
+      "sources": [
+        "https://www.cityandstatepa.com/personality/2026/09/q-janelle-stelson/416304/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Said they want the national government to negotiate prices on far more prescription drugs.",
+      "sources": [
+        "https://www.cityandstatepa.com/personality/2026/09/q-janelle-stelson/416304/"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-income"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}
