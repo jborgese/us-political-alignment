@@ -8,6 +8,7 @@ const CONGRESS_API = "https://api.congress.gov/v3"
 const SENATE_LIS = "https://www.senate.gov/legislative/LIS"
 const USER_AGENT = "us-political-alignment vote listener (https://github.com/jborgese/us-political-alignment)"
 const PAGE_SIZE = 250
+const REQUEST_TIMEOUT_SECONDS = 60
 const MOST_RESULTS = 2000
 const HOUSE_BILL_TYPES = ["HR", "S", "HJRES", "SJRES"]
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -64,6 +65,22 @@ const congressApiKey = (): string => {
   return key
 }
 
+const fetchWithLimit = async (url: URL, headers: Record<string, string> = {}): Promise<Response> => {
+  const offset = url.searchParams.get("offset")
+  console.error(`Fetching ${url.host}${url.pathname}${offset && offset !== "0" ? ` from result ${offset}` : ""}`)
+  try {
+    return await fetch(url, {
+      headers: { ...headers, "User-Agent": USER_AGENT },
+      signal: AbortSignal.timeout(REQUEST_TIMEOUT_SECONDS * 1000),
+    })
+  } catch (error) {
+    if (error instanceof Error && error.name === "TimeoutError") {
+      throw new Error(`${url.host} did not answer within ${REQUEST_TIMEOUT_SECONDS} seconds for ${url.pathname}`)
+    }
+    throw error
+  }
+}
+
 const getCongress = async <Schema extends z.ZodType>(
   key: string,
   route: string,
@@ -72,7 +89,7 @@ const getCongress = async <Schema extends z.ZodType>(
 ): Promise<z.infer<Schema> | null> => {
   const url = new URL(`${CONGRESS_API}${route}`)
   Object.entries({ ...query, format: "json" }).forEach(([name, value]) => url.searchParams.set(name, value))
-  const response = await fetch(url, { headers: { "X-Api-Key": key, "User-Agent": USER_AGENT } })
+  const response = await fetchWithLimit(url, { "X-Api-Key": key })
   if (response.status === 404) return null
   if (!response.ok) throw new Error(`Congress.gov answered ${response.status} for ${route}`)
   const result = schema.safeParse(await response.json())
@@ -81,7 +98,7 @@ const getCongress = async <Schema extends z.ZodType>(
 }
 
 const getText = async (url: string): Promise<string | null> => {
-  const response = await fetch(url, { headers: { "User-Agent": USER_AGENT } })
+  const response = await fetchWithLimit(new URL(url))
   if (response.status === 404) return null
   if (!response.ok) throw new Error(`${new URL(url).host} answered ${response.status} for ${new URL(url).pathname}`)
   return response.text()

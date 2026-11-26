@@ -133,12 +133,14 @@ describe("createVoteSources", () => {
   beforeEach(() => {
     vi.stubGlobal("fetch", fetchMock)
     vi.stubEnv("CONGRESS_API_KEY", "secret-key")
+    vi.spyOn(console, "error").mockImplementation(() => {})
     fetchMock.mockReset()
   })
 
   afterEach(() => {
     vi.unstubAllGlobals()
     vi.unstubAllEnvs()
+    vi.restoreAllMocks()
   })
 
   it("refuses to start without a Congress.gov key", () => {
@@ -168,6 +170,14 @@ describe("createVoteSources", () => {
     ])
     expect(rollCall).toMatchObject({ chamber: "us-house", measure: "HR 1" })
     expect(rollCall?.members).toHaveLength(432)
+  })
+
+  it("gives up on a request that takes longer than a minute and says which one", async () => {
+    fetchMock.mockRejectedValueOnce(new DOMException("The operation was aborted due to timeout", "TimeoutError"))
+    await expect(createVoteSources().rollCall("us-house", { congress: 119, session: 1, number: 190 })).rejects.toThrow(
+      new Error("api.congress.gov did not answer within 60 seconds for /v3/house-vote/119/1/190/members"),
+    )
+    expect(fetchMock.mock.calls[0][1]?.signal).toBeInstanceOf(AbortSignal)
   })
 
   it("returns null for a roll call that does not exist and names only the path when a source fails", async () => {
