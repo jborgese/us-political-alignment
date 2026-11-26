@@ -1309,8 +1309,8 @@ footer {
 }
 .leader-ring {
   fill: none;
-  stroke: var(--surface);
-  stroke-width: var(--ring);
+  stroke: var(--seat-fill);
+  stroke-width: var(--gap);
   pointer-events: none;
 }
 .arc-ticks line {
@@ -1365,11 +1365,8 @@ footer {
 }
 .dot.party-leader {
   box-shadow:
-    inset 0 0 0 calc(var(--dot, 12px) * 0.2) var(--seat-fill, var(--ink-2)),
-    inset 0 0 0 calc(var(--dot, 12px) * 0.34) var(--surface);
-}
-.chamber-key .dot.party-leader {
-  --dot: 14px;
+    0 0 0 calc(var(--dot, 12px) * 0.12) var(--surface),
+    0 0 0 calc(var(--dot, 12px) * 0.22) var(--seat-fill, var(--ink-2));
 }
 .dot.slashed::after {
   content: "";

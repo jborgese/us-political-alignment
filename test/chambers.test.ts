@@ -97,14 +97,17 @@ describe("chamberView", () => {
     expect(arcLabels(view)).toEqual(["75", "50, 25"])
   })
 
-  it("rings a party leader's seat inside and adds the leader to the key", () => {
+  it("rings a party leader's seat outside in its party colour and adds the leader to the key", () => {
     const led = chamberView(
       { ...chamber, placed: [seat("Ann Left", "Democratic", 90, { role: "Minority Leader" })], unplaced: [] },
       0,
       "issue B",
     )
+    const ring = led.match(/<circle class="leader-ring"[^>]*>/)?.[0] ?? ""
+    const leaderSeat = led.match(/<circle class="seat"[^>]*>/)?.[0] ?? ""
 
-    expect(led).toMatch(/<circle class="seat"[^>]*\/><circle class="leader-ring"/)
+    expect(Number(attribute(ring, "r"))).toBeGreaterThan(Number(attribute(leaderSeat, "r")))
+    expect(attribute(ring, "data-party")).toBe("democratic")
     expect(led).toContain("Party leader</li>")
     expect(view).not.toContain("leader-ring")
   })

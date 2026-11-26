@@ -98,7 +98,7 @@ const placedAt = (radius: number, angle: number): string => {
   return `left:${left.toFixed(2)}%;top:${top.toFixed(2)}%`
 }
 
-const LEADER_RING_SHARE = 0.55
+const LEADER_RING_SHARE = 1.3
 
 const seatCircle =
   (chamberIndex: number, layout: Hemicycle) =>
@@ -106,7 +106,7 @@ const seatCircle =
     const { x, y } = layout.seats[position]
     const centre = `cx="${fixed(x)}" cy="${fixed(-y)}"`
     const leaderRing = seat.role
-      ? `<circle class="leader-ring" ${centre} r="${fixed(layout.seatRadius * LEADER_RING_SHARE)}"/>`
+      ? `<circle class="leader-ring" ${centre} r="${fixed(layout.seatRadius * LEADER_RING_SHARE)}"${partyAttributes(seat)}/>`
       : ""
     return `<circle class="seat" ${centre} r="${fixed(layout.seatRadius)}" data-chamber="${chamberIndex}" data-list="placed" data-seat="${position}"${partyAttributes(seat)}/>${leaderRing}`
   }
