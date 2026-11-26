@@ -135,6 +135,16 @@ An item is either a stance on an event or a free item with its own slot, tier, t
 - When a subject has no usable evidence in a category, save `{ "items": [] }`. The subject is left out of the rating and listed in the report.
 - Collect a record's own pushes for change, not only its stances on the events: bills it introduced or cosponsored, amendments it moved or voted for, motions it carried. A party out of government gets to vote only on what the government brings, so without these the rater sees its opponents' agenda instead of its own.
 
+### Members-elect
+
+A member-elect has no record in the legislature yet. Give their subject `"provisional": true` in `key.json`, and put their packets in `placements/<category-id>/`: `check` refuses a provisional subject in `packets/`, so the scale is built only from records of people in office. Every rule above applies, with these additions:
+
+- Acts from a prior office, such as a regional legislature or a city council, are official acts. Say the level they were taken at: "As a regional legislator, sponsored a bill …".
+- Campaign positions count only as statements of an intended act: "Pledged to vote against …", "Said they would introduce …". Talk tied to no act stays out, as for every record.
+- On each event of their legislature, give a `statement`-tier stance where they said how they would have voted, and list the event under `noPosition` otherwise.
+- A provisional record is held back when it has fewer than 3 items that are official acts or statements, instead of fewer than 3 official acts. The other reasons to hold a record back apply unchanged.
+- The provisional label ends with their first session in the legislature. The record is then rebuilt from their acts there and placed again.
+
 ## Reading the report
 
 `report.md` opens with three checks.

@@ -1,4 +1,4 @@
-import { TIERS, eventsFor, subjectIdOf, type Evidence, type Packet, type RatingSet } from "./files.ts"
+import { TIERS, eventsFor, subjectIdOf, type Evidence, type Packet, type RatingSet, type Tier } from "./files.ts"
 import { shareOfPairsAgreeingAcrossOrders } from "./scoring.ts"
 
 const FEWEST_OFFICIAL_ACTS = 3
@@ -17,15 +17,25 @@ const splitShare = (set: RatingSet, id: string): number => {
   return own.length === 0 ? 0 : 1 - shareOfPairsAgreeingAcrossOrders(own)
 }
 
+const isProvisional = (set: RatingSet, recordId: string): boolean =>
+  set.key.subjects.some((subject) => subject.id === subjectIdOf(recordId) && subject.provisional === true)
+
+const countedEvidence = (count: number, provisional: boolean): string => {
+  const acts = `${count} official ${count === 1 ? "act" : "acts"}`
+  return provisional ? `${acts} or ${count === 1 ? "statement" : "statements"}` : acts
+}
+
 export const thinEvidenceReasons = (set: RatingSet, packet: Packet): string[] => {
-  const officialActs = packet.items.filter((item) => item.tier === "official_act").length
+  const provisional = isProvisional(set, packet.id)
+  const countedTiers: Tier[] = provisional ? ["official_act", "statement"] : ["official_act"]
+  const counted = packet.items.filter((item) => countedTiers.includes(item.tier)).length
   const split = splitShare(set, packet.id)
   return [
     ...set.category.slots
       .filter((slot) => slot.required && itemsInSlot(packet, slot.id).length === 0)
       .map((slot) => `nothing under "${slot.heading}"`),
-    ...(officialActs < FEWEST_OFFICIAL_ACTS
-      ? [`${officialActs} official ${officialActs === 1 ? "act" : "acts"}, fewer than ${FEWEST_OFFICIAL_ACTS}`]
+    ...(counted < FEWEST_OFFICIAL_ACTS
+      ? [`${countedEvidence(counted, provisional)}, fewer than ${FEWEST_OFFICIAL_ACTS}`]
       : []),
     ...(split > LARGEST_SPLIT_SHARE
       ? [`${Math.round(split * 100)}% of its pairs changed winner with the order shown`]
@@ -90,6 +100,11 @@ const placementProblems = (set: RatingSet): string[] => {
     return onScale.includes(copyOf) ? [] : [`${id} copies ${copyOf}, which has no packet on the scale`]
   })
 }
+
+const provisionalOnScaleProblems = (set: RatingSet): string[] =>
+  set.packets
+    .filter((packet) => isProvisional(set, packet.id))
+    .map((packet) => `${packet.id} is provisional: move it from packets/ to placements/`)
 
 const slotProblemsOf = (packet: Packet, slotIds: string[]): string[] => {
   const filled = packet.items.map((item) => item.slot)
@@ -160,6 +175,7 @@ export const findSetProblems = (set: RatingSet): string[] => [
   ...duplicateIdProblems(set),
   ...missingKeyProblems(set),
   ...placementProblems(set),
+  ...provisionalOnScaleProblems(set),
   ...slotProblems(set),
   ...missingStanceProblems(set),
   ...leakProblems(set),
