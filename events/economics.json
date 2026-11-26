@@ -11,7 +11,12 @@
             "https://www.cbo.gov/publication/61570",
             "https://www.cbo.gov/publication/61172",
             "https://www.cbh.com/insights/articles/2025-final-budget-reconciliation-bill-a-closer-look/"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 190
+          }
         },
         {
           "id": "overdraft-rule-repeal",
@@ -20,7 +25,12 @@
           "sources": [
             "https://www.everycrsreport.com/reports/IN12513.html",
             "https://www.consumerfinance.gov/about-us/newsroom/cfpb-closes-overdraft-loophole-to-save-americans-billions-in-fees/"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 96
+          }
         },
         {
           "id": "federal-bargaining-bill",
@@ -30,7 +40,12 @@
             "https://www.congress.gov/119/bills/hr2550/BILLS-119hr2550eh.htm",
             "https://data.opm.gov/explore-data/analytics/labor-unions-and-bargaining-units",
             "https://marylandmatters.org/2026/01/09/opm-data-overhaul-reveals-deep-drops-in-federal-jobs-union-membership-telework/"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 332
+          }
         }
       ]
     },

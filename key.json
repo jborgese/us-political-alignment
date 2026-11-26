@@ -184,7 +184,8 @@
       "legislature": "us-house",
       "aliases": [
         "Roy"
-      ]
+      ],
+      "rollCallId": "R000614"
     },
     {
       "id": "s02",
@@ -195,7 +196,8 @@
       "legislature": "us-house",
       "aliases": [
         "Cline"
-      ]
+      ],
+      "rollCallId": "C001118"
     },
     {
       "id": "s03",
@@ -206,7 +208,8 @@
       "legislature": "us-house",
       "aliases": [
         "Schneider"
-      ]
+      ],
+      "rollCallId": "S001190"
     },
     {
       "id": "s04",
@@ -230,7 +233,8 @@
       "aliases": [
         "Ocasio-Cortez",
         "AOC"
-      ]
+      ],
+      "rollCallId": "O000172"
     },
     {
       "id": "s06",
@@ -244,7 +248,8 @@
         "Gluesenkamp",
         "Perez",
         "MGP"
-      ]
+      ],
+      "rollCallId": "G000600"
     },
     {
       "id": "s07",
@@ -255,7 +260,8 @@
       "legislature": "us-house",
       "aliases": [
         "Jayapal"
-      ]
+      ],
+      "rollCallId": "J000298"
     },
     {
       "id": "s08",
@@ -291,7 +297,8 @@
       "legislature": "us-house",
       "aliases": [
         "Harris"
-      ]
+      ],
+      "rollCallId": "H001052"
     },
     {
       "id": "s11",
@@ -302,7 +309,8 @@
       "legislature": "us-house",
       "aliases": [
         "Pfluger"
-      ]
+      ],
+      "rollCallId": "P000048"
     },
     {
       "id": "s12",
@@ -323,7 +331,8 @@
       "legislature": "us-house",
       "aliases": [
         "Golden"
-      ]
+      ],
+      "rollCallId": "G000592"
     },
     {
       "id": "s14",
@@ -391,7 +400,8 @@
       "legislature": "us-house",
       "aliases": [
         "Aguilar"
-      ]
+      ],
+      "rollCallId": "A000371"
     },
     {
       "id": "s20",

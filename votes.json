@@ -1,0 +1,29 @@
+{
+  "policyAreas": {
+    "economics": [
+      "Economics and Public Finance",
+      "Taxation",
+      "Finance and Financial Sector",
+      "Labor and Employment",
+      "Commerce",
+      "Housing and Community Development"
+    ],
+    "environment": [
+      "Environmental Protection",
+      "Energy",
+      "Public Lands and Natural Resources",
+      "Water Resources Development",
+      "Economics and Public Finance"
+    ],
+    "immigration": [
+      "Immigration",
+      "Economics and Public Finance"
+    ],
+    "welfare-health": [
+      "Health",
+      "Social Welfare",
+      "Agriculture and Food",
+      "Economics and Public Finance"
+    ]
+  }
+}
