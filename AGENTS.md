@@ -36,7 +36,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 
 - Cloudflare builds and deploys the site on each push to `main`: build command `npm run site -- welfare-health` (the category is ignored), deploy command `npx wrangler deploy`, config in `wrangler.jsonc`. Do not deploy by hand.
 - A push to any other branch publishes a preview of the page at a public `workers.dev` address (`npx wrangler preview`), so treat a pushed branch as published.
-- Setting `published` to `true` in `site/categories.json` puts that category's scores on the public site at the next deploy, so ask the user first.
+- Setting `published` to `true` in `site/categories.json` or `site/chambers.json` puts that category's scores or that chamber's diagram on the public site at the next deploy, so ask the user first.
 - `.github/workflows/votes.yml` runs `npm run votes -- write` daily. It keeps one draft PR on a `chore/votes-*` branch and one issue of votes to consider. The PR must be re-rated on its branch before merging.
 
 <!-- TEMPLATE: how to deploy (command, required working directory), prerequisites (e.g. Docker running), and any process for reserving a shared environment before deploying. Delete if agents never deploy from this repo. -->
@@ -66,7 +66,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
 - `votes.json`: the Congress.gov policy areas that sort votes to consider under each category; read only by the vote listener
 - `systems/<category-id>.json`: optional policy figures across OECD countries that place each country's own system on a separate scale on the site; never sent to the rater
-- `site/`: the stylesheet and browser scripts of the public pages, inlined by `src/site.ts`, and `categories.json`, the issues the site plans to cover and which of them are published
+- `site/`: the stylesheet and browser scripts of the public pages, inlined by `src/site.ts`; `categories.json`, the issues the site plans to cover and which of them are published; and `chambers.json`, the chamber diagrams and which are published
 - `src/`: the tool; `scoring.ts` is the reference for pure logic, `rater.ts` is the only file that touches the SDK, and `voteSources.ts` is the only file that fetches roll calls
 - `test/`: Vitest tests, one file per `src/` module
 
@@ -89,7 +89,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - New issue category? Add `categories/<id>.json`, `events/<id>.json`, and `packets/<id>/`, plus its policy areas in `votes.json` so the vote listener sorts votes under it. No code changes. It reaches the site only when `site/categories.json` marks it published; an id that file does not list also needs an entry there and an `issue-<id>` icon in `src/markup.ts`.
 - New check on what a record may contain? `src/ratingSet.ts`. The rules for writing evidence are in `README.md`.
 - Anything that changes what the rater is sent? `src/comparisons.ts`, and nowhere else.
-- Anything a reader of the site sees? `src/site.ts` builds each category page's data and markup, `src/home.ts` the overview, and `src/markup.ts` what the two share; `site/` styles them and handles selection.
+- Anything a reader of the site sees? `src/site.ts` builds each category page's data and markup, `src/chambers.ts` its chamber diagrams, `src/home.ts` the overview, and `src/markup.ts` what they share; `site/` styles them and handles selection.
 
 ---
 

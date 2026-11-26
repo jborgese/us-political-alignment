@@ -1,0 +1,4 @@
+[
+  { "id": "us-house", "label": "House", "seats": 435, "published": false },
+  { "id": "us-senate", "label": "Senate", "seats": 100, "published": false }
+]

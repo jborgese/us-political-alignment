@@ -36,6 +36,7 @@ export const SYMBOLS = `<svg width="0" height="0" style="position:absolute" aria
 <symbol id="i-balance" viewBox="0 0 24 24"><path d="M12 5v14M7 19h10M5 8h14"/><path d="M5 8l-2.5 6h5zM19 8l-2.5 6h5z"/></symbol>
 <symbol id="i-move" viewBox="0 0 24 24"><path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/></symbol>
 <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.4-4.4"/></symbol>
 <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 <symbol id="i-reword" viewBox="0 0 24 24"><path d="M4 7h10M4 12h6M4 17h4"/><path d="M19.5 14.5a4 4 0 1 1-1.2-4.3"/><path d="M19.6 7.6v3h-3"/></symbol>
 <symbol id="i-cut" viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.5"/><circle cx="7" cy="17" r="2.5"/><path d="M9 8.5L20 17M9 15.5L20 7"/></symbol>

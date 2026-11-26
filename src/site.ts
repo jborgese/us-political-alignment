@@ -2,9 +2,12 @@ import { mkdir, readFile, writeFile } from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 
+import { chamberView, type SiteChamber, type SiteSeat } from "./chambers.ts"
 import {
+  loadChambers,
   loadPlannedCategories,
   loadRatingSet,
+  type ChamberConfig,
   type Key,
   type Packet,
   type PlannedCategory,
@@ -97,6 +100,7 @@ export interface SiteData {
   heldBack: HeldBack[]
   systems: SiteSystems | null
   leftRightFrom: string[]
+  chambers: SiteChamber[]
 }
 
 export interface SiteGroup {
@@ -268,6 +272,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       .map(({ subject, reasons }) => ({ name: subject.name, reasons })),
     systems: roundedSystems(set.systems),
     leftRightFrom: [],
+    chambers: [],
   }
 }
 
@@ -307,6 +312,61 @@ export const placeLeftRight = (
       ]
     }),
   )
+}
+
+const inChamber =
+  (chamberIds: string[]) =>
+  (record: SiteRecord): boolean =>
+    record.kind === "member" && record.legislature !== null && chamberIds.includes(record.legislature)
+
+const unplacedNote = (data: SiteData, subject: Subject, record: SiteRecord | null): string | null => {
+  if (record) {
+    return record.leftRight === null
+      ? `Shown on fewer than ${FEWEST_ISSUES_FOR_LEFT_RIGHT} issues, so not yet on the left-right axis`
+      : null
+  }
+  if (subject.provisional) return "Member-elect: placed once they have a voting record"
+  const held = data.heldBack.find((entry) => entry.name === subject.name)
+  return held ? `Held back: ${held.reasons.join("; ")}` : "No record on this issue yet"
+}
+
+const seatOf = (data: SiteData, subject: Subject): SiteSeat => {
+  const index = data.records.findIndex((record) => record.kind === "member" && record.name === subject.name)
+  const record = index === -1 ? null : data.records[index]
+  return {
+    name: subject.name,
+    party: subject.party ?? null,
+    caucusesWith: subject.caucusesWith ?? null,
+    role: subject.leadership ?? null,
+    index: record ? index : null,
+    leftRight: record?.leftRight ?? null,
+    note: unplacedNote(data, subject, record),
+  }
+}
+
+export const placeChambers = (data: SiteData, subjects: Subject[], chambers: ChamberConfig[]): SiteData => {
+  const published = chambers.filter((chamber) => chamber.published)
+  const offChart = inChamber(published.map((chamber) => chamber.id))
+  return {
+    ...data,
+    selected: data.records.findIndex((record) => record.kind !== "anchor" && !offChart(record)),
+    chambers: published.map((chamber) => {
+      const seats = subjects
+        .filter((subject) => subject.kind === "member" && subject.legislature === chamber.id)
+        .map((subject) => seatOf(data, subject))
+      return {
+        id: chamber.id,
+        label: chamber.label,
+        seats: chamber.seats,
+        placed: seats
+          .filter((seat) => seat.leftRight !== null)
+          .toSorted((a, b) => (b.leftRight ?? 0) - (a.leftRight ?? 0) || a.name.localeCompare(b.name)),
+        unplaced: seats
+          .filter((seat) => seat.leftRight === null)
+          .toSorted((a, b) => (a.party ?? "").localeCompare(b.party ?? "") || a.name.localeCompare(b.name)),
+      }
+    }),
+  }
 }
 
 const percent =(share: number): string => `${Math.round(share * 100)}%`
@@ -462,11 +522,38 @@ const issueLink = ({ id, label, href, current }: SiteIssue): string => {
   return `<li><a class="issue" href="${escapeHtml(href)}"${current ? ` aria-current="page"` : ""}>${content}</a></li>`
 }
 
+const SCALE_TAB = { id: "scale", label: "Issue scale" }
+
+const chartTabs = (chambers: SiteChamber[]): string =>
+  `<div class="chart-tabs" role="tablist" aria-label="Chart views">${[SCALE_TAB, ...chambers]
+    .map(
+      (tab, index) =>
+        `<button type="button" role="tab" id="tab-${tab.id}" aria-controls="panel-${tab.id}" aria-selected="${index === 0}" tabindex="${index === 0 ? 0 : -1}">${escapeHtml(tab.label)}</button>`,
+    )
+    .join("")}</div>`
+
+const chartCard = (data: SiteData, scaleView: string[]): string[] => {
+  if (data.chambers.length === 0) return scaleView
+  const basis = `the average score on ${listed(data.leftRightFrom.map((label) => label.toLowerCase()))}`
+  return [
+    chartTabs(data.chambers),
+    `<div class="tab-panel" role="tabpanel" id="panel-${SCALE_TAB.id}" aria-labelledby="tab-${SCALE_TAB.id}">`,
+    ...scaleView,
+    `</div>`,
+    ...data.chambers.map(
+      (chamber, index) =>
+        `<div class="tab-panel" role="tabpanel" id="panel-${chamber.id}" aria-labelledby="tab-${chamber.id}" hidden>${chamberView(chamber, index, basis)}</div>`,
+    ),
+  ]
+}
+
 const issueNav = (issues: SiteIssue[]): string =>
   issues.length > 0 ? `<nav aria-label="Issues"><ul class="issues">${issues.map(issueLink).join("")}</ul></nav>` : ""
 
 export const buildSitePage = (data: SiteData, assets: SiteAssets, issues: SiteIssue[]): SitePage => {
   const axis = axisFor(data.records.map((record) => record.score))
+  const offChart = inChamber(data.chambers.map((chamber) => chamber.id))
+  const charted = { ...data, records: data.records.filter((record) => !offChart(record)) }
   return {
     head: pageHead(assets.css),
     body: [
@@ -482,17 +569,25 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets, issues: SiteIs
       `</ul>`,
       systemStrip(data.systems),
       `<section class="scale" aria-label="Records by strength of support">`,
-      `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li>${usPartyKey(data.records)}<li><span class="glyph anchor"></span>Reference record</li>${isReworded(data.records) ? `<li><span class="range-key"></span>Range when reworded</li>` : ""}</ul>`,
-      groupButtons(data.groups),
-      `<div class="pole">${icon("shield")}${escapeHtml(capitalized(data.highPole))}</div>`,
-      `<div class="${plotClasses(data)}">`,
-      `<div class="y-axis">${tickLabels(axis)}</div>`,
-      column(data, "records", axis, (record) => record.kind !== "anchor", hasLeftRight(data) ? verticalLines() : ""),
-      column(data, "reference", axis, (record) => record.kind === "anchor"),
-      hasLeftRight(data) ? leftRightAxis(data) : "",
-      `</div>`,
-      `<div class="pole">${icon("cut")}${escapeHtml(capitalized(data.lowPole))}</div>`,
-      scaleNote(data),
+      ...chartCard(data, [
+        `<ul class="key" aria-label="Marker key">${partyKey(data.records)}${charted.records.some((record) => record.kind === "member") ? `<li><span class="glyph"></span>Member</li>` : ""}<li><span class="glyph caucus"></span>Caucus</li>${usPartyKey(data.records)}<li><span class="glyph anchor"></span>Reference record</li>${isReworded(data.records) ? `<li><span class="range-key"></span>Range when reworded</li>` : ""}</ul>`,
+        groupButtons(data.groups),
+        `<div class="pole">${icon("shield")}${escapeHtml(capitalized(data.highPole))}</div>`,
+        `<div class="${plotClasses(charted)}">`,
+        `<div class="y-axis">${tickLabels(axis)}</div>`,
+        column(
+          data,
+          "records",
+          axis,
+          (record) => record.kind !== "anchor" && !offChart(record),
+          hasLeftRight(charted) ? verticalLines() : "",
+        ),
+        column(data, "reference", axis, (record) => record.kind === "anchor"),
+        hasLeftRight(charted) ? leftRightAxis(charted) : "",
+        `</div>`,
+        `<div class="pole">${icon("cut")}${escapeHtml(capitalized(data.lowPole))}</div>`,
+        scaleNote(charted),
+      ]),
       `</section>`,
       heldBack(data.heldBack),
       `<section class="evidence" aria-live="polite" aria-label="Evidence for the selected record">`,
@@ -521,8 +616,9 @@ const issuesFor = (planned: PlannedCategory[], published: Record<string, SiteDat
   }))
 
 export const writeSite = async (root: string): Promise<string[]> => {
-  const [planned, css, dodgeScript, pageScript, homeScript] = await Promise.all([
+  const [planned, chambers, css, dodgeScript, pageScript, homeScript] = await Promise.all([
     loadPlannedCategories(fileURLToPath(new URL("../site/categories.json", import.meta.url))),
+    loadChambers(fileURLToPath(new URL("../site/chambers.json", import.meta.url))),
     readAsset("style.css"),
     readAsset("dodge.js"),
     readAsset("app.js"),
@@ -530,9 +626,12 @@ export const writeSite = async (root: string): Promise<string[]> => {
   ])
   const ids = planned.filter((category) => category.published).map(({ id }) => id)
   const sets = await Promise.all(ids.map((id) => loadRatingSet(root, id)))
-  const published = placeLeftRight(
+  const placed = placeLeftRight(
     Object.fromEntries(ids.map((id, index) => [id, buildSiteData(sets[index])])),
     Object.fromEntries(planned.map(({ id, label }) => [id, label])),
+  )
+  const published = Object.fromEntries(
+    ids.map((id, index) => [id, placeChambers(placed[id], sets[index].key.subjects, chambers)]),
   )
   const pages = [
     { file: "index.html", page: buildHomePage(buildHomeData(planned, published), { css, js: `${dodgeScript}\n${homeScript}` }) },
