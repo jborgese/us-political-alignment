@@ -464,7 +464,8 @@
       "aliases": [
         "Valdez"
       ],
-      "provisional": true
+      "provisional": true,
+      "firstCongress": 120
     },
     {
       "id": "s25",
@@ -477,7 +478,8 @@
         "Avila Chevalier",
         "Chevalier"
       ],
-      "provisional": true
+      "provisional": true,
+      "firstCongress": 120
     },
     {
       "id": "s26",
@@ -489,7 +491,8 @@
       "aliases": [
         "Stelson"
       ],
-      "provisional": true
+      "provisional": true,
+      "firstCongress": 120
     },
     {
       "id": "s27",
@@ -501,7 +504,8 @@
       "aliases": [
         "Gaines"
       ],
-      "provisional": true
+      "provisional": true,
+      "firstCongress": 120
     },
     {
       "id": "s28",
@@ -513,7 +517,8 @@
       "aliases": [
         "Toth"
       ],
-      "provisional": true
+      "provisional": true,
+      "firstCongress": 120
     },
     {
       "id": "s29",
@@ -525,7 +530,8 @@
       "aliases": [
         "Gallrein"
       ],
-      "provisional": true
+      "provisional": true,
+      "firstCongress": 120
     }
   ]
 }
