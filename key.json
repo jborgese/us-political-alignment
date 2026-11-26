@@ -172,7 +172,10 @@
     "AME",
     "pharmacare",
     "Medicare for All",
-    "Bloc"
+    "Bloc",
+    "Georgia",
+    "Pennsylvania",
+    "Kentucky"
   ],
   "subjects": [
     {
@@ -440,6 +443,79 @@
         "Republicans",
         "GOP"
       ]
+    },
+    {
+      "id": "s24",
+      "name": "Claire Valdez",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Valdez"
+      ],
+      "provisional": true
+    },
+    {
+      "id": "s25",
+      "name": "Darializa Avila Chevalier",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Avila Chevalier",
+        "Chevalier"
+      ],
+      "provisional": true
+    },
+    {
+      "id": "s26",
+      "name": "Janelle Stelson",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Democratic",
+      "legislature": "us-house",
+      "aliases": [
+        "Stelson"
+      ],
+      "provisional": true
+    },
+    {
+      "id": "s27",
+      "name": "Houston Gaines",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Gaines"
+      ],
+      "provisional": true
+    },
+    {
+      "id": "s28",
+      "name": "Steve Toth",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Toth"
+      ],
+      "provisional": true
+    },
+    {
+      "id": "s29",
+      "name": "Ed Gallrein",
+      "kind": "member",
+      "group": "Members-elect",
+      "party": "Republican",
+      "legislature": "us-house",
+      "aliases": [
+        "Gallrein"
+      ],
+      "provisional": true
     }
   ]
 }

@@ -1,0 +1,65 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, less the reductions listed under changes.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing income support, in which mandatory pension schemes replace about 51 percent of an average worker's net earnings, unemployment benefits replace about 35 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 6 percent of the median income, housing support included, less the reductions listed under changes.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
+        "https://stat.link/qetyb2",
+        "https://stat.link/xiqc6l"
+      ]
+    },
+    {
+      "event": "budget-law-health",
+      "stance": "Abstained on the first passage, then voted for the final version, of",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025145"
+      ]
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted against"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Abstained on the first passage, then voted for the final version, of",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025145"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill to end income tax on public pension benefits and replace, from general revenue, what those taxes send to the program's funds.",
+      "sources": [
+        "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr1040.xml"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill to bar food assistance from paying for soft drinks, candy, ice cream, and prepared desserts, and to limit eligible foods to a list set by nutrient content.",
+      "sources": [
+        "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr479.xml"
+      ]
+    }
+  ],
+  "emptySlots": []
+}

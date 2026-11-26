@@ -1,0 +1,56 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted for that year's regional health budget law, which raised public health coverage spending by about 4 percent and reversed a proposed funding cut for safety-net hospitals.",
+      "sources": [
+        "https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=S03007&term=2025&Floor%26nbspVotes=Y",
+        "https://fiscalpolicy.org/wp-content/uploads/2025/05/2026.05.12-FY-2026-Budget-Briefing-Enacted.pdf"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "As a regional legislator, voted for the following year's regional health budget law, which raised payment rates for health providers but did not fund continued coverage for the roughly 2 percent of residents set to lose a regional low-income health plan after the national budget law's cuts, a share taken from a news estimate.",
+      "sources": [
+        "https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=A10007&term=2025&Floor%26nbspVotes=Y",
+        "https://nysfocus.com/2026/05/28/essential-plan-cola-social-services-snap-new-york-final-budget-hochul"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "As a regional legislator, cosponsored a bill to create a single public health plan for every resident of the region, paid for through a payroll assessment.",
+      "sources": [
+        "https://nyassembly.gov/leg/?default_fld=&leg_video=&bn=A01466&term=2025&Summary=Y&Actions=Y"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Said they would push in the national legislature for a single public health plan for every resident, alongside organizing outside it to pass one.",
+      "sources": [
+        "https://www.axios.com/2026/07/06/democratic-socialists-medicare-for-all"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Ran on a platform of guaranteed paid family and medical leave, a guaranteed public job, and expanded unemployment benefits.",
+      "sources": [
+        "https://jacobin.com/2026/04/valdez-labor-left-congress-campaign"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "keeps-income",
+    "changes-income"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}
