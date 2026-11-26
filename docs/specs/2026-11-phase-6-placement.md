@@ -132,6 +132,7 @@ flowchart LR
 **Decided (26 November 2026):**
 - A panel member that is later held back stays on the panel; the panel is re-chosen only on request.
 - The count-matched cut applies to every placed record, so the exact copies test whether cutting harms records that aren't thin.
+- Re-chosen once, on request, for welfare after the four-issue re-rate (#30): every placement answer was stale, so the old panel's spacing no longer matched the scale.
 
 #### 4.3.3 `place` command
 
