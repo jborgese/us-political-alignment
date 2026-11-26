@@ -1,17 +1,34 @@
 import process from "node:process"
 
 import { estimateInputTokens, remainingMatchups, supersededComparisons } from "./comparisons.ts"
-import { CATEGORY_ID_PATTERN, loadRatingSet } from "./files.ts"
-import { rateCategory, rateStability, type RateOutcome } from "./rate.ts"
+import { CATEGORY_ID_PATTERN, loadRatingSet, type RatingSet } from "./files.ts"
+import { PANEL_SIZE, placementMatchups, placementRun } from "./placement.ts"
+import { panelFor, placeRecords, rateCategory, rateStability, type RateOutcome } from "./rate.ts"
 import { findSetProblems, packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
 import { writeReports } from "./report.ts"
 import { writeSite } from "./site.ts"
 import { MOVE_THAT_NEEDS_BOTH_ORDERS, remainingStabilityMatchups } from "./stability.ts"
 
 const USAGE = [
-  "Usage: node src/cli.ts <check|rate|stability|report> <category-id> [limit]",
+  "Usage: node src/cli.ts <check|rate|stability|place|report> <category-id> [limit]",
   "       node src/cli.ts site",
 ].join("\n")
+
+const placementLines = (set: RatingSet, categoryId: string): string[] => {
+  if (set.placements.length === 0) return []
+  const panel = panelFor(set)
+  if (!panel) {
+    return [
+      `Records to place: ${set.placements.length}`,
+      `Placement comparisons still to rate: ${2 * PANEL_SIZE} per record, once ${categoryId} is fully rated with its anchors in order`,
+    ]
+  }
+  const unrated = remainingMatchups(placementRun(set), placementMatchups(set, panel))
+  return [
+    `Records to place: ${set.placements.length}`,
+    `Placement comparisons still to rate: ${unrated.length}, about ${estimateInputTokens(set, unrated)} input tokens`,
+  ]
+}
 
 const check = async (root: string, categoryId: string): Promise<void> => {
   const set = await loadRatingSet(root, categoryId)
@@ -28,6 +45,7 @@ const check = async (root: string, categoryId: string): Promise<void> => {
   console.log(
     `Stability comparisons still to rate: ${unratedRewordings.length}, about ${estimateInputTokens(set, unratedRewordings)} input tokens, plus the other order for any version that moves more than ${MOVE_THAT_NEEDS_BOTH_ORDERS} points`,
   )
+  placementLines(set, categoryId).forEach((line) => console.log(line))
   console.log(`Packets with no evidence: ${emptyIds.join(", ") || "none"}`)
   console.log(`Subjects with no packet: ${subjectsWithoutPackets(set).join(", ") || "none"}`)
 }
@@ -68,6 +86,7 @@ const COMMANDS = [
   { name: "check", run: check },
   { name: "rate", run: rateWith(rateCategory) },
   { name: "stability", run: rateWith(rateStability) },
+  { name: "place", run: rateWith(placeRecords) },
   { name: "report", run: report },
 ]
 

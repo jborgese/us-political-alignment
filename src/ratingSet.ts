@@ -1,4 +1,4 @@
-import { TIERS, eventsFor, type Evidence, type Packet, type RatingSet } from "./files.ts"
+import { TIERS, eventsFor, subjectIdOf, type Evidence, type Packet, type RatingSet } from "./files.ts"
 import { shareOfPairsAgreeingAcrossOrders } from "./scoring.ts"
 
 const FEWEST_OFFICIAL_ACTS = 3
@@ -37,7 +37,7 @@ export const packetsWithoutEvidence = (set: RatingSet): Packet[] =>
   set.packets.filter((packet) => packet.items.length === 0)
 
 export const subjectsWithoutPackets = (set: RatingSet): string[] => {
-  const packetIds = set.packets.map((packet) => packet.id)
+  const packetIds = [...set.packets, ...set.placements].map((packet) => packet.id)
   return set.key.subjects.map((subject) => subject.id).filter((id) => !packetIds.includes(id))
 }
 
@@ -57,7 +57,7 @@ const forbiddenTerms = (set: RatingSet): string[] => [
 
 const leakProblems = (set: RatingSet): string[] => {
   const terms = forbiddenTerms(set)
-  return [...ratedPackets(set), ...set.rewordings].flatMap((packet) =>
+  return [...ratedPackets(set), ...set.rewordings, ...set.placements].flatMap((packet) =>
     packet.items.flatMap((item) =>
       terms
         .filter((term) => mentions(item.text, term))
@@ -75,9 +75,20 @@ const duplicateIdProblems = (set: RatingSet): string[] => {
 
 const missingKeyProblems = (set: RatingSet): string[] => {
   const keyIds = set.key.subjects.map((subject) => subject.id)
-  return set.packets
-    .filter((packet) => !keyIds.includes(packet.id))
+  return [...set.packets, ...set.placements]
+    .filter((packet) => !keyIds.includes(subjectIdOf(packet.id)))
     .map((packet) => `${packet.id} has no entry in key.json`)
+}
+
+const placementProblems = (set: RatingSet): string[] => {
+  const onScale = set.packets.map((packet) => packet.id)
+  return set.placements.flatMap(({ id }) => {
+    const copyOf = subjectIdOf(id)
+    if (copyOf === id) {
+      return onScale.includes(id) ? [`${id} is both on the scale and placed: keep it in packets/ or placements/`] : []
+    }
+    return onScale.includes(copyOf) ? [] : [`${id} copies ${copyOf}, which has no packet on the scale`]
+  })
 }
 
 const slotProblemsOf = (packet: Packet, slotIds: string[]): string[] => {
@@ -98,7 +109,9 @@ const slotProblemsOf = (packet: Packet, slotIds: string[]): string[] => {
 
 const slotProblems = (set: RatingSet): string[] => {
   const slotIds = set.category.slots.map((slot) => slot.id)
-  return ratedPackets(set).flatMap((packet) => slotProblemsOf(packet, slotIds))
+  return [...ratedPackets(set), ...set.placements.filter((packet) => packet.items.length > 0)].flatMap((packet) =>
+    slotProblemsOf(packet, slotIds),
+  )
 }
 
 const stanceProblemsOf = (set: RatingSet, packet: Packet): string[] => {
@@ -119,7 +132,9 @@ const stanceProblemsOf = (set: RatingSet, packet: Packet): string[] => {
 }
 
 const missingStanceProblems = (set: RatingSet): string[] =>
-  set.packets.filter((packet) => packet.items.length > 0).flatMap((packet) => stanceProblemsOf(set, packet))
+  [...set.packets, ...set.placements]
+    .filter((packet) => packet.items.length > 0)
+    .flatMap((packet) => stanceProblemsOf(set, packet))
 
 const numbersIn = (text: string): string => (text.match(/\d+(?:[.,]\d+)*/g) ?? []).toSorted().join(", ") || "none"
 
@@ -144,6 +159,7 @@ const rewordingProblems = (set: RatingSet): string[] =>
 export const findSetProblems = (set: RatingSet): string[] => [
   ...duplicateIdProblems(set),
   ...missingKeyProblems(set),
+  ...placementProblems(set),
   ...slotProblems(set),
   ...missingStanceProblems(set),
   ...leakProblems(set),

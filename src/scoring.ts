@@ -51,6 +51,39 @@ export const fitBradleyTerry = (ids: string[], outcomes: Outcome[]): Scores => {
   return Object.fromEntries(ids.map((id, i) => [id, Math.log(strengths[i])]))
 }
 
+const nextOwnStrength = (strength: number, games: { wins: number; played: number; other: number }[]): number =>
+  sum(games.map(({ wins }) => wins + PRIOR_WINS)) /
+  sum(games.map(({ played, other }) => (played + 2 * PRIOR_WINS) / (strength + other)))
+
+const convergeOwn = (
+  strength: number,
+  games: { wins: number; played: number; other: number }[],
+  remaining: number,
+): number => {
+  const next = nextOwnStrength(strength, games)
+  if (Math.abs(Math.log(next) - Math.log(strength)) < TOLERANCE) return next
+  if (remaining === 0) throw new Error("The placed record's score did not converge")
+  return convergeOwn(next, games, remaining - 1)
+}
+
+export const fitAgainstFixed = (fixed: Scores, id: string, outcomes: Outcome[]): number => {
+  const opponents = outcomes
+    .flatMap(({ winner, loser }) => (winner === id ? [loser] : loser === id ? [winner] : []))
+    .filter((opponent, index, all) => all.indexOf(opponent) === index)
+  if (opponents.length === 0) throw new Error(`${id} has no comparisons to place it with`)
+  const games = opponents.map((opponent) => {
+    const against = outcomes.filter(
+      ({ winner, loser }) => (winner === id && loser === opponent) || (winner === opponent && loser === id),
+    )
+    return {
+      wins: against.filter(({ winner }) => winner === id).length,
+      played: against.length,
+      other: Math.exp(fixed[opponent]),
+    }
+  })
+  return Math.log(convergeOwn(1, games, MAX_ITERATIONS))
+}
+
 export const anchorsInOrder = (scores: Scores, anchorIds: string[]): boolean =>
   anchorIds.slice(1).every((id, index) => scores[anchorIds[index]] > scores[id])
 

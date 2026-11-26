@@ -4,7 +4,7 @@ import path from "node:path"
 
 import { beforeEach, describe, expect, it, onTestFinished, vi } from "vitest"
 
-import { rateCategory, rateStability } from "../src/rate.ts"
+import { placeRecords, rateCategory, rateStability } from "../src/rate.ts"
 import { createBatchRater, type BatchProgress, type RatingRequest } from "../src/rater.ts"
 
 vi.mock("../src/rater.ts", () => ({ createBatchRater: vi.fn() }))
@@ -34,7 +34,7 @@ const budgetEvent = {
 
 const key = {
   revealingTerms: ["Medicare"],
-  subjects: ["s01", "s02"].map((id) => ({
+  subjects: ["s01", "s02", "s03"].map((id) => ({
     id,
     name: `Subject ${id}`,
     kind: "member",
@@ -81,6 +81,15 @@ const writeRewording = async (
   const dir = path.join(root, "rewordings", CATEGORY_ID)
   await mkdir(dir, { recursive: true })
   await writeFile(path.join(dir, "a.json"), JSON.stringify({ events: { "sample-house": events }, records }))
+}
+
+const writePlacement = async (root: string, id: string, texts: string[]): Promise<void> => {
+  const dir = path.join(root, "placements", CATEGORY_ID)
+  await mkdir(dir, { recursive: true })
+  await writeFile(
+    path.join(dir, `${id}.json`),
+    JSON.stringify({ items: texts.map((text) => ({ slot: "acts", tier: "official_act", text, sources: [source] })) }),
+  )
 }
 
 const savedRows = async (root: string, file: string): Promise<{ first: string; second: string; winner: string }[]> => {
@@ -136,6 +145,8 @@ const rateFully = async (root: string) => {
 }
 
 const rateRewordings = (root: string, limit?: number) => rateStability(root, CATEGORY_ID, "model-a", limit)
+
+const place = (root: string, limit?: number) => placeRecords(root, CATEGORY_ID, "model-a", limit)
 
 beforeEach(() => {
   vi.clearAllMocks()
@@ -389,5 +400,106 @@ describe("rateStability", () => {
     await writeRewording(root, { s09: ["Cast a vote for keeping coverage level."] })
 
     await expect(rateRewordings(root)).rejects.toThrow("rewords s09, which has no packet")
+  })
+})
+
+describe("placeRecords", () => {
+  const WIDENING = [
+    "Voted to widen coverage.",
+    "Voted to widen coverage for farm workers.",
+    "Voted to widen coverage for students.",
+  ]
+
+  const ratedProject = async (): Promise<string> => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."], s02: WIDENING })
+    await writePlacement(root, "s03", ["Cast a vote for keeping coverage level."])
+    collect.mockImplementation(async () => rankedAnswers(lastSubmitted()))
+    await rateFully(root)
+    return root
+  }
+
+  const savedPanel = async (root: string): Promise<string[]> =>
+    JSON.parse(await readFile(path.join(root, "runs", CATEGORY_ID, "panel.json"), "utf8")).ids
+
+  it("saves a panel of the records not held back and compares the placed record with each in both orders", async () => {
+    const root = await ratedProject()
+
+    const submitted = await place(root)
+    const collected = await place(root)
+
+    expect(await savedPanel(root)).toEqual(["anchor-high", "s02", "anchor-low"])
+    expect(submitted).toMatchObject({ status: "submitted", count: 6, remaining: 0 })
+    expect(collected).toEqual({ status: "collected", rated: 6, failed: 0, remaining: 0 })
+    const saved = await savedRows(root, "placements.jsonl")
+    expect(saved.map(({ first, second }) => `${first}|${second}`).toSorted()).toEqual([
+      "anchor-high|s03",
+      "anchor-low|s03",
+      "s02|s03",
+      "s03|anchor-high",
+      "s03|anchor-low",
+      "s03|s02",
+    ])
+    expect(await savedRows(root, "comparisons.jsonl")).toHaveLength(12)
+    expect(await place(root)).toEqual({ status: "complete" })
+  })
+
+  it("keeps the saved panel rather than choosing again", async () => {
+    const root = await ratedProject()
+    await writeFile(
+      path.join(root, "runs", CATEGORY_ID, "panel.json"),
+      JSON.stringify({ chosenAt: "2026-11-26T00:00:00.000Z", ids: ["anchor-high", "s01"] }),
+    )
+
+    expect(await place(root)).toMatchObject({ status: "submitted", count: 4 })
+    expect(await savedPanel(root)).toEqual(["anchor-high", "s01"])
+  })
+
+  it("sends the placed record's evidence without its id", async () => {
+    const root = await ratedProject()
+
+    await place(root)
+
+    expect(sentText()).toContain("- [Official act] Cast a vote for keeping coverage level.")
+    expect(sentText()).not.toContain("s03")
+  })
+
+  it("refuses to place records before the category itself is rated", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writePlacement(root, "s03", ["Cast a vote for keeping coverage level."])
+
+    await expect(place(root)).rejects.toThrow("before placing records on it: 6 comparisons remain. Run rate first.")
+    expect(createBatchRater).not.toHaveBeenCalled()
+  })
+
+  it("refuses to place records with a different model from the category", async () => {
+    const root = await ratedProject()
+
+    await expect(placeRecords(root, CATEGORY_ID, "model-b")).rejects.toThrow("already holds ratings from model-a")
+  })
+
+  it("refuses to place records on a scale whose anchors came out of order", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writePlacement(root, "s03", ["Cast a vote for keeping coverage level."])
+    await rateFully(root)
+    vi.clearAllMocks()
+
+    await expect(place(root)).rejects.toThrow("anchors of test-category came out of order")
+    expect(createBatchRater).not.toHaveBeenCalled()
+  })
+
+  it("refuses when there is nothing to place", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await rateFully(root)
+
+    await expect(place(root)).rejects.toThrow("placements/test-category holds no records with evidence to place.")
+  })
+
+  it("refuses to rate anything when a placed record names a revealing term", async () => {
+    const root = await writeProject({ s01: ["Voted to hold coverage flat."] })
+    await writePlacement(root, "s03", ["Cast a vote for keeping Medicare level."])
+
+    await expect(rate(root)).rejects.toThrow('s03 mentions "Medicare"')
+    await expect(place(root)).rejects.toThrow('s03 mentions "Medicare"')
+    expect(createBatchRater).not.toHaveBeenCalled()
   })
 })

@@ -13,7 +13,7 @@ npm ci
 cp .env.example .env   # then set ANTHROPIC_API_KEY and RATER_MODEL
 ```
 
-Only `rate` needs the `.env` file.
+Only `rate`, `stability`, and `place` need the `.env` file.
 
 ## Commands
 
@@ -22,6 +22,7 @@ Only `rate` needs the `.env` file.
 | `npm run check -- welfare-health` | Validates the category, its packets, and the key. Lists what is missing and how much is left to rate. | No |
 | `npm run rate -- welfare-health` | Submits the unrated pairs as one batch, or collects the answers of the batch it submitted earlier. | Yes, paid |
 | `npm run stability -- welfare-health` | Does the same for the reworded versions of the category's records. See [Testing the wording](#testing-the-wording). | Yes, paid |
+| `npm run place -- welfare-health` | Does the same for records placed on the finished scale. See [Placing records on a finished scale](#placing-records-on-a-finished-scale). | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
 | `npm run site` | Writes the public pages to `dist/` from the saved runs: an overview and one page per published category. | No |
 | `npm test` | Runs the tests. | No |
@@ -42,10 +43,13 @@ To spend less before a full run:
 | `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
 | `key.json` | The name and legislature behind each blinded id, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
+| `placements/<category-id>/<subject-id>.json` | The evidence for one subject placed on the finished scale rather than rated into it |
 | `rewordings/<category-id>/<version>.json` | One more wording of each record under test, with the same facts |
 | `systems/<category-id>.json` | Optional. The policy figures that place each country's own system on a separate scale on the site; never sent to the rater. See [The site](#the-site) |
 | `runs/<category-id>/comparisons.jsonl` | One saved answer per line |
 | `runs/<category-id>/stability.jsonl` | One saved answer per line for the reworded versions |
+| `runs/<category-id>/panel.json` | The records every placed record is compared with, chosen on the first `place` run |
+| `runs/<category-id>/placements.jsonl` | One saved answer per line for the placed records |
 | `runs/<category-id>/report.md` | Scores with names |
 | `runs/<category-id>/spot-check.md` | Ten random pairs with no names or ids, for a human to judge |
 
@@ -157,6 +161,16 @@ A record's score should come from its facts, not from how they were phrased. The
 - `report.md` lists each version's score. Nothing is shown or held back for a record until every one of its versions is fully rated.
 
 The pilot rewords each of the 18 records on the page twice, which is 1,656 comparisons.
+
+## Placing records on a finished scale
+
+Rating every pair costs more with each record added, so records beyond a category's own set are placed on its finished scale instead.
+
+- A file in `placements/<category-id>/` follows the packet format and the same rules: `check` refuses a revealing term, an unanswered slot, or a missing stance, and refuses a subject that also has a file in `packets/`.
+- A file named `<subject-id>.<label>.json`, such as `s01.votes.json`, is a calibration copy of a subject already on the scale: other evidence for the same subject, scored beside its own record to test how that evidence is built.
+- The first `npm run place -- <category-id>` saves a panel to `panel.json`: 10 of the scale's records, evenly spaced by score from the high anchor to the low one, leaving out records held back from the site. The panel stays fixed after that, so later placements stay comparable.
+- Each placed record is rated against each panel member in both orders, which is 20 comparisons per placed record, with the model that rated the category. Placed records are never compared with each other, and the category's own run is not touched. It refuses to start until the category is fully rated with its anchors in order.
+- The report does not show placed scores yet.
 
 ## The site
 

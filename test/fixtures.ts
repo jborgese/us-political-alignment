@@ -51,6 +51,10 @@ export const buildSet = (overrides: Partial<RatingSet> = {}): RatingSet => ({
   stability: [],
   stabilitySuperseded: [],
   systems: null,
+  placements: [],
+  placed: [],
+  placedSuperseded: [],
+  panel: null,
   ...overrides,
 })
 

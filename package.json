@@ -12,6 +12,7 @@
     "check": "node src/cli.ts check",
     "rate": "node --env-file-if-exists=.env src/cli.ts rate",
     "stability": "node --env-file-if-exists=.env src/cli.ts stability",
+    "place": "node --env-file-if-exists=.env src/cli.ts place",
     "report": "node src/cli.ts report",
     "site": "node src/cli.ts site",
     "test": "vitest --run",

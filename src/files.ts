@@ -148,6 +148,11 @@ const pendingBatchSchema = z.strictObject({
   ),
 })
 
+const panelSchema = z.strictObject({
+  chosenAt: z.iso.datetime(),
+  ids: z.array(z.string().min(1)).min(1),
+})
+
 type PacketItem = z.infer<typeof packetSchema>["items"][number]
 
 export type Tier = (typeof TIERS)[number]
@@ -192,6 +197,10 @@ export interface RatingSet {
   stability: Comparison[]
   stabilitySuperseded: Comparison[]
   systems: Systems | null
+  placements: Packet[]
+  placed: Comparison[]
+  placedSuperseded: Comparison[]
+  panel: string[] | null
 }
 
 export interface CategoryPaths {
@@ -208,6 +217,11 @@ export interface CategoryPaths {
   stability: string
   stabilitySuperseded: string
   stabilityBatch: string
+  placements: string
+  placed: string
+  placedSuperseded: string
+  placedBatch: string
+  panel: string
   report: string
   spotCheck: string
 }
@@ -228,13 +242,20 @@ export const pathsFor = (root: string, categoryId: string): CategoryPaths => {
     stability: path.join(runDir, "stability.jsonl"),
     stabilitySuperseded: path.join(runDir, "stability-superseded.jsonl"),
     stabilityBatch: path.join(runDir, "stability-batch.json"),
+    placements: path.join(root, "placements", categoryId),
+    placed: path.join(runDir, "placements.jsonl"),
+    placedSuperseded: path.join(runDir, "placements-superseded.jsonl"),
+    placedBatch: path.join(runDir, "placements-batch.json"),
+    panel: path.join(runDir, "panel.json"),
     report: path.join(runDir, "report.md"),
     spotCheck: path.join(runDir, "spot-check.md"),
   }
 }
 
-export const eventsFor = (set: Pick<RatingSet, "legislatures" | "key">, subjectId: string): PolicyEvent[] => {
-  const legislatureId = set.key.subjects.find((subject) => subject.id === subjectId)?.legislature
+export const subjectIdOf = (recordId: string): string => recordId.split(".")[0]
+
+export const eventsFor = (set: Pick<RatingSet, "legislatures" | "key">, recordId: string): PolicyEvent[] => {
+  const legislatureId = set.key.subjects.find((subject) => subject.id === subjectIdOf(recordId))?.legislature
   return set.legislatures.find((legislature) => legislature.id === legislatureId)?.events ?? []
 }
 
@@ -335,6 +356,10 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
     stability,
     stabilitySuperseded,
     systems,
+    placementFiles,
+    placed,
+    placedSuperseded,
+    panel,
   ] = await Promise.all([
     readJson(paths.category).then((value) => parseAs(categorySchema, value, paths.category)),
     readJson(paths.events).then((value) => parseAs(eventsSchema, value, paths.events)),
@@ -350,8 +375,16 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
     readJson(paths.systems)
       .then((value) => parseAs(systemsSchema, value, paths.systems))
       .catch(whenMissing(null)),
+    readdir(paths.placements)
+      .catch(whenMissing<string[]>([]))
+      .then((names) => loadJsonFiles(paths.placements, names, packetSchema)),
+    loadComparisons(paths.placed),
+    loadComparisons(paths.placedSuperseded),
+    readJson(paths.panel)
+      .then((value) => parseAs(panelSchema, value, paths.panel).ids)
+      .catch(whenMissing(null)),
   ])
-  const packets = packetFiles.map(({ file, content }) => {
+  const toPacket = ({ file, content }: { file: string; content: z.infer<typeof packetSchema> }): Packet => {
     const id = path.basename(file, ".json")
     const events = eventsFor({ legislatures, key }, id)
     return {
@@ -360,7 +393,8 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
       emptySlots: content.emptySlots,
       noPosition: content.noPosition,
     }
-  })
+  }
+  const packets = packetFiles.map(toPacket)
   const rewordings = rewordingFiles.flatMap(({ file, content }) =>
     Object.entries(content.records).map(([baseId, texts]) => {
       const base = packets.find((packet) => packet.id === baseId)
@@ -380,5 +414,9 @@ export const loadRatingSet = async (root: string, categoryId: string): Promise<R
     stability,
     stabilitySuperseded,
     systems,
+    placements: placementFiles.map(toPacket),
+    placed,
+    placedSuperseded,
+    panel,
   }
 }
