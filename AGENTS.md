@@ -37,6 +37,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - Cloudflare builds and deploys the site on each push to `main`: build command `npm run site -- welfare-health` (the category is ignored), deploy command `npx wrangler deploy`, config in `wrangler.jsonc`. Do not deploy by hand.
 - A push to any other branch publishes a preview of the page at a public `workers.dev` address (`npx wrangler preview`), so treat a pushed branch as published.
 - Setting `published` to `true` in `site/categories.json` puts that category's scores on the public site at the next deploy, so ask the user first.
+- `.github/workflows/votes.yml` runs `npm run votes -- write` daily. It keeps one draft PR on a `chore/votes-*` branch and one issue of votes to consider. The PR must be re-rated on its branch before merging.
 
 <!-- TEMPLATE: how to deploy (command, required working directory), prerequisites (e.g. Docker running), and any process for reserving a shared environment before deploying. Delete if agents never deploy from this repo. -->
 
