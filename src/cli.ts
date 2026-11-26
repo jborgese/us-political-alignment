@@ -1,7 +1,10 @@
+import { writeFile } from "node:fs/promises"
+import path from "node:path"
 import process from "node:process"
 
 import { estimateInputTokens, remainingMatchups, supersededComparisons } from "./comparisons.ts"
 import { CATEGORY_ID_PATTERN, loadRatingSet, type RatingSet } from "./files.ts"
+import { listenForVotes } from "./listener.ts"
 import { PANEL_SIZE, remainingPlacementMatchups } from "./placement.ts"
 import { panelFor, placeRecords, rateCategory, rateStability, type RateOutcome } from "./rate.ts"
 import { findSetProblems, packetsWithoutEvidence, ratedPackets, subjectsWithoutPackets } from "./ratingSet.ts"
@@ -12,6 +15,7 @@ import { MOVE_THAT_NEEDS_BOTH_ORDERS, remainingStabilityMatchups } from "./stabi
 const USAGE = [
   "Usage: node src/cli.ts <check|rate|stability|place|report> <category-id> [limit]",
   "       node src/cli.ts site",
+  "       node src/cli.ts votes <preview|write> [output-dir]",
 ].join("\n")
 
 const placementLines = (set: RatingSet, categoryId: string): string[] => {
@@ -82,6 +86,19 @@ const site = async (root: string): Promise<void> => {
   console.log(files.map((file) => `Site page: ${file}`).join("\n"))
 }
 
+const votes = async (root: string, mode?: string, outputDir?: string): Promise<void> => {
+  if (mode !== "preview" && mode !== "write") throw new Error(USAGE)
+  const outcome = await listenForVotes(root, mode === "write", new Date())
+  outcome.changedFiles.forEach((file) => console.log(`${mode === "write" ? "Changed" : "Would change"}: ${path.relative(root, file)}`))
+  if (outputDir === undefined) {
+    console.log(`\n${outcome.pr ?? "No record or key changes."}\n\n${outcome.issue}`)
+    return
+  }
+  await writeFile(path.join(outputDir, "issue.md"), outcome.issue)
+  if (outcome.pr !== null) await writeFile(path.join(outputDir, "pr.md"), outcome.pr)
+  console.log(`Wrote ${outcome.pr === null ? "issue.md" : "pr.md and issue.md"} to ${outputDir}`)
+}
+
 const COMMANDS = [
   { name: "check", run: check },
   { name: "rate", run: rateWith(rateCategory) },
@@ -96,6 +113,7 @@ const main = async (args: string[]): Promise<void> => {
     if (categoryId !== undefined) console.log(`The site holds every rated category, so "${categoryId}" is ignored.`)
     return site(process.cwd())
   }
+  if (commandName === "votes") return votes(process.cwd(), categoryId, limit)
   const command = COMMANDS.find((candidate) => candidate.name === commandName)
   if (!command || !categoryId || !CATEGORY_ID_PATTERN.test(categoryId)) throw new Error(USAGE)
   await command.run(process.cwd(), categoryId, limit)

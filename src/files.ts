@@ -5,7 +5,7 @@ import { z } from "zod"
 
 export const TIERS = ["official_act", "influence", "statement"] as const
 export const CATEGORY_ID_PATTERN = /^[a-z0-9-]+$/
-const MAX_ITEMS_PER_PACKET = 12
+export const MAX_ITEMS_PER_PACKET = 12
 
 const sourcesSchema = z.array(z.url()).min(1)
 const emptySlotsSchema = z.array(z.string().min(1)).default([])
@@ -59,6 +59,13 @@ const eventsSchema = z.strictObject({
           slot: z.string().min(1),
           text: z.string().min(1),
           sources: sourcesSchema,
+          rollCall: z
+            .strictObject({
+              congress: z.number().int().positive(),
+              session: z.number().int().min(1).max(3),
+              number: z.number().int().positive(),
+            })
+            .optional(),
         }),
       ),
     }),
@@ -77,6 +84,8 @@ const keySchema = z.strictObject({
       legislature: z.string().min(1),
       aliases: z.array(z.string().min(1)),
       provisional: z.literal(true).optional(),
+      firstCongress: z.number().int().positive().optional(),
+      rollCallId: z.string().min(1).optional(),
     }),
   ),
 })
@@ -102,6 +111,10 @@ const plannedCategoriesSchema = z
     z.strictObject({ id: z.string().regex(CATEGORY_ID_PATTERN), label: z.string().min(1), published: z.boolean() }),
   )
   .min(1)
+
+const votesConfigSchema = z.strictObject({
+  policyAreas: z.record(z.string().regex(CATEGORY_ID_PATTERN), z.array(z.string().min(1)).min(1)),
+})
 
 const figureValueSchema = z.strictObject({ value: z.number(), year: z.number().int() })
 
@@ -165,6 +178,7 @@ export type Key = z.infer<typeof keySchema>
 export type Comparison = z.infer<typeof comparisonSchema>
 export type PendingBatch = z.infer<typeof pendingBatchSchema>
 export type PlannedCategory = z.infer<typeof plannedCategoriesSchema>[number]
+export type VotesConfig = z.infer<typeof votesConfigSchema>
 export type Systems = z.infer<typeof systemsSchema>
 
 export interface Evidence {
@@ -343,6 +357,11 @@ const loadComparisons = async (file: string): Promise<Comparison[]> =>
 
 export const loadPlannedCategories = async (file: string): Promise<PlannedCategory[]> =>
   parseAs(plannedCategoriesSchema, await readJson(file), file)
+
+export const loadVotesConfig = async (root: string): Promise<VotesConfig> => {
+  const file = path.join(root, "votes.json")
+  return parseAs(votesConfigSchema, await readJson(file), file)
+}
 
 export const loadRatingSet = async (root: string, categoryId: string): Promise<RatingSet> => {
   const paths = pathsFor(root, categoryId)

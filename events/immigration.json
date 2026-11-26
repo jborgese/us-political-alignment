@@ -10,7 +10,12 @@
           "sources": [
             "https://www.americanimmigrationcouncil.org/fact-sheet/big-beautiful-bill-immigration-border-security/",
             "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 190
+          }
         },
         {
           "id": "detention-mandate-law",
@@ -20,7 +25,12 @@
             "https://www.npr.org/2025/01/22/nx-s1-5253926/congress-laken-riley-act",
             "https://www.npr.org/2025/01/16/nx-s1-5262921/laken-riley-act-deportation-ice",
             "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 23
+          }
         },
         {
           "id": "enforcement-funding-law",
@@ -30,7 +40,12 @@
             "https://www.everycrsreport.com/reports/R49032.html",
             "https://clerk.house.gov/evs/2026/roll214",
             "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 2,
+            "number": 214
+          }
         },
         {
           "id": "protected-status-bill",
@@ -40,7 +55,12 @@
             "https://www.everycrsreport.com/reports/R49346.html",
             "https://clerk.house.gov/evs/2026/roll120",
             "https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 2,
+            "number": 120
+          }
         }
       ]
     },

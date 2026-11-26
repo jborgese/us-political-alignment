@@ -186,7 +186,7 @@ flowchart LR
 
 **Callouts:**
 - Prior-office acts are official acts worded with their level ("As a regional legislator, …"); campaign positions are statements of an intended act; stances on the House events are statement-tier or listed under `noPosition`.
-- A provisional record needs at least 3 items that are official acts or statements, instead of 3 official acts. The other hold-back rules are unchanged.
+- A provisional record needs at least 3 items that are official acts or statements, instead of 3 official acts, and is not held back for an empty required slot ("keeps in place"), which a member-elect has had no vote to fill. The other hold-back rules are unchanged.
 - `check` refuses a provisional subject in `packets/`, so the scale is built only from records of people in office.
 - **Risk:** the rater weighs official acts above statements, so a record of stated intentions may land nearer the middle than its positions warrant. Ticket 4's statement-only copies measure that before any campaign-only record is shown.
 

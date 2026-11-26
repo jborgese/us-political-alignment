@@ -195,7 +195,7 @@ If the repo uses Svelte, follow `.claude/rules/svelte.md`. The cross-cutting rul
 
 | Layer | Runner | Location | Mock at |
 |-------|--------|----------|---------|
-| Rating logic and file handling | Vitest | `test/`, one file per `src/` module | The Anthropic client, through `src/rater.ts` |
+| Rating logic and file handling | Vitest | `test/`, one file per `src/` module | The Anthropic client, through `src/rater.ts`; Congress.gov and Senate.gov, through `src/voteSources.ts` |
 
 For what to test and how, use `.claude/rules/testing.md`. <!-- TEMPLATE: link any additional area testing rules, e.g. an E2E rule -->
 

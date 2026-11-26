@@ -10,10 +10,10 @@ Node.js 22.18 or newer and npm 10.
 
 ```bash
 npm ci
-cp .env.example .env   # then set ANTHROPIC_API_KEY and RATER_MODEL
+cp .env.example .env   # then set ANTHROPIC_API_KEY and RATER_MODEL, and CONGRESS_API_KEY for votes
 ```
 
-Only `rate`, `stability`, and `place` need the `.env` file.
+Only `rate`, `stability`, `place`, and `votes` need the `.env` file.
 
 ## Commands
 
@@ -25,6 +25,7 @@ Only `rate`, `stability`, and `place` need the `.env` file.
 | `npm run place -- welfare-health` | Does the same for records placed on the finished scale. See [Placing records on a finished scale](#placing-records-on-a-finished-scale). | Yes, paid |
 | `npm run report -- welfare-health` | Writes `report.md` and `spot-check.md` under `runs/welfare-health/`. | No |
 | `npm run site` | Writes the public pages to `dist/` from the saved runs: an overview and one page per published category. | No |
+| `npm run votes -- preview` | Reads the House and Senate roll calls that events name, and recent passage votes, and prints what it would change. `write [dir]` changes the records and writes `pr.md` and `issue.md` to `dir`. See [Listening for roll calls](#listening-for-roll-calls). | Yes, free key |
 | `npm test` | Runs the tests. | No |
 | `npm run typecheck` | Type-checks the source. | No |
 
@@ -41,10 +42,11 @@ To spend less before a full run:
 |---|---|
 | `categories/<category-id>.json` | The question, the two ends of the scale, the slots every record fills, the anchor records listed from the high end to the low end, and optionally a `weighing` rule that replaces the default one in the rater's instructions |
 | `events/<category-id>.json` | For each legislature, the program changes of the period, each worded once |
-| `key.json` | The name and legislature behind each blinded id, and the terms no record may contain |
+| `key.json` | The name and legislature behind each blinded id, each member's roll call ID, and the terms no record may contain |
 | `packets/<category-id>/<subject-id>.json` | The evidence for one subject in one category |
 | `placements/<category-id>/<subject-id>.json` | The evidence for one subject placed on the finished scale rather than rated into it |
 | `rewordings/<category-id>/<version>.json` | One more wording of each record under test, with the same facts |
+| `votes.json` | The Congress.gov policy areas that file a passage vote under each category in the listener's issue |
 | `systems/<category-id>.json` | Optional. The policy figures that place each country's own system on a separate scale on the site; never sent to the rater. See [The site](#the-site) |
 | `runs/<category-id>/comparisons.jsonl` | One saved answer per line |
 | `runs/<category-id>/stability.jsonl` | One saved answer per line for the reworded versions |
@@ -85,6 +87,7 @@ Four rules keep a record's place on the scale from depending on how its evidence
 - The rater reads `<stance> <text>.`, so begin the text with "a" or "the" and leave off the final period.
 - One vote that changes two programs is two events with the same stance, one in each slot.
 - A subject's `legislature` in `key.json` picks its events.
+- An event of `us-house` or `us-senate` names its vote in `rollCall`, as `{ "congress": 119, "session": 1, "number": 190 }`. Use the vote where Yea means for the text: passage, concurring, or the conference report, never a motion to recommit. Members' stances on it then come from the roll call (see [Listening for roll calls](#listening-for-roll-calls)).
 
 ### Packets
 
@@ -142,8 +145,8 @@ A member-elect has no record in the legislature yet. Give their subject `"provis
 - Acts from a prior office, such as a regional legislature or a city council, are official acts. Say the level they were taken at: "As a regional legislator, sponsored a bill …".
 - Campaign positions count only as statements of an intended act: "Pledged to vote against …", "Said they would introduce …". Talk tied to no act stays out, as for every record.
 - On each event of their legislature, give a `statement`-tier stance where they said how they would have voted, and list the event under `noPosition` otherwise.
-- A provisional record is held back when it has fewer than 3 items that are official acts or statements, instead of fewer than 3 official acts. The other reasons to hold a record back apply unchanged.
-- The provisional label ends with their first session in the legislature. The record is then rebuilt from their acts there and placed again.
+- A provisional record is held back when it has fewer than 3 items that are official acts or statements, instead of fewer than 3 official acts. It is not held back for an empty required slot: those slots hold what a record keeps in place, and a member-elect has not yet voted on that. The other reasons to hold a record back apply unchanged.
+- The provisional label ends with their first session in the legislature. Give the subject `"firstCongress"`, the Congress they were elected to, and the vote listener removes the label once that Congress's second session holds a roll call. The record is then rebuilt from their acts there and placed again.
 
 ## Reading the report
 
@@ -181,6 +184,16 @@ Rating every pair costs more with each record added, so records beyond a categor
 - The first `npm run place -- <category-id>` saves a panel to `panel.json`: 10 of the scale's records, evenly spaced by score from the high anchor to the low one, leaving out records held back from the site. The panel stays fixed after that, so later placements stay comparable.
 - Each placed record is rated against each panel member in both orders, which is 20 comparisons per placed record, with the model that rated the category. Placed records are never compared with each other, and the category's own run is not touched. It refuses to start until the category is fully rated with its anchors in order.
 - The report does not show placed scores yet.
+
+## Listening for roll calls
+
+`npm run votes` reads roll calls: the House's from the Congress.gov API, and the Senate's from Senate.gov. `preview` prints the record changes and the votes to consider. `write` makes the changes and saves the two summaries as `pr.md` and `issue.md`. Design and tradeoffs: [the spec](docs/specs/2026-11-vote-listener.md).
+
+- **Stances.** For each event with a `rollCall`, a member whose subject has a `rollCallId` gets "Voted for" for Yea or Aye and "Voted against" for Nay or No. A member who was present, did not vote, or was not in the chamber gets the event under `noPosition`. A stance already written is never changed. A plain "Voted for" or "Voted against" that the roll call contradicts is listed in the issue.
+- **IDs.** `rollCallId` is the member's Bioguide ID in the House and LIS member ID in the Senate. A member without one is matched by exact first and last name in the latest roll call of the current Congress. The pull request shows each match for review.
+- **Provisional status.** See [Members-elect](#members-elect).
+- **Votes to consider.** Passage votes from the last 14 days that no event names, listed under each category whose policy areas in `votes.json` include the bill's. A bill keeps the policy area of its original text, so a vote used as a vehicle for something else is listed under "Other passage votes".
+- **What it never does.** It doesn't word events, write caucus or party stances, edit calibration copies, add an item past the 12-item limit, or rate. A new stance changes the record's text, so its saved comparisons go stale and the site build refuses them. Before merging the listener's changes, run `rate` or `place` for each category it lists and commit the runs.
 
 ## The site
 

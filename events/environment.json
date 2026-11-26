@@ -14,7 +14,12 @@
             "https://www.americanactionforum.org/insight/evaluating-the-obbbas-energy-provisions/",
             "https://www.everycrsreport.com/files/2025-12-04_R44692_70526995cb5d02e01f9ad466cdced4dac5ca7e49.pdf",
             "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 190
+          }
         },
         {
           "id": "vehicle-waiver-revocation",
@@ -25,7 +30,12 @@
             "https://www.congress.gov/119/plaws/publ16/PLAW-119publ16.htm",
             "https://ww2.arb.ca.gov/node/21981",
             "https://www.epa.gov/ghgemissions/inventory-us-greenhouse-gas-emissions-and-sinks"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 114
+          }
         },
         {
           "id": "methane-fee-repeal",
@@ -36,7 +46,12 @@
             "https://www.congress.gov/119/bills/hjres35/BILLS-119hjres35enr.htm",
             "https://www.taxpayer.net/energy-natural-resources/house-votes-to-repeal-methane-waste-emissions-charge/",
             "https://www.bea.gov/sites/default/files/2025-03/gdp4q24-3rd.pdf"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 52
+          }
         },
         {
           "id": "review-limits-bill",
@@ -46,7 +61,12 @@
             "https://clerk.house.gov/evs/2025/roll356",
             "https://www.everycrsreport.com/reports/IF13180.html",
             "https://www.everycrsreport.com/files/2026-10-09_R49485_016e876a4c7f489af4bc882e3fdde722e4e257cd.html"
-          ]
+          ],
+          "rollCall": {
+            "congress": 119,
+            "session": 1,
+            "number": 356
+          }
         }
       ]
     },
