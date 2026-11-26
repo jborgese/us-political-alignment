@@ -197,6 +197,7 @@ flowchart LR
 - Evidence: prior-office acts plus campaign positions, not an estimate from a group the member belongs to.
 - Display: shown with a provisional mark; the site work is separate (see [§3](#3-out-of-scope)).
 - First six: Claire Valdez, Darializa Avila Chevalier, Janelle Stelson, Houston Gaines, Steve Toth and Ed Gallrein, three from each party, with and without a prior office.
+- Ticket 7's run (26 November): the statement copies (mean gap 7.8, largest 16) and 3-act copies (5.0, 11) missed the calibration line, so members-elect stay held back until they have voted on House events. Their state budget votes also proved a weak signal: both Republican members-elect landed above the Republican Party.
 
 **Open questions:**
 - When the first session ends: how the record is rebuilt from House votes, and whether campaign positions stay as statements.
