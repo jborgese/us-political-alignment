@@ -126,14 +126,6 @@ describe("a category's weighing rule", () => {
   })
 })
 
-describe("a category's tier rule", () => {
-  it("replaces the default tier rule with the category's own when it has one", () => {
-    const prompt = buildSystemPrompt({ question: "Whose position is closer?", tierRule: "Use tiers only inside one record." })
-    expect(prompt).toContain("Use tiers only inside one record.")
-    expect(prompt).not.toContain("Where tiers conflict, the higher tier governs.")
-  })
-})
-
 describe("what the rater is sent", () => {
   it("leaves out record ids, slot ids, and event ids", () => {
     const first = record("s01", [{ ...act("Voted for the bill.", "slot-one"), event: "event-one" }])
@@ -149,7 +141,8 @@ describe("what the rater is sent", () => {
   it("states the question, the tier rule, that keeping a guarantee counts, and how to read an empty section", () => {
     const prompt = buildSystemPrompt({ question: "Which record shows more support?" })
     expect(prompt).toContain("Question: Which record shows more support?")
-    expect(prompt).toContain("Where tiers conflict, the higher tier governs.")
+    expect(prompt).toContain("Use them only inside one record")
+    expect(prompt).toContain("do not prefer a record because its evidence is official rather than stated")
     expect(prompt).toContain("A guarantee the record keeps in place counts as support for it")
     expect(prompt).toContain("Treat it as unknown, not as opposition.")
   })

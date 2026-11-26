@@ -1,28 +1,6 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
-      "tier": "influence",
-      "text": "Its alternative budget proposed no change to the public health insurance that covers everyone who works or lives legally in the country. The only health measure reported in it was replacing medical aid for undocumented migrants with emergency-only care.",
-      "sources": [
-        "https://www.publicsenat.fr/actualites/economie/contre-budget-du-rn-des-propositions-qui-manquent-de-credibilite-economique-mais-trahissent-une-veritable-coherence-doctrinale",
-        "https://www.service-public.gouv.fr/particuliers/vosdroits/F34047"
-      ]
-    },
-    {
-      "slot": "keeps-income",
-      "tier": "influence",
-      "text": "Its alternative budget proposed no cut to the existing income support for citizens, in which mandatory pension schemes replace about 70 percent of an average worker's net earnings, unemployment benefits replace about 68 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 36 percent of the median income, housing support included. It proposed raising benefits in line with prices in place of a planned freeze.",
-      "sources": [
-        "https://www.publicsenat.fr/actualites/economie/contre-budget-du-rn-des-propositions-qui-manquent-de-credibilite-economique-mais-trahissent-une-veritable-coherence-doctrinale",
-        "https://www.lagazettefrance.fr/article/budget-le-rn-propose-36-milliards-d-economies-principalement-via-des-baisses-de-depenses",
-        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
-        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
-        "https://stat.link/qetyb2",
-        "https://stat.link/xiqc6l"
-      ]
-    },
-    {
       "event": "retirement-age-suspension",
       "stance": "Its legislators voted unanimously for"
     },
@@ -55,6 +33,5 @@
         "https://fr.euronews.com/2026/11/17/dose-de-capitalisation-depart-de-60-a-62-ans-marine-le-pen-devoile-sa-reforme-des-retraite"
       ]
     }
-  ],
-  "emptySlots": []
+  ]
 }

@@ -25,10 +25,6 @@
       ]
     }
   ],
-  "emptySlots": [
-    "keeps-health",
-    "keeps-income"
-  ],
   "noPosition": [
     "subsidy-extension",
     "employer-plan-bill"

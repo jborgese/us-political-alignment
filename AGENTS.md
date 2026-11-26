@@ -75,8 +75,8 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - **Subject**: a House member, a party, or a House caucus being placed on the scale.
 - **Packet**: the evidence about one subject in one category. A packet and an anchor are both "records" once the rater sees them.
 - **Anchor**: a written, fictional record with a known position. Anchors are listed from the high end of the scale to the low end, and they fix the 100 and 0 points.
-- **Tier**: the weight class of one item of evidence: official act, then influence, then statement.
-- **Slot**: one section of a record, such as the health coverage it keeps in place. Every record fills each slot or marks it empty.
+- **Tier**: the weight class of one item of evidence: official act, then influence, then statement. It settles conflicts inside one record, never between records.
+- **Slot**: one section of a record, such as the changes to health coverage it supported or opposed. Every record fills each slot or marks it empty.
 - **Event**: one program change in a legislature, worded once in `events/`. A record supplies only its stance on it.
 - **Rewording**: another wording of one packet with the same facts. The stability test scores it in the packet's place to measure how much the score depends on phrasing.
 - **Matchup**: one ordered pair of records. A category's own run rates every pair in both orders; a stability run rates each pair once, adding the other order for a version that moves more than 6 points.

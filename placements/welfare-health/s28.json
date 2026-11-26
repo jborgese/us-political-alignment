@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "official_act",
       "text": "As a regional legislator, voted against a two-year regional budget that raised funding for public health coverage for low-income residents by about 8 percent over the previous two years.",
       "sources": [
@@ -29,7 +29,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-income",
     "seeks"
   ],
   "noPosition": [

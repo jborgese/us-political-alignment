@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-health",
+      "slot": "changes-health",
       "tier": "official_act",
       "text": "As a regional legislator, voted for a regional budget that added funding for public health coverage for low-income residents and children.",
       "sources": [
@@ -29,7 +29,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-income",
     "seeks"
   ],
   "noPosition": [

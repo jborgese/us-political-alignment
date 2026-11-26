@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "slot": "keeps-income",
+      "slot": "changes-income",
       "tier": "statement",
       "text": "Pledged to protect the public pension benefits older residents count on, and to strengthen the program's finances without raising the retirement age or reducing benefits.",
       "sources": [
@@ -27,9 +27,7 @@
     }
   ],
   "emptySlots": [
-    "keeps-health",
-    "changes-health",
-    "changes-income"
+    "changes-health"
   ],
   "noPosition": [
     "budget-law-health",

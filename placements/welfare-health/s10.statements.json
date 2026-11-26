@@ -26,8 +26,6 @@
     }
   ],
   "emptySlots": [
-    "keeps-health",
-    "keeps-income",
     "changes-income"
   ],
   "noPosition": [
