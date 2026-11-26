@@ -1363,12 +1363,12 @@ footer {
 .chamber-key .dot {
   --dot: 12px;
 }
-.dot.leader {
+.dot.party-leader {
   box-shadow:
     inset 0 0 0 calc(var(--dot, 12px) * 0.2) var(--seat-fill, var(--ink-2)),
     inset 0 0 0 calc(var(--dot, 12px) * 0.34) var(--surface);
 }
-.chamber-key .dot.leader {
+.chamber-key .dot.party-leader {
   --dot: 14px;
 }
 .dot.slashed::after {
@@ -1503,6 +1503,7 @@ footer {
   }
   .member-search {
     flex: 1 1 100%;
+    min-width: 0;
   }
   .member-search input {
     flex: 1;

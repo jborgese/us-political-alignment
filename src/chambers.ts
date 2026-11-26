@@ -148,7 +148,7 @@ const partyName = ({ party, caucusesWith }: SiteSeat): string =>
 
 const describedSeat = (seat: SiteSeat): string => `${seat.name}, ${partyName(seat)}${seat.role ? `, ${seat.role}` : ""}`
 
-const leaderClass = (seat: SiteSeat): string => (seat.role ? " leader" : "")
+const leaderClass = (seat: SiteSeat): string => (seat.role ? " party-leader" : "")
 
 const seatKey = (chamber: SiteChamber): string =>
   [
@@ -160,7 +160,7 @@ const seatKey = (chamber: SiteChamber): string =>
       .toSorted((a, b) => partyName(a).localeCompare(partyName(b)))
       .map((seat) => `<li><span class="dot"${partyAttributes(seat)}></span>${escapeHtml(partyName(seat))}</li>`),
     ...([...chamber.placed, ...chamber.unplaced].some((seat) => seat.role)
-      ? [`<li><span class="dot leader"></span>Party leader</li>`]
+      ? [`<li><span class="dot party-leader"></span>Party leader</li>`]
       : []),
     ...(chamber.unplaced.length > 0 ? [`<li><span class="dot slashed"></span>Not enough data to place</li>`] : []),
   ].join("")
