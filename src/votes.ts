@@ -243,22 +243,38 @@ export const isPassageVote = (question: string): boolean =>
   !/cloture|to proceed|to table|recommit|to commit|previous question/i.test(question) &&
   /\b(passage|pass|concur|conference report|overrid|joint resolution)/i.test(question)
 
+export interface SortedCandidates {
+  byCategory: Record<string, Candidate[]>
+  shared: { candidate: Candidate; categoryIds: string[] }[]
+  other: Candidate[]
+}
+
 export const sortCandidates = (
   candidates: Candidate[],
   policyAreas: Record<string, string[]>,
   linkedKeys: string[],
-): { byCategory: Record<string, Candidate[]>; other: Candidate[] } => {
+): SortedCandidates => {
   const fresh = candidates
     .filter((candidate) => candidate.bill !== null && isPassageVote(candidate.question))
     .filter((candidate) => !linkedKeys.includes(rollCallKey(candidate.chamber, candidate)))
     .toSorted((a, b) => b.date.localeCompare(a.date) || b.number - a.number)
-  const inCategory = (categoryId: string) => (candidate: Candidate) =>
-    candidate.policyArea !== null && policyAreas[categoryId].includes(candidate.policyArea)
+    .map((candidate) => ({
+      candidate,
+      categoryIds: Object.keys(policyAreas).filter(
+        (categoryId) => candidate.policyArea !== null && policyAreas[categoryId].includes(candidate.policyArea),
+      ),
+    }))
   return {
     byCategory: Object.fromEntries(
-      Object.keys(policyAreas).map((categoryId) => [categoryId, fresh.filter(inCategory(categoryId))]),
+      Object.keys(policyAreas).map((categoryId) => [
+        categoryId,
+        fresh
+          .filter(({ categoryIds }) => categoryIds.length === 1 && categoryIds[0] === categoryId)
+          .map(({ candidate }) => candidate),
+      ]),
     ),
-    other: fresh.filter((candidate) => !Object.keys(policyAreas).some((categoryId) => inCategory(categoryId)(candidate))),
+    shared: fresh.filter(({ categoryIds }) => categoryIds.length > 1),
+    other: fresh.filter(({ categoryIds }) => categoryIds.length === 0).map(({ candidate }) => candidate),
   }
 }
 
@@ -281,15 +297,26 @@ const candidateLine = (candidate: Candidate): string =>
   ].join("")
 
 export const issueBody = (
-  sorted: { byCategory: Record<string, Candidate[]>; other: Candidate[] },
+  sorted: SortedCandidates,
   labels: Record<string, string>,
   notices: string[],
   today: string,
 ): string =>
   [
     ...notices,
-    `Passage votes from the last ${CANDIDATE_WINDOW_DAYS} days that no event names yet, listed under each issue whose policy areas in \`votes.json\` include the bill's. A bill's policy area follows its original text, so a vote used as a vehicle for something else lands under "Other passage votes". Updated by the vote listener; last run ${formatDay(today)}.`,
+    `Passage votes from the last ${CANDIDATE_WINDOW_DAYS} days that no event names yet, listed under the issue whose policy areas in \`votes.json\` include the bill's. A bill whose policy area belongs to several issues, such as a budget law, is listed once under "Several issues". A bill's policy area follows its original text, so a vote used as a vehicle for something else lands under "Other passage votes". Updated by the vote listener; last run ${formatDay(today)}.`,
     "",
+    ...(sorted.shared.length > 0
+      ? [
+          "### Several issues",
+          "",
+          ...sorted.shared.map(
+            ({ candidate, categoryIds }) =>
+              `${candidateLine(candidate)}. Issues: ${categoryIds.map((categoryId) => labels[categoryId] ?? categoryId).join(", ")}`,
+          ),
+          "",
+        ]
+      : []),
     ...Object.entries(sorted.byCategory).flatMap(([categoryId, list]) => [
       `### ${labels[categoryId] ?? categoryId}`,
       "",
