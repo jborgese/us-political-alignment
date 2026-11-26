@@ -203,7 +203,7 @@ Rules for a member record (packet, or placement without a label) whose subject h
 
 - **Candidates:**
   - These are passage-type votes from the last 14 days, on bills or joint resolutions, that no event already names. Passage-type means passage, suspend-and-pass, concurring in the other chamber's amendment, conference report, or veto override.
-  - A vote is listed under every issue whose policy areas include its bill's. Everything else goes in a collapsed "Other passage votes" section.
+  - A vote is listed under the issue whose policy areas include its bill's, or once under "Several issues" when more than one does. Everything else goes in a collapsed "Other passage votes" section.
   - The window keeps the list stateless. A vote stays listed for two weeks.
   - That second section is needed. Tested on the 15 House events already worded, policy areas alone missed two:
     - the premium subsidy extension passed as a vehicle bill filed under "Congress";

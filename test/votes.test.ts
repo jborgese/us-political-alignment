@@ -212,7 +212,7 @@ const candidate = (number: number, policyArea: string | null, extra: Partial<Can
 })
 
 describe("sortCandidates", () => {
-  it("lists each new passage vote under every issue with its policy area, newest first, and the rest as other", () => {
+  it("lists each new passage vote under its one issue, once under several issues when its policy area has more, and the rest as other", () => {
     const candidates = [
       candidate(1, "Health"),
       candidate(2, "Economics and Public Finance"),
@@ -227,8 +227,14 @@ describe("sortCandidates", () => {
     expect({
       welfare: sorted.byCategory["welfare-health"].map(({ number }) => number),
       economics: sorted.byCategory.economics.map(({ number }) => number),
+      shared: sorted.shared.map(({ candidate, categoryIds }) => ({ number: candidate.number, categoryIds })),
       other: sorted.other.map(({ number }) => number),
-    }).toEqual({ welfare: [2, 1], economics: [2], other: [4, 3] })
+    }).toEqual({
+      welfare: [1],
+      economics: [],
+      shared: [{ number: 2, categoryIds: ["welfare-health", "economics"] }],
+      other: [4, 3],
+    })
   })
 })
 
@@ -267,7 +273,7 @@ describe("prBody and issueBody", () => {
 
   it("puts notices first and says so when an issue has no new votes", () => {
     const body = issueBody(
-      { byCategory: { "welfare-health": [candidate(1, "Health")], economics: [] }, other: [] },
+      { byCategory: { "welfare-health": [candidate(1, "Health")], economics: [] }, shared: [], other: [] },
       { "welfare-health": "Welfare and health", economics: "Economics" },
       ["#### Members with no roll call ID", ""],
       "2027-02-15",
@@ -277,5 +283,23 @@ describe("prBody and issueBody", () => {
       "### Welfare and health\n\n- [House 120-1 roll 1](https://clerk.house.gov/Votes/20271), 1 Feb 2027: H.R. 1, On Passage (Passed). *Bill 1* Policy area: Health",
     )
     expect(body).toContain("### Economics\n\nNone.")
+    expect(body).not.toContain("### Several issues")
+  })
+
+  it("lists a vote shared by several issues once, naming the issues", () => {
+    const body = issueBody(
+      {
+        byCategory: { "welfare-health": [], economics: [] },
+        shared: [{ candidate: candidate(2, "Economics and Public Finance"), categoryIds: ["welfare-health", "economics"] }],
+        other: [],
+      },
+      { "welfare-health": "Welfare and health", economics: "Economics" },
+      [],
+      "2027-02-15",
+    )
+    expect(body).toContain(
+      "### Several issues\n\n- [House 120-1 roll 2](https://clerk.house.gov/Votes/20272), 2 Feb 2027: H.R. 2, On Passage (Passed). *Bill 2* Policy area: Economics and Public Finance. Issues: Welfare and health, Economics",
+    )
+    expect(body).toContain("### Welfare and health\n\nNone.")
   })
 })
