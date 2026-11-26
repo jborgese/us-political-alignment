@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Voted for"
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In committee, voted against advancing an earlier version of that budget law while pressing for its work requirements and spending reductions to take effect sooner, then abstained to let it advance once the work requirements were moved earlier.",
+      "sources": [
+        "https://www.dailysignal.com/2025/05/19/budget-committee-passes-big-beautiful-bill-after-negotiations/",
+        "https://roy.house.gov/media/press-releases/rep-roy-issues-statement-advancement-one-big-beautiful-bill-house-budget"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced a bill, and filed an amendment to the budget bill, to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share, and to let regional governments narrow eligibility for that group.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against",
+        "https://amendments-rules.house.gov/amendments/ROYTX_087_xml250520204615360.pdf"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-income"
+  ],
+  "noPosition": [
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

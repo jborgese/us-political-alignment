@@ -185,7 +185,8 @@ Rating every pair costs more with each record added, so records beyond a categor
 - A file named `<subject-id>.<label>.json`, such as `s01.votes.json`, is a calibration copy of a subject already on the scale: other evidence for the same subject, scored beside its own record to test how that evidence is built.
 - The first `npm run place -- <category-id>` saves a panel to `panel.json`: 10 of the scale's records, evenly spaced by score from the high anchor to the low one, leaving out records held back from the site. The panel stays fixed after that, so later placements stay comparable.
 - Each placed record is rated against each panel member in both orders, which is 20 comparisons per placed record, with the model that rated the category. Placed records are never compared with each other, and the category's own run is not touched. It refuses to start until the category is fully rated with its anchors in order.
-- The report does not show placed scores yet.
+- A panel member with more items than the placed record is cut to as many: official acts first, then influence, then statements, with its own items before its stances on shared events, in file order. The placed record is still scored against the member's full score. A record with few items drifts toward the middle when it faces fuller ones, so it faces records as thin as itself. In `placements.jsonl` a cut member's id ends in `~` and its item count, such as `s03~3`.
+- The report shows each placed record's score, and each calibration copy's gap from its subject's score.
 
 ## Listening for roll calls
 

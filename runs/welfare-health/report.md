@@ -77,18 +77,51 @@ Question put to the rater: Which record's position, as its evidence shows it, is
 
 ## Placed on the scale
 
-- Panel: anchor-expansive, Liberal Party of Canada, Congressional Progressive Caucus, New Democratic Party, Brad Schneider, Jared Golden, Reform UK, Republican Party, Andy Harris, anchor-retrenching
-- Still to rate: Claire Valdez (0 of 20), Janelle Stelson (0 of 20), Houston Gaines (0 of 20), Steve Toth (0 of 20)
+- Panel: anchor-expansive, Congressional Progressive Caucus, New Democrat Coalition, Brad Schneider, Marie Gluesenkamp Perez, Rassemblement National, Reform UK, Republican Party, Andy Harris, anchor-retrenching
 
 | Record | Score | Held back |
 |---|---|---|
+| Claire Valdez | 90 | no |
+| Janelle Stelson | 63 | no |
+| Houston Gaines | 46 | no |
+| Steve Toth | 41 | no |
 
 ## Calibration
 
-- Still to rate: Chip Roy (exact) (0 of 20), Chip Roy (statements) (0 of 20), Chip Roy (votes) (0 of 20), Ben Cline (exact) (0 of 20), Ben Cline (statements) (0 of 20), Ben Cline (votes) (0 of 20), Brad Schneider (exact) (0 of 20), Brad Schneider (votes) (0 of 20), Alexandria Ocasio-Cortez (exact) (0 of 20), Alexandria Ocasio-Cortez (statements) (0 of 20), Alexandria Ocasio-Cortez (votes) (0 of 20), Marie Gluesenkamp Perez (exact) (0 of 20), Marie Gluesenkamp Perez (statements) (0 of 20), Marie Gluesenkamp Perez (votes) (0 of 20), Pramila Jayapal (exact) (0 of 20), Pramila Jayapal (statements) (0 of 20), Pramila Jayapal (votes) (0 of 20), Andy Harris (exact) (0 of 20), Andy Harris (statements) (0 of 20), Andy Harris (votes) (0 of 20), August Pfluger (exact) (0 of 20), August Pfluger (votes) (0 of 20), Jared Golden (exact) (0 of 20), Jared Golden (votes) (0 of 20), Pete Aguilar (exact) (0 of 20), Pete Aguilar (votes) (0 of 20)
+- Mean gap: 6.7 points. Largest: 26 points.
+- The calibration line (mean gap of 5 points or less, none more than 10) holds: no
 
 | Subject | Copy | Subject's score | Copy's score | Gap |
 |---|---|---|---|---|
+| Chip Roy | acts | 7 | 18 | 11 |
+| Chip Roy | exact | 7 | 11 | 4 |
+| Chip Roy | statements | 7 | 11 | 4 |
+| Chip Roy | votes | 7 | 33 | 26 |
+| Ben Cline | acts | 32 | 33 | 0 |
+| Ben Cline | exact | 32 | 33 | 0 |
+| Ben Cline | statements | 32 | 41 | 9 |
+| Ben Cline | votes | 32 | 37 | 5 |
+| Brad Schneider | exact | 65 | 68 | 3 |
+| Brad Schneider | votes | 65 | 78 | 13 |
+| Alexandria Ocasio-Cortez | exact | 83 | 90 | 6 |
+| Alexandria Ocasio-Cortez | statements | 83 | 78 | -6 |
+| Alexandria Ocasio-Cortez | votes | 83 | 90 | 6 |
+| Marie Gluesenkamp Perez | exact | 55 | 63 | 8 |
+| Marie Gluesenkamp Perez | statements | 55 | 50 | -5 |
+| Marie Gluesenkamp Perez | votes | 55 | 63 | 8 |
+| Pramila Jayapal | acts | 93 | 90 | -4 |
+| Pramila Jayapal | exact | 93 | 90 | -4 |
+| Pramila Jayapal | statements | 93 | 78 | -16 |
+| Pramila Jayapal | votes | 93 | 90 | -4 |
+| Andy Harris | exact | 19 | 18 | -2 |
+| Andy Harris | statements | 19 | 28 | 9 |
+| Andy Harris | votes | 19 | 33 | 13 |
+| August Pfluger | exact | 25 | 23 | -2 |
+| August Pfluger | votes | 25 | 23 | -2 |
+| Jared Golden | exact | 58 | 59 | 1 |
+| Jared Golden | votes | 58 | 63 | 5 |
+| Pete Aguilar | exact | 61 | 59 | -3 |
+| Pete Aguilar | votes | 61 | 78 | 16 |
 
 ## Held back from the site
 

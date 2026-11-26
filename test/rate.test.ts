@@ -421,7 +421,7 @@ describe("placeRecords", () => {
   const savedPanel = async (root: string): Promise<string[]> =>
     JSON.parse(await readFile(path.join(root, "runs", CATEGORY_ID, "panel.json"), "utf8")).ids
 
-  it("saves a panel of the records not held back and compares the placed record with each in both orders", async () => {
+  it("saves a panel of the records not held back and compares the placed record with each, cut to its length, in both orders", async () => {
     const root = await ratedProject()
 
     const submitted = await place(root)
@@ -434,10 +434,10 @@ describe("placeRecords", () => {
     expect(saved.map(({ first, second }) => `${first}|${second}`).toSorted()).toEqual([
       "anchor-high|s03",
       "anchor-low|s03",
-      "s02|s03",
+      "s02~1|s03",
       "s03|anchor-high",
       "s03|anchor-low",
-      "s03|s02",
+      "s03|s02~1",
     ])
     expect(await savedRows(root, "comparisons.jsonl")).toHaveLength(12)
     expect(await place(root)).toEqual({ status: "complete" })
@@ -461,6 +461,7 @@ describe("placeRecords", () => {
 
     expect(sentText()).toContain("- [Official act] Cast a vote for keeping coverage level.")
     expect(sentText()).not.toContain("s03")
+    expect(sentText()).not.toContain("s02~1")
   })
 
   it("refuses to place records before the category itself is rated", async () => {
