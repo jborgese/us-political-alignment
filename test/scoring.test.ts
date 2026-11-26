@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import {
   anchorsInOrder,
+  fitAgainstFixed,
   fitBradleyTerry,
   pickSpotChecks,
   shareOfPairsAgreeingAcrossOrders,
@@ -39,6 +40,49 @@ describe("fitBradleyTerry", () => {
     const ids = Array.from({ length: 24 }, (_, index) => `r${String(index).padStart(2, "0")}`)
     const scores = fitBradleyTerry(ids, toOutcomes(completeComparisons(ids)))
     expect(ids.toSorted((a, b) => scores[b] - scores[a])).toEqual(ids)
+  })
+})
+
+describe("fitAgainstFixed", () => {
+  const ids = Array.from({ length: 12 }, (_, index) => `r${String(index).padStart(2, "0")}`)
+  const scale = fitBradleyTerry(ids, toOutcomes(completeComparisons(ids)))
+  const answersOf = (id: string, ranking: string[], opponents: string[]) =>
+    toOutcomes(
+      completeComparisons(ranking).filter(
+        ({ first, second }) =>
+          (first === id && opponents.includes(second)) || (second === id && opponents.includes(first)),
+      ),
+    )
+
+  it("places a record between the last scale record it loses to and the first it beats", () => {
+    const ranking = [...ids.slice(0, 5), "new", ...ids.slice(5)]
+
+    const placed = fitAgainstFixed(scale, "new", answersOf("new", ranking, ids))
+
+    expect(placed).toBeLessThan(scale.r04)
+    expect(placed).toBeGreaterThan(scale.r05)
+  })
+
+  it("lands near the score a full rating gives a record, from its answers against part of the scale", () => {
+    const others = ids.filter((id) => id !== "r06")
+    const reduced = fitBradleyTerry(others, toOutcomes(completeComparisons(others)))
+    const panel = ["r00", "r02", "r04", "r05", "r07", "r09", "r11"]
+
+    const placed = fitAgainstFixed(reduced, "r06", answersOf("r06", ids, panel))
+
+    const onScale = toAnchoredScale({ ...reduced, r06: placed }, "r00", "r11").r06
+    expect(Math.abs(onScale - toAnchoredScale(scale, "r00", "r11").r06)).toBeLessThan(5)
+  })
+
+  it("keeps a record that wins every pair finite, above the top of the scale", () => {
+    const placed = fitAgainstFixed(scale, "new", answersOf("new", ["new", ...ids], ids))
+
+    expect(Number.isFinite(placed)).toBe(true)
+    expect(placed).toBeGreaterThan(scale.r00)
+  })
+
+  it("refuses a record with no comparisons", () => {
+    expect(() => fitAgainstFixed(scale, "new", [])).toThrow("new has no comparisons")
   })
 })
 
