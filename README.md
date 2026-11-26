@@ -145,7 +145,7 @@ A member-elect has no record in the legislature yet. Give their subject `"provis
 - Acts from a prior office, such as a regional legislature or a city council, are official acts. Say the level they were taken at: "As a regional legislator, sponsored a bill …".
 - Campaign positions count only as statements of an intended act: "Pledged to vote against …", "Said they would introduce …". Talk tied to no act stays out, as for every record.
 - On each event of their legislature, give a `statement`-tier stance where they said how they would have voted, and list the event under `noPosition` otherwise.
-- A provisional record is held back when it has fewer than 3 items that are official acts or statements, instead of fewer than 3 official acts. The other reasons to hold a record back apply unchanged.
+- A provisional record is held back when it has fewer than 3 items that are official acts or statements, instead of fewer than 3 official acts. It is not held back for an empty required slot: those slots hold what a record keeps in place, and a member-elect has not yet voted on that. The other reasons to hold a record back apply unchanged.
 - The provisional label ends with their first session in the legislature. Give the subject `"firstCongress"`, the Congress they were elected to, and the vote listener removes the label once that Congress's second session holds a roll call. The record is then rebuilt from their acts there and placed again.
 
 ## Reading the report
