@@ -6,7 +6,6 @@ import {
   currentComparisons,
   fingerprintRecords,
   remainingMatchups,
-  stabilityMatchups,
   stabilityRun,
   supersededComparisons,
   type Matchup,
@@ -22,6 +21,7 @@ import {
 } from "./files.ts"
 import { createBatchRater, type RatedRequest } from "./rater.ts"
 import { findSetProblems } from "./ratingSet.ts"
+import { plannedStabilityMatchups } from "./stability.ts"
 
 export type RateOutcome =
   | { status: "complete" }
@@ -63,10 +63,12 @@ const toComparison = (pending: PendingBatch, { id, verdict }: RatedRequest): Com
       secondHash: request.secondHash,
     }))
 
+type Plan = (comparisons: Comparison[]) => Matchup[]
+
 const collect = async (
   set: RatingSet,
   files: RunFiles,
-  planned: Matchup[] | undefined,
+  plan: Plan | undefined,
   pending: PendingBatch,
 ): Promise<RateOutcome> => {
   const progress = await createBatchRater(pending.model).collect(pending.batchId)
@@ -76,11 +78,12 @@ const collect = async (
   const rated = progress.rated.flatMap((result) => toComparison(pending, result))
   await appendFile(files.comparisons, asLines(rated))
   await rm(files.pendingBatch)
+  const comparisons = [...set.comparisons, ...rated]
   return {
     status: "collected",
     rated: rated.length,
     failed: progress.failed.length,
-    remaining: remainingMatchups({ ...set, comparisons: [...set.comparisons, ...rated] }, planned).length,
+    remaining: remainingMatchups({ ...set, comparisons }, plan?.(comparisons)).length,
   }
 }
 
@@ -116,7 +119,7 @@ interface Run {
   categoryId: string
   set: RatingSet
   files: RunFiles
-  planned?: Matchup[]
+  plan?: Plan
 }
 
 const rateRun = async (run: Run, model: string, limit: number): Promise<RateOutcome> => {
@@ -124,8 +127,8 @@ const rateRun = async (run: Run, model: string, limit: number): Promise<RateOutc
   assertOneModel(set, run.categoryId, model)
 
   const pending = await loadPendingBatch(run.files.pendingBatch)
-  if (pending) return collect(set, run.files, run.planned, pending)
-  const unrated = remainingMatchups(set, run.planned)
+  if (pending) return collect(set, run.files, run.plan, pending)
+  const unrated = remainingMatchups(set, run.plan?.(set.comparisons))
   if (unrated.length === 0) return { status: "complete" }
   return submit(set, run.files, model, unrated.slice(0, limit), unrated.length)
 }
@@ -166,5 +169,6 @@ export const rateStability = async (
     superseded: paths.stabilitySuperseded,
     pendingBatch: paths.stabilityBatch,
   }
-  return rateRun({ categoryId, set: stabilityRun(set), files, planned: stabilityMatchups(set) }, model, limit)
+  const plan = (stability: Comparison[]): Matchup[] => plannedStabilityMatchups({ ...set, stability })
+  return rateRun({ categoryId, set: stabilityRun(set), files, plan }, model, limit)
 }

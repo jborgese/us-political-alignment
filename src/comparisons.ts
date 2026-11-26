@@ -102,18 +102,22 @@ export const stabilityRun = (set: RatingSet): RatingSet => ({
   superseded: set.stabilitySuperseded,
 })
 
+const listsRewordingFirst = (rewordingId: string, otherId: string): boolean =>
+  createHash("sha256").update(`${rewordingId}|${otherId}`).digest()[0] % 2 === 0
+
 export const stabilityMatchups = (set: RatingSet): Matchup[] =>
   set.rewordings.flatMap((rewording) =>
     ratedPackets(set)
       .filter((other) => other.id !== rewording.baseId)
-      .flatMap((other) => [
-        { first: rewording, second: other },
-        { first: other, second: rewording },
-      ]),
+      .map((other) =>
+        listsRewordingFirst(rewording.id, other.id)
+          ? { first: rewording, second: other }
+          : { first: other, second: rewording },
+      ),
   )
 
-export const remainingStabilityMatchups = (set: RatingSet): Matchup[] =>
-  remainingMatchups(stabilityRun(set), stabilityMatchups(set))
+export const reversed = (matchups: Matchup[]): Matchup[] =>
+  matchups.map(({ first, second }) => ({ first: second, second: first }))
 
 export const buildComparisonMessage = ({ first, second }: Matchup, slots: Slot[]): string =>
   [

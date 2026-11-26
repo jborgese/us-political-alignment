@@ -1,9 +1,17 @@
-import { currentComparisons, remainingStabilityMatchups, stabilityRun } from "./comparisons.ts"
+import {
+  currentComparisons,
+  remainingMatchups,
+  reversed,
+  stabilityMatchups,
+  stabilityRun,
+  type Matchup,
+} from "./comparisons.ts"
 import type { Comparison, RatingSet, Rewording } from "./files.ts"
 import { ratedPackets } from "./ratingSet.ts"
-import { fitBradleyTerry, toAnchoredScale, toOutcomes, type Scores } from "./scoring.ts"
+import { anchorsInOrder, fitBradleyTerry, toAnchoredScale, toOutcomes, type Scores } from "./scoring.ts"
 
 export const LARGEST_MOVE_WHEN_REWORDED = 10
+export const MOVE_THAT_NEEDS_BOTH_ORDERS = 6
 
 export interface RewordedScore {
   baseId: string
@@ -26,6 +34,36 @@ const scoreInPlaceOfBase = (set: RatingSet, rewording: Rewording, own: Compariso
   return toAnchoredScale(fitted, anchorIds[0], anchorIds[anchorIds.length - 1])[rewording.id]
 }
 
+const rounded = (score: number): number => Math.round(score) || 0
+
+const answers = (saved: Comparison, { first, second }: Matchup): boolean =>
+  saved.first === first.id && saved.second === second.id
+
+const secondOrders = (set: RatingSet): Matchup[] => {
+  const anchorIds = set.category.anchors.map((anchor) => anchor.id)
+  const fitted = fitBradleyTerry(
+    ratedPackets(set).map((packet) => packet.id),
+    toOutcomes(set.comparisons),
+  )
+  if (!anchorsInOrder(fitted, anchorIds)) return []
+  const published = toAnchoredScale(fitted, anchorIds[0], anchorIds[anchorIds.length - 1])
+  const rated = currentComparisons(stabilityRun(set))
+  const firstOrders = stabilityMatchups(set)
+  return set.rewordings.flatMap((rewording) => {
+    const own = firstOrders.filter(({ first, second }) => first.id === rewording.id || second.id === rewording.id)
+    const ownAnswers = rated.filter((saved) => own.some((matchup) => answers(saved, matchup)))
+    if (ownAnswers.length < own.length) return []
+    const score = scoreInPlaceOfBase(set, rewording, ownAnswers)
+    const move = rounded(score) - rounded(published[rewording.baseId])
+    return Math.abs(move) > MOVE_THAT_NEEDS_BOTH_ORDERS ? reversed(own) : []
+  })
+}
+
+export const plannedStabilityMatchups = (set: RatingSet): Matchup[] => [...stabilityMatchups(set), ...secondOrders(set)]
+
+export const remainingStabilityMatchups = (set: RatingSet): Matchup[] =>
+  remainingMatchups(stabilityRun(set), plannedStabilityMatchups(set))
+
 export const rewordedScores = (set: RatingSet): RewordedScore[] => {
   const rated = currentComparisons(stabilityRun(set))
   const unrated = remainingStabilityMatchups(set)
@@ -37,8 +75,6 @@ export const rewordedScores = (set: RatingSet): RewordedScore[] => {
       score: scoreInPlaceOfBase(set, rewording, rated.filter(involves(rewording.id))),
     }))
 }
-
-const rounded = (score: number): number => Math.round(score) || 0
 
 const versionsOf = (set: RatingSet, reworded: RewordedScore[], baseId: string): number[] | undefined => {
   const scores = reworded.filter((version) => version.baseId === baseId).map((version) => rounded(version.score))
