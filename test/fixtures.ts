@@ -1,4 +1,5 @@
 import type { Comparison, Evidence, Packet, RatingSet, Rewording } from "../src/files.ts"
+import type { SiteData, SiteRecord } from "../src/site.ts"
 
 export const act = (text: string, slot = "acts"): Evidence => ({ slot, tier: "official_act", text })
 
@@ -72,3 +73,45 @@ export const reworded = (base: Packet, version: string, texts: string[]): Reword
 
 export const comparisonsOf = (id: string, ranking: string[]): Comparison[] =>
   completeComparisons(ranking).filter((saved) => saved.first === id || saved.second === id)
+
+export const siteRecord = (
+  name: string,
+  kind: SiteRecord["kind"],
+  score: number,
+  extra: Partial<SiteRecord> = {},
+): SiteRecord => ({
+  name,
+  label: name,
+  glyph: "",
+  flag: null,
+  party: null,
+  symbol: null,
+  kind,
+  detail: "Sample Caucus",
+  group: "Sample Caucus",
+  legislature: "sample-house",
+  score,
+  previousScore: null,
+  range: null,
+  leftRight: null,
+  sections: [],
+  ...extra,
+})
+
+export const siteData = (records: SiteRecord[]): SiteData => ({
+  title: "Sample issue",
+  question: "Which record shows more support?",
+  highPole: "more support",
+  lowPole: "less support",
+  model: "model-a",
+  comparisons: 20,
+  ratedOn: "22 November 2026",
+  agreementAcrossOrders: 1,
+  wonByFirstListed: 0.5,
+  groups: [],
+  records,
+  selected: 1,
+  heldBack: [],
+  systems: null,
+  leftRightFrom: [],
+})

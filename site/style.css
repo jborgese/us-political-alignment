@@ -616,6 +616,109 @@ a.column-head:hover .full {
 .plot[data-highlight] .records .marker:not(.lit) {
   opacity: 0.18;
 }
+
+/* Left-right scatter */
+.left-right {
+  --gutter: 0px;
+  --field-left: 18px;
+  --field-right: 18px;
+  --field: calc(100% - var(--field-left) - var(--field-right));
+}
+.left-right.has-unplaced {
+  --gutter: 52px;
+  --field-left: calc(var(--gutter) + 18px);
+}
+.left-right .records .marker {
+  left: calc(var(--field-left) + var(--field) * var(--x) / 100 - var(--mark) / 2 + var(--nudge, 0px));
+}
+.left-right .records .marker[data-unplaced] {
+  left: calc(var(--gutter) / 2 - var(--mark) / 2 + var(--nudge, 0px));
+}
+.left-right.has-unplaced .records::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--gutter);
+  border-left: 1px dashed var(--rule-strong);
+}
+.vline {
+  position: absolute;
+  top: var(--pad);
+  bottom: var(--pad);
+  left: calc(var(--field-left) + var(--field) * var(--x) / 100);
+  width: 1px;
+  background: var(--rule);
+  pointer-events: none;
+}
+.left-right .records .name {
+  left: calc(var(--mark) + 4px);
+  z-index: 1;
+  white-space: nowrap;
+  transform: translateY(-50%);
+}
+.left-right .records .name.flip {
+  left: auto;
+  right: calc(var(--mark) + 4px);
+}
+.left-right .records .name.up {
+  transform: translateY(calc(-50% - var(--mark) * 0.62));
+}
+.left-right .records .name.down {
+  transform: translateY(calc(-50% + var(--mark) * 0.62));
+}
+.left-right .records .name.quiet {
+  display: none;
+}
+.plot[data-highlight] .records .lit .name.quiet {
+  display: flex;
+}
+.left-right .records .detail,
+.left-right .leader {
+  display: none;
+}
+.x-axis,
+.x-poles {
+  grid-column: 2;
+}
+.x-axis {
+  position: relative;
+  height: 22px;
+  border-top: 1px solid var(--rule);
+}
+.x-tick,
+.x-unplaced {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.x-tick {
+  left: calc(var(--field-left) + var(--field) * var(--x) / 100);
+  font-family: var(--font-data);
+}
+.x-unplaced {
+  left: calc(var(--gutter) / 2);
+  font-size: 10.5px;
+}
+.x-poles {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px var(--field-right) 0 var(--field-left);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.x-poles span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.x-poles .icon {
+  width: 14px;
+  height: 14px;
+}
 .plot[data-highlight] .records .lit .name {
   color: var(--ink);
 }
@@ -1092,6 +1195,14 @@ footer {
   .one-scale {
     --line: 44px;
     grid-template-columns: 28px minmax(0, 1fr) 36px;
+  }
+  .left-right {
+    --field-left: 14px;
+    --field-right: 14px;
+  }
+  .left-right.has-unplaced {
+    --gutter: 36px;
+    --field-left: calc(var(--gutter) + 14px);
   }
   .groups {
     flex-wrap: nowrap;
