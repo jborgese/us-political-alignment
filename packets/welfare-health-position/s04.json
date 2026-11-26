@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "event": "annual-budget-health",
+      "stance": "In government, passed"
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In government, extended a public dental plan to all uninsured adults aged 18 to 64 with household income below a set threshold.",
+      "sources": [
+        "https://www.canada.ca/en/health-canada/news/2025/03/canadian-dental-care-plan-expands-to-include-millions-of-new-eligible-canadians.html"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In government, provided no new funding for further public drug coverage agreements with regional governments beyond the four already signed.",
+      "sources": [
+        "https://www.policyalternatives.ca/news-research/canadas-federal-government-abandons-national-pharmacare/",
+        "https://www.ndp.ca/news/liberals-break-their-promise-millions-canadians-waiting-free-medicine"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Said in its budget that it was protecting social programs, naming child care, dental care, and drug coverage.",
+      "sources": [
+        "https://www.policyalternatives.ca/news-research/canadas-federal-government-abandons-national-pharmacare/"
+      ]
+    },
+    {
+      "event": "annual-budget-meals",
+      "stance": "In government, passed"
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

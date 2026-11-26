@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Before the floor vote on the budget bill, said it would be on course to pass once it added further reductions to national spending on public health coverage for working-age adults, which they said would curb waste and fraud.",
+      "sources": [
+        "https://m.washingtontimes.com/news/2025/may/21/house-freedom-caucus-pushes-gop-leaders-delay-vote-trump-agenda/"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Said the expanded premium subsidies for individually purchased insurance should end and subsidies return to their earlier, smaller level.",
+      "sources": [
+        "https://www.thebanner.com/opinion/column/andy-harris-obamacare-federal-government-shutdown-2K5FBJPDYNEIXO6JEJAZ6Y53QQ/"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Called for comprehensive national reform of health care and health insurance, saying the existing law on individually purchased insurance had failed to make coverage affordable and accessible.",
+      "sources": [
+        "https://harris.house.gov/issues/health"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-income"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

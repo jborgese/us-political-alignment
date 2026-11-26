@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Voted against"
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted for"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted against"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Voted against"
+    },
+    {
+      "slot": "changes-health",
+      "tier": "influence",
+      "text": "At a rally in a district held by the majority party, criticized the local legislator for voting for a budget plan that an official analysis found would require reductions in public health coverage for low-income residents.",
+      "sources": [
+        "https://www.yahoo.com/news/ocasio-cortez-rips-colorado-republican-210531006.html"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill to enroll every resident in a single public health plan covering medical, dental, vision, hearing, mental health, and long-term care, with no premiums, deductibles, or copayments.",
+      "sources": [
+        "https://jayapal.house.gov/2025/04/29/jayapal-sanders-dingell-hundreds-of-health-care-workers-introduce-medicare-for-all"
+      ]
+    }
+  ]
+}

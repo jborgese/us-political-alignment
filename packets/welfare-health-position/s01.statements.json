@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Before the budget bill's final passage, said it was not yet good enough, and pressed for work requirements on public health coverage to start sooner and for an end to paying a higher national share for working-age adults than for the most vulnerable.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/rep-roy-issues-statement-advancement-one-big-beautiful-bill-house-budget"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "Wrote that colleagues should let the expanded premium subsidies for individually purchased insurance expire, calling them a costly temporary measure from the pandemic.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/roy-letter-wall-street-journal-no-time-go-wobbly-obamacare"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Said national spending on public health coverage was driving deficits, and called for wider use of health savings accounts and more competition in health care instead.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/roy-we-should-not-be-giving-more-medicaid-medicare"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-income"
+  ],
+  "noPosition": [
+    "budget-law-health",
+    "subsidy-extension",
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

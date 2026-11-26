@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Abstained on the first passage, then voted for the final version, of",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025145"
+      ]
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted against"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Abstained on the first passage, then voted for the final version, of",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025145"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "influence",
+      "text": "As head of a group of legislators, warned party leaders that the group's members would withhold their votes from any funding bill carrying an extension of the expanded premium subsidies.",
+      "sources": [
+        "https://www.notus.org/healthcare/aca-subsidies-republicans-extension-freedom-caucus"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "After the budget law passed, said its work requirements and its limits on the financing arrangements regional governments use would discourage further expansion of public health coverage for low-income residents.",
+      "sources": [
+        "https://harris.house.gov/media/press-releases/one-big-beautiful-bill-secures-major-wins-american-people"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Cosponsored a bill to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against"
+      ]
+    }
+  ]
+}
