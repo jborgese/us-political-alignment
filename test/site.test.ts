@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 
 import type { Key } from "../src/files.ts"
-import { buildSiteData, buildSitePage, placeLeftRight } from "../src/site.ts"
+import { buildSiteData, buildSitePage, placeChambers, placeLeftRight } from "../src/site.ts"
 import {
   act,
   buildSet,
@@ -352,5 +352,68 @@ describe("buildSitePage with a left-right axis", () => {
     expect(body).toContain('<div class="plot one-scale">')
     expect(body).not.toContain("x-axis")
     expect(body).not.toContain("data-unplaced")
+  })
+})
+
+describe("placeChambers", () => {
+  const member = (id: string, name: string, party: string, extra: Partial<Key["subjects"][number]> = {}) => ({
+    id,
+    name,
+    kind: "member" as const,
+    group: "Sample Caucus",
+    legislature: "us-house",
+    aliases: [],
+    party,
+    ...extra,
+  })
+  const subjects = [
+    member("s01", "Ann Left", "Democratic"),
+    member("s02", "Bob Right", "Republican"),
+    member("s03", "Cy Fewer", "Democratic"),
+    member("s04", "Di Held", "Republican"),
+    member("s05", "Ed Elect", "Republican", { provisional: true }),
+    member("s06", "Fay None", "Democratic"),
+    member("s07", "Gil Senator", "Democratic", { legislature: "us-senate" }),
+    { ...member("s08", "Sample Caucus", "Democratic"), kind: "caucus" as const },
+  ]
+  const inHouse = { legislature: "us-house" }
+  const data = {
+    ...siteData([
+      siteRecord("Ann Left", "member", 80, { ...inHouse, leftRight: 70 }),
+      siteRecord("Sample Caucus", "caucus", 70, { ...inHouse, leftRight: 65 }),
+      siteRecord("Cy Fewer", "member", 60, inHouse),
+      siteRecord("Bob Right", "member", 20, { ...inHouse, leftRight: 20 }),
+    ]),
+    selected: 0,
+    heldBack: [{ name: "Di Held", reasons: ["1 official act, fewer than 3"] }],
+  }
+  const house = { id: "us-house", label: "House", seats: 435, published: true }
+
+  it("seats members with a left-right position from left to right and lists the rest with the reason", () => {
+    const [chamber] = placeChambers(data, subjects, [house]).chambers
+
+    expect(chamber.placed.map((seat) => seat.name)).toEqual(["Ann Left", "Bob Right"])
+    expect(Object.fromEntries(chamber.unplaced.map((seat) => [seat.name, seat.note]))).toEqual({
+      "Cy Fewer": "Shown on fewer than 3 issues, so not yet on the left-right axis",
+      "Fay None": "No record on this issue yet",
+      "Di Held": "Held back: 1 official act, fewer than 3",
+      "Ed Elect": "Member-elect: placed once they have a voting record",
+    })
+  })
+
+  it("leaves an unpublished chamber off the page", () => {
+    expect(placeChambers(data, subjects, [{ ...house, published: false }]).chambers).toEqual([])
+  })
+
+  it("moves a published chamber's members off the scale into their own tab, keeping them in the table", () => {
+    const placed = placeChambers(data, subjects, [house])
+    const body = buildSitePage(placed, { css: "", js: "" }, []).body
+
+    expect(placed.selected).toBe(1)
+    expect(body).toContain('<button type="button" role="tab" id="tab-us-house"')
+    expect(body).not.toContain('aria-label="Ann Left, 80')
+    expect(body).toContain('aria-label="Sample Caucus, 70')
+    expect(body).not.toContain("</span>Member</li>")
+    expect(body).toContain("<td>Ann Left</td>")
   })
 })

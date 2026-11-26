@@ -81,6 +81,7 @@ const keySchema = z.strictObject({
       kind: z.enum(["member", "party", "caucus"]),
       group: z.string().min(1),
       party: z.string().min(1).optional(),
+      caucusesWith: z.string().min(1).optional(),
       legislature: z.string().min(1),
       aliases: z.array(z.string().min(1)),
       provisional: z.literal(true).optional(),
@@ -111,6 +112,15 @@ const plannedCategoriesSchema = z
     z.strictObject({ id: z.string().regex(CATEGORY_ID_PATTERN), label: z.string().min(1), published: z.boolean() }),
   )
   .min(1)
+
+const chambersSchema = z.array(
+  z.strictObject({
+    id: z.string().min(1),
+    label: z.string().min(1),
+    seats: z.number().int().positive(),
+    published: z.boolean(),
+  }),
+)
 
 const votesConfigSchema = z.strictObject({
   policyAreas: z.record(z.string().regex(CATEGORY_ID_PATTERN), z.array(z.string().min(1)).min(1)),
@@ -178,6 +188,7 @@ export type Key = z.infer<typeof keySchema>
 export type Comparison = z.infer<typeof comparisonSchema>
 export type PendingBatch = z.infer<typeof pendingBatchSchema>
 export type PlannedCategory = z.infer<typeof plannedCategoriesSchema>[number]
+export type ChamberConfig = z.infer<typeof chambersSchema>[number]
 export type VotesConfig = z.infer<typeof votesConfigSchema>
 export type Systems = z.infer<typeof systemsSchema>
 
@@ -357,6 +368,9 @@ const loadComparisons = async (file: string): Promise<Comparison[]> =>
 
 export const loadPlannedCategories = async (file: string): Promise<PlannedCategory[]> =>
   parseAs(plannedCategoriesSchema, await readJson(file), file)
+
+export const loadChambers = async (file: string): Promise<ChamberConfig[]> =>
+  parseAs(chambersSchema, await readJson(file), file)
 
 export const loadVotesConfig = async (root: string): Promise<VotesConfig> => {
   const file = path.join(root, "votes.json")

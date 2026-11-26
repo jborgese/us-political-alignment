@@ -118,4 +118,5 @@ export const siteData = (records: SiteRecord[]): SiteData => ({
   heldBack: [],
   systems: null,
   leftRightFrom: [],
+  chambers: [],
 })

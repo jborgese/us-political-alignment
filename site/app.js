@@ -94,8 +94,13 @@ const showEvidence = (record) => {
 
 const markers = [...document.querySelectorAll(".marker")]
 
+const seatNodes = [...document.querySelectorAll("[data-list]")]
+const seatOf = (node) => data.chambers[Number(node.dataset.chamber)][node.dataset.list][Number(node.dataset.seat)]
+const markSeats = (isPicked) => seatNodes.forEach((node) => node.classList.toggle("picked", isPicked(node)))
+
 const select = (index) => {
   markers.forEach((marker) => marker.setAttribute("aria-pressed", String(Number(marker.dataset.index) === index)))
+  markSeats((node) => seatOf(node).index === index)
   showEvidence(data.records[index])
 }
 
@@ -163,7 +168,9 @@ const layoutLeftRight = () => {
 }
 
 const layoutScale = () => {
-  if (document.querySelector(".plot").classList.contains("left-right")) return layoutLeftRight()
+  const scalePlot = document.querySelector(".plot")
+  if (scalePlot.offsetParent === null) return
+  if (scalePlot.classList.contains("left-right")) return layoutLeftRight()
   const placed = dodge(recordMarkers)
   const reach = Math.max(...placed.map(({ nudge, size }) => nudge + size / 2))
   const entries = placed.map((item) => {
@@ -208,18 +215,22 @@ countryButtons.forEach(toggleOn("legislature"))
 
 const tooltip = document.getElementById("tooltip")
 
-const showTooltip = (marker) => {
-  const record = data.records[Number(marker.dataset.index)]
-  const box = marker.querySelector(".glyph").getBoundingClientRect()
-  tooltip.replaceChildren(
-    `${record.name} `,
-    element("b", "", String(record.score)),
-    ...(record.range ? [` (${rangeText(record)})`] : []),
-  )
+const placeTooltip = (box, ...content) => {
+  tooltip.replaceChildren(...content)
   tooltip.hidden = false
   const left = Math.min(Math.max(8, box.left + box.width / 2 - tooltip.offsetWidth / 2), innerWidth - tooltip.offsetWidth - 8)
   tooltip.style.left = `${left}px`
   tooltip.style.top = `${box.top - tooltip.offsetHeight - 8}px`
+}
+
+const showTooltip = (marker) => {
+  const record = data.records[Number(marker.dataset.index)]
+  placeTooltip(
+    marker.querySelector(".glyph").getBoundingClientRect(),
+    `${record.name} `,
+    element("b", "", String(record.score)),
+    ...(record.range ? [` (${rangeText(record)})`] : []),
+  )
 }
 
 const hideTooltip = () => {
@@ -234,6 +245,74 @@ markers.forEach((marker) => {
   marker.addEventListener("blur", hideTooltip)
 })
 addEventListener("scroll", hideTooltip, { passive: true })
+
+const partyText = (seat) => `${seat.party ?? "No party"}${seat.caucusesWith ? ` (${seat.caucusesWith} caucus)` : ""}`
+
+const seatStatus = (seat) => {
+  const record = seat.index === null ? null : data.records[seat.index]
+  const who = `${seat.name}, ${partyText(seat)}`
+  if (record === null) return `${who}: ${seat.note}.`
+  const leftRight = record.leftRight === null ? ` ${seat.note}.` : `, ${record.leftRight} on the left-right axis.`
+  return `${who}: ${record.score} on this issue${leftRight} Evidence below.`
+}
+
+const pickSeat = (node) => {
+  const seat = seatOf(node)
+  document.querySelector(`.chamber-status[data-chamber="${node.dataset.chamber}"]`).textContent = seatStatus(seat)
+  if (seat.index !== null) select(seat.index)
+  markSeats((other) => other === node)
+}
+
+const showSeatTooltip = (node) => {
+  const seat = seatOf(node)
+  const record = seat.index === null ? null : data.records[seat.index]
+  placeTooltip(node.getBoundingClientRect(), `${seat.name} `, record ? element("b", "", String(record.score)) : "not placed")
+}
+
+seatNodes.forEach((node) => {
+  node.addEventListener("click", () => pickSeat(node))
+  node.addEventListener("pointerenter", () => showSeatTooltip(node))
+  node.addEventListener("focus", () => showSeatTooltip(node))
+  node.addEventListener("pointerleave", hideTooltip)
+  node.addEventListener("blur", hideTooltip)
+})
+
+document.querySelectorAll(".member-search input").forEach((input) =>
+  input.addEventListener("input", () => {
+    const wanted = input.value.trim().toLowerCase()
+    const node = seatNodes.find(
+      (seatNode) => seatNode.dataset.chamber === input.dataset.chamber && seatOf(seatNode).name.toLowerCase() === wanted,
+    )
+    if (node) pickSeat(node)
+  }),
+)
+
+const tabs = [...document.querySelectorAll('[role="tab"]')]
+
+const showTab = (chosen) => {
+  tabs.forEach((tab) => {
+    const on = tab === chosen
+    tab.setAttribute("aria-selected", String(on))
+    tab.tabIndex = on ? 0 : -1
+    document.getElementById(tab.getAttribute("aria-controls")).hidden = !on
+  })
+  hideTooltip()
+  layoutScale()
+}
+
+const TAB_STEPS = { ArrowRight: 1, ArrowLeft: -1 }
+
+tabs.forEach((tab, position) => {
+  tab.addEventListener("click", () => showTab(tab))
+  tab.addEventListener("keydown", (event) => {
+    const step = TAB_STEPS[event.key]
+    if (step === undefined) return
+    event.preventDefault()
+    const next = tabs[(position + step + tabs.length) % tabs.length]
+    next.focus()
+    showTab(next)
+  })
+})
 
 new ResizeObserver(layoutScale).observe(document.querySelector(".scale"))
 document.fonts?.ready.then(layoutScale)
