@@ -70,9 +70,14 @@ describe("chamberView", () => {
   const arcLabels = (markup: string): string[] =>
     [...markup.matchAll(/class="arc-label"[^>]*>([^<]+)</g)].map((match) => match[1])
 
-  it("draws one seat per placed member from left to right, coloured by party, with an independent's caucus as a ring", () => {
+  it("draws one seat per placed member from left to right, coloured by party, with an independent's caucus as a core inside the seat", () => {
+    const cores = [...view.matchAll(/<circle class="caucus-core"[^>]*>/g)].map((match) => match[0])
+
     expect(seatTags.map((tag) => attribute(tag, "data-party"))).toEqual(["democratic", "independent", "republican"])
-    expect(attribute(seatTags[1], "data-caucus")).toBe("democratic")
+    expect(cores.map((core) => [attribute(core, "cx"), attribute(core, "data-caucus")])).toEqual([
+      [attribute(seatTags[1], "cx"), "democratic"],
+    ])
+    expect(Number(attribute(cores[0], "r"))).toBeLessThan(Number(attribute(seatTags[1], "r")))
     expect(Number(attribute(seatTags[0], "cx"))).toBeLessThan(Number(attribute(seatTags[2], "cx")))
   })
 

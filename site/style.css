@@ -1298,9 +1298,9 @@ footer {
   outline: none;
   cursor: pointer;
 }
-.seat[data-caucus] {
-  stroke: var(--seat-ring);
-  stroke-width: var(--ring);
+.caucus-core {
+  fill: var(--seat-ring);
+  pointer-events: none;
 }
 .seat:hover,
 .seat.picked {
@@ -1358,7 +1358,7 @@ footer {
   background: var(--seat-fill, var(--rule-strong));
 }
 .dot[data-caucus] {
-  border: calc(var(--dot, 12px) * 0.22) solid var(--seat-ring);
+  background: radial-gradient(circle closest-side, var(--seat-ring) 50%, var(--seat-fill) calc(50% + 0.5px));
 }
 .chamber-key .dot {
   --dot: 12px;

@@ -99,16 +99,20 @@ const placedAt = (radius: number, angle: number): string => {
 }
 
 const LEADER_RING_SHARE = 1.3
+const CAUCUS_CORE_SHARE = 0.5
 
 const seatCircle =
   (chamberIndex: number, layout: Hemicycle) =>
   (seat: SiteSeat, position: number): string => {
     const { x, y } = layout.seats[position]
     const centre = `cx="${fixed(x)}" cy="${fixed(-y)}"`
+    const caucusCore = seat.caucusesWith
+      ? `<circle class="caucus-core" ${centre} r="${fixed(layout.seatRadius * CAUCUS_CORE_SHARE)}" data-caucus="${slug(seat.caucusesWith)}"/>`
+      : ""
     const leaderRing = seat.role
       ? `<circle class="leader-ring" ${centre} r="${fixed(layout.seatRadius * LEADER_RING_SHARE)}"${partyAttributes(seat)}/>`
       : ""
-    return `<circle class="seat" ${centre} r="${fixed(layout.seatRadius)}" data-chamber="${chamberIndex}" data-list="placed" data-seat="${position}"${partyAttributes(seat)}/>${leaderRing}`
+    return `<circle class="seat" ${centre} r="${fixed(layout.seatRadius)}" data-chamber="${chamberIndex}" data-list="placed" data-seat="${position}"${partyAttributes(seat)}/>${caucusCore}${leaderRing}`
   }
 
 interface ArcTick {
