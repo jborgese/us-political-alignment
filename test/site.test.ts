@@ -1,8 +1,17 @@
 import { describe, expect, it } from "vitest"
 
 import type { Key } from "../src/files.ts"
-import { buildSiteData, buildSitePage } from "../src/site.ts"
-import { act, buildSet, comparisonsOf, completeComparisons, record, reworded } from "./fixtures.ts"
+import { buildSiteData, buildSitePage, placeLeftRight } from "../src/site.ts"
+import {
+  act,
+  buildSet,
+  comparisonsOf,
+  completeComparisons,
+  record,
+  reworded,
+  siteData,
+  siteRecord,
+} from "./fixtures.ts"
 
 const subject = (
   id: string,
@@ -273,5 +282,75 @@ describe("buildSitePage", () => {
     expect(body).not.toContain("<script>alert(1)")
     expect(body).toContain("Jane &lt;script&gt;alert(1)&lt;/script&gt;")
     expect(body).toContain("Jane \\u003cscript>alert(1)\\u003c/script>")
+  })
+})
+
+describe("placeLeftRight", () => {
+  const LABELS = { a: "Issue A", b: "Issue B", c: "Issue C", d: "Issue D" }
+  const issuesWith = (scores: Record<string, number>, extra: Record<string, number> = {}) =>
+    Object.fromEntries(
+      Object.keys(LABELS).map((issue) => [
+        issue,
+        siteData([
+          siteRecord("High", "anchor", 100),
+          ...(issue in scores ? [siteRecord("Jane Sample", "member", scores[issue])] : []),
+          ...(issue in extra ? [siteRecord("John Example", "member", extra[issue])] : []),
+          siteRecord("Low", "anchor", 0),
+        ]),
+      ]),
+    )
+  const leftRightOn = (placed: ReturnType<typeof placeLeftRight>, issue: string, name: string) =>
+    placed[issue].records.find((entry) => entry.name === name)?.leftRight
+
+  it("places a record by its average score on the other issues, leaving the page's own issue out", () => {
+    const placed = placeLeftRight(issuesWith({ a: 80, b: 60, c: 40, d: 20 }), LABELS)
+
+    expect([leftRightOn(placed, "a", "Jane Sample"), leftRightOn(placed, "b", "Jane Sample")]).toEqual([40, 47])
+    expect(placed.a.leftRightFrom).toEqual(["Issue B", "Issue C", "Issue D"])
+  })
+
+  it("averages only the issues a record is shown on, and needs at least three of them", () => {
+    const placed = placeLeftRight(issuesWith({ a: 80, b: 60, c: 40 }, { a: 70, b: 30 }), LABELS)
+
+    expect(leftRightOn(placed, "a", "Jane Sample")).toBe(50)
+    expect(leftRightOn(placed, "a", "John Example")).toBeNull()
+  })
+
+  it("gives the reference records no position", () => {
+    const placed = placeLeftRight(issuesWith({ a: 80, b: 60, c: 40, d: 20 }), LABELS)
+
+    expect(placed.a.records.filter((entry) => entry.kind === "anchor").map((entry) => entry.leftRight)).toEqual([
+      null,
+      null,
+    ])
+  })
+})
+
+describe("buildSitePage with a left-right axis", () => {
+  const page = (leftRights: Record<string, number | null>): string => {
+    const data = buildSiteData(rankedSet(IN_ORDER))
+    const records = data.records.map((entry) =>
+      entry.name in leftRights ? { ...entry, leftRight: leftRights[entry.name] } : entry,
+    )
+    return buildSitePage({ ...data, records, leftRightFrom: ["Economics", "Immigration"] }, { css: "", js: "" }, []).body
+  }
+
+  it("places each record across the axis, sets apart one with no position, and names the issues it comes from", () => {
+    const body = page({ "Jane Sample": 70, "Sample Caucus": 40, "Example Party of Canada": null })
+
+    expect(body).toContain('<div class="plot one-scale left-right has-unplaced">')
+    expect(body).toContain("--x:30")
+    expect(body.match(/data-unplaced/g)).toHaveLength(1)
+    expect(body).toContain("Jane Sample, 50, 70 on the left-right axis")
+    expect(body).toContain("average score on economics and immigration")
+    expect(body).toContain('<th class="num">Left-right</th>')
+  })
+
+  it("keeps the one-scale chart when no record has a position", () => {
+    const body = page({})
+
+    expect(body).toContain('<div class="plot one-scale">')
+    expect(body).not.toContain("x-axis")
+    expect(body).not.toContain("data-unplaced")
   })
 })

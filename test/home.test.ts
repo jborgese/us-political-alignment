@@ -1,42 +1,8 @@
 import { describe, expect, it } from "vitest"
 
 import { buildHomeData, buildHomePage } from "../src/home.ts"
-import type { SiteData, SiteRecord } from "../src/site.ts"
-
-const record = (name: string, kind: SiteRecord["kind"], score: number, extra: Partial<SiteRecord> = {}): SiteRecord => ({
-  name,
-  label: name,
-  glyph: "",
-  flag: null,
-  party: null,
-  symbol: null,
-  kind,
-  detail: "Sample Caucus",
-  group: "Sample Caucus",
-  legislature: "sample-house",
-  score,
-  previousScore: null,
-  range: null,
-  sections: [],
-  ...extra,
-})
-
-const siteData = (records: SiteRecord[]): SiteData => ({
-  title: "Sample issue",
-  question: "Which record shows more support?",
-  highPole: "more support",
-  lowPole: "less support",
-  model: "model-a",
-  comparisons: 20,
-  ratedOn: "22 November 2026",
-  agreementAcrossOrders: 1,
-  wonByFirstListed: 0.5,
-  groups: [],
-  records,
-  selected: 1,
-  heldBack: [],
-  systems: null,
-})
+import type { SiteData } from "../src/site.ts"
+import { siteData, siteRecord as record } from "./fixtures.ts"
 
 const PLANNED = [
   { id: "welfare-health", label: "Welfare and health" },

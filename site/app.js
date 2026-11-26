@@ -87,6 +87,8 @@ const showEvidence = (record) => {
   document.getElementById("evidence-score").textContent = String(record.score)
   document.getElementById("evidence-change").textContent = changeText(record)
   document.getElementById("evidence-range").textContent = rangeText(record)
+  document.getElementById("evidence-left-right").textContent =
+    record.leftRight === null ? "" : `${record.leftRight} on the left-right axis`
   document.getElementById("evidence-sections").replaceChildren(...record.sections.map(sectionNode))
 }
 
@@ -120,7 +122,48 @@ const spreadLabels = (entries, bottom) =>
       return block.items.map((item, position) => ({ ...item, labelTop: top + block.offsets[position] }))
     })
 
+const LABEL_ROOM = 2
+const LABEL_SPOTS = [[], ["flip"], ["up"], ["down"], ["flip", "up"], ["flip", "down"]]
+const LABEL_CLASSES = ["flip", "up", "down", "quiet"]
+
+const roomAround = (box) => ({
+  left: box.left - LABEL_ROOM,
+  right: box.right + LABEL_ROOM,
+  top: box.top - LABEL_ROOM,
+  bottom: box.bottom + LABEL_ROOM,
+})
+
+const overlaps = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom
+
+const layoutLeftRight = () => {
+  dodge(recordMarkers)
+  const field = document.querySelector(".records").getBoundingClientRect()
+  const glyphs = recordMarkers.map((marker) => marker.querySelector(".glyph").getBoundingClientRect())
+  const fits = (box, taken, ownGlyph) =>
+    box.left >= field.left &&
+    box.right <= field.right &&
+    ![...taken, ...glyphs.filter((other) => other !== ownGlyph)].some((other) => overlaps(roomAround(box), other))
+  recordMarkers
+    .map((marker, index) => ({ marker, glyph: glyphs[index], name: marker.querySelector(".name") }))
+    .sort((a, b) => a.glyph.top - b.glyph.top)
+    .reduce((taken, { glyph, name }) => {
+      const spot = LABEL_SPOTS.find((classes) => {
+        name.classList.remove(...LABEL_CLASSES)
+        name.classList.add(...classes)
+        return fits(name.getBoundingClientRect(), taken, glyph)
+      })
+      name.classList.remove(...LABEL_CLASSES)
+      if (spot === undefined) {
+        name.classList.add("quiet")
+        return taken
+      }
+      name.classList.add(...spot)
+      return [...taken, name.getBoundingClientRect()]
+    }, [])
+}
+
 const layoutScale = () => {
+  if (document.querySelector(".plot").classList.contains("left-right")) return layoutLeftRight()
   const placed = dodge(recordMarkers)
   const reach = Math.max(...placed.map(({ nudge, size }) => nudge + size / 2))
   const entries = placed.map((item) => {

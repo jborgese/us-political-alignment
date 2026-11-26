@@ -71,6 +71,7 @@ export interface SiteRecord {
   score: number
   previousScore: number | null
   range: WordingRange | null
+  leftRight: number | null
   sections: SiteSection[]
 }
 
@@ -95,6 +96,7 @@ export interface SiteData {
   selected: number
   heldBack: HeldBack[]
   systems: SiteSystems | null
+  leftRightFrom: string[]
 }
 
 export interface SiteGroup {
@@ -224,6 +226,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       score: scoreOf(subject.id),
       previousScore: previousOf(subject.id),
       range: wordingRange(set, run.scores, run.reworded, subject.id) ?? null,
+      leftRight: null,
       sections: sectionsOf(set, packets[subject.id]),
     }))
   const anchors: SiteRecord[] = set.category.anchors.map((anchor) => {
@@ -242,6 +245,7 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       score: scoreOf(anchor.id),
       previousScore: previousOf(anchor.id),
       range: null,
+      leftRight: null,
       sections: sectionsOf(set, anchor),
     }
   })
@@ -263,35 +267,124 @@ export const buildSiteData = (set: RatingSet): SiteData => {
       .filter(({ reasons }) => reasons.length > 0)
       .map(({ subject, reasons }) => ({ name: subject.name, reasons })),
     systems: roundedSystems(set.systems),
+    leftRightFrom: [],
   }
 }
 
-const percent = (share: number): string => `${Math.round(share * 100)}%`
+export const FEWEST_ISSUES_FOR_LEFT_RIGHT = 3
+
+const average = (values: number[]): number => values.reduce((total, value) => total + value, 0) / values.length
+
+const shownScores = (published: Record<string, SiteData>): Record<string, Record<string, number>> =>
+  Object.entries(published).reduce<Record<string, Record<string, number>>>(
+    (byName, [issueId, data]) =>
+      data.records
+        .filter((record) => record.kind !== "anchor")
+        .reduce((names, record) => ({ ...names, [record.name]: { ...names[record.name], [issueId]: record.score } }), byName),
+    {},
+  )
+
+export const placeLeftRight = (
+  published: Record<string, SiteData>,
+  labels: Record<string, string>,
+): Record<string, SiteData> => {
+  const scores = shownScores(published)
+  return Object.fromEntries(
+    Object.entries(published).map(([issueId, data]) => {
+      const otherIssues = Object.keys(published).filter((other) => other !== issueId)
+      const leftRightOf = (record: SiteRecord): number | null => {
+        const shown = scores[record.name] ?? {}
+        if (record.kind === "anchor" || Object.keys(shown).length < FEWEST_ISSUES_FOR_LEFT_RIGHT) return null
+        return Math.round(average(otherIssues.filter((other) => other in shown).map((other) => shown[other])))
+      }
+      return [
+        issueId,
+        {
+          ...data,
+          records: data.records.map((record) => ({ ...record, leftRight: leftRightOf(record) })),
+          leftRightFrom: otherIssues.map((other) => labels[other] ?? other),
+        },
+      ]
+    }),
+  )
+}
+
+const percent =(share: number): string => `${Math.round(share * 100)}%`
 
 const rangeBar = ({ score, range }: SiteRecord, axis: Axis): string =>
   range && range.high > range.low
     ? `<span class="range" style="--above:${axis.length(range.high - score)};--span:${axis.length(range.high - range.low)}"></span>`
     : ""
 
-const spoken = ({ name, score, range }: SiteRecord): string =>
-  range ? `${name}, ${score}, ${rangeText(range)} when reworded` : `${name}, ${score}`
+const spoken = ({ name, score, range, leftRight }: SiteRecord): string =>
+  [
+    `${name}, ${score}`,
+    ...(range ? [`${rangeText(range)} when reworded`] : []),
+    ...(leftRight === null ? [] : [`${leftRight} on the left-right axis`]),
+  ].join(", ")
 
 const label = (record: SiteRecord): string =>
   record.kind === "anchor"
     ? `<span class="name">${escapeHtml(record.label)}</span>`
     : `<span class="leader"></span><span class="name"><b class="score">${record.score}</b>${escapeHtml(record.label)}<span class="detail">${escapeHtml(record.detail)}</span></span>`
 
-const marker = (record: SiteRecord, index: number, axis: Axis): string => {
+const across = ({ leftRight }: SiteRecord): string => (leftRight === null ? "" : `;--x:${100 - leftRight}`)
+
+const hasLeftRight = (data: SiteData): boolean => data.records.some((record) => record.leftRight !== null)
+
+const isUnplaced = (record: SiteRecord): boolean => record.kind !== "anchor" && record.leftRight === null
+
+const marker = (record: SiteRecord, index: number, axis: Axis, scatter: boolean): string => {
   const symbol = record.symbol ? ` data-symbol="${record.symbol}"` : ""
   const group = record.group === null ? "" : ` data-group="${escapeHtml(record.group)}"`
   const legislature = record.legislature === null ? "" : ` data-legislature="${escapeHtml(record.legislature)}"`
-  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol}${group}${legislature} style="--y:${axis.position(record.score)}" aria-pressed="false" aria-label="${escapeHtml(spoken(record))}">${rangeBar(record, axis)}${glyph(record)}${label(record)}</button>`
+  const unplaced = scatter && isUnplaced(record) ? " data-unplaced" : ""
+  return `<button type="button" class="marker" data-index="${index}" data-kind="${record.kind}"${symbol}${group}${legislature}${unplaced} style="--y:${axis.position(record.score)}${across(record)}" aria-pressed="false" aria-label="${escapeHtml(spoken(record))}">${rangeBar(record, axis)}${glyph(record)}${label(record)}</button>`
 }
 
-const column = (data: SiteData, className: string, axis: Axis, keep: (record: SiteRecord) => boolean): string => {
-  const markers = data.records.map((record, index) => (keep(record) ? marker(record, index, axis) : "")).join("")
-  return `<div class="column ${className}">${gridLines(axis)}${markers}</div>`
+const LEFT_RIGHT_TICKS = [100, 75, 50, 25, 0]
+
+const verticalLines = (): string =>
+  LEFT_RIGHT_TICKS.map((tick) => `<span class="vline" style="--x:${100 - tick}"></span>`).join("")
+
+const column = (
+  data: SiteData,
+  className: string,
+  axis: Axis,
+  keep: (record: SiteRecord) => boolean,
+  extra = "",
+): string => {
+  const scatter = hasLeftRight(data)
+  const markers = data.records
+    .map((record, index) => (keep(record) ? marker(record, index, axis, scatter) : ""))
+    .join("")
+  return `<div class="column ${className}">${gridLines(axis)}${extra}${markers}</div>`
 }
+
+const listed = (names: string[]): string =>
+  names.length < 2 ? names.join("") : `${names.slice(0, -1).join(", ")} and ${names.at(-1)}`
+
+const leftRightAxis = (data: SiteData): string =>
+  [
+    `<div class="x-axis" aria-hidden="true">`,
+    data.records.some(isUnplaced) ? `<span class="x-unplaced">None yet</span>` : "",
+    ...LEFT_RIGHT_TICKS.map((tick) => `<span class="x-tick" style="--x:${100 - tick}">${tick}</span>`),
+    `</div>`,
+    `<div class="x-poles"><span>${icon("arrow-left")}Left</span><span>Right${icon("arrow-right")}</span></div>`,
+  ].join("")
+
+const scaleNote = (data: SiteData): string =>
+  hasLeftRight(data)
+    ? `<p class="scale-note">${icon("move")}Height is the score on this issue. Left to right is the average score on ${escapeHtml(listed(data.leftRightFrom.map((label) => label.toLowerCase())))}, ${FEWEST_ISSUES_FOR_LEFT_RIGHT} issues shown or more; records with fewer sit apart. Marks shift slightly only to stay visible.</p>`
+    : `<p class="scale-note">${icon("move")}Only height is measured. Marks shift sideways only to stay visible.</p>`
+
+const plotClasses = (data: SiteData): string =>
+  [
+    "plot",
+    "one-scale",
+    ...(hasLeftRight(data) ? ["left-right"] : []),
+    ...(hasLeftRight(data) && data.records.some(isUnplaced) ? ["has-unplaced"] : []),
+  ].join(" ")
 
 const groupIcon = (group: SiteGroup): string =>
   group.flag
@@ -335,7 +428,8 @@ const tableRows = (data: SiteData): string =>
     .map((record) => {
       const rank = data.records.filter((other) => other.kind !== "anchor" && other.score > record.score).length + 1
       const range = isReworded(data.records) ? `<td class="num">${record.range ? rangeText(record.range) : ""}</td>` : ""
-      return `<tr><td class="num">${record.kind === "anchor" ? "" : rank}</td><td>${escapeHtml(record.name)}</td><td>${escapeHtml(record.detail)}</td><td class="num">${record.score}</td><td class="num">${record.previousScore ?? ""}</td>${range}</tr>`
+      const leftRight = hasLeftRight(data) ? `<td class="num">${record.leftRight ?? ""}</td>` : ""
+      return `<tr><td class="num">${record.kind === "anchor" ? "" : rank}</td><td>${escapeHtml(record.name)}</td><td>${escapeHtml(record.detail)}</td><td class="num">${record.score}</td><td class="num">${record.previousScore ?? ""}</td>${range}${leftRight}</tr>`
     })
     .join("")
 
@@ -391,21 +485,22 @@ export const buildSitePage = (data: SiteData, assets: SiteAssets, issues: SiteIs
       `<ul class="key" aria-label="Marker key">${partyKey(data.records)}<li><span class="glyph"></span>Member</li><li><span class="glyph caucus"></span>Caucus</li>${usPartyKey(data.records)}<li><span class="glyph anchor"></span>Reference record</li>${isReworded(data.records) ? `<li><span class="range-key"></span>Range when reworded</li>` : ""}</ul>`,
       groupButtons(data.groups),
       `<div class="pole">${icon("shield")}${escapeHtml(capitalized(data.highPole))}</div>`,
-      `<div class="plot one-scale">`,
+      `<div class="${plotClasses(data)}">`,
       `<div class="y-axis">${tickLabels(axis)}</div>`,
-      column(data, "records", axis, (record) => record.kind !== "anchor"),
+      column(data, "records", axis, (record) => record.kind !== "anchor", hasLeftRight(data) ? verticalLines() : ""),
       column(data, "reference", axis, (record) => record.kind === "anchor"),
+      hasLeftRight(data) ? leftRightAxis(data) : "",
       `</div>`,
       `<div class="pole">${icon("cut")}${escapeHtml(capitalized(data.lowPole))}</div>`,
-      `<p class="scale-note">${icon("move")}Only height is measured. Marks shift sideways only to stay visible.</p>`,
+      scaleNote(data),
       `</section>`,
       heldBack(data.heldBack),
       `<section class="evidence" aria-live="polite" aria-label="Evidence for the selected record">`,
-      `<div class="evidence-head" id="evidence-head"><span class="glyph" id="evidence-glyph"></span><div class="who"><h2 id="evidence-name"></h2><p id="evidence-detail"></p></div><div class="score"><b id="evidence-score"></b><span>on the 0 to 100 scale</span><span id="evidence-change"></span><span id="evidence-range"></span></div></div>`,
+      `<div class="evidence-head" id="evidence-head"><span class="glyph" id="evidence-glyph"></span><div class="who"><h2 id="evidence-name"></h2><p id="evidence-detail"></p></div><div class="score"><b id="evidence-score"></b><span>on the 0 to 100 scale</span><span id="evidence-change"></span><span id="evidence-range"></span><span id="evidence-left-right"></span></div></div>`,
       `<ul class="tier-key" aria-label="Kinds of evidence"><li>${icon("official_act")}Official act</li><li>${icon("influence")}Influence</li><li>${icon("statement")}Statement</li></ul>`,
       `<div class="sections" id="evidence-sections"></div>`,
       `</section>`,
-      `<details class="table"><summary>All records as a table</summary><div class="table-scroll"><table><thead><tr><th class="num">Rank</th><th>Record</th><th>Group</th><th class="num">Score</th><th class="num">Previous run</th>${isReworded(data.records) ? `<th class="num">When reworded</th>` : ""}</tr></thead><tbody>${tableRows(data)}</tbody></table></div></details>`,
+      `<details class="table"><summary>All records as a table</summary><div class="table-scroll"><table><thead><tr><th class="num">Rank</th><th>Record</th><th>Group</th><th class="num">Score</th><th class="num">Previous run</th>${isReworded(data.records) ? `<th class="num">When reworded</th>` : ""}${hasLeftRight(data) ? `<th class="num">Left-right</th>` : ""}</tr></thead><tbody>${tableRows(data)}</tbody></table></div></details>`,
       `<footer><span>${data.comparisons} blinded comparisons, rated by ${escapeHtml(data.model)} on ${escapeHtml(data.ratedOn)}</span><a href="${REPO_URL}" target="_blank" rel="noopener noreferrer">Method and data</a></footer>`,
       `</main>`,
       `<div class="tooltip" id="tooltip" hidden></div>`,
@@ -435,7 +530,10 @@ export const writeSite = async (root: string): Promise<string[]> => {
   ])
   const ids = planned.filter((category) => category.published).map(({ id }) => id)
   const sets = await Promise.all(ids.map((id) => loadRatingSet(root, id)))
-  const published = Object.fromEntries(ids.map((id, index) => [id, buildSiteData(sets[index])]))
+  const published = placeLeftRight(
+    Object.fromEntries(ids.map((id, index) => [id, buildSiteData(sets[index])])),
+    Object.fromEntries(planned.map(({ id, label }) => [id, label])),
+  )
   const pages = [
     { file: "index.html", page: buildHomePage(buildHomeData(planned, published), { css, js: `${dodgeScript}\n${homeScript}` }) },
     ...Object.entries(published).map(([id, data]) => ({
