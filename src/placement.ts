@@ -1,7 +1,7 @@
-import type { Matchup } from "./comparisons.ts"
+import { currentComparisons, remainingMatchups, type Matchup } from "./comparisons.ts"
 import type { RatingSet } from "./files.ts"
 import { ratedPackets } from "./ratingSet.ts"
-import type { Scores } from "./scoring.ts"
+import { fitAgainstFixed, toAnchoredScale, toOutcomes, type Scores } from "./scoring.ts"
 
 export const PANEL_SIZE = 10
 
@@ -28,4 +28,25 @@ export const placementMatchups = (set: RatingSet, panelIds: string[]): Matchup[]
         { first: member, second: placed },
       ]),
     )
+}
+
+export const remainingPlacementMatchups = (set: RatingSet, panelIds: string[]): Matchup[] =>
+  remainingMatchups(placementRun(set), placementMatchups(set, panelIds))
+
+interface FittedScale {
+  fitted: Scores
+  highAnchorId: string
+  lowAnchorId: string
+}
+
+export const placedScores = (set: RatingSet, panelIds: string[], scale: FittedScale): Scores => {
+  const unrated = remainingPlacementMatchups(set, panelIds)
+  const outcomes = toOutcomes(currentComparisons(placementRun(set)))
+  const placedIds = set.placements
+    .filter((placed) => placed.items.length > 0)
+    .map((placed) => placed.id)
+    .filter((id) => !unrated.some(({ first, second }) => first.id === id || second.id === id))
+  const strengths = Object.fromEntries(placedIds.map((id) => [id, fitAgainstFixed(scale.fitted, id, outcomes)]))
+  const anchored = toAnchoredScale({ ...scale.fitted, ...strengths }, scale.highAnchorId, scale.lowAnchorId)
+  return Object.fromEntries(placedIds.map((id) => [id, anchored[id]]))
 }
