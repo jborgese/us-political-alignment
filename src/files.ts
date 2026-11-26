@@ -82,6 +82,7 @@ const keySchema = z.strictObject({
       group: z.string().min(1),
       party: z.string().min(1).optional(),
       caucusesWith: z.string().min(1).optional(),
+      leadership: z.string().min(1).optional(),
       legislature: z.string().min(1),
       aliases: z.array(z.string().min(1)),
       provisional: z.literal(true).optional(),

@@ -45,6 +45,7 @@ describe("chamberView", () => {
     name,
     party,
     caucusesWith: null,
+    role: null,
     index: 0,
     leftRight,
     note: null,
@@ -94,6 +95,18 @@ describe("chamberView", () => {
 
   it("merges ticks that fall at the same place", () => {
     expect(arcLabels(view)).toEqual(["75", "50, 25"])
+  })
+
+  it("rings a party leader's seat inside and adds the leader to the key", () => {
+    const led = chamberView(
+      { ...chamber, placed: [seat("Ann Left", "Democratic", 90, { role: "Minority Leader" })], unplaced: [] },
+      0,
+      "issue B",
+    )
+
+    expect(led).toMatch(/<circle class="seat"[^>]*\/><circle class="leader-ring"/)
+    expect(led).toContain("Party leader</li>")
+    expect(view).not.toContain("leader-ring")
   })
 
   it("offers every member's name to the search", () => {

@@ -250,7 +250,7 @@ const partyText = (seat) => `${seat.party ?? "No party"}${seat.caucusesWith ? ` 
 
 const seatStatus = (seat) => {
   const record = seat.index === null ? null : data.records[seat.index]
-  const who = `${seat.name}, ${partyText(seat)}`
+  const who = `${seat.name}, ${partyText(seat)}${seat.role ? `, ${seat.role}` : ""}`
   if (record === null) return `${who}: ${seat.note}.`
   const leftRight = record.leftRight === null ? ` ${seat.note}.` : `, ${record.leftRight} on the left-right axis.`
   return `${who}: ${record.score} on this issue${leftRight} Evidence below.`
@@ -266,7 +266,11 @@ const pickSeat = (node) => {
 const showSeatTooltip = (node) => {
   const seat = seatOf(node)
   const record = seat.index === null ? null : data.records[seat.index]
-  placeTooltip(node.getBoundingClientRect(), `${seat.name} `, record ? element("b", "", String(record.score)) : "not placed")
+  placeTooltip(
+    node.getBoundingClientRect(),
+    `${seat.name}${seat.role ? `, ${seat.role}` : ""} `,
+    record ? element("b", "", String(record.score)) : "not placed",
+  )
 }
 
 seatNodes.forEach((node) => {

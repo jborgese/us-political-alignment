@@ -12,6 +12,7 @@ export interface SiteSeat {
   name: string
   party: string | null
   caucusesWith: string | null
+  role: string | null
   index: number | null
   leftRight: number | null
   note: string | null
@@ -97,11 +98,17 @@ const placedAt = (radius: number, angle: number): string => {
   return `left:${left.toFixed(2)}%;top:${top.toFixed(2)}%`
 }
 
+const LEADER_RING_SHARE = 0.55
+
 const seatCircle =
   (chamberIndex: number, layout: Hemicycle) =>
   (seat: SiteSeat, position: number): string => {
     const { x, y } = layout.seats[position]
-    return `<circle class="seat" cx="${fixed(x)}" cy="${fixed(-y)}" r="${fixed(layout.seatRadius)}" data-chamber="${chamberIndex}" data-list="placed" data-seat="${position}"${partyAttributes(seat)}/>`
+    const centre = `cx="${fixed(x)}" cy="${fixed(-y)}"`
+    const leaderRing = seat.role
+      ? `<circle class="leader-ring" ${centre} r="${fixed(layout.seatRadius * LEADER_RING_SHARE)}"/>`
+      : ""
+    return `<circle class="seat" ${centre} r="${fixed(layout.seatRadius)}" data-chamber="${chamberIndex}" data-list="placed" data-seat="${position}"${partyAttributes(seat)}/>${leaderRing}`
   }
 
 interface ArcTick {
@@ -139,6 +146,10 @@ const arcTicks = (placed: SiteSeat[], layout: Hemicycle): { lines: string; label
 const partyName = ({ party, caucusesWith }: SiteSeat): string =>
   `${party ?? "No party"}${caucusesWith ? ` (${caucusesWith} caucus)` : ""}`
 
+const describedSeat = (seat: SiteSeat): string => `${seat.name}, ${partyName(seat)}${seat.role ? `, ${seat.role}` : ""}`
+
+const leaderClass = (seat: SiteSeat): string => (seat.role ? " leader" : "")
+
 const seatKey = (chamber: SiteChamber): string =>
   [
     ...[...chamber.placed, ...chamber.unplaced]
@@ -148,6 +159,9 @@ const seatKey = (chamber: SiteChamber): string =>
       )
       .toSorted((a, b) => partyName(a).localeCompare(partyName(b)))
       .map((seat) => `<li><span class="dot"${partyAttributes(seat)}></span>${escapeHtml(partyName(seat))}</li>`),
+    ...([...chamber.placed, ...chamber.unplaced].some((seat) => seat.role)
+      ? [`<li><span class="dot leader"></span>Party leader</li>`]
+      : []),
     ...(chamber.unplaced.length > 0 ? [`<li><span class="dot slashed"></span>Not enough data to place</li>`] : []),
   ].join("")
 
@@ -171,7 +185,7 @@ const unplacedSeats = (chamber: SiteChamber, chamberIndex: number): string =>
         `<ul class="unplaced-seats">`,
         ...chamber.unplaced.map(
           (seat, position) =>
-            `<li><button type="button" class="unplaced-seat" data-chamber="${chamberIndex}" data-list="unplaced" data-seat="${position}" aria-label="${escapeHtml(`${seat.name}, ${partyName(seat)}: ${seat.note ?? "not placed"}`)}"><span class="dot slashed"${partyAttributes(seat)}></span></button></li>`,
+            `<li><button type="button" class="unplaced-seat" data-chamber="${chamberIndex}" data-list="unplaced" data-seat="${position}" aria-label="${escapeHtml(`${describedSeat(seat)}: ${seat.note ?? "not placed"}`)}"><span class="dot slashed${leaderClass(seat)}"${partyAttributes(seat)}></span></button></li>`,
         ),
         `</ul>`,
         `</div>`,

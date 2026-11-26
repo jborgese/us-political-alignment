@@ -368,7 +368,7 @@ describe("placeChambers", () => {
   })
   const subjects = [
     member("s01", "Ann Left", "Democratic"),
-    member("s02", "Bob Right", "Republican"),
+    member("s02", "Bob Right", "Republican", { leadership: "Majority Leader" }),
     member("s03", "Cy Fewer", "Democratic"),
     member("s04", "Di Held", "Republican"),
     member("s05", "Ed Elect", "Republican", { provisional: true }),
@@ -392,7 +392,10 @@ describe("placeChambers", () => {
   it("seats members with a left-right position from left to right and lists the rest with the reason", () => {
     const [chamber] = placeChambers(data, subjects, [house]).chambers
 
-    expect(chamber.placed.map((seat) => seat.name)).toEqual(["Ann Left", "Bob Right"])
+    expect(chamber.placed.map((seat) => [seat.name, seat.role])).toEqual([
+      ["Ann Left", null],
+      ["Bob Right", "Majority Leader"],
+    ])
     expect(Object.fromEntries(chamber.unplaced.map((seat) => [seat.name, seat.note]))).toEqual({
       "Cy Fewer": "Shown on fewer than 3 issues, so not yet on the left-right axis",
       "Fay None": "No record on this issue yet",

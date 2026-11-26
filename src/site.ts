@@ -337,6 +337,7 @@ const seatOf = (data: SiteData, subject: Subject): SiteSeat => {
     name: subject.name,
     party: subject.party ?? null,
     caucusesWith: subject.caucusesWith ?? null,
+    role: subject.leadership ?? null,
     index: record ? index : null,
     leftRight: record?.leftRight ?? null,
     note: unplacedNote(data, subject, record),
