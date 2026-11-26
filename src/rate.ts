@@ -19,8 +19,10 @@ import {
   type PendingBatch,
   type RatingSet,
 } from "./files.ts"
+import { choosePanel, placementMatchups, placementRun } from "./placement.ts"
 import { createBatchRater, type RatedRequest } from "./rater.ts"
 import { findSetProblems } from "./ratingSet.ts"
+import { heldBackReasons, summarizeRun, type RunSummary } from "./report.ts"
 import { plannedStabilityMatchups } from "./stability.ts"
 
 export type RateOutcome =
@@ -40,6 +42,13 @@ const setAsideSuperseded = async (set: RatingSet, files: RunFiles): Promise<Rati
   await appendFile(files.superseded, asLines(superseded))
   await writeFile(files.comparisons, asLines(current))
   return { ...set, comparisons: current }
+}
+
+const assertFullyRated = (set: RatingSet, categoryId: string, before: string): void => {
+  const unrated = remainingMatchups(set).length
+  if (unrated > 0) {
+    throw new Error(`Rate ${categoryId} before ${before}: ${unrated} comparisons remain. Run rate first.`)
+  }
 }
 
 const assertOneModel = (set: RatingSet, categoryId: string, model: string): void => {
@@ -159,10 +168,7 @@ export const rateStability = async (
   limit = Number.POSITIVE_INFINITY,
 ): Promise<RateOutcome> => {
   const { set, paths } = await loadForRating(root, categoryId)
-  const unrated = remainingMatchups(set).length
-  if (unrated > 0) {
-    throw new Error(`Rate ${categoryId} before its rewordings: ${unrated} comparisons remain. Run rate first.`)
-  }
+  assertFullyRated(set, categoryId, "its rewordings")
   assertOneModel(set, categoryId, model)
   const files = {
     comparisons: paths.stability,
@@ -171,4 +177,39 @@ export const rateStability = async (
   }
   const plan = (stability: Comparison[]): Matchup[] => plannedStabilityMatchups({ ...set, stability })
   return rateRun({ categoryId, set: stabilityRun(set), files, plan }, model, limit)
+}
+
+const panelCandidates = (set: RatingSet, run: RunSummary): string[] => [
+  ...set.category.anchors.map((anchor) => anchor.id),
+  ...set.packets
+    .filter((packet) => packet.items.length > 0 && heldBackReasons(set, run, packet).length === 0)
+    .map((packet) => packet.id),
+]
+
+export const panelFor = (set: RatingSet): string[] | null => {
+  if (set.panel) return set.panel
+  if (remainingMatchups(set).length > 0) return null
+  const run = summarizeRun(set)
+  return run.scaleIsValid ? choosePanel(run.scores, panelCandidates(set, run)) : null
+}
+
+export const placeRecords = async (
+  root: string,
+  categoryId: string,
+  model: string,
+  limit = Number.POSITIVE_INFINITY,
+): Promise<RateOutcome> => {
+  const { set, paths } = await loadForRating(root, categoryId)
+  if (!set.placements.some((placed) => placed.items.length > 0)) {
+    throw new Error(`placements/${categoryId} holds no records with evidence to place.`)
+  }
+  assertFullyRated(set, categoryId, "placing records on it")
+  assertOneModel(set, categoryId, model)
+  const panel = panelFor(set)
+  if (!panel) throw new Error(`The anchors of ${categoryId} came out of order, so it has no scale to place records on.`)
+  if (!set.panel) {
+    await writeFile(paths.panel, `${JSON.stringify({ chosenAt: new Date().toISOString(), ids: panel }, null, 2)}\n`)
+  }
+  const files = { comparisons: paths.placed, superseded: paths.placedSuperseded, pendingBatch: paths.placedBatch }
+  return rateRun({ categoryId, set: placementRun(set), files, plan: () => placementMatchups(set, panel) }, model, limit)
 }

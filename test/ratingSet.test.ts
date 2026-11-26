@@ -132,6 +132,50 @@ describe("events", () => {
   })
 })
 
+describe("findSetProblems on placed records", () => {
+  const budget = { id: "budget", slot: "acts", text: "a budget", sources: ["https://example.org/budget"] }
+  const placed = (...placements: Packet[]) =>
+    buildSet({ legislatures: [{ id: "sample-house", events: [budget] }], packets: [], placements })
+  const stance = act("Voted against a budget.")
+
+  it("accepts a placed subject and a calibration copy of a subject on the scale", () => {
+    const set = {
+      ...placed(record("s01.votes", [{ ...stance, event: "budget" }])),
+      packets: [record("s01", [{ ...stance, event: "budget" }])],
+    }
+    expect(findSetProblems(set)).toEqual([])
+    expect(findSetProblems(placed(record("s01", [{ ...stance, event: "budget" }])))).toEqual([])
+  })
+
+  it("flags a revealing term, a missing stance, and an unknown subject", () => {
+    expect(findSetProblems(placed(record("s01", [act("Voted to expand Medicare.")])))).toEqual([
+      "s01 takes no stance on the event budget: add a stance or list it in noPosition",
+      's01 mentions "Medicare": Voted to expand Medicare.',
+    ])
+    expect(findSetProblems(placed(record("s99", [{ ...stance, event: "budget" }])))).toEqual([
+      "s99 has no entry in key.json",
+    ])
+  })
+
+  it("flags a subject that is both on the scale and placed", () => {
+    const set = {
+      ...placed(record("s01", [{ ...stance, event: "budget" }])),
+      packets: [record("s01", [{ ...stance, event: "budget" }])],
+    }
+    expect(findSetProblems(set)).toEqual(["s01 is both on the scale and placed: keep it in packets/ or placements/"])
+  })
+
+  it("flags a calibration copy of a subject with no packet on the scale", () => {
+    expect(findSetProblems(placed(record("s01.votes", [{ ...stance, event: "budget" }])))).toEqual([
+      "s01.votes copies s01, which has no packet on the scale",
+    ])
+  })
+
+  it("counts a placed subject as having a packet", () => {
+    expect(subjectsWithoutPackets(placed(record("s01", [{ ...stance, event: "budget" }])))).toEqual([])
+  })
+})
+
 describe("findSetProblems on rewordings", () => {
   const base = record("s01", [act("Voted to cut public coverage by 5 percent.")])
   const problemsWith = (text: string) => findSetProblems(buildSet({ packets: [base], rewordings: [reworded(base, "a", [text])] }))

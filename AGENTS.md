@@ -45,6 +45,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `npm run check -- <category-id>`: validates the category, its packets, and the key. No network.
 - `npm run rate -- <category-id> [limit]`: submits the unrated pairs to the Anthropic API as a batch, or collects an earlier batch. It needs `.env` and costs money, so ask the user before running it.
 - `npm run stability -- <category-id> [limit]`: the same for the category's reworded versions. It also costs money, so ask first.
+- `npm run place -- <category-id> [limit]`: the same for the records in `placements/<category-id>/`, each rated against a fixed panel of the scale's records. It also costs money, so ask first.
 - `npm run report -- <category-id>`: writes the report and the blinded spot check from saved comparisons. No network.
 - `npm run site`: writes the overview to `dist/index.html` and one page per published category to `dist/<category-id>/index.html` from saved comparisons. No network.
 
@@ -58,6 +59,7 @@ Rating calls the Anthropic API. Copy `.env.example` to `.env` and set `ANTHROPIC
 - `events/`: one file per issue category, holding the shared wording of each program change, listed by legislature
 - `key.json`: maps each blinded id to a name and a legislature, and lists the terms no record may contain
 - `packets/<category-id>/`: one evidence packet per subject, named by blinded id
+- `placements/<category-id>/`: packets placed on the finished scale against a fixed panel instead of rated into it; `<id>.<label>.json` is a calibration copy of a subject on the scale
 - `rewordings/<category-id>/`: one file per reworded version of the category's records, used only by the stability test
 - `runs/<category-id>/`: saved comparisons, the report, and the spot check
 - `systems/<category-id>.json`: optional policy figures across OECD countries that place each country's own system on a separate scale on the site; never sent to the rater
