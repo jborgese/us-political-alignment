@@ -1,0 +1,86 @@
+{
+  "items": [
+    {
+      "slot": "keeps-health",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing system, in which public health coverage is guaranteed to older, disabled, and low-income residents, most others rely on employer or subsidized private insurance, and about 8 percent of residents have no coverage, less the reductions listed under changes.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.kff.org/report-section/health-provisions-in-the-2025-federal-budget-reconciliation-law-medicare/",
+        "https://www.census.gov/library/publications/2026/demo/p60-291.html"
+      ]
+    },
+    {
+      "slot": "keeps-income",
+      "tier": "official_act",
+      "text": "Votes to keep in place the existing income support, in which mandatory pension schemes replace about 51 percent of an average worker's net earnings, unemployment benefits replace about 35 percent of an average earner's net income in the second month out of work, and a single adult with no other income is guaranteed about 6 percent of the median income, housing support included, less the reductions listed under changes.",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.oecd.org/en/publications/pensions-at-a-glance-2025_e40274c1-en/full-report/net-pension-replacement-rates_a7a9e376.html",
+        "https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en/full-report/unemployment-and-social-safety-net-benefits_ddfedfa8.html",
+        "https://stat.link/qetyb2",
+        "https://stat.link/xiqc6l"
+      ]
+    },
+    {
+      "event": "budget-law-health",
+      "stance": "Voted for"
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted against"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted for"
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Voted for"
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In committee, voted against advancing an earlier version of that budget law while pressing for its work requirements and spending reductions to take effect sooner, then abstained to let it advance once the work requirements were moved earlier.",
+      "sources": [
+        "https://www.dailysignal.com/2025/05/19/budget-committee-passes-big-beautiful-bill-after-negotiations/",
+        "https://roy.house.gov/media/press-releases/rep-roy-issues-statement-advancement-one-big-beautiful-bill-house-budget"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "influence",
+      "text": "Publicly urged party colleagues to let the expanded premium subsidies expire, and said they should not expect support for any deal that extends them.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/roy-letter-wall-street-journal-no-time-go-wobbly-obamacare"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "statement",
+      "text": "After the committee vote, said the budget bill needed further changes before final passage, including an end to the financing arrangements that let regional governments draw additional national funds for public health coverage.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/rep-roy-issues-statement-advancement-one-big-beautiful-bill-house-budget"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced a bill, and filed an amendment to the budget bill, to phase down over eight years the higher national funding share for adults added to low-income public health coverage until it equals the regular share, and to let regional governments narrow eligibility for that group.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/reps-roy-fitzgerald-introduce-legislation-end-medicaid-discrimination-against",
+        "https://amendments-rules.house.gov/amendments/ROYTX_087_xml250520204615360.pdf"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Led a letter, signed by 19 other legislators, urging colleagues to lower the national funding share for adults added to low-income public health coverage to the regular share, to limit the financing arrangements regional governments use to draw national funds, and to rule out further expansion of that coverage.",
+      "sources": [
+        "https://roy.house.gov/media/press-releases/rep-roys-dear-colleague-letter-medicaid-reform",
+        "https://www.yahoo.com/news/house-conservatives-call-controversial-medicaid-221128428.html"
+      ]
+    }
+  ],
+  "emptySlots": []
+}
