@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "Introduced, and voted for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml",
+        "https://pfluger.house.gov/UploadedFiles/2025_Year_in_Review_FINAL.pdf",
+        "https://climate.law.columbia.edu/content/house-republican-introduces-joint-resolution-disapprove-epa-rule-methane-emissions"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "changes-energy",
+      "tier": "official_act",
+      "text": "Introduced a bill, passed by the lower chamber, moving approval of gas export terminals to the energy regulator and ending the separate review of whether such exports serve the public interest.",
+      "sources": [
+        "https://sanangelolive.com/news/politics/video/2025-11-21/house-passes-pfluger-bill-streamline-us-lng-exports",
+        "https://pgjonline.com/news/2025/november/house-bill-would-shift-lng-approvals-to-ferc-streamline-us-project-reviews"
+      ]
+    },
+    {
+      "slot": "changes-energy",
+      "tier": "official_act",
+      "text": "Introduced a bill, passed by the lower chamber, barring the head of government from declaring a moratorium on hydraulic fracturing without the legislature's approval.",
+      "sources": [
+        "https://www.yahoo.com/news/pflugers-protecting-american-energy-production-010400523.html",
+        "https://jayapal.house.gov/2025/02/07/jayapal-statement-on-halt-fentanyl-act-protecting-american-energy-production-act"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "About two in three of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "About half of its members voted for, and the rest voted against,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "Endorsed, with about half of its members voting for and the rest against,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml",
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-endorses-permitting-reform-legislation-and"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "About one in ten of its members cosponsored a bill restoring the tax credits for wind, solar, and home energy upgrades that the budget law ended, blocking the cancellation of clean energy grants, and speeding approval of renewable energy projects.",
+      "sources": [
+        "https://legiscan.com/US/bill/HB7977/",
+        "https://rollcall.com/2026/03/19/democrats-tee-up-energy-affordability-debate-with-new-bill/",
+        "https://seec.house.gov/sites/evo-subsites/seec.house.gov/files/evo-media-document/26.02.18-energy-bills-relief-act-sec-by-sec.pdf"
+      ]
+    }
+  ]
+}

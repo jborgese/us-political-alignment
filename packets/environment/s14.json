@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Its members voted unanimously against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "About a quarter of its members who voted voted for, and the rest voted against,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "All but four of its members who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "All but eight of its members who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "About seven in ten of its members cosponsored a bill restoring the tax credits for wind, solar, and home energy upgrades that the budget law ended, blocking the cancellation of clean energy grants, and speeding approval of renewable energy projects.",
+      "sources": [
+        "https://legiscan.com/US/bill/HB7977/",
+        "https://rollcall.com/2026/03/19/democrats-tee-up-energy-affordability-debate-with-new-bill/",
+        "https://seec.house.gov/sites/evo-subsites/seec.house.gov/files/evo-media-document/26.02.18-energy-bills-relief-act-sec-by-sec.pdf"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Led its party's groups of legislators in making any agreement on faster permitting conditional on ending the government's actions against clean energy projects and restoring permits it had withdrawn.",
+      "sources": [
+        "https://newdemocratcoalition.house.gov/media-center/press-releases/democrats-are-united-for-clean-energy-and-lower-prices-in-permitting-reform-negotiations"
+      ]
+    }
+  ]
+}

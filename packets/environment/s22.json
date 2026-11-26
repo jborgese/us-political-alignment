@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "All of its legislators in both chambers voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "About four in five of its legislators in the lower chamber who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "Six of its legislators in the lower chamber voted for, one voted present, and the rest who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "All but 11 of its legislators in the lower chamber who voted voted against",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "About three in four of its legislators in the lower chamber cosponsored a bill restoring the tax credits for wind, solar, and home energy upgrades that the budget law ended, blocking the cancellation of clean energy grants, and speeding approval of renewable energy projects.",
+      "sources": [
+        "https://legiscan.com/US/bill/HB7977/",
+        "https://rollcall.com/2026/03/19/democrats-tee-up-energy-affordability-debate-with-new-bill/",
+        "https://seec.house.gov/sites/evo-subsites/seec.house.gov/files/evo-media-document/26.02.18-energy-bills-relief-act-sec-by-sec.pdf"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Its national platform, adopted before this period, pledges to keep building on the clean energy tax credits, triple clean energy generation by 2030, end tens of billions in oil and gas subsidies, and bring transport emissions to net zero by 2050. Its votes in this period affirm this.",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/2024-democratic-party-platform",
+        "https://www.cbsnews.com/news/democratic-party-platform-climate-environment"
+      ]
+    }
+  ]
+}

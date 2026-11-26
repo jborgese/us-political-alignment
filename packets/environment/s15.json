@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Nearly all of its members voted for",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "All of its members who voted voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Proposed for a second party-line budget law: shorter approvals for energy and infrastructure projects, protecting fossil fuel permits from cancellation by later governments, ending energy efficiency standards, fees on regional governments that seek stricter air pollution limits, and fees on people who sue over environmental review.",
+      "sources": [
+        "https://www.eenews.net/articles/gop-unveils-energy-heavy-framework-for-reconciliation-2-0"
+      ]
+    }
+  ]
+}

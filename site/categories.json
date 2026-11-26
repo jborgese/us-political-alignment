@@ -3,6 +3,6 @@
   { "id": "economics", "label": "Economics", "published": true },
   { "id": "immigration", "label": "Immigration", "published": true },
   { "id": "social-cultural", "label": "Social and cultural", "published": false },
-  { "id": "environment", "label": "Environment", "published": false },
+  { "id": "environment", "label": "Environment", "published": true },
   { "id": "democratic-norms", "label": "Democratic norms", "published": false }
 ]

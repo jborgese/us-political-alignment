@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "event": "climate-fund-amendment",
+      "stance": "Negotiated as the incoming governing party, and voted for,",
+      "sources": [
+        "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/560839/grundgesetzaenderung-fuer-verteidigung-und-sondervermoegen/"
+      ]
+    },
+    {
+      "event": "heating-law-rewrite",
+      "stance": "In a governing coalition, enacted"
+    },
+    {
+      "slot": "changes-climate",
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a law allowing carbon dioxide to be captured, carried by pipeline, and stored under the seabed, leaving storage on land to regional governments to allow.",
+      "sources": [
+        "https://bundestag.de/dokumente/textarchiv/2025/kw45-de-kohlendioxid-speicherung-1116742"
+      ]
+    },
+    {
+      "slot": "changes-energy",
+      "tier": "official_act",
+      "text": "In a governing coalition, enacted a law to tender 11 gigawatts of new gas power plants, to run by 2031 and switch to hydrogen by 2045, paid for by a new charge on electricity customers that the government estimated at up to about 0.07 percent of a year's economic output in 2031.",
+      "sources": [
+        "https://www.zdfheute.de/politik/deutschland/bundestag-gaskraftwerke-bau-strom-100.html",
+        "https://www.destatis.de/DE/Presse/Pressemitteilungen/2026/01/PD26%5F017%5F811.html"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-nature",
+    "seeks"
+  ]
+}

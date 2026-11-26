@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "event": "budget-law-energy",
+      "stance": "Voted against",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190"
+      ]
+    },
+    {
+      "event": "vehicle-waiver-revocation",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll114.xml"
+      ]
+    },
+    {
+      "event": "methane-fee-repeal",
+      "stance": "Voted for",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll052.xml"
+      ]
+    },
+    {
+      "event": "review-limits-bill",
+      "stance": "Cosponsored, and voted for,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll356.xml",
+        "https://bluedogs-gluesenkampperez.house.gov/media-center/press-releases/blue-dog-coalition-endorses-permitting-reform-legislation-and"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "seeks"
+  ]
+}

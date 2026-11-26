@@ -1,0 +1,200 @@
+{
+  "events": {
+    "us-house": {
+      "budget-law-energy": "a budget law that requires two offshore oil and gas lease sales a year through 2040, takes back public clean energy funds not yet spent, and ends tax credits both for electric vehicle purchases and for wind and solar plants whose construction starts after mid-2026 or whose operation starts after 2027. The official estimate valued the tax changes at about 0.17 percent of a year's economic output each year for ten years",
+      "vehicle-waiver-revocation": "a resolution that became law and took away one regional government's power to require all new cars sold there to be zero-emission by 2035. Several other regional governments had adopted the same rule, and the regional government that set it expected it to cut carbon dioxide from cars there by about 395 million tons over 2026 to 2040, about 6 percent of one year's national emissions",
+      "methane-fee-repeal": "a resolution that became law and scrapped the fee on oil and gas facilities' methane emissions beyond set limits; by the official estimate, the repeal costs about 0.002 percent of a year's economic output in revenue each year",
+      "review-limits-bill": "a bill that passed the lower chamber but has not become law, confining national environmental reviews of projects to effects closely caused by them, putting deadlines on agency decisions, and reducing the window for a court challenge to a review from six years to 150 days; no official estimate says how many reviews it would cover"
+    },
+    "uk-commons": {
+      "carbon-budget-order": "a binding ceiling on the country's greenhouse gas emissions over 2038 to 2042, designed to reach a level 87 percent under that of 1990 by 2040; the government's assessment put its net investment cost at about 1.2 percent of a year's economic output each year",
+      "planning-infrastructure-law": "a law speeding approval of large infrastructure such as power plants and grid lines and allowing builders to pay into a national nature fund rather than meet habitat protection duties at each site; the government expected about 150 decisions on major projects to come faster within the legislative term and put its value at about 0.1 percent of a year's economic output over ten years",
+      "nuclear-plant-decision": "the government's final decision to go ahead with a new 3.2-gigawatt nuclear power plant, publicly funded at about 0.5 percent of a year's economic output, able to supply power equal to the needs of about 6 million homes"
+    },
+    "de-bundestag": {
+      "climate-fund-amendment": "a change to the constitution setting up a debt-financed infrastructure fund of about 11 percent of a year's economic output, spent across twelve years, that sends about 2.3 percent of a year's economic output to the fund for cutting emissions and adds net zero emissions by 2045 to the fund's purpose",
+      "heating-law-rewrite": "a law dropping the rule that new heating systems must use at least 65 percent renewable energy and permitting new oil and gas heating that burns a growing share of low-carbon fuel, rising from 10 percent in 2029 to 60 percent in 2040; the government said households save about 0.1 percent of a year's economic output a year and that it could not yet estimate the effect on emissions"
+    },
+    "fr-assemblee": {
+      "energy-programming-bill": "a bill laying down the national energy plan that the lower chamber rejected; it would have launched about 14 new nuclear reactors adding 27 gigawatts by 2050, about 43 percent above current nuclear capacity, and its amended text put a halt to every new wind and solar power project",
+      "low-emission-zones-repeal": "a law, later struck down by the constitutional court, doing away with the zones in 25 urban areas in which older, more polluting vehicles may be kept out, of which the two largest had restrictions in force",
+      "farm-pesticide-law": "a law allowing a banned insecticide of a class harmful to bees back into use, a provision struck down by the constitutional court, lifting the herd sizes at which livestock farms need fuller environmental permits, such as from 151 to 201 dairy cows, and treating new farm water reservoirs as presumed to be of major public interest"
+    },
+    "ca-commons": {
+      "consumer-carbon-price-end": "the removal of the carbon price on fuels that households and businesses buy, which the government expected to cost about 12.6 million tons of emission cuts over 2025 to 2031, about 1.8 percent of one year's national emissions",
+      "major-projects-law": "a law under which the cabinet can name projects to be of national interest, treating them as approved under national laws on environmental assessment, fisheries, and species at risk on conditions it sets; in its first five months, the office it set up received projects worth about 4 percent of a year's economic output",
+      "regional-energy-accord": "an agreement with one regional government that suspends clean electricity rules in that region and drops the planned cap on oil and gas emissions, which was to cut another 13.4 million tons by 2030 to 2032, about 2 percent of one year's national emissions, while the regional government lifts its carbon price on industry to an effective 130 per ton and backs a new oil export pipeline tied to carbon capture"
+    }
+  },
+  "records": {
+    "s01": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Along with 37 other legislators of its party, signed a letter asking the tax-writing committee to fully repeal, not phase out, the tax credits for clean energy and electric vehicles.",
+      "Pushed its party's leaders for a quicker end to the tax credits for clean energy than the draft budget law provided, saying that leaving 40 to 45 percent of them in place was not what it had intended."
+    ],
+    "s02": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Along with 37 other legislators of its party, signed a letter asking the tax-writing committee to fully repeal, not phase out, the tax credits for clean energy and electric vehicles."
+    ],
+    "s03": [
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Was a cosponsor of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster."
+    ],
+    "s04": [
+      "While governing, carried out",
+      "While governing, passed",
+      "While governing, signed, then confirmed in a follow-up implementation agreement,",
+      "While governing, put in final form rules limiting methane from landfills and oil and gas facilities, expected by the government to cut about 30 million tons a year on average through 2040, about 4 percent of national emissions.",
+      "While governing, suspended, until the later targets are reviewed, the requirement that 20 percent of new cars and light trucks sold in 2026 be zero-emission."
+    ],
+    "s05": [
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Was a cosponsor of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster.",
+      "Put forward a bill paying for deep retrofits to save energy in close to a million public housing units."
+    ],
+    "s06": [
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Was a cosponsor of, and supported with its vote,"
+    ],
+    "s07": [
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Was a cosponsor of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster.",
+      "Pressed the national environmental agency to give up its plan to revoke the finding that greenhouse gases are a danger to health, on which its emission limits legally rest."
+    ],
+    "s08": [
+      "Negotiated, as the party about to take office, and supported with its vote,",
+      "Governing in a coalition, passed",
+      "Governing in a coalition, passed a law permitting carbon dioxide capture, pipeline transport, and storage under the seabed, with storage on land left for regional governments to permit.",
+      "Governing in a coalition, passed a law tendering 11 gigawatts of new gas power plants that are to operate by 2031 and move to hydrogen by 2045, financed through a new charge on electricity customers put by the government at up to about 0.07 percent of a year's economic output in 2031."
+    ],
+    "s09": [
+      "Its members all backed the final version of",
+      "Its members who voted all backed",
+      "Its members who voted all backed",
+      "Its members who voted all backed",
+      "Its leaders would not back the draft budget law until it ended the tax credits for clean energy faster, and its chair said as much of them as possible should be cut.",
+      "Its board cautioned that any upper-chamber change to the budget law weakening the repeal of the clean energy tax credits would be unacceptable to it."
+    ],
+    "s10": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Along with 37 other legislators of its party, signed a letter asking the tax-writing committee to fully repeal, not phase out, the tax credits for clean energy and electric vehicles.",
+      "Pushed its party's leaders to use the budget law to end the largest possible share of the tax credits for clean energy."
+    ],
+    "s11": [
+      "Supported with its vote",
+      "Supported with its vote",
+      "Put forward, and supported with its vote,",
+      "Supported with its vote",
+      "Put forward a bill, which the lower chamber passed, giving the energy regulator the approval of gas export terminals and dropping the separate review of whether those exports are in the public interest.",
+      "Put forward a bill, which the lower chamber passed, under which the head of government could not declare a moratorium on hydraulic fracturing unless the legislature approved."
+    ],
+    "s12": [
+      "While governing, put in place, backed by all its voting legislators,",
+      "While governing, passed",
+      "While governing, reached",
+      "While governing, pledged public money worth about 0.5 percent of a year's economic output, up to 2030, for insulating up to 5 million homes and fitting them with heat pumps and solar panels.",
+      "While governing, held to ending new gasoline and diesel car sales in 2030 while letting new hybrids be sold until 2035 and relaxing carmakers' annual electric vehicle sales targets until 2030.",
+      "While governing, gave its backing to a third runway at the country's busiest airport.",
+      "While governing, brought forward a bill, not yet passed by the legislature, stopping all new oil and gas exploration licenses but permitting some further production tied to fields that already hold licenses."
+    ],
+    "s13": [
+      "Opposed with its vote",
+      "Supported with its vote",
+      "Supported with its vote",
+      "Put forward, along with the committee chair from the other party, and supported with its vote,"
+    ],
+    "s14": [
+      "Its members all opposed",
+      "About one in four of its members who voted backed, while the rest opposed,",
+      "All but four of its voting members opposed",
+      "All but eight of its voting members opposed",
+      "About seven in ten of its members were cosponsors of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster.",
+      "Headed the effort by its party's groups of legislators to tie any agreement on quicker permitting to an end of the government's actions against clean energy projects and the return of permits it had pulled."
+    ],
+    "s15": [
+      "Its members nearly all backed",
+      "Its members who voted all backed",
+      "Its members who voted all backed",
+      "Its members who voted all backed",
+      "Put forward, for a second budget law passed by its party alone, faster approvals of energy and infrastructure projects, protection of fossil fuel permits against cancellation by future governments, the end of energy efficiency standards, and fees both on regional governments that want tighter air pollution limits and on people who bring lawsuits over environmental review."
+    ],
+    "s16": [
+      "Its members all opposed",
+      "All but three of its voting members opposed",
+      "Its members who voted all opposed",
+      "Opposed as a group, following a vote of its members, and all but one of its voting members voted no on,",
+      "Over four in five of its members were cosponsors of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster, and the group as a whole endorsed it.",
+      "Joined another group of its party's legislators in tying any agreement on quicker permitting to an end of the government's actions against clean energy projects and the return of permits it had pulled."
+    ],
+    "s17": [
+      "Its election platform promised to make permanent",
+      "Its legislators opposed with their votes",
+      "Its leader condemned, as tearing down the last national climate measure still in place,",
+      "Its election platform promised to retain the industrial carbon price and the oil and gas emissions cap, scrap oil and gas subsidies of about 0.06 percent of a year's economic output each year, and fund energy retrofits for 3.3 million homes."
+    ],
+    "s18": [
+      "Its legislators opposed with their votes",
+      "Its voting legislators all opposed",
+      "Running local councils, scrapped climate targets in seven of the nine it leads, revoked climate emergency declarations in three, and in one declared human-caused climate change not proven.",
+      "Vowed to drop the national net zero target and the wind and solar subsidies; its deputy leader said it would strike down the guaranteed-price contracts for new wind and solar power from the government's next auction, then said hours later that a legally binding contract would be honored.",
+      "Vowed to lift, on its first day in government, the ban on new offshore oil and gas drilling, with the government holding a stake in new projects."
+    ],
+    "s19": [
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote",
+      "Opposed with its vote"
+    ],
+    "s20": [
+      "Its legislators gave their support to the amendment that halted new wind and solar projects and voted in favor of",
+      "Its legislators voted against a proposal to keep the zones as an option for local authorities, then backed",
+      "Its legislators nearly all backed",
+      "Tabled a no-confidence motion against the government over the national energy plan it adopted by decree, arguing that the plan sped the growth of intermittent power sources; the motion fell far short of a majority."
+    ],
+    "s21": [
+      "Its members all opposed",
+      "About two-thirds of its members who voted backed",
+      "About one in two of its members backed, while the rest opposed,",
+      "Gave its endorsement to, with about one in two of its members voting for and the rest voting against,",
+      "About one in ten of its members were cosponsors of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster."
+    ],
+    "s22": [
+      "Its legislators in both chambers all opposed",
+      "About four in five of its lower-chamber legislators who voted cast votes against",
+      "In the lower chamber, six of its legislators backed, one voted present, and the rest who voted opposed",
+      "All but 11 of its voting legislators in the lower chamber opposed",
+      "About three in four of its lower-chamber legislators were cosponsors of a bill to bring back the wind, solar, and home energy upgrade tax credits that the budget law ended, stop clean energy grants from being canceled, and approve renewable energy projects faster.",
+      "Its national platform, adopted before this period, promises to expand on the clean energy tax credits, triple the generation of clean energy by 2030, eliminate tens of billions in oil and gas subsidies, and bring emissions from transport to net zero by 2050, and its votes in this period confirm it."
+    ],
+    "s23": [
+      "While governing, made law, backed by all but two of its legislators in the lower chamber and all but three in the upper chamber,",
+      "While governing, made law, backed by all its voting legislators in the lower chamber,",
+      "While governing, made law, backed by all but one of its voting legislators in the lower chamber,",
+      "All but one of its voting legislators in the lower chamber backed",
+      "While governing, left the international climate agreement.",
+      "While governing, revoked the finding that greenhouse gases are a danger to health, and with it every greenhouse gas limit on new cars and trucks, in a sector that produces about 28 percent of national emissions.",
+      "While governing, halted the leases of every one of the five large offshore wind farms under construction then.",
+      "Its national platform, adopted before this period, promises more oil, gas, and coal production, an end to electric vehicle mandates, and a rollback of environmental rules on energy, and its acts in this period confirm it."
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "event": "consumer-carbon-price-end",
+      "stance": "Pledged in its election platform to make permanent",
+      "tier": "statement",
+      "sources": [
+        "https://www.ndp.ca/news/singh-climate-action-protects-you-trumps-trade-war-and-rising-costs"
+      ]
+    },
+    {
+      "event": "major-projects-law",
+      "stance": "Its legislators voted against",
+      "sources": [
+        "https://globalnews.ca/news/11251166/house-of-commons-summer-break-bill-c5-vote"
+      ]
+    },
+    {
+      "event": "regional-energy-accord",
+      "stance": "Its leader condemned, saying it dismantled the last national climate measure still standing,",
+      "tier": "statement",
+      "sources": [
+        "https://www.ndp.ca/news/ndp-reaction-carney-smith-energy-announcement"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Pledged in its election platform to keep the carbon price on industry and the cap on oil and gas emissions, end oil and gas subsidies worth about 0.06 percent of a year's economic output a year, and fund energy retrofits of 3.3 million homes.",
+      "sources": [
+        "https://www.ndp.ca/news/singh-climate-action-protects-you-trumps-trade-war-and-rising-costs",
+        "https://budget.canada.ca/2025/report-rapport/anx1-en.html"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-energy"
+  ]
+}
