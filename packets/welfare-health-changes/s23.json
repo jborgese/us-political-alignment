@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "In government, enacted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "slot": "changes-health",
+      "tier": "official_act",
+      "text": "In government, finalized a rule shortening enrollment periods and tightening eligibility checks for subsidized individually purchased health insurance. The official estimate was that it could cost about 0.2 to 0.6 percent of residents their coverage.",
+      "sources": [
+        "https://www.aha.org/news/headline/2025-06-20-cms-releases-final-rule-marketplace-integrity-and-affordability",
+        "https://www.census.gov/popclock/"
+      ]
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "17 of its legislators voted for, and 196 against,",
+      "sources": [
+        "https://clerk.house.gov/evs/2026/roll011"
+      ]
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "216 of its legislators voted for, and 1 against,",
+      "sources": [
+        "https://clerk.house.gov/evs/2025/roll349"
+      ]
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "In government, enacted, with all but two of its legislators in the lower chamber and all but three in the upper chamber voting for,",
+      "sources": [
+        "https://clerk.house.gov/Votes/2025190",
+        "https://www.cbsnews.com/news/senate-debate-trump-one-big-beautiful-bill"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "influence",
+      "text": "Its head of government asked legislators to pay health subsidy money directly to people, possibly into personal health savings accounts, instead of to insurers, and to require hospitals to post all their prices.",
+      "sources": [
+        "https://www.cbsnews.com/news/trump-announces-healthcare-plan",
+        "https://www.axios.com/2025/11/08/trump-affordable-care-act-subsidies-shutdown"
+      ]
+    }
+  ]
+}

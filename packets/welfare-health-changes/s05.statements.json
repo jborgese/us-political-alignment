@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Urged the chamber to reject",
+      "tier": "statement",
+      "sources": [
+        "https://ocasio-cortez.house.gov/media/press-releases/ocasio-cortez-gives-floor-remarks-opposing-trumps-big-beautiful-bill"
+      ]
+    },
+    {
+      "event": "budget-law-food",
+      "stance": "Urged the chamber to reject",
+      "tier": "statement",
+      "sources": [
+        "https://ocasio-cortez.house.gov/media/press-releases/ocasio-cortez-gives-floor-remarks-opposing-trumps-big-beautiful-bill"
+      ]
+    },
+    {
+      "slot": "seeks",
+      "tier": "statement",
+      "text": "Said that guaranteeing health care matters more to them than seeking higher office.",
+      "sources": [
+        "https://foxnews.com/politics/watch-aoc-leaves-door-open-2028-white-house-bid-maybe-maybe"
+      ]
+    }
+  ],
+  "noPosition": [
+    "subsidy-extension",
+    "employer-plan-bill"
+  ]
+}

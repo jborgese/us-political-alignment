@@ -1,21 +1,11 @@
 {
-  "title": "Welfare and health: position pilot",
+  "title": "Welfare and health: changes-only pilot, arm B (position wording)",
   "question": "Which record's position, as its evidence shows it, is closer to government-guaranteed health coverage and income support for the general population?",
-  "tierRule": "Tiers say how firm a piece of evidence is. Use them only inside one record: where a record's own items point different ways, the higher tier governs. Between two records, compare the positions their evidence shows, and do not prefer a record because its evidence is official rather than stated.",
-  "weighing": "Judge the whole position a record supports. A guarantee the record keeps in place counts as support for it, as much as a change the record seeks. Where one record has no evidence in a section, compare the two records on the sections where both have evidence.",
+  "tierRule": "Tiers show how firmly an item commits the actor. Use them only inside one record, as the weighing rule says. Between two records, compare the positions their evidence shows, and do not prefer a record because its evidence is official rather than stated.",
+  "weighing": "Judge the changes a record supports or opposes, whether it enacted them in government, voted on them, pressed for them, or seeks them, by their direction and size. Judge the size of what a record supports, not what it had the power to achieve: a record that backs every change in one direction put before it and seeks larger ones supports more change in that direction than one that enacted smaller changes. The tier shows how firmly an item commits the actor, not how large the change is; where a record's items point in opposite directions, the higher tier governs. A vote against a change counts as support for what the change would have removed, unless the record shows it opposed the change for not going far enough, for example by backing more generous versions of it; then it counts as support for going further. The health coverage and income support a record inherited are not part of its position.",
   "highPole": "government guarantees broad health coverage and income support",
   "lowPole": "government's role in health coverage and income support is cut back",
   "slots": [
-    {
-      "id": "keeps-health",
-      "heading": "Health coverage it keeps in place",
-      "required": true
-    },
-    {
-      "id": "keeps-income",
-      "heading": "Income support it keeps in place",
-      "required": true
-    },
     {
       "id": "changes-health",
       "heading": "Changes to health coverage in the period"
@@ -33,16 +23,6 @@
     {
       "id": "anchor-expansive",
       "items": [
-        {
-          "slot": "keeps-health",
-          "tier": "official_act",
-          "text": "Votes to keep in place public health coverage that enrolls every resident, with no charge at the point of care."
-        },
-        {
-          "slot": "keeps-income",
-          "tier": "official_act",
-          "text": "Votes to keep in place a public pension for every retiree and unemployment benefits that rise with wages."
-        },
         {
           "slot": "changes-health",
           "tier": "official_act",
@@ -68,16 +48,6 @@
     {
       "id": "anchor-mixed",
       "items": [
-        {
-          "slot": "keeps-health",
-          "tier": "official_act",
-          "text": "Votes to keep in place public health coverage for older and low-income residents at its current funding, while most other residents rely on private insurance."
-        },
-        {
-          "slot": "keeps-income",
-          "tier": "official_act",
-          "text": "Votes to keep the public pension and unemployment benefits at their current levels."
-        },
         {
           "slot": "changes-health",
           "tier": "official_act",
@@ -106,16 +76,6 @@
     {
       "id": "anchor-retrenching",
       "items": [
-        {
-          "slot": "keeps-health",
-          "tier": "official_act",
-          "text": "Votes to keep in place public health coverage for older residents only, less the reductions listed under changes, while other residents rely on private insurance."
-        },
-        {
-          "slot": "keeps-income",
-          "tier": "official_act",
-          "text": "Votes to keep in place a public pension for retirees, less the reductions listed under changes."
-        },
         {
           "slot": "changes-health",
           "tier": "official_act",
