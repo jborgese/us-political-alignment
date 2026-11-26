@@ -88,24 +88,36 @@ Question put to the rater: Which record shows stronger support for government-gu
 
 ## Calibration
 
-- Mean gap: 11.1 points. Largest: 37 points.
+- Mean gap: 8.3 points. Largest: 37 points.
 - The calibration line (mean gap of 5 points or less, none more than 10) holds: no
 
 | Subject | Copy | Subject's score | Copy's score | Gap |
 |---|---|---|---|---|
+| Chip Roy | exact | 7 | 10 | 3 |
+| Chip Roy | statements | 7 | 10 | 3 |
 | Chip Roy | votes | 7 | 37 | 30 |
+| Ben Cline | exact | 33 | 32 | -1 |
 | Ben Cline | statements | 33 | 32 | -1 |
 | Ben Cline | votes | 33 | 32 | -1 |
+| Brad Schneider | exact | 55 | 59 | 4 |
 | Brad Schneider | votes | 55 | 59 | 4 |
+| Alexandria Ocasio-Cortez | exact | 71 | 68 | -3 |
+| Alexandria Ocasio-Cortez | statements | 71 | 42 | -30 |
 | Alexandria Ocasio-Cortez | votes | 71 | 90 | 19 |
+| Marie Gluesenkamp Perez | exact | 46 | 42 | -5 |
 | Marie Gluesenkamp Perez | statements | 46 | 42 | -5 |
 | Marie Gluesenkamp Perez | votes | 46 | 42 | -5 |
+| Pramila Jayapal | exact | 79 | 78 | 0 |
 | Pramila Jayapal | statements | 79 | 42 | -37 |
 | Pramila Jayapal | votes | 79 | 90 | 12 |
+| Andy Harris | exact | 18 | 17 | -1 |
 | Andy Harris | statements | 18 | 22 | 5 |
 | Andy Harris | votes | 18 | 32 | 15 |
+| August Pfluger | exact | 22 | 27 | 6 |
 | August Pfluger | votes | 22 | 27 | 6 |
+| Jared Golden | exact | 48 | 51 | 3 |
 | Jared Golden | votes | 48 | 42 | -6 |
+| Pete Aguilar | exact | 52 | 55 | 3 |
 | Pete Aguilar | votes | 52 | 64 | 12 |
 
 ## Held back from the site

@@ -1,0 +1,80 @@
+name: Vote listener
+
+on:
+  schedule:
+    - cron: "37 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: vote-listener
+  cancel-in-progress: false
+
+jobs:
+  listen:
+    name: Read House and Senate roll calls
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      ISSUE_TITLE: House and Senate votes to consider
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Check out the open listener branch, or start a new one
+        id: branch
+        run: |
+          open_branch=$(gh api "repos/${GITHUB_REPOSITORY}/pulls?state=open&per_page=100" \
+            --jq '[.[] | select(.head.repo.full_name == env.GITHUB_REPOSITORY and (.head.ref | startswith("chore/votes-"))) | .head.ref][0] // ""')
+          if [ -n "${open_branch}" ]; then
+            git fetch origin "${open_branch}"
+            git checkout "${open_branch}"
+          else
+            git checkout -b "chore/votes-$(date -u +%Y%m%d-%H%M)"
+          fi
+          echo "open=${open_branch}" >> "${GITHUB_OUTPUT}"
+      - name: Read roll calls and update records
+        env:
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+        run: npm run votes -- write "${RUNNER_TEMP}"
+      - name: Commit, then open or update the draft pull request
+        env:
+          OPEN_BRANCH: ${{ steps.branch.outputs.open }}
+        run: |
+          if git diff --quiet; then
+            echo "No record or key changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --update
+          git commit -m "Update member records from House and Senate roll calls"
+          branch=$(git branch --show-current)
+          git push origin "HEAD:refs/heads/${branch}"
+          if [ -n "${OPEN_BRANCH}" ]; then
+            number=$(gh api "repos/${GITHUB_REPOSITORY}/pulls?state=open&head=${GITHUB_REPOSITORY_OWNER}:${branch}" --jq '.[0].number')
+            gh pr comment "${number}" --body-file "${RUNNER_TEMP}/pr.md"
+          else
+            gh pr create --draft --base main --head "${branch}" \
+              --title "Update member records from House and Senate roll calls" \
+              --body-file "${RUNNER_TEMP}/pr.md"
+          fi
+      - name: Update the issue of votes to consider
+        run: |
+          number=$(gh api "repos/${GITHUB_REPOSITORY}/issues?state=open&per_page=100" \
+            --jq '[.[] | select(.pull_request == null and .title == env.ISSUE_TITLE) | .number][0] // ""')
+          if [ -n "${number}" ]; then
+            gh issue edit "${number}" --body-file "${RUNNER_TEMP}/issue.md"
+          else
+            gh issue create --title "${ISSUE_TITLE}" --body-file "${RUNNER_TEMP}/issue.md"
+          fi

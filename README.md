@@ -187,13 +187,13 @@ Rating every pair costs more with each record added, so records beyond a categor
 
 ## Listening for roll calls
 
-`npm run votes` reads roll calls: the House's from the Congress.gov API, and the Senate's from Senate.gov. `preview` prints the record changes and the votes to consider. `write` makes the changes and saves the two summaries as `pr.md` and `issue.md`. Design and tradeoffs: [the spec](docs/specs/2026-11-vote-listener.md).
+`npm run votes` reads roll calls: the House's from the Congress.gov API, and the Senate's from Senate.gov. `preview` prints the record changes and the votes to consider. `write` makes the changes and saves the two summaries as `pr.md` and `issue.md`. A daily workflow, `.github/workflows/votes.yml`, runs it with `write`. Record and key changes go into one rolling draft pull request on a `chore/votes-*` branch, and the votes to consider go into one issue. Design and tradeoffs: [the spec](docs/specs/2026-11-vote-listener.md).
 
 - **Stances.** For each event with a `rollCall`, a member whose subject has a `rollCallId` gets "Voted for" for Yea or Aye and "Voted against" for Nay or No. A member who was present, did not vote, or was not in the chamber gets the event under `noPosition`. A stance already written is never changed. A plain "Voted for" or "Voted against" that the roll call contradicts is listed in the issue.
 - **IDs.** `rollCallId` is the member's Bioguide ID in the House and LIS member ID in the Senate. A member without one is matched by exact first and last name in the latest roll call of the current Congress. The pull request shows each match for review.
 - **Provisional status.** See [Members-elect](#members-elect).
 - **Votes to consider.** Passage votes from the last 14 days that no event names, listed under each category whose policy areas in `votes.json` include the bill's. A bill keeps the policy area of its original text, so a vote used as a vehicle for something else is listed under "Other passage votes".
-- **What it never does.** It doesn't word events, write caucus or party stances, edit calibration copies, add an item past the 12-item limit, or rate. A new stance changes the record's text, so its saved comparisons go stale and the site build refuses them. Before merging the listener's changes, run `rate` or `place` for each category it lists and commit the runs.
+- **What it never does.** It doesn't word events, write caucus or party stances, edit calibration copies, add an item past the 12-item limit, or rate. A new stance changes the record's text, so its saved comparisons go stale and the site build refuses them. Before merging the listener's changes, run `rate` or `place` for each category it lists and commit the runs. For the workflow's pull request, do that on its branch: the workflow adds later commits on top and never force-pushes.
 
 ## The site
 
