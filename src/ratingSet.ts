@@ -32,7 +32,7 @@ export const thinEvidenceReasons = (set: RatingSet, packet: Packet): string[] =>
   const split = splitShare(set, packet.id)
   return [
     ...set.category.slots
-      .filter((slot) => slot.required && itemsInSlot(packet, slot.id).length === 0)
+      .filter((slot) => slot.required && !provisional && itemsInSlot(packet, slot.id).length === 0)
       .map((slot) => `nothing under "${slot.heading}"`),
     ...(counted < FEWEST_OFFICIAL_ACTS
       ? [`${countedEvidence(counted, provisional)}, fewer than ${FEWEST_OFFICIAL_ACTS}`]

@@ -280,6 +280,27 @@ describe("thinEvidenceReasons", () => {
       ])
     })
 
+    it("does not hold back a provisional record for an empty required slot", () => {
+      const packet = record("s01", [
+        act("As a regional legislator, voted for the bill."),
+        statement("Pledged to vote for the second bill."),
+        statement("Said they would introduce a third bill."),
+      ])
+      const withRequiredSlot = (set: ReturnType<typeof buildSet>) => ({
+        ...set,
+        category: {
+          ...set.category,
+          slots: [...set.category.slots, { id: "keeps", heading: "What it keeps in place", required: true }],
+        },
+      })
+
+      expect(thinEvidenceReasons(withRequiredSlot(provisionalSet(packet)), packet)).toEqual([])
+      expect(thinEvidenceReasons(withRequiredSlot(buildSet({ packets: [packet] })), packet)).toEqual([
+        'nothing under "What it keeps in place"',
+        "1 official act, fewer than 3",
+      ])
+    })
+
     it("keeps a provisional subject off the scale", () => {
       const set = provisionalSet(record("s01", threeActs))
 
