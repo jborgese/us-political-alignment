@@ -167,7 +167,7 @@ const placedSubjectLines = (placed: Placed): string[] => {
     .filter((packet) => packet.items.length > 0 && subjectIdOf(packet.id) === packet.id)
     .map((packet) => packet.id)
   if (ids.length === 0) return []
-  const placedSet = placementRun(set)
+  const placedSet = placementRun(set, panel)
   const rows = set.placements
     .filter((packet) => ids.includes(packet.id) && packet.id in scores)
     .toSorted((a, b) => scores[b.id] - scores[a.id])

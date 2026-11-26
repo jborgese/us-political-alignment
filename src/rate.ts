@@ -211,5 +211,5 @@ export const placeRecords = async (
     await writeFile(paths.panel, `${JSON.stringify({ chosenAt: new Date().toISOString(), ids: panel }, null, 2)}\n`)
   }
   const files = { comparisons: paths.placed, superseded: paths.placedSuperseded, pendingBatch: paths.placedBatch }
-  return rateRun({ categoryId, set: placementRun(set), files, plan: () => placementMatchups(set, panel) }, model, limit)
+  return rateRun({ categoryId, set: placementRun(set, panel), files, plan: () => placementMatchups(set, panel) }, model, limit)
 }

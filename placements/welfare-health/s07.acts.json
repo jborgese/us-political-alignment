@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Voted against"
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted for"
+    },
+    {
+      "slot": "seeks",
+      "tier": "official_act",
+      "text": "Introduced, as lead sponsor, a bill to enroll every resident in a single public health plan covering medical, dental, vision, hearing, mental health, and long-term care, with no premiums, deductibles, or copayments.",
+      "sources": [
+        "https://jayapal.house.gov/2025/04/29/jayapal-sanders-dingell-hundreds-of-health-care-workers-introduce-medicare-for-all"
+      ]
+    }
+  ],
+  "emptySlots": [
+    "changes-income"
+  ],
+  "noPosition": [
+    "employer-plan-bill",
+    "budget-law-food"
+  ]
+}

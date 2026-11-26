@@ -127,9 +127,11 @@ flowchart LR
 **Callouts:**
 - Rank the scale's records by fitted strength, leave out records held back from the site, and take 10 evenly spaced by rank, so the panel runs from the high anchor to the low one. Records tied on the scale (the same wins and losses) are ordered by id, so the same scale always gives the same panel. This is the design simulated in the research doc.
 - The panel is not re-chosen when the scale is re-rated, so earlier placement answers stay usable. A panel member whose record changes gets its pairs re-rated through the existing fingerprint check.
+- **Count-matched cut.** A panel member with more items than the placed record is cut to as many: highest tier first, its own items before its stances on shared events, then file order. The answers still count against the member's full score, and a cut member's id ends in `~<count>`. In the A/B pilot (#28), 3-item copies kept only about 57% of their subjects' distance from a point near 65, so a thin record faces records as thin as itself. Linking items in test equating follow the same rule: a miniature of the full test.
 
 **Decided (26 November 2026):**
 - A panel member that is later held back stays on the panel; the panel is re-chosen only on request.
+- The count-matched cut applies to every placed record, so the exact copies test whether cutting harms records that aren't thin.
 
 #### 4.3.3 `place` command
 
@@ -188,7 +190,7 @@ flowchart LR
 - Prior-office acts are official acts worded with their level ("As a regional legislator, …"); campaign positions are statements of an intended act; stances on the House events are statement-tier or listed under `noPosition`.
 - A provisional record needs at least 3 items that are official acts or statements, instead of 3 official acts, and is not held back for an empty required slot ("keeps in place"), which a member-elect has had no vote to fill. The other hold-back rules are unchanged.
 - `check` refuses a provisional subject in `packets/`, so the scale is built only from records of people in office.
-- **Risk:** the rater weighs official acts above statements, so a record of stated intentions may land nearer the middle than its positions warrant. Ticket 4's statement-only copies measure that before any campaign-only record is shown.
+- **Risk:** thin records drift toward the middle. The tier rule now applies only inside a record, and same-length copies written as statements held in the A/B pilot, but 3-item copies did not. Ticket 7's count-matched panel answers this, and its calibration decides whether campaign-only records are shown.
 
 **Decided (26 November 2026):**
 - Evidence: prior-office acts plus campaign positions, not an estimate from a group the member belongs to.
@@ -337,6 +339,28 @@ As the project owner, I need records for six members-elect on the four live issu
 **Definition of done:** six provisional scores in each live issue's report.
 **Rollback / feature flag:** delete the packets, key entries and run files.
 
+### Ticket 7 — Count-matched panel
+
+**User Story:**
+As the project owner, I need thin records placed against panel records as thin as they are so that members-elect are not pulled toward the middle by how little evidence they have.
+
+**Acceptance Criteria (checkbox-ready):**
+- [ ] `place` cuts each panel member with more items than the placed record to as many, by the rule in [§4.3.2](#432-panel), and the report scores the answers against the member's full score.
+- [ ] 3-act copies (`<id>.acts.json`) of three members outside the panel, cut by the same rule, beside the existing statement copies.
+- [ ] After Jared approves, one welfare `place` run in place of the run planned for #30 (660 comparisons, about $2.30).
+- [ ] Calibration line holds for each kind of copy, with 93% order agreement, before any member-elect score is shown.
+
+**Callouts:**
+- **Backend logic** (`src/placement.ts`): the cut, the cut members in the placement run, and mapping a cut id back to its member before the fit.
+- The cut rule drops content: two members whose official acts are only the same shared-event stances cut to the same text (Schneider and Golden at 3 items).
+
+**Rollout:**
+**Test plan:** `test/placement.test.ts` for the cut and the fit; `test/rate.test.ts` for the planned pairs; `check` for the comparison count; the run itself, read against the calibration line.
+**Legacy / migration handling:** every welfare placement answer is already stale after the four-issue re-rate (#30), so nothing is mixed.
+
+**Definition of done:** calibration result in the research doc; members-elect shown or held back on that result.
+**Rollback / feature flag:** revert the PR; placement answers against cut members go stale and are set aside on the next run.
+
 ---
 
 ## 6. Rollout plan
@@ -354,6 +378,7 @@ Regenerating the four live reports after each merge must give identical files; t
 - Any live report changes after a merge: revert that PR.
 - The calibration line fails: stop before the record-building pipeline, and revisit what goes into the records.
 - The statement-only copies fail the calibration line: keep campaign-only members-elect off the site, and revisit how stated intentions are weighed.
+- Ticket 7's copies fail the calibration line: hold thin records back until they have a voting record.
 
 ---
 
@@ -367,6 +392,9 @@ Regenerating the four live reports after each merge must give identical files; t
 | 12 random opponents per record, refitting everything | Simple | A record more than 10 points off in 62% of simulated runs; moves published scores | Accuracy, stability |
 | Binary search against the scale | About 5 comparisons per record | One early wrong answer put a record 33 points off | Accuracy |
 | 14-record panel, one order | 14 comparisons per record | Worst error 10.4 points | Accuracy |
+| Correct thin scores by the pilot's fitted factor | No extra comparisons | Multiplies noise by 1.8; the factor's 95% range alone moves a record near 105 from about 125 to 150 | Noise, six data points |
+| Pull thin records toward their party's score | No extra comparisons | Places by group, which Jared ruled out; a second pull toward a group mean | Contradicts the evidence rule |
+| Tell the rater that fewer items is not a weaker position | One sentence | The prompt already says "Do not count items"; re-rates every issue | Untested, about $13 |
 
 ### B. Reference tables / mappings
 

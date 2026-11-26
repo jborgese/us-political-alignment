@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "event": "budget-law-health",
+      "stance": "Voted against"
+    },
+    {
+      "event": "subsidy-extension",
+      "stance": "Voted for"
+    },
+    {
+      "event": "employer-plan-bill",
+      "stance": "Voted against"
+    }
+  ],
+  "emptySlots": [
+    "changes-income",
+    "seeks"
+  ],
+  "noPosition": [
+    "budget-law-food"
+  ]
+}
